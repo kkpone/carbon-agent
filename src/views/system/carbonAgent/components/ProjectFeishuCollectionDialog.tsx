@@ -47,7 +47,6 @@ type ProjectFeishuCollectionDialogProps = {
   onGroupStateChange: (state: ProjectFeishuGroupState | null) => void;
 };
 
-type SetupTab = 'bind' | 'create';
 type DialogViewMode = 'form' | 'list';
 
 const UNSPECIFIED_TASK_VALUE = '__unspecified__';
@@ -83,10 +82,8 @@ const ProjectFeishuCollectionDialog = ({
   const [viewMode, setViewMode] = useState<DialogViewMode>(() =>
     getProjectFeishuGroups(projectId).length ? 'list' : 'form',
   );
-  const [activeTab, setActiveTab] = useState<SetupTab>('create');
   const [groupName, setGroupName] = useState('');
   const [description, setDescription] = useState('');
-  const [selectedExistingGroup, setSelectedExistingGroup] = useState('');
   const [ownerMemberId, setOwnerMemberId] = useState('');
   const [defaultTaskId, setDefaultTaskId] = useState(UNSPECIFIED_TASK_VALUE);
   const [setBotManager, setSetBotManager] = useState(true);
@@ -132,32 +129,6 @@ const ProjectFeishuCollectionDialog = ({
         id: 'scope_logistics',
         name: `${projectName} - ${I18N.carbonAgent.feishuCollectScopePreset3Name}`,
         shortLabel: I18N.carbonAgent.feishuCollectScopePreset3Name,
-      },
-    ],
-    [projectName],
-  );
-
-  const existingGroupOptions = useMemo(
-    () => [
-      {
-        label: I18N.template(
-          I18N.carbonAgent.feishuCollectExistingGroupOption1,
-          { val1: projectName },
-        ),
-        value: I18N.template(
-          I18N.carbonAgent.feishuCollectExistingGroupOption1,
-          { val1: projectName },
-        ),
-      },
-      {
-        label: I18N.template(
-          I18N.carbonAgent.feishuCollectExistingGroupOption2,
-          { val1: projectName },
-        ),
-        value: I18N.template(
-          I18N.carbonAgent.feishuCollectExistingGroupOption2,
-          { val1: projectName },
-        ),
       },
     ],
     [projectName],
@@ -225,9 +196,6 @@ const ProjectFeishuCollectionDialog = ({
         : presetForIndex?.name || `${defaultGroupName} #${nextIndex + 1}`,
     );
     setDescription(presetForIndex?.desc || '');
-    setSelectedExistingGroup(
-      existingGroupOptions[0]?.value || defaultGroupName,
-    );
 
     const defaultOwner =
       projectMembers.find(member => member.currentUser) ||
@@ -247,15 +215,7 @@ const ProjectFeishuCollectionDialog = ({
     } else {
       setDefaultTaskId(UNSPECIFIED_TASK_VALUE);
     }
-  }, [
-    defaultGroupName,
-    existingGroupOptions,
-    open,
-    projectId,
-    projectMembers,
-    scopePresets,
-    tasks,
-  ]);
+  }, [defaultGroupName, open, projectId, projectMembers, scopePresets, tasks]);
 
   useEffect(() => {
     if (!open) {
@@ -302,10 +262,7 @@ const ProjectFeishuCollectionDialog = ({
           join_message_visibility: 'all_members',
           leave_message_visibility: 'only_owner',
           membership_approval: membershipApproval,
-          name:
-            activeTab === 'create'
-              ? groupName.trim() || defaultGroupName
-              : selectedExistingGroup.trim() || defaultGroupName,
+          name: groupName.trim() || defaultGroupName,
           owner_id: selectedOwnerOption?.openId || 'ou_int_owner_default',
           share_card_permission: shareCardPermission,
           user_id_list: combinedUserIds,
@@ -314,14 +271,13 @@ const ProjectFeishuCollectionDialog = ({
         query: {
           set_bot_manager: setBotManager,
           user_id_type: 'open_id',
-          uuid: `uuid_proj_${projectId}_${ groups.length + 1 }`,
+          uuid: `uuid_proj_${projectId}_${groups.length + 1}`,
         },
       },
       null,
       2,
     );
   }, [
-    activeTab,
     addMemberPermission,
     defaultGroupName,
     description,
@@ -329,9 +285,8 @@ const ProjectFeishuCollectionDialog = ({
     groupName,
     groups.length,
     membershipApproval,
-     ownerOptions,
+    ownerOptions,
     projectId,
-    selectedExistingGroup,
     selectedExternalOpenIds,
     selectedOwnerOption?.openId,
     setBotManager,
@@ -393,15 +348,12 @@ const ProjectFeishuCollectionDialog = ({
     setViewMode('form');
   };
 
-  const handleConfirmCreateOrBind = () => {
+  const handleConfirmCreateGroup = () => {
     if (creating) {
       return;
     }
 
-    const targetGroupName =
-      activeTab === 'create'
-        ? groupName.trim() || defaultGroupName
-        : selectedExistingGroup.trim() || defaultGroupName;
+    const targetGroupName = groupName.trim() || defaultGroupName;
     const resolvedTaskId =
       defaultTaskId === UNSPECIFIED_TASK_VALUE ? '' : defaultTaskId;
     const resolvedTaskTitle =
@@ -429,7 +381,7 @@ const ProjectFeishuCollectionDialog = ({
         groupMessageType,
         groupName: targetGroupName,
         membershipApproval,
-        mode: activeTab,
+        mode: 'create',
         ownerMemberId,
         ownerName:
           selectedOwnerOption?.rawName ||
@@ -583,34 +535,16 @@ const ProjectFeishuCollectionDialog = ({
                     {I18N.carbonAgent.feishuCollectBackToGroupListBtn}
                   </button>
                 </div>
-              ) : null}
-
-              <div className={style.tabs} role='tablist'>
-                <button
-                  className={classNames(style.tabBtn, {
-                    [style.tabBtnActive]: activeTab === 'create',
-                  })}
-                  type='button'
-                  role='tab'
-                  aria-selected={activeTab === 'create'}
-                  disabled={creating}
-                  onClick={() => setActiveTab('create')}
-                >
-                  {I18N.carbonAgent.feishuCollectTabCreate}
-                </button>
-                <button
-                  className={classNames(style.tabBtn, {
-                    [style.tabBtnActive]: activeTab === 'bind',
-                  })}
-                  type='button'
-                  role='tab'
-                  aria-selected={activeTab === 'bind'}
-                  disabled={creating}
-                  onClick={() => setActiveTab('bind')}
-                >
-                  {I18N.carbonAgent.feishuCollectTabBind}
-                </button>
-              </div>
+              ) : (
+                <div className={style.projectBanner}>
+                  {I18N.template(
+                    I18N.carbonAgent.feishuCollectCurrentProject,
+                    {
+                      val1: projectName,
+                    },
+                  )}
+                </div>
+              )}
 
               <div className={style.confirmPromptBox}>
                 {I18N.carbonAgent.feishuCollectConfirmPrompt}
@@ -671,83 +605,59 @@ const ProjectFeishuCollectionDialog = ({
                 </div>
               ) : (
                 <>
-                  {activeTab === 'create' ? (
-                    <>
-                      <div className={style.field}>
-                        <span className={style.fieldLabel}>
-                          {I18N.carbonAgent.feishuCollectScopeQuickLabel}
-                        </span>
-                        <div className={style.scopeChipRow}>
-                          {scopePresets.map(preset => (
-                            <button
-                              key={preset.id}
-                              className={style.scopeChip}
-                              type='button'
-                              onClick={() => {
-                                setGroupName(preset.name);
-                                setDescription(preset.desc);
-                              }}
-                            >
-                              + {preset.shortLabel}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className={style.field}>
-                        <label htmlFor='feishu-collect-group-name'>
-                          {I18N.carbonAgent.feishuCollectGroupName}（name）
-                        </label>
-                        <input
-                          id='feishu-collect-group-name'
-                          className={style.textInput}
-                          value={groupName}
-                          maxLength={60}
-                          onChange={event =>
-                            setGroupName(event.currentTarget.value)
-                          }
-                        />
-                      </div>
-
-                      <div className={style.field}>
-                        <label htmlFor='feishu-collect-group-desc'>
-                          {I18N.carbonAgent.feishuCollectDescriptionLabel}
-                        </label>
-                        <input
-                          id='feishu-collect-group-desc'
-                          className={style.textInput}
-                          value={description}
-                          maxLength={100}
-                          placeholder={
-                            I18N.carbonAgent.feishuCollectDescriptionPlaceholder
-                          }
-                          onChange={event =>
-                            setDescription(event.currentTarget.value)
-                          }
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <div className={style.field}>
-                      <label htmlFor='feishu-collect-existing-group'>
-                        {I18N.carbonAgent.feishuCollectSelectExistingGroup}
-                      </label>
-                      <Select
-                        id='feishu-collect-existing-group'
-                        className={style.select}
-                        options={existingGroupOptions}
-                        suffixIcon={suffixChevron}
-                        value={selectedExistingGroup}
-                        onChange={setSelectedExistingGroup}
-                      />
-                      <span className={style.infoHint}>
-                        <i className={style.infoDot} aria-hidden='true'>
-                          i
-                        </i>
-                        {I18N.carbonAgent.feishuCollectBindRuleHint}
-                      </span>
+                  <div className={style.field}>
+                    <span className={style.fieldLabel}>
+                      {I18N.carbonAgent.feishuCollectScopeQuickLabel}
+                    </span>
+                    <div className={style.scopeChipRow}>
+                      {scopePresets.map(preset => (
+                        <button
+                          key={preset.id}
+                          className={style.scopeChip}
+                          type='button'
+                          onClick={() => {
+                            setGroupName(preset.name);
+                            setDescription(preset.desc);
+                          }}
+                        >
+                          + {preset.shortLabel}
+                        </button>
+                      ))}
                     </div>
-                  )}
+                  </div>
+
+                  <div className={style.field}>
+                    <label htmlFor='feishu-collect-group-name'>
+                      {I18N.carbonAgent.feishuCollectGroupName}（name）
+                    </label>
+                    <input
+                      id='feishu-collect-group-name'
+                      className={style.textInput}
+                      value={groupName}
+                      maxLength={60}
+                      onChange={event =>
+                        setGroupName(event.currentTarget.value)
+                      }
+                    />
+                  </div>
+
+                  <div className={style.field}>
+                    <label htmlFor='feishu-collect-group-desc'>
+                      {I18N.carbonAgent.feishuCollectDescriptionLabel}
+                    </label>
+                    <input
+                      id='feishu-collect-group-desc'
+                      className={style.textInput}
+                      value={description}
+                      maxLength={100}
+                      placeholder={
+                        I18N.carbonAgent.feishuCollectDescriptionPlaceholder
+                      }
+                      onChange={event =>
+                        setDescription(event.currentTarget.value)
+                      }
+                    />
+                  </div>
 
                   <div className={style.field}>
                     <label htmlFor='feishu-collect-group-owner'>
@@ -1030,11 +940,9 @@ const ProjectFeishuCollectionDialog = ({
                   className={style.confirmBtn}
                   type='button'
                   disabled={creating}
-                  onClick={handleConfirmCreateOrBind}
+                  onClick={handleConfirmCreateGroup}
                 >
-                  {activeTab === 'create'
-                    ? I18N.carbonAgent.feishuCollectCreateAndBind
-                    : I18N.carbonAgent.feishuCollectBindConfirm}
+                  {I18N.carbonAgent.feishuCollectCreateAndBind}
                 </button>
               </div>
               <p className={style.footerHint}>

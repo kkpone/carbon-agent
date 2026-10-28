@@ -520,8 +520,8 @@ export default {
   feishuCollectConnectedMulti: 'Feishu collection · {val1} groups active',
   feishuCollectPaused: 'Feishu collection · Paused',
   feishuCollectTitle: 'Feishu Data Collection',
-  feishuCollectGroupListTitle: 'Linked Feishu Collection Groups ({val1})',
-  feishuCollectAddMoreGroupBtn: '+ Create / Bind Another Group',
+  feishuCollectGroupListTitle: 'Created Feishu Collection Groups ({val1})',
+  feishuCollectAddMoreGroupBtn: '+ Create Another Feishu Group',
   feishuCollectBackToGroupListBtn: 'Back to Group List',
   feishuCollectTabCreate: 'Create New Group',
   feishuCollectTabBind: 'Bind Existing Group',
@@ -585,7 +585,7 @@ export default {
   feishuCollectTaskUnspecified: 'Not specified yet, receive files first',
   feishuCollectFirstAuthHint:
     'First-time setup requires linking the project owner Feishu identity',
-  feishuCollectCreateAndBind: 'Confirm & Create Group',
+  feishuCollectCreateAndBind: 'Confirm & Create Feishu Group',
   feishuCollectBindConfirm: 'Confirm & Bind Group',
   feishuCollectFooterHint:
     'Invite external clients after group preparation finishes',
