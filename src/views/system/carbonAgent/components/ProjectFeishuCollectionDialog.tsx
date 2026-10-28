@@ -13,22 +13,15 @@ import { createPortal } from 'react-dom';
 import Icon from './Icon';
 import style from './ProjectFeishuCollectionDialog.module.less';
 import {
-  FEISHU_BOT_APPLINK_URL,
-  FEISHU_BOT_APP_ID,
-  type FeishuAddMemberPermission,
-  type FeishuExternalP2pContact,
   type FeishuGroupMemberRole,
-  type FeishuGroupMessageType,
-  type FeishuMembershipApproval,
-  type FeishuShareCardPermission,
   type ProjectFeishuGroupState,
-  buildInternalOpenId,
+  addExternalCustomerToFeishuGroup,
   createProjectFeishuGroup,
-  getAuthorizedExternalP2pContacts,
   getProjectFeishuGroups,
-  registerExternalClientViaBotP2p,
+  removeProjectFeishuGroup,
   toggleProjectFeishuCollection,
   updateProjectFeishuDefaultTask,
+  updateProjectFeishuGroupInfo,
 } from '../feishuCollectionStore';
 import type { AgentProjectMember } from '../service';
 
@@ -86,24 +79,12 @@ const ProjectFeishuCollectionDialog = ({
   const [description, setDescription] = useState('');
   const [ownerMemberId, setOwnerMemberId] = useState('');
   const [defaultTaskId, setDefaultTaskId] = useState(UNSPECIFIED_TASK_VALUE);
-  const [setBotManager, setSetBotManager] = useState(true);
-  const [groupMessageType, setGroupMessageType] =
-    useState<FeishuGroupMessageType>('chat');
-  const [membershipApproval, setMembershipApproval] =
-    useState<FeishuMembershipApproval>('no_approval_required');
-  const [addMemberPermission, setAddMemberPermission] =
-    useState<FeishuAddMemberPermission>('all_members');
-  const [shareCardPermission, setShareCardPermission] =
-    useState<FeishuShareCardPermission>('allowed');
-  const [p2pContacts, setP2pContacts] = useState<FeishuExternalP2pContact[]>(
-    () => getAuthorizedExternalP2pContacts(),
-  );
-  const [selectedExternalOpenIds, setSelectedExternalOpenIds] = useState<
-    string[]
-  >([]);
-  const [showApiPreview, setShowApiPreview] = useState(false);
   const [creating, setCreating] = useState(false);
   const [creatingStep, setCreatingStep] = useState(0);
+  const [editingChatId, setEditingChatId] = useState<string>('');
+  const [editNameValue, setEditNameValue] = useState('');
+  const [editDescValue, setEditDescValue] = useState('');
+  const [inviteInputs, setInviteInputs] = useState<Record<string, string>>({});
 
   const defaultGroupName = useMemo(
     () => `${projectName}${I18N.carbonAgent.feishuCollectDefaultGroupSuffix}`,
@@ -136,29 +117,20 @@ const ProjectFeishuCollectionDialog = ({
 
   const ownerOptions = useMemo(() => {
     if (!projectMembers.length) {
-      const openId = buildInternalOpenId(
-        'owner_default',
-        I18N.carbonAgent.feishuCollectOwnerDefault,
-      );
       return [
         {
-          label: `${I18N.carbonAgent.feishuCollectOwnerDefault} (${openId})`,
-          openId,
+          label: I18N.carbonAgent.feishuCollectOwnerDefault,
           rawName: I18N.carbonAgent.feishuCollectOwnerDefault,
           value: 'owner_default',
         },
       ];
     }
 
-    return projectMembers.map(member => {
-      const openId = buildInternalOpenId(member.memberId, member.userName);
-      return {
-        label: `${member.userName} (${openId})`,
-        openId,
-        rawName: member.userName,
-        value: String(member.memberId),
-      };
-    });
+    return projectMembers.map(member => ({
+      label: member.userName,
+      rawName: member.userName,
+      value: String(member.memberId),
+    }));
   }, [projectMembers]);
 
   const taskOptions = useMemo(
@@ -181,12 +153,11 @@ const ProjectFeishuCollectionDialog = ({
     }
 
     const currentGroups = getProjectFeishuGroups(projectId);
-    const contacts = getAuthorizedExternalP2pContacts();
     setGroups(currentGroups);
-    setP2pContacts(contacts);
     setViewMode(currentGroups.length ? 'list' : 'form');
     setCreating(false);
     setCreatingStep(0);
+    setEditingChatId('');
 
     const nextIndex = currentGroups.length;
     const presetForIndex = scopePresets[nextIndex % scopePresets.length];
@@ -203,9 +174,6 @@ const ProjectFeishuCollectionDialog = ({
       projectMembers[0];
     setOwnerMemberId(
       defaultOwner ? String(defaultOwner.memberId) : 'owner_default',
-    );
-    setSelectedExternalOpenIds(
-      contacts[0]?.openId ? [contacts[0].openId] : [],
     );
 
     if (tasks.length === 1) {
@@ -241,99 +209,9 @@ const ProjectFeishuCollectionDialog = ({
     [ownerMemberId, ownerOptions],
   );
 
-  const openApiPayloadPreview = useMemo(() => {
-    const staffOpenIds = ownerOptions.map(item => item.openId);
-    const combinedUserIds = Array.from(
-      new Set([...staffOpenIds, ...selectedExternalOpenIds]),
-    );
-
-    return JSON.stringify(
-      {
-        body: {
-          add_member_permission: addMemberPermission,
-          bot_id_list: [FEISHU_BOT_APP_ID],
-          chat_mode: 'group',
-          chat_type: 'private',
-          description:
-            description.trim() || I18N.carbonAgent.feishuCollectScopePreset1Desc,
-          edit_permission: 'only_owner',
-          external: true,
-          group_message_type: groupMessageType,
-          join_message_visibility: 'all_members',
-          leave_message_visibility: 'only_owner',
-          membership_approval: membershipApproval,
-          name: groupName.trim() || defaultGroupName,
-          owner_id: selectedOwnerOption?.openId || 'ou_int_owner_default',
-          share_card_permission: shareCardPermission,
-          user_id_list: combinedUserIds,
-        },
-        endpoint: 'POST https://open.feishu.cn/open-apis/im/v1/chats',
-        query: {
-          set_bot_manager: setBotManager,
-          user_id_type: 'open_id',
-          uuid: `uuid_proj_${projectId}_${groups.length + 1}`,
-        },
-      },
-      null,
-      2,
-    );
-  }, [
-    addMemberPermission,
-    defaultGroupName,
-    description,
-    groupMessageType,
-    groupName,
-    groups.length,
-    membershipApproval,
-    ownerOptions,
-    projectId,
-    selectedExternalOpenIds,
-    selectedOwnerOption?.openId,
-    setBotManager,
-    shareCardPermission,
-  ]);
-
   if (!open) {
     return null;
   }
-
-  const handleToggleExternalOpenId = (openId: string) => {
-    setSelectedExternalOpenIds(prev =>
-      prev.includes(openId)
-        ? prev.filter(item => item !== openId)
-        : [...prev, openId],
-    );
-  };
-
-  const handleSimulateNewExternalP2pAuth = () => {
-    const nextIdx = p2pContacts.length + 1;
-    const created = registerExternalClientViaBotP2p({
-      companyName: `供应链协作方 #${nextIdx}`,
-      name: `张经理（外部客户 #${nextIdx}）`,
-      projectId,
-    });
-    const updatedContacts = getAuthorizedExternalP2pContacts();
-    setP2pContacts(updatedContacts);
-    setSelectedExternalOpenIds(prev =>
-      Array.from(new Set([...prev, created.openId])),
-    );
-    antdMessage.success(
-      I18N.template(I18N.carbonAgent.feishuCollectSimulateP2pAuthSuccess, {
-        val1: created.name,
-        val2: created.openId,
-      }),
-    );
-  };
-
-  const handleCopyBotAppLink = () => {
-    copyToClipboard(FEISHU_BOT_APPLINK_URL)
-      .then(() => {
-        antdMessage.success(I18N.carbonAgent.feishuCollectBotAppLinkCopied);
-      })
-      .catch(() => {
-        antdMessage.error(I18N.carbonAgent.projectInviteLinkCopyFailed);
-      });
-  };
 
   const handleStartAddAnotherGroup = () => {
     const nextIdx = groups.length;
@@ -373,14 +251,10 @@ const ProjectFeishuCollectionDialog = ({
 
     window.setTimeout(() => {
       const created = createProjectFeishuGroup({
-        addMemberPermission,
         defaultTaskId: resolvedTaskId,
         defaultTaskTitle: resolvedTaskTitle,
         description,
-        externalCustomerOpenIds: selectedExternalOpenIds,
-        groupMessageType,
         groupName: targetGroupName,
-        membershipApproval,
         mode: 'create',
         ownerMemberId,
         ownerName:
@@ -389,8 +263,6 @@ const ProjectFeishuCollectionDialog = ({
         projectId,
         projectMembers,
         projectName,
-        setBotManager,
-        shareCardPermission,
       });
 
       const latestGroups = getProjectFeishuGroups(projectId);
@@ -433,6 +305,70 @@ const ProjectFeishuCollectionDialog = ({
       const latestGroups = getProjectFeishuGroups(projectId);
       setGroups(latestGroups);
       onGroupStateChange(nextState);
+    }
+  };
+
+  const handleStartEditGroup = (group: ProjectFeishuGroupState) => {
+    setEditingChatId(group.chatId);
+    setEditNameValue(group.groupName);
+    setEditDescValue(group.description || '');
+  };
+
+  const handleSaveEditGroup = (chatId: string) => {
+    const updated = updateProjectFeishuGroupInfo({
+      chatId,
+      description: editDescValue,
+      groupName: editNameValue,
+      projectId,
+    });
+
+    if (updated) {
+      const latestGroups = getProjectFeishuGroups(projectId);
+      setGroups(latestGroups);
+      setEditingChatId('');
+      onGroupStateChange(updated);
+      antdMessage.success(I18N.carbonAgent.feishuCollectGroupUpdatedToast);
+    }
+  };
+
+  const handleDeleteGroup = (group: ProjectFeishuGroupState) => {
+    const nextGroups = removeProjectFeishuGroup(projectId, group.chatId);
+    setGroups(nextGroups);
+    onGroupStateChange(nextGroups[0] || null);
+    antdMessage.success(
+      I18N.template(I18N.carbonAgent.feishuCollectGroupRemovedToast, {
+        val1: group.groupName,
+      }),
+    );
+
+    if (!nextGroups.length) {
+      setViewMode('form');
+    }
+  };
+
+  const handleInviteCustomerInGroup = (group: ProjectFeishuGroupState) => {
+    const inputVal = (inviteInputs[group.chatId] || '').trim();
+    if (!inputVal) {
+      return;
+    }
+
+    const updated = addExternalCustomerToFeishuGroup(
+      projectId,
+      inputVal,
+      group.ownerName,
+      group.chatId,
+    );
+
+    if (updated) {
+      setInviteInputs(prev => ({ ...prev, [group.chatId]: '' }));
+      const latestGroups = getProjectFeishuGroups(projectId);
+      setGroups(latestGroups);
+      onGroupStateChange(updated);
+      antdMessage.success(
+        I18N.template(I18N.carbonAgent.feishuCollectCustomerAdded, {
+          val1: inputVal,
+        }),
+      );
     }
   };
 
@@ -628,7 +564,7 @@ const ProjectFeishuCollectionDialog = ({
 
                   <div className={style.field}>
                     <label htmlFor='feishu-collect-group-name'>
-                      {I18N.carbonAgent.feishuCollectGroupName}（name）
+                      {I18N.carbonAgent.feishuCollectGroupName}
                     </label>
                     <input
                       id='feishu-collect-group-name'
@@ -661,8 +597,7 @@ const ProjectFeishuCollectionDialog = ({
 
                   <div className={style.field}>
                     <label htmlFor='feishu-collect-group-owner'>
-                      {I18N.carbonAgent.feishuCollectGroupOwner}（owner_id ·
-                      user_id_type=open_id）
+                      {I18N.carbonAgent.feishuCollectGroupOwner}
                     </label>
                     <Select
                       id='feishu-collect-group-owner'
@@ -676,8 +611,7 @@ const ProjectFeishuCollectionDialog = ({
 
                   <div className={style.field}>
                     <span className={style.fieldLabel}>
-                      {I18N.carbonAgent.feishuCollectAutoJoinLabel}（bot_id_list
-                      & user_id_list）
+                      {I18N.carbonAgent.feishuCollectAutoJoinLabel}
                     </span>
                     <div className={style.autoJoinList}>
                       <span
@@ -687,9 +621,6 @@ const ProjectFeishuCollectionDialog = ({
                         )}
                       >
                         <strong>{I18N.carbonAgent.feishuCollectBotName}</strong>
-                        <code className={style.openIdCode}>
-                          {FEISHU_BOT_APP_ID}
-                        </code>
                         <span className={style.memberRoleBadge}>
                           {I18N.carbonAgent.feishuCollectBotTag}
                         </span>
@@ -697,71 +628,11 @@ const ProjectFeishuCollectionDialog = ({
                       {ownerOptions.map(option => (
                         <span className={style.memberChip} key={option.value}>
                           <span>{option.rawName}</span>
-                          <code className={style.openIdCode}>
-                            {option.openId}
-                          </code>
                           <span className={style.memberRoleBadge}>
                             {I18N.carbonAgent.feishuCollectStaffTag}
                           </span>
                         </span>
                       ))}
-                    </div>
-                  </div>
-
-                  <div className={style.field}>
-                    <div className={style.apiBoxHeader}>
-                      <span className={style.fieldLabel}>
-                        {I18N.carbonAgent.feishuCollectExternalP2pPoolLabel}
-                      </span>
-                      <div className={style.groupCardBtnGroup}>
-                        <button
-                          className={style.secondaryBtn}
-                          type='button'
-                          onClick={handleCopyBotAppLink}
-                        >
-                          {I18N.carbonAgent.feishuCollectBotAppLinkCopy}
-                        </button>
-                        <button
-                          className={style.secondaryBtn}
-                          type='button'
-                          onClick={handleSimulateNewExternalP2pAuth}
-                        >
-                          {I18N.carbonAgent.feishuCollectSimulateP2pAuthBtn}
-                        </button>
-                      </div>
-                    </div>
-                    <div className={style.p2pCheckList}>
-                      {p2pContacts.map(contact => {
-                        const checked = selectedExternalOpenIds.includes(
-                          contact.openId,
-                        );
-                        return (
-                          <div
-                            key={contact.id}
-                            className={style.p2pCheckItem}
-                          >
-                            <label className={style.p2pCheckLeft}>
-                              <input
-                                type='checkbox'
-                                checked={checked}
-                                onChange={() =>
-                                  handleToggleExternalOpenId(contact.openId)
-                                }
-                              />
-                              <strong>{contact.name}</strong>
-                              <span>· {contact.companyName}</span>
-                            </label>
-                            <div className={style.groupCardBtnGroup}>
-                              <code className={style.openIdCode}>
-                                {contact.openId}
-                              </code>
-                              <code className={style.openIdCode}>
-                                {contact.eventType}
-                              </code>
-                            </div>
-                          </div>
-                        );
-                      })}
                     </div>
                   </div>
 
@@ -779,144 +650,11 @@ const ProjectFeishuCollectionDialog = ({
                     />
                   </div>
 
-                  <div className={style.apiBox}>
-                    <div className={style.apiBoxHeader}>
-                      <strong>
-                        {I18N.carbonAgent.feishuCollectApiConfigTitle}
-                      </strong>
-                      <button
-                        className={style.secondaryBtn}
-                        type='button'
-                        onClick={() => setShowApiPreview(prev => !prev)}
-                      >
-                        {showApiPreview
-                          ? I18N.carbonAgent.feishuCollectApiHidePreview
-                          : I18N.carbonAgent.feishuCollectApiTogglePreview}
-                      </button>
-                    </div>
-
-                    <div className={style.apiGrid}>
-                      <div className={style.apiField}>
-                        <label>
-                          {I18N.carbonAgent.feishuCollectSetBotManagerLabel}
-                        </label>
-                        <div className={style.switchLabel}>
-                          <Switch
-                            checked={setBotManager}
-                            size='small'
-                            onChange={setSetBotManager}
-                          />
-                          <span>
-                            {setBotManager ? 'true' : 'false'}（{FEISHU_BOT_APP_ID}）
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className={style.apiField}>
-                        <label>
-                          {I18N.carbonAgent.feishuCollectGroupMessageTypeLabel}
-                        </label>
-                        <Select
-                          size='small'
-                          value={groupMessageType}
-                          options={[
-                            {
-                              label: I18N.carbonAgent.feishuCollectMsgTypeChat,
-                              value: 'chat',
-                            },
-                            {
-                              label:
-                                I18N.carbonAgent.feishuCollectMsgTypeThread,
-                              value: 'thread',
-                            },
-                          ]}
-                          onChange={setGroupMessageType}
-                        />
-                      </div>
-
-                      <div className={style.apiField}>
-                        <label>
-                          {
-                            I18N.carbonAgent
-                              .feishuCollectMembershipApprovalLabel
-                          }
-                        </label>
-                        <Select
-                          size='small'
-                          value={membershipApproval}
-                          options={[
-                            {
-                              label: I18N.carbonAgent.feishuCollectApprovalNone,
-                              value: 'no_approval_required',
-                            },
-                            {
-                              label:
-                                I18N.carbonAgent.feishuCollectApprovalRequired,
-                              value: 'approval_required',
-                            },
-                          ]}
-                          onChange={setMembershipApproval}
-                        />
-                      </div>
-
-                      <div className={style.apiField}>
-                        <label>
-                          {I18N.carbonAgent.feishuCollectAddMemberPermLabel}
-                        </label>
-                        <Select
-                          size='small'
-                          value={addMemberPermission}
-                          options={[
-                            {
-                              label:
-                                I18N.carbonAgent.feishuCollectPermAllMembers,
-                              value: 'all_members',
-                            },
-                            {
-                              label:
-                                I18N.carbonAgent.feishuCollectPermOnlyOwner,
-                              value: 'only_owner',
-                            },
-                          ]}
-                          onChange={setAddMemberPermission}
-                        />
-                      </div>
-
-                      <div className={style.apiField}>
-                        <label>
-                          {I18N.carbonAgent.feishuCollectShareCardPermLabel}
-                        </label>
-                        <Select
-                          size='small'
-                          value={shareCardPermission}
-                          options={[
-                            {
-                              label: I18N.carbonAgent.feishuCollectShareAllowed,
-                              value: 'allowed',
-                            },
-                            {
-                              label:
-                                I18N.carbonAgent.feishuCollectShareNotAllowed,
-                              value: 'not_allowed',
-                            },
-                          ]}
-                          onChange={setShareCardPermission}
-                        />
-                      </div>
-                    </div>
-
-                    {showApiPreview ? (
-                      <pre className={style.apiCodePreview}>
-                        {openApiPayloadPreview}
-                      </pre>
-                    ) : null}
-
-                    <span className={style.infoHint}>
-                      <i className={style.infoDot} aria-hidden='true'>
-                        i
-                      </i>
-                      <span>{I18N.carbonAgent.feishuCollectExternalP2pTip}</span>
-                    </span>
+                  <div className={style.infoHint}>
+                    <i className={style.infoDot} aria-hidden='true'>
+                      i
+                    </i>
+                    <span>{I18N.carbonAgent.feishuCollectFirstAuthHint}</span>
                   </div>
                 </>
               )}
@@ -976,70 +714,145 @@ const ProjectFeishuCollectionDialog = ({
               </div>
 
               <div className={style.groupCardList}>
-                {groups.map(group => (
-                  <div key={group.chatId} className={style.groupCard}>
-                    <div className={style.groupCardHeader}>
-                      <div className={style.groupCardTitleCol}>
-                        <div className={style.groupCardTitleLine}>
-                          <strong>{group.groupName}</strong>
-                          <code className={style.openIdCode}>
-                            {group.chatId}
-                          </code>
-                          <code className={style.openIdCode}>
-                            external: true · chat_type: {group.chatType}
-                          </code>
-                        </div>
-                        {group.description ? (
-                          <p className={style.groupCardDesc}>
-                            {group.description}
-                          </p>
-                        ) : null}
-                        <span className={style.groupCardDesc}>
-                          {I18N.carbonAgent.feishuCollectGroupOwner}：
-                          {group.ownerName}（{group.ownerId}） ·{' '}
-                          {I18N.template(
-                            I18N.carbonAgent.feishuCollectSyncedFilesTitle,
-                            {
-                              val1: group.files.length,
-                            },
+                {groups.map((group, index) => {
+                  const isEditing = editingChatId === group.chatId;
+
+                  return (
+                    <div key={group.chatId} className={style.groupCard}>
+                      <div className={style.groupCardHeader}>
+                        <div className={style.groupCardTitleCol}>
+                          {isEditing ? (
+                            <div className={style.apiGrid}>
+                              <input
+                                className={style.textInput}
+                                value={editNameValue}
+                                maxLength={60}
+                                placeholder={
+                                  I18N.carbonAgent.feishuCollectGroupName
+                                }
+                                onChange={event =>
+                                  setEditNameValue(event.currentTarget.value)
+                                }
+                              />
+                              <input
+                                className={style.textInput}
+                                value={editDescValue}
+                                maxLength={100}
+                                placeholder={
+                                  I18N.carbonAgent
+                                    .feishuCollectDescriptionPlaceholder
+                                }
+                                onChange={event =>
+                                  setEditDescValue(event.currentTarget.value)
+                                }
+                              />
+                            </div>
+                          ) : (
+                            <>
+                              <div className={style.groupCardTitleLine}>
+                                <span
+                                  className={classNames(
+                                    style.statusBadge,
+                                    style.statusBadgeActive,
+                                  )}
+                                >
+                                  #{index + 1}
+                                </span>
+                                <strong>{group.groupName}</strong>
+                              </div>
+                              {group.description ? (
+                                <p className={style.groupCardDesc}>
+                                  {group.description}
+                                </p>
+                              ) : null}
+                            </>
                           )}
-                        </span>
+                          <span className={style.groupCardDesc}>
+                            {I18N.carbonAgent.feishuCollectGroupOwner}：
+                            {group.ownerName} ·{' '}
+                            {I18N.template(
+                              I18N.carbonAgent.feishuCollectSyncedFilesTitle,
+                              {
+                                val1: group.files.length,
+                              },
+                            )}
+                          </span>
+                        </div>
+
+                        <div className={style.switchLabel}>
+                          <span>
+                            {I18N.carbonAgent.feishuCollectCollectionSwitch}
+                          </span>
+                          <Switch
+                            checked={group.collectingEnabled}
+                            size='small'
+                            onChange={checked =>
+                              handleToggleCollecting(group.chatId, checked)
+                            }
+                          />
+                        </div>
                       </div>
 
-                      <div className={style.switchLabel}>
-                        <span>
-                          {I18N.carbonAgent.feishuCollectCollectionSwitch}
-                        </span>
-                        <Switch
-                          checked={group.collectingEnabled}
-                          size='small'
-                          onChange={checked =>
-                            handleToggleCollecting(group.chatId, checked)
-                          }
-                        />
-                      </div>
-                    </div>
+                      {!group.collectingEnabled ? (
+                        <div className={style.pausedAlert} role='status'>
+                          {I18N.carbonAgent.feishuCollectCollectionPausedBanner}
+                        </div>
+                      ) : null}
 
-                    {!group.collectingEnabled ? (
-                      <div className={style.pausedAlert} role='status'>
-                        {I18N.carbonAgent.feishuCollectCollectionPausedBanner}
-                      </div>
-                    ) : null}
+                      <div className={style.apiGrid}>
+                        <div className={style.apiField}>
+                          <label>
+                            {I18N.carbonAgent.feishuCollectDefaultTask}
+                          </label>
+                          <Select
+                            className={style.select}
+                            options={taskOptions}
+                            suffixIcon={suffixChevron}
+                            value={
+                              group.defaultTaskId || UNSPECIFIED_TASK_VALUE
+                            }
+                            onChange={val =>
+                              handleDefaultTaskChange(group.chatId, val)
+                            }
+                          />
+                        </div>
 
-                    <div className={style.apiGrid}>
-                      <div className={style.apiField}>
-                        <label>
-                          {I18N.carbonAgent.feishuCollectDefaultTask}
-                        </label>
-                        <Select
-                          className={style.select}
-                          options={taskOptions}
-                          suffixIcon={suffixChevron}
-                          value={group.defaultTaskId || UNSPECIFIED_TASK_VALUE}
-                          onChange={val =>
-                            handleDefaultTaskChange(group.chatId, val)
-                          }
-                        />
+                        <div className={style.apiField}>
+                          <label>
+                            {I18N.carbonAgent.feishuCollectInviteCustomer}
+                          </label>
+                          <div className={style.inviteCustomerRow}>
+                            <input
+                              className={style.textInput}
+                              value={inviteInputs[group.chatId] || ''}
+                              placeholder={
+                                I18N.carbonAgent
+                                  .feishuCollectCustomerNamePlaceholder
+                              }
+                              onChange={event => {
+                                const val = event.currentTarget.value;
+                                setInviteInputs(prev => ({
+                                  ...prev,
+                                  [group.chatId]: val,
+                                }));
+                              }}
+                              onKeyDown={event => {
+                                if (event.key === 'Enter') {
+                                  event.preventDefault();
+                                  handleInviteCustomerInGroup(group);
+                                }
+                              }}
+                            />
+                            <button
+                              className={style.secondaryBtn}
+                              type='button'
+                              disabled={!(inviteInputs[group.chatId] || '').trim()}
+                              onClick={() => handleInviteCustomerInGroup(group)}
+                            >
+                              {I18N.carbonAgent.feishuCollectAddCustomerBtn}
+                            </button>
+                          </div>
+                        </div>
                       </div>
 
                       <div className={style.apiField}>
@@ -1058,9 +871,6 @@ const ProjectFeishuCollectionDialog = ({
                               })}
                             >
                               <span>{member.name}</span>
-                              <code className={style.openIdCode}>
-                                {member.openId}
-                              </code>
                               <span className={style.memberRoleBadge}>
                                 {getFeishuMemberRoleBadgeText(member.role)}
                               </span>
@@ -1068,49 +878,77 @@ const ProjectFeishuCollectionDialog = ({
                           ))}
                         </div>
                       </div>
-                    </div>
 
-                    <div className={style.groupCardFooter}>
-                      <div className={style.groupCardBtnGroup}>
-                        <code className={style.openIdCode}>
-                          app_id: {group.appId}
-                        </code>
-                        <code className={style.openIdCode}>
-                          set_bot_manager: {String(group.setBotManager)}
-                        </code>
-                        <code className={style.openIdCode}>
-                          group_message_type: {group.groupMessageType}
-                        </code>
-                      </div>
+                      <div className={style.groupCardFooter}>
+                        <div className={style.groupCardBtnGroup}>
+                          {isEditing ? (
+                            <>
+                              <button
+                                className={style.primarySmallBtn}
+                                type='button'
+                                onClick={() => handleSaveEditGroup(group.chatId)}
+                              >
+                                {I18N.carbonAgent.feishuCollectSaveGroupBtn}
+                              </button>
+                              <button
+                                className={style.secondaryBtn}
+                                type='button'
+                                onClick={() => setEditingChatId('')}
+                              >
+                                {I18N.carbonAgent.cancel}
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <button
+                                className={style.secondaryBtn}
+                                type='button'
+                                onClick={() => handleStartEditGroup(group)}
+                              >
+                                {I18N.carbonAgent.feishuCollectEditGroupBtn}
+                              </button>
+                              <button
+                                className={style.secondaryBtn}
+                                type='button'
+                                onClick={() => handleDeleteGroup(group)}
+                              >
+                                {I18N.carbonAgent.feishuCollectDeleteGroupBtn}
+                              </button>
+                            </>
+                          )}
+                        </div>
 
-                      <div className={style.groupCardBtnGroup}>
-                        <button
-                          className={style.secondaryBtn}
-                          type='button'
-                          onClick={() => handleCopyGroupInviteLink(group.chatId)}
-                        >
-                          <img
-                            src={projectMemberLink}
-                            alt=''
-                            aria-hidden='true'
-                            width={14}
-                            height={14}
-                          />
-                          {I18N.carbonAgent.feishuCollectCopyGroupLink}
-                        </button>
-                        <button
-                          className={style.primarySmallBtn}
-                          type='button'
-                          onClick={() =>
-                            handleOpenStandaloneFeishu(group.chatId)
-                          }
-                        >
-                          {I18N.carbonAgent.feishuOpenGroupChatBtn}
-                        </button>
+                        <div className={style.groupCardBtnGroup}>
+                          <button
+                            className={style.secondaryBtn}
+                            type='button'
+                            onClick={() =>
+                              handleCopyGroupInviteLink(group.chatId)
+                            }
+                          >
+                            <img
+                              src={projectMemberLink}
+                              alt=''
+                              aria-hidden='true'
+                              width={14}
+                              height={14}
+                            />
+                            {I18N.carbonAgent.feishuCollectCopyGroupLink}
+                          </button>
+                          <button
+                            className={style.primarySmallBtn}
+                            type='button'
+                            onClick={() =>
+                              handleOpenStandaloneFeishu(group.chatId)
+                            }
+                          >
+                            {I18N.carbonAgent.feishuOpenGroupChatBtn}
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </>

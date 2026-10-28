@@ -806,6 +806,46 @@ export const updateProjectFeishuDefaultTask = (
   });
 };
 
+export const updateProjectFeishuGroupInfo = (params: {
+  chatId: string;
+  description: string;
+  groupName: string;
+  projectId: number | string;
+}): ProjectFeishuGroupState | null => {
+  const current = getProjectFeishuGroupState(params.projectId, params.chatId);
+
+  if (!current) {
+    return null;
+  }
+
+  const nextGroupName = params.groupName.trim() || current.groupName;
+  const nextDescription = params.description.trim();
+
+  return saveProjectFeishuGroupState(params.projectId, {
+    ...current,
+    candidates: current.candidates.map(cand => ({
+      ...cand,
+      groupName: nextGroupName,
+    })),
+    description: nextDescription,
+    files: current.files.map(file => ({
+      ...file,
+      uploaderCompanyName: nextGroupName,
+    })),
+    groupName: nextGroupName,
+  });
+};
+
+export const removeProjectFeishuGroup = (
+  projectId: number | string,
+  chatId: string,
+): ProjectFeishuGroupState[] => {
+  const existing = getProjectFeishuGroups(projectId);
+  const nextGroups = existing.filter(group => group.chatId !== chatId);
+
+  return saveProjectFeishuGroups(projectId, nextGroups);
+};
+
 export const addExternalCustomerToFeishuGroup = (
   projectId: number | string,
   customerName: string,

@@ -541,9 +541,14 @@ export default {
   feishuCollectScopePreset3Name: 'Logistics & Business Travel Group',
   feishuCollectScopePreset3Desc:
     'Collect upstream/downstream freight vouchers and travel activity data',
-  feishuCollectDescriptionLabel: 'Group description / scope (description)',
+  feishuCollectDescriptionLabel: 'Group description / collection scope',
   feishuCollectDescriptionPlaceholder:
     'Optional, max 100 chars, e.g. Collect Scope 1 & 2 electricity and natural gas activity ledgers for Kunshan Plant',
+  feishuCollectEditGroupBtn: 'Edit Group',
+  feishuCollectSaveGroupBtn: 'Save Changes',
+  feishuCollectDeleteGroupBtn: 'Remove Group',
+  feishuCollectGroupUpdatedToast: 'Feishu group info updated',
+  feishuCollectGroupRemovedToast: 'Removed Feishu group “{val1}”',
   feishuCollectApiConfigTitle:
     'Official Feishu OpenAPI Group & External Client Parameters',
   feishuCollectApiTogglePreview: 'View OpenAPI Payload',
