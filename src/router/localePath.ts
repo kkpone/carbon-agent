@@ -17,9 +17,15 @@ export type LocalePathInfo = {
   pathnameWithoutLocale: string;
 };
 
-const LOCALE_PREFIX_TO_CODE: Record<'en' | 'zh' | 'zt', LocaleRouteCode> = {
+const LOCALE_PREFIX_TO_CODE: Record<
+  'en' | 'en-US' | 'zh' | 'zh-CN' | 'zh-TW' | 'zt',
+  LocaleRouteCode
+> = {
   en: 'en',
+  'en-US': 'en',
   zh: 'zh',
+  'zh-CN': 'zh',
+  'zh-TW': 'zt',
   zt: 'zt',
 };
 
@@ -125,7 +131,10 @@ export function getLocalePathInfo(
   const pathnameAfterBasename = stripBasename(pathname, basename);
   const pathSegments = pathnameAfterBasename.split('/').filter(Boolean);
   const firstSegment = pathSegments[0];
-  const localeCode = LOCALE_PREFIX_TO_CODE[firstSegment as 'en' | 'zh' | 'zt'];
+  const localeCode =
+    LOCALE_PREFIX_TO_CODE[
+      firstSegment as 'en' | 'en-US' | 'zh' | 'zh-CN' | 'zh-TW' | 'zt'
+    ];
   const hasLocalePrefix = !!localeCode;
   const pathnameWithoutLocale = hasLocalePrefix
     ? joinUrlPath(...pathSegments.slice(1))
