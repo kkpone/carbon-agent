@@ -15,12 +15,10 @@ import style from './ProjectFeishuCollectionDialog.module.less';
 import {
   type FeishuGroupMemberRole,
   type ProjectFeishuGroupState,
-  addExternalCustomerToFeishuGroup,
   createProjectFeishuGroup,
   getProjectFeishuGroups,
   removeProjectFeishuGroup,
   toggleProjectFeishuCollection,
-  updateProjectFeishuDefaultTask,
   updateProjectFeishuGroupInfo,
 } from '../feishuCollectionStore';
 import type { AgentProjectMember } from '../service';
@@ -84,34 +82,9 @@ const ProjectFeishuCollectionDialog = ({
   const [editingChatId, setEditingChatId] = useState<string>('');
   const [editNameValue, setEditNameValue] = useState('');
   const [editDescValue, setEditDescValue] = useState('');
-  const [inviteInputs, setInviteInputs] = useState<Record<string, string>>({});
 
   const defaultGroupName = useMemo(
     () => `${projectName}${I18N.carbonAgent.feishuCollectDefaultGroupSuffix}`,
-    [projectName],
-  );
-
-  const scopePresets = useMemo(
-    () => [
-      {
-        desc: I18N.carbonAgent.feishuCollectScopePreset1Desc,
-        id: 'scope_energy',
-        name: `${projectName} - ${I18N.carbonAgent.feishuCollectScopePreset1Name}`,
-        shortLabel: I18N.carbonAgent.feishuCollectScopePreset1Name,
-      },
-      {
-        desc: I18N.carbonAgent.feishuCollectScopePreset2Desc,
-        id: 'scope_bom',
-        name: `${projectName} - ${I18N.carbonAgent.feishuCollectScopePreset2Name}`,
-        shortLabel: I18N.carbonAgent.feishuCollectScopePreset2Name,
-      },
-      {
-        desc: I18N.carbonAgent.feishuCollectScopePreset3Desc,
-        id: 'scope_logistics',
-        name: `${projectName} - ${I18N.carbonAgent.feishuCollectScopePreset3Name}`,
-        shortLabel: I18N.carbonAgent.feishuCollectScopePreset3Name,
-      },
-    ],
     [projectName],
   );
 
@@ -160,13 +133,12 @@ const ProjectFeishuCollectionDialog = ({
     setEditingChatId('');
 
     const nextIndex = currentGroups.length;
-    const presetForIndex = scopePresets[nextIndex % scopePresets.length];
     setGroupName(
       nextIndex === 0
-        ? scopePresets[0]?.name || defaultGroupName
-        : presetForIndex?.name || `${defaultGroupName} #${nextIndex + 1}`,
+        ? defaultGroupName
+        : `${defaultGroupName} #${nextIndex + 1}`,
     );
-    setDescription(presetForIndex?.desc || '');
+    setDescription('');
 
     const defaultOwner =
       projectMembers.find(member => member.currentUser) ||
@@ -183,7 +155,7 @@ const ProjectFeishuCollectionDialog = ({
     } else {
       setDefaultTaskId(UNSPECIFIED_TASK_VALUE);
     }
-  }, [defaultGroupName, open, projectId, projectMembers, scopePresets, tasks]);
+  }, [defaultGroupName, open, projectId, projectMembers, tasks]);
 
   useEffect(() => {
     if (!open) {
@@ -215,9 +187,8 @@ const ProjectFeishuCollectionDialog = ({
 
   const handleStartAddAnotherGroup = () => {
     const nextIdx = groups.length;
-    const preset = scopePresets[nextIdx % scopePresets.length];
-    setGroupName(preset?.name || `${defaultGroupName} #${nextIdx + 1}`);
-    setDescription(preset?.desc || '');
+    setGroupName(`${defaultGroupName} #${nextIdx + 1}`);
+    setDescription('');
     if (tasks[nextIdx]) {
       setDefaultTaskId(String(tasks[nextIdx].taskId));
     } else {
@@ -288,26 +259,6 @@ const ProjectFeishuCollectionDialog = ({
     }
   };
 
-  const handleDefaultTaskChange = (chatId: string, nextValue: string) => {
-    const resolvedTaskId =
-      nextValue === UNSPECIFIED_TASK_VALUE ? '' : nextValue;
-    const resolvedTaskTitle =
-      tasks.find(item => String(item.taskId) === resolvedTaskId)?.taskTitle ||
-      '';
-    const nextState = updateProjectFeishuDefaultTask(
-      projectId,
-      resolvedTaskId,
-      resolvedTaskTitle,
-      chatId,
-    );
-
-    if (nextState) {
-      const latestGroups = getProjectFeishuGroups(projectId);
-      setGroups(latestGroups);
-      onGroupStateChange(nextState);
-    }
-  };
-
   const handleStartEditGroup = (group: ProjectFeishuGroupState) => {
     setEditingChatId(group.chatId);
     setEditNameValue(group.groupName);
@@ -343,32 +294,6 @@ const ProjectFeishuCollectionDialog = ({
 
     if (!nextGroups.length) {
       setViewMode('form');
-    }
-  };
-
-  const handleInviteCustomerInGroup = (group: ProjectFeishuGroupState) => {
-    const inputVal = (inviteInputs[group.chatId] || '').trim();
-    if (!inputVal) {
-      return;
-    }
-
-    const updated = addExternalCustomerToFeishuGroup(
-      projectId,
-      inputVal,
-      group.ownerName,
-      group.chatId,
-    );
-
-    if (updated) {
-      setInviteInputs(prev => ({ ...prev, [group.chatId]: '' }));
-      const latestGroups = getProjectFeishuGroups(projectId);
-      setGroups(latestGroups);
-      onGroupStateChange(updated);
-      antdMessage.success(
-        I18N.template(I18N.carbonAgent.feishuCollectCustomerAdded, {
-          val1: inputVal,
-        }),
-      );
     }
   };
 
@@ -541,27 +466,6 @@ const ProjectFeishuCollectionDialog = ({
                 </div>
               ) : (
                 <>
-                  <div className={style.field}>
-                    <span className={style.fieldLabel}>
-                      {I18N.carbonAgent.feishuCollectScopeQuickLabel}
-                    </span>
-                    <div className={style.scopeChipRow}>
-                      {scopePresets.map(preset => (
-                        <button
-                          key={preset.id}
-                          className={style.scopeChip}
-                          type='button'
-                          onClick={() => {
-                            setGroupName(preset.name);
-                            setDescription(preset.desc);
-                          }}
-                        >
-                          + {preset.shortLabel}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
                   <div className={style.field}>
                     <label htmlFor='feishu-collect-group-name'>
                       {I18N.carbonAgent.feishuCollectGroupName}
@@ -798,62 +702,6 @@ const ProjectFeishuCollectionDialog = ({
                           {I18N.carbonAgent.feishuCollectCollectionPausedBanner}
                         </div>
                       ) : null}
-
-                      <div className={style.apiGrid}>
-                        <div className={style.apiField}>
-                          <label>
-                            {I18N.carbonAgent.feishuCollectDefaultTask}
-                          </label>
-                          <Select
-                            className={style.select}
-                            options={taskOptions}
-                            suffixIcon={suffixChevron}
-                            value={
-                              group.defaultTaskId || UNSPECIFIED_TASK_VALUE
-                            }
-                            onChange={val =>
-                              handleDefaultTaskChange(group.chatId, val)
-                            }
-                          />
-                        </div>
-
-                        <div className={style.apiField}>
-                          <label>
-                            {I18N.carbonAgent.feishuCollectInviteCustomer}
-                          </label>
-                          <div className={style.inviteCustomerRow}>
-                            <input
-                              className={style.textInput}
-                              value={inviteInputs[group.chatId] || ''}
-                              placeholder={
-                                I18N.carbonAgent
-                                  .feishuCollectCustomerNamePlaceholder
-                              }
-                              onChange={event => {
-                                const val = event.currentTarget.value;
-                                setInviteInputs(prev => ({
-                                  ...prev,
-                                  [group.chatId]: val,
-                                }));
-                              }}
-                              onKeyDown={event => {
-                                if (event.key === 'Enter') {
-                                  event.preventDefault();
-                                  handleInviteCustomerInGroup(group);
-                                }
-                              }}
-                            />
-                            <button
-                              className={style.secondaryBtn}
-                              type='button'
-                              disabled={!(inviteInputs[group.chatId] || '').trim()}
-                              onClick={() => handleInviteCustomerInGroup(group)}
-                            >
-                              {I18N.carbonAgent.feishuCollectAddCustomerBtn}
-                            </button>
-                          </div>
-                        </div>
-                      </div>
 
                       <div className={style.apiField}>
                         <label>
