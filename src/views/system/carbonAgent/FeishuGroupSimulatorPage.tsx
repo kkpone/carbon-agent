@@ -24,6 +24,7 @@ import {
   receiveCustomerFileInFeishuGroup,
   sendTextMessageInFeishuGroup,
   toggleProjectFeishuCollection,
+  updateFeishuGroupBotMessage,
 } from './feishuCollectionStore';
 import { type AgentProjectFile, uploadAgentProjectFile } from './service';
 
@@ -77,6 +78,57 @@ const FeishuGroupSimulatorPage = () => {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const streamEndRef = useRef<HTMLDivElement>(null);
+  const streamTimersRef = useRef<number[]>([]);
+
+  useEffect(
+    () => () => {
+      streamTimersRef.current.forEach(timerId => window.clearTimeout(timerId));
+      streamTimersRef.current = [];
+    },
+    [],
+  );
+
+  const startStreamingBotParseOutput = (params: {
+    fileName: string;
+    fullContent: string;
+    messageId: string;
+    projectId: number | string;
+  }) => {
+    const { fileName, fullContent, messageId, projectId } = params;
+    const totalLength = fullContent.length;
+    const totalSteps = 18;
+    const stepIntervalMs = 95;
+
+    for (let step = 1; step <= totalSteps; step += 1) {
+      const timerId = window.setTimeout(() => {
+        const isFinal = step === totalSteps;
+        const sliceEnd = isFinal
+          ? totalLength
+          : Math.max(1, Math.round((totalLength * step) / totalSteps));
+        const partialText = fullContent.slice(0, sliceEnd);
+
+        updateFeishuGroupBotMessage({
+          content: partialText,
+          messageId,
+          note: isFinal
+            ? I18N.carbonAgent.feishuStreamStageDone
+            : I18N.carbonAgent.feishuStreamStageParsing,
+          projectId,
+          streaming: !isFinal,
+        });
+
+        if (isFinal) {
+          antdMessage.success(
+            I18N.template(I18N.carbonAgent.feishuCollectSimReceivedToast, {
+              val1: fileName,
+            }),
+          );
+        }
+      }, step * stepIntervalMs);
+
+      streamTimersRef.current.push(timerId);
+    }
+  };
 
   useEffect(() => {
     const syncGroups = () => {
@@ -263,17 +315,19 @@ const FeishuGroupSimulatorPage = () => {
       note: noteText,
       projectId: activeGroup.projectId,
       senderName,
+      streamBotReply: true,
       summary: preset.summary,
     });
 
     if (result) {
       setMessageInput('');
       if (result.state.collectingEnabled) {
-        antdMessage.success(
-          I18N.template(I18N.carbonAgent.feishuCollectSimReceivedToast, {
-            val1: result.file.fileName,
-          }),
-        );
+        startStreamingBotParseOutput({
+          fileName: result.file.fileName,
+          fullContent: result.fullBotContent,
+          messageId: result.botMessageId,
+          projectId: activeGroup.projectId,
+        });
       }
     }
   };
@@ -314,6 +368,7 @@ const FeishuGroupSimulatorPage = () => {
       note: noteText,
       projectId: activeGroup.projectId,
       senderName,
+      streamBotReply: true,
       summary: noteText,
       uploadedProjectFile,
     });
@@ -323,11 +378,12 @@ const FeishuGroupSimulatorPage = () => {
     if (result) {
       setMessageInput('');
       if (result.state.collectingEnabled) {
-        antdMessage.success(
-          I18N.template(I18N.carbonAgent.feishuCollectSimReceivedToast, {
-            val1: result.file.fileName,
-          }),
-        );
+        startStreamingBotParseOutput({
+          fileName: result.file.fileName,
+          fullContent: result.fullBotContent,
+          messageId: result.botMessageId,
+          projectId: activeGroup.projectId,
+        });
       }
     }
   };
@@ -522,7 +578,15 @@ const FeishuGroupSimulatorPage = () => {
                             </div>
                           </div>
                         ) : null}
-                        <p className={style.msgText}>{msg.content}</p>
+                        <p className={style.msgText}>
+                          {msg.content}
+                          {msg.streaming ? (
+                            <span
+                              className={style.streamingCursor}
+                              aria-hidden='true'
+                            />
+                          ) : null}
+                        </p>
                         {msg.note ? (
                           <p className={style.msgSubNote}>{msg.note}</p>
                         ) : null}

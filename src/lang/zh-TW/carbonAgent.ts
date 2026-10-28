@@ -620,6 +620,11 @@ export default {
     '收到您的提問。請直接在本群上傳 Excel/PDF/圖片等專案原始憑證，並在 2 分鐘內補充廠區、月份或工藝說明；我會自動提取並存入 CarbonAgent 專案資料與專案上下文供顧問審核。',
   feishuStandaloneRightPanelTitle: '群成員與收數狀態',
   feishuStandaloneRightPanelSyncedTitle: '已同步至 CarbonAgent 專案資料',
+  feishuStreamStageReceiving: '已收到附件，正在排隊並啟動解析…',
+  feishuStreamStageParsing: '正在流式解析中…',
+  feishuStreamStageDone: '解析完成 · 已寫入專案資料與上下文',
+  feishuStreamOutputTemplate:
+    '已收到《{val1}》，正在啟動受限 Agent 自動解析：\n1. 檔案校驗與授權下載：已完成檔案去重與格式檢查，來源傳送人：{val2}\n2. 結構化欄位提取：{val3}\n3. 補充說明合併：{val4}\n4. 完整性與缺項質檢：核心活動資料與單位已識別，已產生 AI 候選草稿{val5}\n5. 上下文同步結果：已自動存入「專案資料」與「資料列表」，可作為專案上下文供顧問核對與分析。',
   projectDataOverview: '資料總覽',
   projectOverviewNoCalculation: '目前專案暫無可查看的關聯核算',
   backToProjectHome: '返回專案首頁',

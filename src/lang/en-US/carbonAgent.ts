@@ -680,6 +680,11 @@ export default {
     'Got your question! Please send Excel/PDF/image vouchers directly in this group and add plant or month notes within 2 minutes. I will automatically sync them to CarbonAgent Project Files and Project Context.',
   feishuStandaloneRightPanelTitle: 'Group Members & Collection Status',
   feishuStandaloneRightPanelSyncedTitle: 'Synced to CarbonAgent Project Files',
+  feishuStreamStageReceiving: 'File received, queuing and starting parse…',
+  feishuStreamStageParsing: 'Streaming parse result…',
+  feishuStreamStageDone: 'Parse complete · Synced to Project Files & Context',
+  feishuStreamOutputTemplate:
+    'Received “{val1}”. Running restricted Agent extraction:\n1. Verification & Authorized Download: Deduplication and format check passed (Sender: {val2})\n2. Structured Field Extraction: {val3}\n3. Supplementary Note Merge: {val4}\n4. Completeness & Quality Check: Core activity data and units identified; AI candidate draft generated{val5}\n5. Context Sync Result: Saved to Project Files and Material List for project context and consultant review.',
   projectDataOverview: 'Data overview',
   projectOverviewNoCalculation:
     'This project has no linked calculation to view yet',

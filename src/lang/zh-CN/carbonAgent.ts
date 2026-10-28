@@ -622,6 +622,11 @@ export default {
     '收到您的提问。请直接在本群上传 Excel/PDF/图片等项目原始凭证，并在 2 分钟内补充厂区、月份或工艺说明；我会自动提取并存入 CarbonAgent 项目资料与项目上下文供顾问审核。',
   feishuStandaloneRightPanelTitle: '群成员与收数状态',
   feishuStandaloneRightPanelSyncedTitle: '已同步至 CarbonAgent 项目资料',
+  feishuStreamStageReceiving: '已收到附件，正在排队并启动解析…',
+  feishuStreamStageParsing: '正在流式解析中…',
+  feishuStreamStageDone: '解析完成 · 已写入项目资料与上下文',
+  feishuStreamOutputTemplate:
+    '已收到《{val1}》，正在启动受限 Agent 自动解析：\n1. 文件校验与授权下载：已完成文件去重与格式检查，来源发送人：{val2}\n2. 结构化字段提取：{val3}\n3. 补充说明合并：{val4}\n4. 完整性与缺项质检：核心活动数据与单位已识别，已生成 AI 候选草稿{val5}\n5. 上下文同步结果：已自动存入「项目资料」与「资料列表」，可作为项目上下文供顾问核对与分析。',
   projectDataOverview: '数据概览',
   projectOverviewNoCalculation: '当前项目暂无可查看的关联核算',
   backToProjectHome: '返回项目首页',

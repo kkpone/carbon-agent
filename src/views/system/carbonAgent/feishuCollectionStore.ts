@@ -22,6 +22,7 @@ export type FeishuGroupChatMessage = {
   note?: string;
   senderName: string;
   senderRole: FeishuGroupMemberRole | 'system';
+  streaming?: boolean;
   taskId?: string;
   taskTitle?: string;
   type: FeishuGroupChatMessageType;
@@ -481,12 +482,15 @@ export const receiveCustomerFileInFeishuGroup = (params: {
   note: string;
   projectId: number | string;
   senderName: string;
+  streamBotReply?: boolean;
   summary: string;
   taskId?: string;
   taskTitle?: string;
   uploadedProjectFile?: AgentProjectFile;
 }): {
+  botMessageId: string;
   file: AgentProjectFile;
+  fullBotContent: string;
   state: ProjectFeishuGroupState;
 } | null => {
   const current = getProjectFeishuGroupState(params.projectId);
@@ -555,17 +559,30 @@ export const receiveCustomerFileInFeishuGroup = (params: {
       })
     : '';
 
-  const botAckMsg: FeishuGroupChatMessage = {
-    content: I18N.template(I18N.carbonAgent.feishuCollectChatBotAckFile, {
+  const fullBotContent = I18N.template(
+    I18N.carbonAgent.feishuStreamOutputTemplate,
+    {
       val1: syncedFile.fileName,
-      val2: taskSuffix,
-    }),
+      val2: params.senderName,
+      val3: params.summary,
+      val4: params.note || params.summary,
+      val5: taskSuffix,
+    },
+  );
+  const botMessageId = `msg_bot_ack_${stamp}`;
+  const botAckMsg: FeishuGroupChatMessage = {
+    content: params.streamBotReply
+      ? I18N.carbonAgent.feishuStreamStageReceiving
+      : fullBotContent,
     createdAt: now,
     file: syncedFile,
-    id: `msg_bot_ack_${stamp}`,
-    note: params.summary,
+    id: botMessageId,
+    note: params.streamBotReply
+      ? I18N.carbonAgent.feishuStreamStageParsing
+      : I18N.carbonAgent.feishuStreamStageDone,
     senderName: I18N.carbonAgent.feishuCollectBotName,
     senderRole: 'bot',
+    streaming: Boolean(params.streamBotReply),
     taskId: targetTaskId || undefined,
     taskTitle: targetTaskTitle || undefined,
     type: 'bot',
@@ -609,9 +626,39 @@ export const receiveCustomerFileInFeishuGroup = (params: {
   });
 
   return {
+    botMessageId,
     file: syncedFile,
+    fullBotContent,
     state: nextState,
   };
+};
+
+export const updateFeishuGroupBotMessage = (params: {
+  content: string;
+  messageId: string;
+  note?: string;
+  projectId: number | string;
+  streaming: boolean;
+}): ProjectFeishuGroupState | null => {
+  const current = getProjectFeishuGroupState(params.projectId);
+
+  if (!current) {
+    return null;
+  }
+
+  return saveProjectFeishuGroupState(params.projectId, {
+    ...current,
+    messages: current.messages.map(msg =>
+      msg.id === params.messageId
+        ? {
+            ...msg,
+            content: params.content,
+            note: params.note ?? msg.note,
+            streaming: params.streaming,
+          }
+        : msg,
+    ),
+  });
 };
 
 export const markFeishuCandidateAdopted = (
