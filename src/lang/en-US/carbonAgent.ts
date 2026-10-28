@@ -517,8 +517,12 @@ export default {
   projectSettings: 'Project settings',
   feishuCollect: 'Feishu collection',
   feishuCollectConnected: 'Feishu collection · Active',
+  feishuCollectConnectedMulti: 'Feishu collection · {val1} groups active',
   feishuCollectPaused: 'Feishu collection · Paused',
   feishuCollectTitle: 'Feishu Data Collection',
+  feishuCollectGroupListTitle: 'Linked Feishu Collection Groups ({val1})',
+  feishuCollectAddMoreGroupBtn: '+ Create / Bind Another Group',
+  feishuCollectBackToGroupListBtn: 'Back to Group List',
   feishuCollectTabCreate: 'Create New Group',
   feishuCollectTabBind: 'Bind Existing Group',
   feishuCollectCurrentProject: 'Current project: {val1}',
@@ -526,6 +530,50 @@ export default {
     'Confirm creating a Feishu project collection group? Once confirmed, Feishu will automatically create the project group and pull in the CarbonAgent bot and designated business staff. Business staff can then invite external clients to send project materials, which Agent will capture into Project Files as project context.',
   feishuCollectGroupName: 'Group name',
   feishuCollectDefaultGroupSuffix: ' - Collection Group',
+  feishuCollectScopeQuickLabel:
+    'Quick collection scopes (create multiple groups for different data):',
+  feishuCollectScopePreset1Name: 'Electricity & Energy Collection Group',
+  feishuCollectScopePreset1Desc:
+    'Collect Scope 1 & 2 electricity bills, natural gas, and steam ledgers',
+  feishuCollectScopePreset2Name: 'Raw Materials & Supplier BOM Group',
+  feishuCollectScopePreset2Desc:
+    'Collect procurement lists, BOM ratios, and supplier emission data',
+  feishuCollectScopePreset3Name: 'Logistics & Business Travel Group',
+  feishuCollectScopePreset3Desc:
+    'Collect upstream/downstream freight vouchers and travel activity data',
+  feishuCollectDescriptionLabel: 'Group description / scope (description)',
+  feishuCollectDescriptionPlaceholder:
+    'Optional, max 100 chars, e.g. Collect Scope 1 & 2 electricity and natural gas activity ledgers for Kunshan Plant',
+  feishuCollectApiConfigTitle:
+    'Official Feishu OpenAPI Group & External Client Parameters',
+  feishuCollectApiTogglePreview: 'View OpenAPI Payload',
+  feishuCollectApiHidePreview: 'Hide OpenAPI Payload',
+  feishuCollectSetBotManagerLabel: 'Set bot as chat manager (set_bot_manager)',
+  feishuCollectGroupMessageTypeLabel:
+    'Group message type (group_message_type)',
+  feishuCollectMsgTypeChat: 'Chat message (chat)',
+  feishuCollectMsgTypeThread: 'Thread message (thread)',
+  feishuCollectMembershipApprovalLabel:
+    'Join approval (membership_approval)',
+  feishuCollectApprovalNone: 'No approval required (no_approval_required)',
+  feishuCollectApprovalRequired: 'Approval required (approval_required)',
+  feishuCollectAddMemberPermLabel: 'Invite permission (add_member_permission)',
+  feishuCollectPermAllMembers: 'All members (all_members)',
+  feishuCollectPermOnlyOwner: 'Owner & admins only (only_owner)',
+  feishuCollectShareCardPermLabel: 'Share permission (share_card_permission)',
+  feishuCollectShareAllowed: 'Allowed (allowed)',
+  feishuCollectShareNotAllowed: 'Not allowed (not_allowed)',
+  feishuCollectExternalP2pPoolLabel:
+    'P2P-authorized external clients (open_id captured via bot_p2p_chat_entered)',
+  feishuCollectExternalP2pTip:
+    'Feishu OpenAPI rule: External groups (external: true) must be private (chat_type: private) with an internal natural person as owner_id. External clients can open a P2P chat with the bot to trigger im.chat.access_event.bot_p2p_chat_entered_v1 so their open_id can be pulled in directly, or be invited by the group owner/staff.',
+  feishuCollectBotAppLinkCopy: 'Copy Bot P2P Auth Link',
+  feishuCollectBotAppLinkCopied:
+    'Bot P2P AppLink copied. Send it to external clients to trigger bot_p2p_chat_entered and obtain their open_id.',
+  feishuCollectSimulateP2pAuthBtn: '+ Simulate External Client P2P Bot Auth',
+  feishuCollectSimulateP2pAuthSuccess:
+    'Received bot_p2p_chat_entered_v1 event and captured open_id ({val2}) for external client “{val1}”',
+  feishuCollectAllGroupsFilter: 'All Feishu Groups',
   feishuCollectGroupOwner: 'Feishu group owner',
   feishuCollectOwnerDefault: 'Project owner',
   feishuCollectAutoJoinLabel:

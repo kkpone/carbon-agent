@@ -759,8 +759,217 @@
   white-space: nowrap;
 }
 
+.scopeChipRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scopeChip {
+  height: 30px;
+  border: 1px solid #d0dedb;
+  border-radius: 999px;
+  background: #f5fbf9;
+  color: #026961;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  padding: 4px 12px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.scopeChip:hover {
+  border-color: @primary-hover;
+  background: #e6f7f2;
+}
+
+.apiBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #dce5e4;
+  border-radius: 12px;
+  background: #f8fbfb;
+  padding: 14px 16px;
+}
+
+.apiBoxHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.apiBoxHeader strong {
+  color: @text-primary;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.apiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.apiField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.apiField label {
+  color: @text-secondary;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.apiCodePreview {
+  max-height: 220px;
+  overflow: auto;
+  margin: 0;
+  border-radius: 8px;
+  background: #0d1f22;
+  color: #d8f3ec;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 12px 14px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.p2pCheckList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid @border-color;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 12px;
+}
+
+.p2pCheckItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+  color: @text-primary;
+}
+
+.p2pCheckLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.openIdCode {
+  border-radius: 4px;
+  background: #eef3f6;
+  color: #334155;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 11px;
+  padding: 2px 6px;
+}
+
+.groupListTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.groupListTopBar h3 {
+  margin: 0;
+  color: @text-primary;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.groupCardList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.groupCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #dce5e4;
+  border-radius: 12px;
+  background: #fcfefe;
+  padding: 16px;
+}
+
+.groupCardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.groupCardTitleCol {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.groupCardTitleLine {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.groupCardTitleLine strong {
+  color: @text-primary;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.groupCardDesc {
+  margin: 0;
+  color: @text-secondary;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.groupCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid #edf2f2;
+  padding-top: 12px;
+}
+
+.groupCardBtnGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 @media (max-width: 760px) {
   .workbenchGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .apiGrid {
     grid-template-columns: 1fr;
   }
 

@@ -26,7 +26,9 @@ import style from './ProjectFilesPage.module.less';
 import {
   FEISHU_COLLECTION_CHANGE_EVENT,
   type ProjectFeishuGroupState,
+  getProjectFeishuCandidates,
   getProjectFeishuGroupState,
+  getProjectFeishuGroups,
   mergeProjectFilesWithFeishuFiles,
 } from '../feishuCollectionStore';
 import {
@@ -109,6 +111,10 @@ const ProjectFilesPage = ({
   const [fileUploading, setFileUploading] = useState(false);
   const [downloadingFileKey, setDownloadingFileKey] = useState<string>();
   const [feishuDialogOpen, setFeishuDialogOpen] = useState(false);
+  const [selectedChatId, setSelectedChatId] = useState<string>('all');
+  const [feishuGroups, setFeishuGroups] = useState<ProjectFeishuGroupState[]>(
+    () => getProjectFeishuGroups(projectId),
+  );
   const [feishuGroupState, setFeishuGroupState] =
     useState<ProjectFeishuGroupState | null>(() =>
       getProjectFeishuGroupState(projectId),
@@ -142,6 +148,7 @@ const ProjectFilesPage = ({
 
     setLoading(true);
     setLoadError(false);
+    setFeishuGroups(getProjectFeishuGroups(projectId));
     setFeishuGroupState(getProjectFeishuGroupState(projectId));
 
     Promise.allSettled([
@@ -183,6 +190,7 @@ const ProjectFilesPage = ({
 
   useEffect(() => {
     const syncFeishuState = () => {
+      setFeishuGroups(getProjectFeishuGroups(projectId));
       setFeishuGroupState(getProjectFeishuGroupState(projectId));
       setFiles(currentFiles =>
         mergeProjectFilesWithFeishuFiles(projectId, currentFiles),
@@ -206,6 +214,10 @@ const ProjectFilesPage = ({
     () => files.filter(file => !isFeishuCollectedFile(file)).length,
     [files],
   );
+  const allCandidates = useMemo(
+    () => getProjectFeishuCandidates(projectId),
+    [feishuGroups, projectId],
+  );
 
   const filteredFiles = useMemo(() => {
     const normalizedKeyword = keyword.trim().toLowerCase();
@@ -221,15 +233,22 @@ const ProjectFilesPage = ({
         return false;
       }
 
-      if (!normalizedKeyword) {
-        return true;
-      }
-
-      const candidate = feishuGroupState?.candidates.find(
+      const candidate = allCandidates.find(
         item =>
           String(item.file.assetId || item.file.fileId) ===
           String(file.assetId || file.fileId),
       );
+
+      if (selectedChatId !== 'all') {
+        if (!fromFeishu || candidate?.chatId !== selectedChatId) {
+          return false;
+        }
+      }
+
+      if (!normalizedKeyword) {
+        return true;
+      }
+
       const searchableText = [
         file.fileName,
         file.uploaderUserName,
@@ -244,7 +263,7 @@ const ProjectFilesPage = ({
 
       return searchableText.includes(normalizedKeyword);
     });
-  }, [feishuGroupState?.candidates, files, filter, keyword]);
+  }, [allCandidates, files, filter, keyword, selectedChatId]);
 
   const handleFileUploadChange = async (
     event: ChangeEvent<HTMLInputElement>,
@@ -360,7 +379,7 @@ const ProjectFilesPage = ({
       return;
     }
 
-    const candidate = feishuGroupState?.candidates.find(
+    const candidate = allCandidates.find(
       item =>
         String(item.file.assetId || item.file.fileId) ===
         String(file.assetId || file.fileId),
@@ -445,12 +464,50 @@ const ProjectFilesPage = ({
               })}
               type='button'
               aria-pressed={filter === item.key}
-              onClick={() => setFilter(item.key)}
+              onClick={() => {
+                setFilter(item.key);
+                if (item.key === 'uploaded') {
+                  setSelectedChatId('all');
+                }
+              }}
             >
               <span>{item.label}</span>
               <strong>{item.count}</strong>
             </button>
           ))}
+          {feishuGroups.length > 1 ? (
+            <button
+              className={classNames({
+                [style.filterActive]: selectedChatId === 'all' && filter === 'feishu',
+              })}
+              type='button'
+              onClick={() => {
+                setFilter('feishu');
+                setSelectedChatId('all');
+              }}
+            >
+              <span>{I18N.carbonAgent.feishuCollectAllGroupsFilter}</span>
+              <strong>{feishuGroups.length}</strong>
+            </button>
+          ) : null}
+          {feishuGroups.length > 1
+            ? feishuGroups.map(group => (
+                <button
+                  key={group.chatId}
+                  className={classNames({
+                    [style.filterActive]: selectedChatId === group.chatId,
+                  })}
+                  type='button'
+                  onClick={() => {
+                    setFilter('feishu');
+                    setSelectedChatId(group.chatId);
+                  }}
+                >
+                  <span>{group.groupName}</span>
+                  <strong>{group.files.length}</strong>
+                </button>
+              ))
+            : null}
         </nav>
 
         <div className={style.toolbarRight}>
@@ -539,7 +596,7 @@ const ProjectFilesPage = ({
                 const fileKey = getProjectFileKey(file);
                 const fromFeishu = isFeishuCollectedFile(file);
                 const fileDownloading = downloadingFileKey === fileKey;
-                const matchedCandidate = feishuGroupState?.candidates.find(
+                const matchedCandidate = allCandidates.find(
                   item =>
                     String(item.file.assetId || item.file.fileId) === fileKey,
                 );
@@ -651,6 +708,7 @@ const ProjectFilesPage = ({
         tasks={[]}
         onCancel={() => setFeishuDialogOpen(false)}
         onGroupStateChange={nextState => {
+          setFeishuGroups(getProjectFeishuGroups(projectId));
           setFeishuGroupState(nextState);
           setFiles(currentFiles =>
             mergeProjectFilesWithFeishuFiles(projectId, currentFiles),

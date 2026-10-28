@@ -38,7 +38,9 @@ import type {
 import {
   FEISHU_COLLECTION_CHANGE_EVENT,
   type ProjectFeishuGroupState,
+  getProjectFeishuCandidates,
   getProjectFeishuGroupState,
+  getProjectFeishuGroups,
   mergeProjectFilesWithFeishuFiles,
 } from '../feishuCollectionStore';
 import style from '../index.module.less';
@@ -293,6 +295,9 @@ const ProjectHome = ({
   const [downloadingFileKey, setDownloadingFileKey] = useState<string>();
   const [retryKey, setRetryKey] = useState(0);
   const [feishuDialogOpen, setFeishuDialogOpen] = useState(false);
+  const [feishuGroups, setFeishuGroups] = useState<ProjectFeishuGroupState[]>(
+    () => getProjectFeishuGroups(projectId),
+  );
   const [feishuGroupState, setFeishuGroupState] =
     useState<ProjectFeishuGroupState | null>(() =>
       getProjectFeishuGroupState(projectId),
@@ -387,11 +392,13 @@ const ProjectHome = ({
     suggestionRequestIdRef.current += 1;
     suggestionSubmittingIdRef.current = '';
     setFeishuDialogOpen(false);
+    setFeishuGroups(getProjectFeishuGroups(projectId));
     setFeishuGroupState(getProjectFeishuGroupState(projectId));
   }, [projectId]);
 
   useEffect(() => {
     const syncFeishuState = () => {
+      setFeishuGroups(getProjectFeishuGroups(projectId));
       setFeishuGroupState(getProjectFeishuGroupState(projectId));
       setFiles(currentFiles =>
         mergeProjectFilesWithFeishuFiles(projectId, currentFiles),
@@ -837,14 +844,21 @@ const ProjectHome = ({
   };
 
   const feishuButtonLabel = useMemo(() => {
-    if (!feishuGroupState) {
+    if (!feishuGroups.length) {
       return I18N.carbonAgent.feishuCollect;
     }
 
-    return feishuGroupState.collectingEnabled
-      ? I18N.carbonAgent.feishuCollectConnected
-      : I18N.carbonAgent.feishuCollectPaused;
-  }, [feishuGroupState]);
+    const activeCount = feishuGroups.filter(g => g.collectingEnabled).length;
+    if (activeCount === 0) {
+      return I18N.carbonAgent.feishuCollectPaused;
+    }
+
+    return feishuGroups.length > 1
+      ? I18N.template(I18N.carbonAgent.feishuCollectConnectedMulti, {
+          val1: activeCount,
+        })
+      : I18N.carbonAgent.feishuCollectConnected;
+  }, [feishuGroups]);
 
   const feishuTaskOptions = useMemo(
     () =>
@@ -864,7 +878,8 @@ const ProjectHome = ({
       return;
     }
 
-    const matchedCandidate = feishuGroupState?.candidates.find(
+    const allCandidates = getProjectFeishuCandidates(projectId);
+    const matchedCandidate = allCandidates.find(
       item =>
         String(item.file.assetId || item.file.fileId) ===
         String(file.assetId || file.fileId),
@@ -1729,6 +1744,7 @@ const ProjectHome = ({
         tasks={feishuTaskOptions}
         onCancel={() => setFeishuDialogOpen(false)}
         onGroupStateChange={nextState => {
+          setFeishuGroups(getProjectFeishuGroups(projectId));
           setFeishuGroupState(nextState);
           setFiles(currentFiles =>
             mergeProjectFilesWithFeishuFiles(projectId, currentFiles),

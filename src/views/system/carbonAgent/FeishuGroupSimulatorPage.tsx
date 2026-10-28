@@ -14,6 +14,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import style from './FeishuGroupSimulatorPage.module.less';
 import {
+  FEISHU_BOT_APPLINK_URL,
+  FEISHU_BOT_APP_ID,
   FEISHU_COLLECTION_CHANGE_EVENT,
   type FeishuGroupMemberRole,
   type ProjectFeishuGroupState,
@@ -22,6 +24,7 @@ import {
   getAllProjectFeishuGroups,
   getProjectFeishuGroupState,
   receiveCustomerFileInFeishuGroup,
+  registerExternalClientViaBotP2p,
   sendTextMessageInFeishuGroup,
   toggleProjectFeishuCollection,
   updateFeishuGroupBotMessage,
@@ -65,13 +68,12 @@ const FeishuGroupSimulatorPage = () => {
   );
   const queryProjectId = searchParams.get('projectId')?.trim() || '';
   const queryProjectName = searchParams.get('projectName')?.trim() || '';
+  const queryChatId = searchParams.get('chatId')?.trim() || '';
 
   const [allGroups, setAllGroups] = useState<ProjectFeishuGroupState[]>(() =>
     getAllProjectFeishuGroups(),
   );
-  const [activeProjectId, setActiveProjectId] = useState<string>(
-    queryProjectId,
-  );
+  const [activeChatId, setActiveChatId] = useState<string>(queryChatId);
   const [customerInput, setCustomerInput] = useState('');
   const [selectedSenderId, setSelectedSenderId] = useState('');
   const [messageInput, setMessageInput] = useState('');
@@ -89,12 +91,13 @@ const FeishuGroupSimulatorPage = () => {
   );
 
   const startStreamingBotParseOutput = (params: {
+    chatId: string;
     fileName: string;
     fullContent: string;
     messageId: string;
     projectId: number | string;
   }) => {
-    const { fileName, fullContent, messageId, projectId } = params;
+    const { chatId, fileName, fullContent, messageId, projectId } = params;
     const totalLength = fullContent.length;
     const totalSteps = 18;
     const stepIntervalMs = 95;
@@ -108,6 +111,7 @@ const FeishuGroupSimulatorPage = () => {
         const partialText = fullContent.slice(0, sliceEnd);
 
         updateFeishuGroupBotMessage({
+          chatId,
           content: partialText,
           messageId,
           note: isFinal
@@ -146,7 +150,8 @@ const FeishuGroupSimulatorPage = () => {
         createProjectFeishuGroup({
           defaultTaskId: '',
           defaultTaskTitle: '',
-          groupName: `${defaultName}${I18N.carbonAgent.feishuCollectDefaultGroupSuffix}`,
+          description: I18N.carbonAgent.feishuCollectScopePreset1Desc,
+          groupName: `${defaultName} - ${I18N.carbonAgent.feishuCollectScopePreset1Name}`,
           mode: 'create',
           ownerMemberId: 'owner_default',
           ownerName: I18N.carbonAgent.feishuCollectOwnerDefault,
@@ -155,20 +160,59 @@ const FeishuGroupSimulatorPage = () => {
           projectName: defaultName,
         });
         groups = getAllProjectFeishuGroups();
+      } else if (!groups.length && !queryProjectId) {
+        const demoProjectId = 'demo_multi';
+        const demoProjectName = '2026 年度碳盘查示范项目';
+        createProjectFeishuGroup({
+          defaultTaskId: 'task_energy',
+          defaultTaskTitle: '范围一、二电力与天然气消耗数据收集',
+          description: I18N.carbonAgent.feishuCollectScopePreset1Desc,
+          groupName: `${demoProjectName} - ${I18N.carbonAgent.feishuCollectScopePreset1Name}`,
+          mode: 'create',
+          ownerMemberId: 'owner_default',
+          ownerName: I18N.carbonAgent.feishuCollectOwnerDefault,
+          projectId: demoProjectId,
+          projectMembers: [],
+          projectName: demoProjectName,
+        });
+        createProjectFeishuGroup({
+          defaultTaskId: 'task_bom',
+          defaultTaskTitle: '范围三外购原辅料与 BOM 采购台账收集',
+          description: I18N.carbonAgent.feishuCollectScopePreset2Desc,
+          groupName: `${demoProjectName} - ${I18N.carbonAgent.feishuCollectScopePreset2Name}`,
+          mode: 'create',
+          ownerMemberId: 'owner_default',
+          ownerName: I18N.carbonAgent.feishuCollectOwnerDefault,
+          projectId: demoProjectId,
+          projectMembers: [],
+          projectName: demoProjectName,
+        });
+        groups = getAllProjectFeishuGroups();
       }
 
       setAllGroups(groups);
 
       if (
-        queryProjectId &&
-        groups.some(group => String(group.projectId) === queryProjectId)
+        queryChatId &&
+        groups.some(group => group.chatId === queryChatId)
       ) {
-        setActiveProjectId(queryProjectId);
+        setActiveChatId(queryChatId);
+      } else if (
+        queryProjectId &&
+        groups.some(group => String(group.projectId) === queryProjectId) &&
+        !groups.some(group => group.chatId === activeChatId)
+      ) {
+        const matched = groups.find(
+          group => String(group.projectId) === queryProjectId,
+        );
+        if (matched) {
+          setActiveChatId(matched.chatId);
+        }
       } else if (
         groups.length &&
-        !groups.some(group => String(group.projectId) === activeProjectId)
+        !groups.some(group => group.chatId === activeChatId)
       ) {
-        setActiveProjectId(String(groups[0].projectId));
+        setActiveChatId(groups[0].chatId);
       }
     };
 
@@ -180,17 +224,17 @@ const FeishuGroupSimulatorPage = () => {
       window.removeEventListener(FEISHU_COLLECTION_CHANGE_EVENT, syncGroups);
       window.removeEventListener('storage', syncGroups);
     };
-  }, [activeProjectId, queryProjectId, queryProjectName]);
+  }, [activeChatId, queryChatId, queryProjectId, queryProjectName]);
 
   const activeGroup = useMemo(
     () =>
-      allGroups.find(
-        group => String(group.projectId) === String(activeProjectId),
-      ) ||
-      (activeProjectId ? getProjectFeishuGroupState(activeProjectId) : null) ||
+      allGroups.find(group => group.chatId === activeChatId) ||
+      (queryProjectId
+        ? getProjectFeishuGroupState(queryProjectId, queryChatId || undefined)
+        : null) ||
       allGroups[0] ||
       null,
-    [activeProjectId, allGroups],
+    [activeChatId, allGroups, queryChatId, queryProjectId],
   );
 
   const nonBotMembers = useMemo(
@@ -258,7 +302,7 @@ const FeishuGroupSimulatorPage = () => {
   const handleBackToAgent = () => {
     const targetProjectId = activeGroup?.projectId || queryProjectId;
 
-    if (targetProjectId) {
+    if (targetProjectId && targetProjectId !== 'demo_multi') {
       history.push({
         pathname: RouteMaps.carbonAgent,
         search: `?section=${encodeURIComponent(`project:${targetProjectId}`)}`,
@@ -269,6 +313,49 @@ const FeishuGroupSimulatorPage = () => {
     history.push(RouteMaps.carbonAgent);
   };
 
+  const handleQuickCreateAnotherGroup = () => {
+    const targetProjectId =
+      activeGroup?.projectId || queryProjectId || 'demo_multi';
+    const targetProjectName =
+      activeGroup?.projectName || queryProjectName || '当前项目';
+    const existingForProj = allGroups.filter(
+      g => String(g.projectId) === String(targetProjectId),
+    );
+    const scopeList = [
+      {
+        desc: I18N.carbonAgent.feishuCollectScopePreset1Desc,
+        name: `${targetProjectName} - ${I18N.carbonAgent.feishuCollectScopePreset1Name}`,
+      },
+      {
+        desc: I18N.carbonAgent.feishuCollectScopePreset2Desc,
+        name: `${targetProjectName} - ${I18N.carbonAgent.feishuCollectScopePreset2Name}`,
+      },
+      {
+        desc: I18N.carbonAgent.feishuCollectScopePreset3Desc,
+        name: `${targetProjectName} - ${I18N.carbonAgent.feishuCollectScopePreset3Name}`,
+      },
+    ];
+    const picked = scopeList[existingForProj.length % scopeList.length];
+    const created = createProjectFeishuGroup({
+      defaultTaskId: '',
+      defaultTaskTitle: '',
+      description: picked.desc,
+      groupName:
+        existingForProj.length >= scopeList.length
+          ? `${picked.name} #${existingForProj.length + 1}`
+          : picked.name,
+      mode: 'create',
+      ownerMemberId: activeGroup?.ownerMemberId || 'owner_default',
+      ownerName:
+        activeGroup?.ownerName || I18N.carbonAgent.feishuCollectOwnerDefault,
+      projectId: String(targetProjectId),
+      projectMembers: [],
+      projectName: targetProjectName,
+    });
+    setActiveChatId(created.chatId);
+    antdMessage.success(I18N.carbonAgent.feishuCollectCreatedSuccess);
+  };
+
   const handleInviteExternalCustomer = () => {
     const trimmed = customerInput.trim();
 
@@ -276,10 +363,16 @@ const FeishuGroupSimulatorPage = () => {
       return;
     }
 
+    const p2pContact = registerExternalClientViaBotP2p({
+      name: trimmed,
+      projectId: activeGroup.projectId,
+    });
     const updated = addExternalCustomerToFeishuGroup(
       activeGroup.projectId,
       trimmed,
       activeGroup.ownerName,
+      activeGroup.chatId,
+      p2pContact.openId,
     );
 
     if (updated) {
@@ -289,8 +382,9 @@ const FeishuGroupSimulatorPage = () => {
         setSelectedSenderId(addedMember.id);
       }
       antdMessage.success(
-        I18N.template(I18N.carbonAgent.feishuCollectCustomerAdded, {
+        I18N.template(I18N.carbonAgent.feishuCollectSimulateP2pAuthSuccess, {
           val1: trimmed,
+          val2: p2pContact.openId,
         }),
       );
     }
@@ -310,6 +404,7 @@ const FeishuGroupSimulatorPage = () => {
     const senderName =
       activeSender?.name || I18N.carbonAgent.feishuCollectDefaultCustomer1;
     const result = receiveCustomerFileInFeishuGroup({
+      chatId: activeGroup.chatId,
       fileName: preset.fileName,
       fileSize: preset.fileSize,
       note: noteText,
@@ -323,6 +418,7 @@ const FeishuGroupSimulatorPage = () => {
       setMessageInput('');
       if (result.state.collectingEnabled) {
         startStreamingBotParseOutput({
+          chatId: activeGroup.chatId,
           fileName: result.file.fileName,
           fullContent: result.fullBotContent,
           messageId: result.botMessageId,
@@ -362,6 +458,7 @@ const FeishuGroupSimulatorPage = () => {
     const senderName =
       activeSender?.name || I18N.carbonAgent.feishuCollectDefaultCustomer1;
     const result = receiveCustomerFileInFeishuGroup({
+      chatId: activeGroup.chatId,
       fileName: file.name,
       fileSize: file.size,
       fileType: file.type,
@@ -379,6 +476,7 @@ const FeishuGroupSimulatorPage = () => {
       setMessageInput('');
       if (result.state.collectingEnabled) {
         startStreamingBotParseOutput({
+          chatId: activeGroup.chatId,
           fileName: result.file.fileName,
           fullContent: result.fullBotContent,
           messageId: result.botMessageId,
@@ -396,6 +494,7 @@ const FeishuGroupSimulatorPage = () => {
     }
 
     sendTextMessageInFeishuGroup({
+      chatId: activeGroup.chatId,
       content: trimmed,
       projectId: activeGroup.projectId,
       senderName:
@@ -413,6 +512,16 @@ const FeishuGroupSimulatorPage = () => {
     copyToClipboard(activeGroup.inviteUrl)
       .then(() => {
         antdMessage.success(I18N.carbonAgent.feishuCollectGroupLinkCopied);
+      })
+      .catch(() => {
+        antdMessage.error(I18N.carbonAgent.projectInviteLinkCopyFailed);
+      });
+  };
+
+  const handleCopyBotAppLink = () => {
+    copyToClipboard(FEISHU_BOT_APPLINK_URL)
+      .then(() => {
+        antdMessage.success(I18N.carbonAgent.feishuCollectBotAppLinkCopied);
       })
       .catch(() => {
         antdMessage.error(I18N.carbonAgent.projectInviteLinkCopyFailed);
@@ -460,12 +569,21 @@ const FeishuGroupSimulatorPage = () => {
         <>
           <section className={style.chatListPane}>
             <header className={style.chatListHeader}>
-              <h2>{I18N.carbonAgent.feishuStandaloneGroupListTitle}</h2>
+              <h2>
+                {I18N.carbonAgent.feishuStandaloneGroupListTitle}（
+                {allGroups.length}）
+              </h2>
+              <button
+                className={style.uploadFileBtn}
+                type='button'
+                onClick={handleQuickCreateAnotherGroup}
+              >
+                + {I18N.carbonAgent.feishuCollectTabCreate}
+              </button>
             </header>
             <div className={style.chatListBody}>
               {allGroups.map(group => {
-                const isActive =
-                  String(group.projectId) === String(activeGroup.projectId);
+                const isActive = group.chatId === activeGroup.chatId;
                 const latestMsg = group.messages[group.messages.length - 1];
 
                 return (
@@ -475,7 +593,7 @@ const FeishuGroupSimulatorPage = () => {
                       [style.chatGroupItemActive]: isActive,
                     })}
                     type='button'
-                    onClick={() => setActiveProjectId(String(group.projectId))}
+                    onClick={() => setActiveChatId(group.chatId)}
                   >
                     <div className={style.groupAvatar}>
                       {group.groupName.slice(0, 1)}
@@ -483,9 +601,10 @@ const FeishuGroupSimulatorPage = () => {
                     <div className={style.chatGroupMeta}>
                       <strong title={group.groupName}>{group.groupName}</strong>
                       <span>
-                        {latestMsg
-                          ? `${latestMsg.senderName}: ${latestMsg.content}`
-                          : group.projectName}
+                        {group.description ||
+                          (latestMsg
+                            ? `${latestMsg.senderName}: ${latestMsg.content}`
+                            : group.projectName)}
                       </span>
                     </div>
                   </button>
@@ -511,9 +630,21 @@ const FeishuGroupSimulatorPage = () => {
                       val2: activeGroup.projectName,
                     },
                   )}
+                  {' · '}
+                  {activeGroup.chatId}
+                  {activeGroup.description
+                    ? ` · ${activeGroup.description}`
+                    : ''}
                 </span>
               </div>
               <div className={style.headerActions}>
+                <button
+                  className={style.backAgentBtn}
+                  type='button'
+                  onClick={handleCopyBotAppLink}
+                >
+                  {I18N.carbonAgent.feishuCollectBotAppLinkCopy}
+                </button>
                 <button
                   className={style.backAgentBtn}
                   type='button'
@@ -609,7 +740,7 @@ const FeishuGroupSimulatorPage = () => {
                     size='small'
                     value={activeSender?.id}
                     options={nonBotMembers.map(member => ({
-                      label: `${member.name}（${getRoleLabel(member.role)}）`,
+                      label: `${member.name}（${getRoleLabel(member.role)} · ${member.openId}）`,
                       value: member.id,
                     }))}
                     onChange={setSelectedSenderId}
@@ -686,9 +817,19 @@ const FeishuGroupSimulatorPage = () => {
                     toggleProjectFeishuCollection(
                       activeGroup.projectId,
                       checked,
+                      activeGroup.chatId,
                     )
                   }
                 />
+              </div>
+              <div className={style.syncedFileCard}>
+                <strong>OpenAPI Metadata</strong>
+                <span>app_id: {FEISHU_BOT_APP_ID}</span>
+                <span>chat_id: {activeGroup.chatId}</span>
+                <span>owner_id: {activeGroup.ownerId}</span>
+                <span>
+                  external: true · chat_type: {activeGroup.chatType}
+                </span>
               </div>
               <div className={style.inviteBox}>
                 <strong>
@@ -721,7 +862,9 @@ const FeishuGroupSimulatorPage = () => {
               <ul className={style.memberList}>
                 {activeGroup.members.map(member => (
                   <li key={member.id} className={style.memberItem}>
-                    <span title={member.name}>{member.name}</span>
+                    <span title={`${member.name} (${member.openId})`}>
+                      {member.name}
+                    </span>
                     <em
                       className={classNames(style.memberRoleTag, {
                         [style.memberRoleTagBot]: member.role === 'bot',

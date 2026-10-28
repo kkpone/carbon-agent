@@ -16,7 +16,7 @@ import style from './ProjectTaskDetailDrawer.module.less';
 import {
   FEISHU_COLLECTION_CHANGE_EVENT,
   type FeishuCollectedCandidate,
-  getProjectFeishuGroupState,
+  getProjectFeishuCandidates,
   markFeishuCandidateAdopted,
 } from '../feishuCollectionStore';
 import {
@@ -251,12 +251,7 @@ const ProjectTaskDetailDrawer = ({
     }
 
     const syncFeishuCandidates = () => {
-      const groupState = getProjectFeishuGroupState(projectId);
-      const allCandidates = groupState?.candidates || [];
-      const matched = allCandidates.filter(
-        item => !item.taskId || String(item.taskId) === String(taskId),
-      );
-      setFeishuCandidates(matched);
+      setFeishuCandidates(getProjectFeishuCandidates(projectId, taskId));
     };
 
     syncFeishuCandidates();
