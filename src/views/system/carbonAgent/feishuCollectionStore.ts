@@ -1081,10 +1081,4 @@ export const markFeishuCandidateAdopted = (
   saveProjectFeishuGroups(projectId, nextGroups);
   return updatedGroup || nextGroups[0];
 };
-      candidate.id === candidateId
-        ? { ...candidate, adopted: true }
-        : candidate,
-    ),
-  });
-};
 
