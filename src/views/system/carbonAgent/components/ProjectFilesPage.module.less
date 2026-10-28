@@ -1,0 +1,514 @@
+@text-primary: #04252b;
+@text-secondary: #6c757d;
+@text-tertiary: #999ea4;
+@surface-muted: #f7f8f9;
+@brand-dark: #004541;
+
+.page {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  overflow: auto;
+  box-sizing: border-box;
+  background: #fff;
+  color: @text-primary;
+  padding: 32px 40px 40px;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+  min-width: 0;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 0 24px;
+  background: #fff;
+}
+
+.headerTitleGroup {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.backButton {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 32px;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+}
+
+.backButton:hover,
+.backButton:focus-visible {
+  background: @surface-muted;
+  outline: none;
+}
+
+.backButton img {
+  width: 10px;
+  height: 6px;
+  transform: rotate(90deg);
+}
+
+.header h1 {
+  margin: 0;
+  color: @text-primary;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.closeButton {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 24px;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.closeButton:hover,
+.closeButton:focus-visible {
+  background: @surface-muted;
+  outline: none;
+}
+
+.closeButton img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.toolbar {
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filters {
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  background: @surface-muted;
+  padding: 2px;
+}
+
+.filters button {
+  height: 34px;
+  border: 0;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: @text-secondary;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 6px 16px;
+  white-space: nowrap;
+}
+
+.filters button:hover,
+.filters button:focus-visible {
+  background: #f1f3f4;
+  color: @text-primary;
+  outline: none;
+}
+
+.filters .filterActive {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  color: @text-primary;
+  font-weight: 500;
+}
+
+.filters strong {
+  color: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.searchBox {
+  width: 260px;
+  height: 38px;
+  border: 1px solid #d5d9dc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 0 12px;
+}
+
+.searchBox:focus-within {
+  border-color: #026961;
+}
+
+.searchBox img {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  opacity: 0.55;
+}
+
+.searchBox input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: @text-primary;
+  font: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  outline: none;
+}
+
+.searchBox input::placeholder {
+  color: @text-tertiary;
+}
+
+.feishuActionBtn,
+.uploadActionBtn {
+  height: 38px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.feishuActionBtn {
+  border: 1px solid #bcebd7;
+  background: #eefbf5;
+  color: #026961;
+  font-weight: 500;
+}
+
+.feishuActionBtn:hover,
+.feishuActionBtn:focus-visible {
+  background: #dff7ec;
+  outline: none;
+}
+
+.feishuActionBtn img,
+.uploadActionBtn img {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.uploadActionBtn {
+  border: 0;
+  background: @brand-dark;
+  color: #fff;
+  font-weight: 500;
+}
+
+.uploadActionBtn:hover:not(:disabled),
+.uploadActionBtn:focus-visible:not(:disabled) {
+  background: #026961;
+  outline: none;
+}
+
+.uploadActionBtn:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.uploadActionBtn img {
+  filter: brightness(0) invert(1);
+}
+
+.tableWrap {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table {
+  width: 100%;
+  min-width: 980px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.colName {
+  width: 320px;
+}
+
+.colSource {
+  width: 140px;
+}
+
+.colUploader {
+  width: 220px;
+}
+
+.colSize {
+  width: 110px;
+}
+
+.colTime {
+  width: 140px;
+}
+
+.colActions {
+  width: 190px;
+}
+
+.table th {
+  height: 48px;
+  background: @surface-muted;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table td {
+  height: 72px;
+  max-width: 0;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fff;
+  color: @text-primary;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 12px 20px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table tbody tr:hover td {
+  background: #f8fbfa;
+}
+
+.filePrimaryCell {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fileTitleRow {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fileTitleRow img {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.fileTitleRow strong {
+  min-width: 0;
+  overflow: hidden;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.filePrimaryCell span {
+  min-width: 0;
+  overflow: hidden;
+  color: @text-tertiary;
+  font-size: 12px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sourceBadge {
+  height: 26px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+
+.sourceBadgeFeishu {
+  background: #eafbf2;
+  color: #027667;
+}
+
+.sourceBadgeUploaded {
+  background: #eef1f3;
+  color: #495057;
+}
+
+.uploaderCell {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.uploaderCell strong,
+.uploaderCell span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uploaderCell strong {
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.uploaderCell span {
+  color: @text-tertiary;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.actionCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contextActionBtn {
+  height: 30px;
+  border: 1px solid #cdeee0;
+  border-radius: 6px;
+  background: #f4fbf8;
+  color: #026961;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.contextActionBtn:hover,
+.contextActionBtn:focus-visible {
+  background: #e1f6ec;
+  outline: none;
+}
+
+.downloadActionBtn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 30px;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+}
+
+.downloadActionBtn:hover:not(:disabled),
+.downloadActionBtn:focus-visible:not(:disabled) {
+  border-color: #026961;
+  background: #f4fbf8;
+  outline: none;
+}
+
+.downloadActionBtn:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.downloadActionBtn img {
+  width: 14px;
+  height: 13px;
+}
+
+.table td.tableState {
+  height: 320px;
+  color: @text-tertiary;
+  text-align: center;
+}
+
+.tableState button {
+  border: 0;
+  margin-top: 8px;
+  background: transparent;
+  color: #026961;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 24px 20px 32px;
+  }
+
+  .searchBox {
+    width: 100%;
+  }
+}
+

@@ -95,6 +95,7 @@ export type AgentSectionKey =
   | 'esg'
   | `project:${string}`
   | `projectComparison:${string}`
+  | `projectFiles:${string}`
   | `projectOverview:${string}`
   | `projectTasks:${string}`;
 
@@ -423,6 +424,9 @@ export const getProjectSectionKey = (projectId: string): AgentSectionKey =>
 
 export const getProjectTasksSectionKey = (projectId: string): AgentSectionKey =>
   `projectTasks:${projectId}`;
+
+export const getProjectFilesSectionKey = (projectId: string): AgentSectionKey =>
+  `projectFiles:${projectId}`;
 
 export const getProjectOverviewSectionKey = (
   projectId: string,

@@ -12839,6 +12839,20 @@ a.fetchUrlItemTitle:hover {
   display: none;
 }
 
+.projectHomeCardHeaderActions {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.projectHomeCard:last-child:not(:has(.projectHomeFileList))
+  > header
+  > .projectHomeCardHeaderActions
+  > .projectHomeUploadTriggerBtn {
+  display: none;
+}
+
 .projectHomeCard header img {
   width: 16px;
   height: 16px;

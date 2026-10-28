@@ -133,6 +133,7 @@ import {
 import useCcdbSessionFactors from './useCcdbSessionFactors';
 import ProjectCalculationComparison from './components/ProjectCalculationComparison';
 import ProjectCreateDialog from './components/ProjectCreateDialog';
+import ProjectFilesPage from './components/ProjectFilesPage';
 import ProjectHome from './components/ProjectHome';
 import ProjectOverviewEntry from './components/ProjectOverviewEntry';
 import ProjectTaskCreateDialog, {
@@ -186,6 +187,7 @@ import {
   SIDEBAR_COLLAPSED_STORAGE_KEY,
   getModeOptionsByAccountBindStatus,
   getProjectComparisonSectionKey,
+  getProjectFilesSectionKey,
   getProjectSectionKey,
   getProjectOverviewSectionKey,
   getProjectTasksSectionKey,
@@ -3817,6 +3819,7 @@ const getAgentSectionFromSearch = (search: string): AgentSectionKey => {
     [
       'project:',
       'projectComparison:',
+      'projectFiles:',
       'projectOverview:',
       'projectTasks:',
     ].some(
@@ -4291,6 +4294,9 @@ const CarbonAgent = () => {
     : '';
   const activeProjectTasksId = activeSection.startsWith('projectTasks:')
     ? activeSection.slice('projectTasks:'.length)
+    : '';
+  const activeProjectFilesId = activeSection.startsWith('projectFiles:')
+    ? activeSection.slice('projectFiles:'.length)
     : '';
   const activeProjectOverviewId = activeSection.startsWith('projectOverview:')
     ? activeSection.slice('projectOverview:'.length)
@@ -5882,6 +5888,7 @@ const CarbonAgent = () => {
   };
   const mobileProjectSubpage =
     Boolean(activeProjectTasksId) ||
+    Boolean(activeProjectFilesId) ||
     Boolean(activeProjectOverviewId) ||
     Boolean(activeProjectComparisonId);
   const mobileProjectPage = Boolean(activeProjectId) || mobileProjectSubpage;
@@ -5900,6 +5907,8 @@ const CarbonAgent = () => {
     ? activeConversationTitle
     : activeProjectTasksId
     ? I18N.carbonAgent.projectTasks
+    : activeProjectFilesId
+    ? I18N.carbonAgent.projectFileListTitle
     : activeProjectOverviewId
     ? I18N.carbonAgent.projectDataOverview
     : activeProjectComparisonId
@@ -7863,6 +7872,7 @@ const CarbonAgent = () => {
     const projectEntry =
       normalizedSection.startsWith('project:') ||
       normalizedSection.startsWith('projectComparison:') ||
+      normalizedSection.startsWith('projectFiles:') ||
       normalizedSection.startsWith('projectOverview:') ||
       normalizedSection.startsWith('projectTasks:');
 
@@ -7929,6 +7939,7 @@ const CarbonAgent = () => {
     if (
       normalizedSection.startsWith('project:') ||
       normalizedSection.startsWith('projectComparison:') ||
+      normalizedSection.startsWith('projectFiles:') ||
       normalizedSection.startsWith('projectOverview:') ||
       normalizedSection.startsWith('projectTasks:')
     ) {
@@ -7976,6 +7987,10 @@ const CarbonAgent = () => {
   const handleProjectTasksOpen = (projectId: string, taskId?: string) => {
     handleSectionSelect(getProjectTasksSectionKey(projectId));
     setFocusedProjectTaskId(taskId || '');
+  };
+
+  const handleProjectFilesOpen = (projectId: string) => {
+    handleSectionSelect(getProjectFilesSectionKey(projectId));
   };
 
   const handleQuestionChange = (nextQuestion: string) => {
@@ -8036,9 +8051,17 @@ const CarbonAgent = () => {
       return;
     }
 
-    if (activeProjectOverviewId || activeProjectTasksId) {
+    if (
+      activeProjectOverviewId ||
+      activeProjectTasksId ||
+      activeProjectFilesId
+    ) {
       handleSectionSelect(
-        getProjectSectionKey(activeProjectOverviewId || activeProjectTasksId),
+        getProjectSectionKey(
+          activeProjectOverviewId ||
+            activeProjectTasksId ||
+            activeProjectFilesId,
+        ),
       );
       return;
     }
@@ -11176,6 +11199,7 @@ const CarbonAgent = () => {
               Boolean(
                 activeProjectId ||
                   activeProjectTasksId ||
+                  activeProjectFilesId ||
                   activeProjectOverviewId ||
                   activeProjectComparisonId,
               ),
@@ -11659,11 +11683,20 @@ const CarbonAgent = () => {
                   : undefined
               }
             />
+          ) : authenticated && activeProjectFilesId ? (
+            <ProjectFilesPage
+              projectId={activeProjectFilesId}
+              onBack={() =>
+                handleSectionSelect(`project:${activeProjectFilesId}`)
+              }
+              onUseFileAsContext={handleProjectFileContextSelect}
+            />
           ) : authenticated && activeProjectId ? (
             <ProjectHome
               isMobile={isMobile}
               projectId={activeProjectId}
               refreshKey={projectListRefreshKey}
+              onOpenFiles={() => handleProjectFilesOpen(activeProjectId)}
               onOpenOverview={() => handleProjectOverviewOpen(activeProjectId)}
               onOpenSettings={() =>
                 setProjectSettingsProjectId(activeProjectId)

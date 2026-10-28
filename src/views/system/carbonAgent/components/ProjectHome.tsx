@@ -105,6 +105,7 @@ const getEnterpriseProjectMemberRoleName = (
 type ProjectHomeProps = {
   composer: ReactNode;
   isMobile?: boolean;
+  onOpenFiles?: () => void;
   onOpenOverview: () => void;
   onOpenSettings: () => void;
   onOpenTasks: (taskId?: string) => void;
@@ -249,6 +250,7 @@ const getProjectFileKey = (file: AgentProjectFile) =>
 const ProjectHome = ({
   composer,
   isMobile = false,
+  onOpenFiles,
   onOpenOverview,
   onOpenSettings,
   onOpenTasks,
@@ -1548,26 +1550,46 @@ const ProjectHome = ({
             >
               <header>
                 <h2>{I18N.carbonAgent.projectFiles}</h2>
-                <button
-                  type='button'
-                  disabled={fileUploading}
-                  aria-busy={fileUploading}
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <img
-                    className={style.projectHomeUploadIcon}
-                    src={projectUploadIcon}
-                    alt=''
-                    aria-hidden='true'
-                    width={15}
-                    height={14}
-                  />
-                  <span>
-                    {fileUploading
-                      ? I18N.carbonAgent.projectFileUploading
-                      : I18N.carbonAgent.uploadProjectFiles}
-                  </span>
-                </button>
+                <div className={style.projectHomeCardHeaderActions}>
+                  <button
+                    className={style.projectHomeUploadTriggerBtn}
+                    type='button'
+                    disabled={fileUploading}
+                    aria-busy={fileUploading}
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <img
+                      className={style.projectHomeUploadIcon}
+                      src={projectUploadIcon}
+                      alt=''
+                      aria-hidden='true'
+                      width={15}
+                      height={14}
+                    />
+                    <span>
+                      {fileUploading
+                        ? I18N.carbonAgent.projectFileUploading
+                        : I18N.carbonAgent.uploadProjectFiles}
+                    </span>
+                  </button>
+                  {onOpenFiles ? (
+                    <button type='button' onClick={onOpenFiles}>
+                      <span>{I18N.carbonAgent.projectFilesMore}</span>
+                      <span
+                        className={style.projectHomeTaskArrowIcon}
+                        aria-hidden='true'
+                      >
+                        <img
+                          className={style.projectHomeTaskArrow}
+                          src={projectArrowIcon}
+                          alt=''
+                          width={9}
+                          height={6}
+                        />
+                      </span>
+                    </button>
+                  ) : null}
+                </div>
                 <input
                   ref={fileInputRef}
                   type='file'
