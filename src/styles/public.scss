@@ -1,0 +1,756 @@
+@use 'sass:math';
+@use './keyframe-animations';
+@use './variables';
+
+@function px2Rem($px, $base-font-size: 17.2px) {
+  @if (unitless($px)) {
+    //有无单位
+    @return math.div($px, 17.2) * 1rem;
+  } @else if (unit($px) ==em) {
+    @return $px;
+  }
+
+  @return math.div($px, $base-font-size) * 1rem;
+}
+
+$gray: #ccc;
+$brown: #f8fafa;
+$lightDark: #303133;
+$danger: #ed5555;
+$mainDark: #333;
+$primary-color: #004541;
+$marin20: 20px;
+$marin40: 40px;
+$word: rgba(51, 51, 51, 1);
+$bg-white: white;
+$word16: 16px;
+$bg-white: white;
+$text-black: rgba(51, 51, 51, 1);
+$text-14: 14px;
+$text-16: 16px;
+$text-20: 20px;
+$fontweight500: 500;
+$fontweight400: 400;
+$bg-green: #f5fdf9;
+$text-orange: #ee9e25;
+$text-gray: #b5b5b5;
+$text-error: #ed5555;
+$text-blue: #1c94ed;
+$text-666: #666666;
+$bg-gray: #f8f8f8;
+$margin-top20: 20px;
+$text-18: 18px;
+$margin-left30: 30px;
+$text-bg-oranage: #fdf5e9;
+$text-bg-gray: #f2f2f2;
+
+.margin-left30 {
+  margin-left: $margin-left30;
+}
+
+.ant-menu-title-content {
+  font-size: 16px;
+  font-weight: 400;
+  overflow: initial !important;
+}
+
+.menu_title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+//错误提示
+.ant-form-item-explain,
+.ant-form-item-extra {
+  font-size: 13px !important;
+}
+
+.text-cursor {
+  cursor: pointer;
+}
+
+.ant-table-thead
+  > tr
+  > th:not(:last-child):not(.ant-table-selection-column):not(
+    .ant-table-row-expand-icon-cell
+  ):not([colspan])::before {
+  background-color: rgb(250 250 250) !important;
+}
+
+.ant-table-column-has-sorters {
+  background: rgb(247, 248, 249) !important;
+}
+
+.ant-table .ant-table-cell.ant-table-column-sort {
+  background: transparent;
+}
+
+.ant-menu-sub.ant-menu-inline {
+  background: #ffffff;
+}
+
+.bar-gray {
+  width: 100%;
+  height: 20px;
+  background: #f8f8f8;
+}
+
+.text-12 {
+  font-size: 12px;
+}
+
+.text-14 {
+  font-size: 14px;
+}
+
+.text-16 {
+  font-size: 16px;
+}
+
+.text-18 {
+  font-size: 18px;
+}
+
+.text-20 {
+  font-size: 20px;
+}
+
+.margin-bottom40 {
+  margin-bottom: 40px;
+}
+
+.font-weight400 {
+  font-weight: 400;
+}
+
+.margin-bottom20 {
+  margin-bottom: 20px;
+}
+
+.add_child_form_label .ant-form-item-label {
+  width: 94px;
+  text-align: right;
+}
+
+.line-height24 {
+  line-height: 24px;
+}
+
+.lcaresults {
+  height: 100%;
+}
+
+.text-tips-color {
+  color: #3d3d3dff;
+}
+
+.new_btn {
+  min-width: 140px;
+  height: 40px;
+  font-size: 16px;
+  float: right;
+  margin-top: 20px;
+}
+
+.other_btn {
+  min-width: 140px;
+  height: 40px;
+  padding: 0;
+  font-size: 16px;
+  border-radius: 4px;
+  background: #ffffff;
+  border-color: #dddddd;
+  color: #666666;
+  margin-top: 20px;
+  float: right;
+  margin-right: 20px;
+}
+
+.checkout_btn {
+  background: #fff !important;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  font-size: 16px;
+  float: right;
+  margin-left: 20px;
+}
+
+.select_report {
+  border-radius: 4px;
+}
+
+.filter_report {
+  padding-top: 0;
+}
+
+.padding30 {
+  padding: 30px;
+}
+
+.text-left {
+  text-align: left;
+}
+
+//审核状态样式
+.status_waitting {
+  color: $text-orange;
+  background-color: $text-bg-oranage;
+}
+
+.status_green {
+  color: $primary-color;
+}
+
+.status_gray {
+  color: $text-gray;
+  background-color: $text-bg-gray;
+}
+
+.status_txt {
+  height: 22px;
+  max-width: 92px;
+  text-align: center;
+  line-height: 22px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: block;
+}
+
+.status_require {
+  color: $text-error;
+}
+
+.Audit_reson {
+  display: flex;
+  align-items: center;
+
+  span {
+    padding-right: 4px;
+  }
+
+  .ant-input {
+    width: 362px;
+  }
+}
+
+.ant-modal-header,
+.ant-modal-footer {
+  border: none;
+}
+
+.btn-tag {
+  width: 54px;
+  height: 22px;
+  text-align: center;
+  line-height: 22px;
+  font-size: 14px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.btn-tag-green {
+  color: $primary-color;
+  background: #e8f9e8;
+}
+
+.btn-tag-gray {
+  color: #aeaeae;
+  background: #f2f2f2;
+}
+
+//碳排放报告录入按钮样式
+.carbon_btn_list .ant-btn {
+  padding: 0px 20px !important;
+  border-radius: 4px !important;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.text-black {
+  color: #333;
+}
+
+.text-gray {
+  color: $text-gray;
+}
+
+.text-orange {
+  color: $text-orange;
+}
+
+.text-green {
+  color: $primary-color;
+}
+
+.font-weight400 {
+  font-weight: $fontweight500;
+}
+
+.padding-left20 {
+  padding-left: 20px;
+}
+
+.padding-top24 {
+  margin-top: 24px;
+}
+
+.margin10 {
+  margin: 0 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.margin-top40 {
+  margin-top: 40px;
+}
+
+.margin-right10 {
+  margin-right: 10px;
+}
+
+.margin40 {
+  margin: 40px 0;
+}
+
+.margin30 {
+  margin: 30px;
+}
+
+.margin-right30 {
+  margin-right: 30px;
+}
+
+.flex {
+  display: flex;
+  align-items: flex-end;
+}
+
+.flex-sub {
+  flex: 1;
+  text-align: right;
+  //align-items: center;
+}
+
+.margin-top25 {
+  margin-top: 25px;
+}
+
+.text-666 {
+  color: $text-666;
+}
+
+.margin-left14 {
+  margin-left: 14px;
+}
+
+.margin-top10 {
+  margin-top: 10px;
+}
+
+.margin-bottom20 {
+  margin-bottom: 20px;
+}
+
+.margin-bottom10 {
+  margin-bottom: 10px;
+}
+
+.margin-bottom60 {
+  margin-bottom: 60px;
+}
+
+.btn-active-green {
+  border-color: $primary-color;
+  color: $primary-color;
+}
+
+.ant-input-group-addon {
+  font-size: 12px;
+}
+
+.padding24 {
+  padding: 24px;
+}
+
+.margin-left20 {
+  margin-left: 20px;
+}
+
+.margin-left60 {
+  margin-left: 60px;
+}
+
+.margin-top28 {
+  margin-top: 28px;
+}
+
+.padding-top0 {
+  padding-top: 0;
+}
+
+.tab-padding {
+  display: inline-block;
+  padding: 19px 24px;
+  background: #f8fafa;
+}
+
+.bg-gray-light {
+  background: #f8fafa;
+}
+
+.bg-white {
+  background: #ffffff;
+}
+
+.tab-active {
+  color: $primary-color;
+  background: #ffffff;
+}
+
+.text-666 {
+  color: #666666;
+}
+
+.text-over_line1 {
+  width: 150px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.margin_bottom20 {
+  margin-bottom: 20px;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  // height:90vh;
+}
+
+.agreement {
+  display: flex;
+  justify-content: center;
+  padding-top: px2Rem(80px);
+  min-height: 100vh;
+
+  .contents {
+    width: px2Rem(1000px);
+    font-weight: 400;
+    color: #333333;
+    line-height: px2Rem(22px);
+  }
+}
+
+.agreement_loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// .ant-upload.ant-upload-disabled {
+//   display: none;
+// }
+
+.childHeight {
+  display: flex;
+  flex-flow: column;
+  flex: auto;
+  overflow: auto;
+}
+
+//===================================进度条
+.comStep {
+  margin: 0 auto !important;
+  width: max-content !important;
+}
+
+.comStep
+  > .ant-steps-item-process
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title {
+  font-weight: 400;
+  font-size: 14px;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.comStep
+  > .ant-steps-item-wait
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title {
+  font-weight: 400;
+  font-size: 14px;
+  color: #666666;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.comStep > .ant-steps-item {
+  width: 168px;
+  flex: none;
+}
+
+.comStep > .ant-steps-item .ant-steps-item-container .ant-steps-item-tail {
+  margin-left: 54px;
+  top: 8px;
+}
+
+.comStep > .ant-steps-item .ant-steps-item-container .ant-steps-item-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.comStep > .ant-steps-item .ant-steps-item-icon .ant-steps-icon {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: center;
+  top: -5.5px;
+}
+
+.comStep
+  > .ant-steps-item-finish
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title {
+  font-weight: 400;
+  font-size: 14px;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.accountFrom > .ant-form-item .ant-input-affix-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+//
+.accountFrom {
+  display: grid;
+  grid-template-columns: 33% 33% 1fr;
+  grid-template-areas:
+    'a1 a1 a1'
+    'a2 a3 a5'
+    'a4 a4 a4';
+  grid-column-gap: 30px;
+
+  .from-inline {
+    grid-area: a1;
+    display: flex;
+    flex-direction: row !important;
+
+    .ant-form-item-label {
+      padding-bottom: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .from-a4 {
+    grid-area: a4;
+  }
+}
+
+.accountFrom
+  > .ant-form-item
+  .ant-input-number-group
+  .ant-input-number-group-addon:last-child {
+  background-color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  color: #09c199;
+  box-sizing: border-box;
+  // height: 32px;
+  // border: none;
+}
+
+.accountFrom
+  > .ant-form-item
+  .ant-input-number-group
+  .ant-input-number-group-addon
+  > button {
+  border: none;
+  margin-bottom: -2px;
+}
+
+.accountFrom > ant-form-item .ant-input-number-group .ant-input-number {
+  border-right: 0;
+}
+
+.accountFrom > .comstom-suffix-input {
+  border-right: none !important;
+}
+
+.comstom-suffix-input
+  > .ant-input-number-group
+  .ant-input-number-group-addon:last-child {
+  background-color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  color: #09c199;
+  box-sizing: border-box;
+}
+
+.comstom-suffix-input
+  > .ant-input-number-group
+  .ant-input-number-group-addon
+  > button {
+  border: none;
+  margin-bottom: -2px;
+}
+
+.comstom-suffix-input {
+  border-right: none !important;
+}
+
+.ant-input-number-group > .ant-input-number:last-child {
+  // background-color: red;
+  border-radius: 4px !important;
+}
+
+.comstom-modal .ant-checkbox-disabled + span {
+  color: #000 !important;
+}
+
+.costomCascader {
+  width: 100%;
+
+  .ant-cascader-menu-item {
+    width: 100%;
+  }
+
+  .ant-cascader-menus {
+    height: auto;
+
+    .ant-cascader-menu {
+      height: auto;
+    }
+
+    .ant-cascader-menu-item-active {
+      width: 100%;
+      color: #09c199;
+
+      .ant-cascader-menu-item-expand-icon {
+        svg {
+          fill: #fff;
+        }
+      }
+
+      .ant-cascader-menu-item-content:last-child {
+        display: flex;
+        justify-content: space-between;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 8px;
+          height: 16px;
+          border-color: #09c199;
+          border-style: solid;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    .ant-cascader-menu-item:hover {
+      color: #fff;
+      background: #09c199;
+
+      .ant-cascader-menu-item-expand-icon {
+        svg {
+          fill: #fff;
+        }
+      }
+
+      .ant-cascader-menu-item-content:last-child {
+        display: flex;
+        justify-content: space-between;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 8px;
+          height: 16px;
+          border-color: #fff;
+          border-style: solid;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+
+  li {
+    list-style: none;
+    width: 50%;
+  }
+}
+
+// costomTooltip
+.costomTooltip {
+  .ant-tooltip-inner {
+    color: #333300;
+  }
+}
+
+// 自定义弹窗 应用在列表
+.cumstomModal_confirm {
+  .ant-modal-body {
+    .anticon-exclamation-circle {
+      display: none;
+    }
+  }
+
+  .ant-modal-confirm-body
+    > .anticon
+    + .ant-modal-confirm-title
+    + .ant-modal-confirm-content {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+}
+
+.react-grid-item.cssTransforms {
+  // background: red;
+  border: 1px solid;
+}
+
+.react-grid-placeholder {
+  // background-color: #000 !important;
+  // opacity: 0.1 !important;
+  background-color: rgba(51, 51, 51, 0.5) !important;
+  z-index: 0 !important;
+}
+
+.ant-modal-confirm {
+  .ant-modal-confirm-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px; /* 133.333% */
+  }
+  .ant-modal-confirm-paragraph {
+    row-gap: 32px;
+  }
+  .ant-modal-confirm-btns {
+    margin-top: 32px;
+  }
+  .ant-modal-confirm-content {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}

@@ -1,0 +1,28 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.content {
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 16px;
+}
+
+.option {
+  display: flex;
+  min-width: 38px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--neutral-color-border-1, #d5d7da);
+  color: #b5b8bb;
+  cursor: pointer;
+  background: #fff;
+}
+
+.selectedOption {
+  border-color: #0cbf9f;
+  color: #0cbf9f;
+}

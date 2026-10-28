@@ -1,0 +1,96 @@
+@import '@src/styles/var.less';
+
+/** tooltip样式 */
+.tooltip {
+  // position: fixed;
+  display: block;
+}
+
+.graphWrapper {
+  position: relative;
+  display: flex;
+  flex: 1 0 auto;
+  flex-flow: column;
+  padding: 0;
+  overflow: hidden;
+  // background-color: @white;
+  background: #f7f8f9;
+  background-image: linear-gradient(#f7f8f9 13px, transparent 0),
+    linear-gradient(90deg, rgb(235 236 237) 2px, transparent 0);
+  background-size: 15px 15px, 15px 15px;
+
+  .main {
+    flex: 1 1 auto;
+    // background-color: #eee;
+    background: transparent !important;
+  }
+
+  .graphZoom {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 12px 0 #eee;
+
+    .graphZoomNum {
+      width: 70px;
+      height: 32px;
+      color: #6c757d;
+      line-height: 32px;
+      text-align: center;
+      background-color: #fff;
+      border: 1px solid #ebedf0;
+    }
+
+    .graphZoomNumPercent {
+      position: absolute;
+      right: 40px;
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      background-color: #fff;
+    }
+
+    .graphZoomBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: none;
+    }
+  }
+
+  :global(.g6-component-tooltip) {
+    background: transparent;
+    // border: none;
+    box-shadow: none;
+
+    .tooltip {
+      padding: 6px 8px;
+      color: @white;
+      background-color: @mainDark;
+      border-radius: 4px;
+      // transform: translate3d(0, calc(-100% - 20px), 0);
+
+      .content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .icon {
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        z-index: 1;
+        display: block;
+        display: none;
+        width: 12px;
+        height: 12px;
+        background: @mainDark;
+        transform: rotate(45deg) translateX(-50%);
+      }
+    }
+  }
+}

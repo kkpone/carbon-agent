@@ -1,0 +1,840 @@
+.service {
+  padding: 20px;
+  padding-right: 0;
+}
+
+.service h3 {
+  padding-top: 18px;
+  padding-bottom: 16px;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.service .service_content .content_item {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+
+.service .service_content .content_item img {
+  width: 268px;
+  height: 200px;
+  margin-right: 28px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.service .service_content .content_item .content_item_right {
+  flex: 1;
+  box-sizing: border-box;
+  height: 205px;
+  margin-bottom: 20px;
+}
+
+.service .service_content .content_item .content_item_right::after {
+  position: relative;
+  top: 20px;
+  display: block;
+  height: 1px;
+  margin-bottom: 20px;
+  background: #DDD;
+  content: '';
+}
+
+.service .service_content .content_item .content_item_right .title {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.service .service_content .content_item .content_item_right .title .tag {
+  margin-right: 8px;
+  padding: 6px 8px;
+  color: #09C199;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  background: rgb(9 193 153 / 6%);
+  border-radius: 15px;
+}
+
+.service .service_content .content_item .content_item_right .title h4 {
+  display: box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.service .service_content .content_item .content_item_right .describe {
+  display: box;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.service .service_content .content_item .content_item_right .price {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  margin-top: 10px;
+  margin-bottom: 18px;
+}
+
+.service .service_content .content_item .content_item_right .price span {
+  color: #999;
+  font-weight: 400;
+  font-size: 14px;
+  
+}
+
+.service .service_content .content_item .content_item_right .price .price_price {
+  display: flex;
+  align-items: end;
+  color: #09C199;
+  font-weight: 500;
+  font-size: 24px;
+  
+}
+
+.service .service_content .content_item .content_item_right .price .price_unit {
+  display: block;
+  margin-left: 4px;
+  color: #09C199;
+  font-weight: 400;
+  font-size: 14px;
+  content: '元/吨';
+}
+
+.service .service_content .content_item .content_item_right .buy .buyButton {
+  color: #FFF;
+  font-weight: 400;
+  font-size: 14px;
+  
+}
+
+.service .service_content .content_item .content_item_right .buy .buyNum {
+  color: #999;
+  font-weight: 400;
+  font-size: 14px;
+  
+}
+
+π .service .service_content .content_item .content_item_right::after {
+  position: relative;
+  top: 20px;
+  display: block;
+  border-bottom: 1px solid #DDD;
+  content: '';
+}
+
+.service .pagination {
+  display: flex;
+  justify-content: end;
+  margin-top: 16px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+div.computation .stepOne {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+div.computation .stepOne h6 {
+  margin-bottom: 10px;
+  color: #999;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+div.computation .stepOne .money {
+  margin-bottom: 40px;
+  color: #09C199;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0;
+}
+
+div.computation .stepOne .ant-btn-primary[disabled] {
+  color: #FFF;
+  font-weight: 400;
+  font-size: 14px;
+  background: #09C199;
+  border-radius: 4px;
+  opacity: 0.3;
+}
+
+div.computation .stepOne .agreement_carbonNeutral {
+  margin-top: 10px;
+  
+}
+
+div.computation .stepOne .agreement_carbonNeutral span {
+  color: #09C199;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+div.computation .stepOne .agreement_carbonNeutral span.ant-radio + * {
+  color: #999;
+}
+
+div.computation .stepOne .agreement_carbonNeutral .agreement_carbonNeutral_text {
+  margin-left: -18px;
+}
+
+div.computation .stepTwo {
+  margin-top: 40px;
+  border-top: 1px solid #DDD;
+}
+
+div.computation .chooseItem {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 16px;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: left;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+}
+
+div.computation .chooseItem:last-child {
+  margin-left: 20px;
+}
+
+div.computation .design-iconfont {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  fill: #515151;
+}
+
+div.computation .cur {
+  position: relative;
+  color: #09C199;
+  border: 1px solid #09C199;
+  border-radius: 4px;
+}
+
+div.computation .cur .design-iconfont {
+  fill: #09C199;
+}
+
+div.computation .cur::before {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  display: block;
+  width: 18px;
+  height: 15.75px;
+  background: url('svg/paychoose.svg');
+  border-radius: 0 4px;
+  transform: translateX(98px);
+  opacity: 1;
+  content: '';
+}
+
+div.computation .pay_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 45px;
+}
+
+div.computation .pay_content img {
+  width: 128px;
+  height: 128px;
+  background: #F2F2F2;
+}
+
+div.computation .pay_content p {
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+div.computation .pay_content p:first-child {
+  margin-top: 10px;
+}
+
+div.computation .pay_content .compePay {
+  margin-top: 40px;
+}
+
+div.computation .stepFore img {
+  width: 92px;
+  height: 82px;
+  margin-bottom: 16px;
+}
+
+div.computation .stepFore h5 {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+div.computation .stepFore p {
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.layout__main .show_model {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #00000073;
+  inset: 0;
+}
+
+.layout__main .show_model #img {
+  position: relative;
+  width: 480px;
+  height: 679px;
+}
+
+.layout__main .show_model .bgImg {
+  position: absolute;
+  width: 480px;
+  height: 679px;
+}
+
+.layout__main .show_model .close {
+  position: relative;
+  top: -360px;
+  width: 34px;
+  height: 34px;
+  margin-left: 16px;
+}
+
+.layout__main .show_model .logoimg {
+  position: relative;
+  display: block;
+  width: 109px;
+  margin-top: 60px;
+  margin-left: 60px;
+}
+
+.layout__main .show_model .logoimg_bottom {
+  position: absolute;
+  bottom: 80px;
+  left: 60px;
+  display: block;
+  color: #333;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.layout__main .show_model .logoimg_bottom_right {
+  position: absolute;
+  right: 60px;
+  bottom: 80px;
+  display: block;
+  color: #333;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.layout__main .show_model .logoimg_bottom_1 {
+  position: absolute;
+  bottom: 50px;
+  left: 80px;
+  display: block;
+  width: 109px;
+}
+
+.layout__main .show_model .show_modeltitle {
+  position: relative;
+  margin-top: 24px;
+  margin-bottom: 0;
+  color: #333;
+  font-weight: 600;
+  font-size: 34px;
+  text-align: center;
+}
+
+.layout__main .show_model .img-line {
+  position: absolute;
+  top: 174px;
+  left: 50%;
+  width: 367.1px;
+  height: 0.81px;
+  background-image: linear-gradient(90deg, rgb(220 220 220 / 0%) 0%, #3BD5D7 49%, rgb(200 200 200 / 0%) 98%);
+  transform: translateX(-50%);
+}
+
+.layout__main .show_model .img-number {
+  position: relative;
+  left: 50%;
+  margin-top: 29px;
+  color: #666;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.layout__main .show_model .img-text {
+  position: relative;
+  left: 50%;
+  width: 354px;
+  height: 36px;
+  margin-top: 14px;
+  color: #333;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0;
+  text-align: left;
+  transform: translateX(-50%);
+}
+
+.layout__main .show_model .img-text1 {
+  position: relative;
+  left: 50%;
+  width: 354px;
+  margin-bottom: 0;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.layout__main .show_model .img-text2 {
+  position: relative;
+  left: 50%;
+  width: 354px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.layout__main .show_model .img-text3 {
+  position: relative;
+  left: 50%;
+  width: 354px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.layout__main .show_model .img-text4 {
+  position: relative;
+  left: 50%;
+  align-items: center;
+  width: 354px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.layout__main .show_model .img-text6 {
+  position: relative;
+  left: 50%;
+  width: 354px;
+  margin-top: 30px;
+  color: #333;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: left;
+  transform: translateX(-50%);
+}
+
+.ProductIndex {
+  padding: 0 !important;
+  background-color: white;
+}
+
+.ProductIndex .nav {
+  position: relative;
+  width: 100%;
+  height: 340px;
+}
+
+.ProductIndex .nav .nav_con {
+  position: relative;
+  width: 1250px;
+  height: 100%;
+  margin: auto;
+}
+
+.ProductIndex .nav .bg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://carbonstop-saas.oss-cn-beijing.aliyuncs.com/saas-product/bg_carbonNeurtal.png');
+  background-repeat: no-repeat;
+  background-position: 99% 54%;
+  background-size: cover;
+}
+
+.ProductIndex .nav .productBg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://oss-saas.carbonstop.net/saas-authentication/light-blue-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: 99% 92%;
+  background-size: cover;
+}
+
+.ProductIndex .nav .bg_icon {
+  position: absolute;
+  right: 0%;
+  bottom: -8%;
+  height: 106%;
+}
+
+.ProductIndex .nav .bg_icon_product {
+  position: absolute;
+  right: 4%;
+  bottom: -3%;
+  height: 98%;
+}
+@media screen and (max-width: 1680px) {
+  .ProductIndex .nav .nav_con {
+    position: relative;
+    width: 89%;
+    height: 91%;
+    margin: auto;
+  }
+}
+@media (max-width: 1920px) and (min-width: 1680px) {
+  .ProductIndex .nav .nav_con {
+    position: relative;
+    width: 80%;
+    height: 90%;
+    margin: auto;
+  }
+}
+@media (max-width: 2250px) and (min-width: 1920px) {
+  .ProductIndex .nav .nav_con {
+    position: relative;
+    height: 96%;
+    margin: auto;
+  }
+}
+
+.ProductIndex .nav .title {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  color: white;
+}
+
+.ProductIndex .nav .title .title_text {
+  margin-bottom: 10px;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 28px;
+  
+}
+
+.ProductIndex .nav .title .title_con {
+  width: 500px;
+  height: 71px;
+  color: #FFF;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 28px;
+}
+@media screen and (min-width: 1680px) {
+  .ProductIndex .nav {
+    height: 380px;
+  }
+}
+
+.ProductIndex .car_text {
+  margin: 0;
+  margin-top: 20px;
+  padding: 0;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.ProductIndex .car_text_other {
+  margin-top: 10px;
+  color: #666;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.ProductIndex .titleNav {
+  margin: 40px 0;
+  color: #333;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.ProductIndex .ProductList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.ProductIndex .ProductList .ProductList_col {
+  width: 350px;
+  height: 416px;
+  padding-top: 30px;
+  overflow: hidden;
+  background: #FFF;
+  border-bottom-color: #F7F8F9;
+  border-radius: 4px;
+  box-shadow: 0 2px 20px 0 rgb(0 28 68 / 8%);
+}
+
+.ProductIndex .ProductList .ProductList_col .ProductList_col_title {
+  margin-bottom: 14px;
+  padding-left: 30px;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+}
+
+.ProductIndex .ProductList .ProductList_col .ProductList_col_text {
+  margin-bottom: 24px;
+  padding-left: 30px;
+  color: #999;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: left;
+}
+
+.ProductIndex .ProductList .ProductList_col .ProductList_col_detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 40px;
+  margin-bottom: 24px;
+  padding: 0 30px;
+  color: #333;
+  background-color: #F7F8F9;
+}
+
+.ProductIndex .ProductList .ProductList_col .ProductList_col_detail .ProductList_col_detail_list_icon {
+  margin-right: 8px;
+  color: #666;
+}
+
+.ProductIndex .ProductList .ProductList_col .ProductList_col_detail .ProductList_col_detail_list_color {
+  color: #09C199;
+  font-weight: 500;
+  font-size: 14px;
+  
+}
+
+.ProductIndex .ProductList .ProductList_col .ProductList_col_detail_detail {
+  padding: 0 30px;
+  color: #999;
+}
+
+.ProductIndex .ProductList .ProductList_col .ProductList_col_detail_detail .ProductList_col_detail_detail_list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.ProductIndex .ProductList .ProductList_col .ProductList_col_detail_detail .ProductList_col_detail_detail_list .ProductList_col_detail_detail_list_text {
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  
+}
+
+.ProductIndex .ProductList .ProductList_col:nth-of-type(2) {
+  margin: 0 30px;
+}
+@media screen and (min-width: 1680px) {
+  .ProductIndex .ProductList .ProductList_col:nth-of-type(2) {
+    margin: 0 100px;
+  }
+}
+
+.ProductIndex .ProductList .ProductList_col:hover {
+  border: 1px solid #09C199;
+  box-shadow: 0 2px 20px 0 rgb(0 28 68 / 8%);
+}
+
+.ProductIndex .ProductList_col_detail_detail_list_dollar {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  padding: 0 30px;
+  color: #999;
+  font-weight: 400;
+  font-size: 14px;
+  
+}
+
+.ProductIndex .ProductList_col_detail_detail_list_dollar .ProductList_col_detail_detail_list_dollarColor {
+  margin-right: 4px;
+  color: #09C199;
+  font-weight: boldmt;
+  font-size: 24px;
+  
+}
+
+.ProductIndex .ProductList_col_sub {
+  height: 46px;
+  color: #333;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 46px;
+  text-align: center;
+  background: #F7F8F9;
+  cursor: pointer;
+}
+
+.ProductIndex .ProductList_col_sub:hover {
+  color: #09C199;
+}
+
+.ProductIndex .custom {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.ProductIndex .custom .customBtn {
+  width: 300px;
+  height: 40px;
+  background: #09C199;
+  border-radius: 20px;
+}
+
+.ProductIndex .line {
+  width: 100%;
+  height: 10px;
+  background-color: #F8F8F8;
+}
+
+.ProductIndex .serve {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
+}
+
+.ProductIndex .serve .serveright {
+  margin: 0 20px;
+}
+@media screen and (min-width: 1680px) {
+  .ProductIndex .serve .serveright {
+    margin: 0 40px;
+  }
+}
+
+.watingColor {
+  padding: 0 10px;
+  color: #F8A231;
+  font-weight: 400;
+  font-size: 14px;
+  background: rgb(248 162 49 / 6%);
+  border-radius: 15px;
+}
+
+.dattiingColor {
+  padding: 0 10px;
+  color: #3E96FA;
+  font-weight: 400;
+  font-size: 14px;
+  background: rgb(62 150 250 / 6%);
+  border-radius: 15px;
+}
+
+.failColor {
+  padding: 0 10px;
+  color: #ED5555;
+  font-weight: 400;
+  font-size: 14px;
+  background: rgb(237 85 85 / 6%);
+  border-radius: 15px;
+}
+
+.car_img {
+  display: block;
+  width: 128px;
+  height: 128px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.car_text_img {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-align: center;
+}

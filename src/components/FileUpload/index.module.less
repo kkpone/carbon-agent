@@ -1,0 +1,49 @@
+.fileContent {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  row-gap: 12px;
+}
+
+.fileItem {
+  height: 38px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 16px;
+  border-radius: 8px;
+  background: #f7f8f9;
+}
+
+.fileName {
+  flex: 1;
+  width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+}
+
+.operate {
+  display: flex;
+  column-gap: 16px;
+}
+
+.uploadIcon {
+  & > svg {
+    font-size: 16px;
+  }
+}
+
+.operateIcon {
+  cursor: pointer;
+  color: #999ea4;
+  &:hover {
+    color: #04252b;
+  }
+  & > svg {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,107 @@
+.actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.copy strong {
+  color: #04252b;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.copy span {
+  color: #6c757d;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.buttons {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 12px;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  color: #026961;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 24px;
+  white-space: nowrap;
+  background: transparent;
+  border: 1px solid #026961;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.primaryButton {
+  color: #fff;
+  background: #026961;
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: #004541;
+  border-color: #004541;
+}
+
+.secondaryButton:hover:not(:disabled) {
+  color: #005f50;
+  background: rgb(0 120 100 / 6%);
+  border-color: #005f50;
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@container conversationPanel (max-width: 680px) {
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .copy span {
+    white-space: normal;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 720px) {
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .copy span {
+    white-space: normal;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+}

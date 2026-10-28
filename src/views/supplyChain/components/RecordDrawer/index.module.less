@@ -1,0 +1,84 @@
+.recordItem {
+  position: relative;
+  padding-left: 40px;
+  padding-bottom: 32px;
+  border-left: 1px dashed #b5b8bb;
+  &:nth-last-of-type(1) {
+    border-left: none;
+  }
+}
+
+.iconContent {
+  position: absolute;
+  left: -7px;
+  top: 0;
+  width: 14px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+
+.recordItemContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.infoContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.infoContentLeft {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.name {
+  color: #04252b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.caption {
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.operateContent {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #f7f8f9;
+}
+
+.operateDesc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.initiateDesc {
+  color: #04252b;
+}
+
+.pendingDesc {
+  color: #b0663c;
+}
+
+.failDesc {
+  color: #a84261;
+}
+
+.successDesc {
+  color: #026961;
+}
+
+.footer {
+  display: flex;
+  justify-content: end;
+}

@@ -1,0 +1,127 @@
+.wrapper {
+  padding: 0 !important;
+  background: #f2f4f7 !important;
+  position: relative;
+
+  .content {
+    width: 1048px;
+    margin: 0 auto;
+    background-image: url('./background.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    padding-top: 16px;
+
+    .header {
+      width: 100%;
+      height: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 0 8px 0;
+
+      .item {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        font-size: 12px;
+        cursor: pointer;
+
+        .icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      .collect {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        color: var(--text-gray-7-secondary, #6c757d);
+
+        /* Body 内容/@body-m */
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px; /* 157.143% */
+
+        cursor: pointer;
+      }
+    }
+
+    .searchInput {
+      margin-bottom: 16px;
+    }
+
+    .tableTitle {
+      overflow: hidden;
+      color: var(--text-gray-8-primary, #343a40);
+      text-overflow: ellipsis;
+
+      /* Body 内容/@body-m-b */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px; /* 157.143% */
+      margin-bottom: 8px;
+    }
+  }
+
+  .subInfo {
+    position: absolute;
+    top: 110px;
+    width: 100%;
+    z-index: 99;
+    height: calc(100vh - 200px);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.72) 100%
+    );
+    backdrop-filter: blur(4px);
+  }
+}
+.filterCards {
+  display: flex;
+  justify-content: flex-start;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.wrapper {
+  position: relative;
+
+  .feedback {
+    color: var(--text-gray-6-placeholder, #999ea4);
+    margin: 16px 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 38px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    /* Caption 辅助信息/@caption-s */
+    font-family: 'PingFang SC';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+
+    .feedbackBtn {
+      color: #002a23;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px;
+      cursor: pointer;
+    }
+
+    .feedbackBtn:hover {
+      color: #000;
+    }
+  }
+}

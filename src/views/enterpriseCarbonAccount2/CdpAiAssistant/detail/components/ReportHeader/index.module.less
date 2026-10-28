@@ -1,0 +1,346 @@
+.greenText() {
+  color: var(--text-gray-7-secondary, #6c757d);
+
+  /* Caption 辅助信息/@caption-s */
+  font-family: 'PingFang SC';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+}
+
+.headerWrapper {
+  display: flex;
+  padding: 16px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f5f5f5;
+  // gap: 16px;
+  height: 64px;
+
+  .left {
+    height: 32px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .back {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .titles {
+      display: flex;
+      height: 32px;
+      align-items: center;
+      gap: 8px;
+      margin-left: 8px;
+
+      .greenText();
+
+      .info,
+      .title {
+        color: var(--text-gray-8-primary, #343a40);
+
+        /* Title 标题/@title-s-b */
+        font-family: 'PingFang SC';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 150% */
+      }
+
+      .line {
+        stroke-width: 1px;
+        background-color: #ebedf0;
+        width: 1px;
+        height: 16px;
+      }
+
+      .otherContent {
+        max-width: 300px;
+        border-bottom: 1px dashed var(--line-border-1, #d2d6da);
+        cursor: default;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .otherContent:hover {
+        color: #0cbf9f;
+      }
+
+      .edit {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .right {
+    height: 32px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+
+    .aiReport {
+      display: flex;
+      height: 32px;
+      padding: 0px 12px;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      border-radius: 8px;
+      background: #004541;
+      color: var(--Text-white, #fff);
+
+      /* Body 内容/@body-m */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+      cursor: pointer;
+    }
+
+    .aiReport:hover {
+      background: #004541;
+      color: var(--Text-white, #fff);
+      border-radius: 8px;
+    }
+
+    .line {
+      stroke-width: 1px;
+      background-color: #ebedf0;
+      width: 1px;
+      height: 16px;
+    }
+  }
+}
+
+.secondHeader {
+  width: 100%;
+  display: flex;
+  padding: 10px 16px;
+  justify-content: space-between;
+  align-items: center;
+  // gap: 16px;
+  height: 48px;
+
+  border-bottom: 1px solid var(--line-border-2, #ebedf0);
+  background: var(--Fill-white, #fff);
+
+  .left {
+    display: flex;
+    height: 32px;
+    align-items: center;
+    gap: 8px;
+    // margin-left: 16px;
+
+    .line {
+      stroke-width: 1px;
+      background-color: #ebedf0;
+      width: 1px;
+      height: 16px;
+    }
+
+    .underLineText {
+      color: var(--text-gray-7-secondary, #6c757d);
+      text-align: center;
+
+      /* Caption 辅助信息/@caption-s */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px; /* 150% */
+      border-bottom: 1px dashed var(--line-border-1, #d2d6da);
+      cursor: default;
+    }
+
+    .underLineText:hover {
+      color: #0cbf9f;
+    }
+
+    .grayText {
+      color: var(--text-gray-7-secondary, #6c757d);
+      text-align: center;
+
+      /* Caption 辅助信息/@caption-s */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px; /* 150% */
+    }
+
+    .blackText {
+      color: var(--text-gray-8-primary, #343a40);
+
+      /* Caption 辅助信息/@caption-s-b */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px; /* 150% */
+    }
+
+    .edit {
+      cursor: pointer;
+    }
+  }
+
+  .right {
+    height: 32px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+
+    .line {
+      stroke-width: 1px;
+      background-color: #ebedf0;
+      width: 1px;
+      height: 16px;
+    }
+  }
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 460px;
+
+  .item {
+    display: flex;
+    width: 144px;
+    padding: 4px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+
+    .title {
+      overflow: hidden;
+      color: var(--text-gray-6-placeholder, #999ea4);
+      text-overflow: ellipsis;
+
+      /* Caption 辅助信息/@caption-s */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px; /* 150% */
+    }
+
+    .value {
+      overflow: hidden;
+      color: var(--text-gray-8-primary, #343a40);
+      text-overflow: ellipsis;
+
+      /* Caption 辅助信息/@caption-s-b */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px; /* 150% */
+    }
+  }
+
+  .itemLong {
+    display: flex;
+    width: 388px;
+    padding: 4px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4px;
+
+    .title {
+      overflow: hidden;
+      color: var(--text-gray-6-placeholder, #999ea4);
+      text-overflow: ellipsis;
+
+      /* Caption 辅助信息/@caption-s */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px; /* 150% */
+    }
+
+    .value {
+      overflow: hidden;
+      color: var(--text-gray-8-primary, #343a40);
+      text-overflow: ellipsis;
+
+      /* Caption 辅助信息/@caption-s-b */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px; /* 150% */
+    }
+  }
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+
+  .titles {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .title {
+      color: var(--text-gray-8-primary, #343a40);
+
+      /* Title 标题/@title-s-b */
+      font-family: 'PingFang SC';
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px; /* 150% */
+    }
+
+    .subTitle {
+      margin-left: 8px;
+      overflow: hidden;
+      color: var(--text-gray-6-placeholder, #999ea4);
+      text-align: justify;
+      text-overflow: ellipsis;
+
+      /* Caption 辅助信息/@caption-s */
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px; /* 150% */
+    }
+  }
+
+  .close {
+    cursor: pointer;
+  }
+}
+
+.stepTwoWrapper {
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.ul {
+  display: flex;
+  align-items: center;
+  .li {
+    font-size: 30px;
+    line-height: 22px;
+    margin-right: 6px;
+  }
+}

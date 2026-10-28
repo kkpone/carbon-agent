@@ -1,0 +1,255 @@
+.userListModelClass .ant-modal-header {
+  border-bottom: none;
+}
+
+.userListModelClass .ant-modal-footer {
+  border-top: none;
+}
+
+.userListModelClass .downloadTemplate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  margin-bottom: 16px;
+  padding: 0 20px;
+  background: #f7f8f9;
+  border: 1px dashed #d2d6da;
+  border-radius: 5px;
+}
+
+.userListModelClass .uploadFileMain {
+  padding: 20px;
+  background: #f7f8f9;
+  border: 1px dashed #d2d6da;
+  border-radius: 5px;
+}
+
+.userListModelClass .uploadFileMain .fileMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  margin-top: 20px;
+  background: #fff;
+}
+
+.userListModelClass .uploadFileMain .fileMain .fileTitle {
+  margin-bottom: 10px;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.userListModelClass .uploadFileMain .fileMain .fileName {
+  color: #999ea4;
+}
+
+.userListModelClass .uploadFileMain .fileMain .ant-upload-drag {
+  min-width: 300px;
+  background: #fff;
+  border: none;
+}
+
+.userListModelClass .conversionRecordTitle {
+  padding: 15px 20px;
+  background: #f7f8f9;
+  border-radius: 4px;
+}
+
+.carbonAccount {
+  position: relative;
+}
+
+.carbonAccount .color_0CBF9F {
+  color: #0cbf9f;
+}
+
+.carbonAccount .cursorPoin {
+  cursor: pointer;
+}
+
+.carbonAccount .mr10 {
+  margin-right: 10px;
+}
+
+.carbonAccount .mr20 {
+  margin-right: 20px;
+}
+
+.carbonAccount .mb10 {
+  margin-bottom: 10px;
+}
+
+.carbonAccount .mb20 {
+  margin-bottom: 20px;
+}
+
+.carbonAccount .hr {
+  width: calc(100% - 40px);
+  height: 1px;
+  background: #ebedf0;
+}
+
+.carbonAccount .footerbtn {
+  position: fixed;
+  bottom: 0;
+  left: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 230px);
+  height: 52px;
+  background: #fff;
+}
+
+.carbonAccount .home {
+  background-image: linear-gradient(0deg, #f7f8f9 0%, #fff 0%, #fafffe 100%);
+}
+
+.carbonAccount .home .noOrderHome {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.carbonAccount .home .noOrderHome .noOrderHomeTitle {
+  color: #343a40;
+  font-weight: 400;
+  font-size: 26px;
+}
+
+.carbonAccount .home .noOrderHome .noOrderHomeTitleDetail {
+  margin-top: 15px;
+  color: #999ea4;
+}
+
+.carbonAccount .home .homeTitle {
+  position: relative;
+  background: url('https://carbonstop-saas.oss-cn-beijing.aliyuncs.com/saas-product/carbonData_bg.svg');
+  background-size: 100% 100%;
+}
+
+.carbonAccount .home .homeTitle .homeTitleMain {
+  display: flex;
+  justify-content: space-between;
+  width: 1000px;
+  min-height: 400px;
+  margin: 0 auto;
+  padding: 30px 0 0;
+}
+
+.carbonAccount .home .homeTitle .homeTitleText {
+  color: #343a40;
+  font-weight: 500;
+  font-size: 38px;
+}
+
+.carbonAccount .home .homeTitle .homeTitleTextDetail {
+  width: 420px;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 28px;
+}
+
+.carbonAccount .home .homeTitle .homeTitleIllustration {
+  margin-left: 50px;
+}
+
+.carbonAccount .home .homeTitle .homeTitleIllustration img {
+  width: 520px;
+  height: auto;
+}
+
+.carbonAccount .home .homeTab {
+  text-align: center;
+}
+
+.carbonAccount .home .homeTab .tabTitle {
+  color: #343a40;
+  font-weight: 400;
+  font-size: 26px;
+}
+
+.carbonAccount .home .homeTab .tabMain {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.carbonAccount .home .homeTab .ant-tabs-nav-wrap {
+  justify-content: center;
+}
+
+.carbonAccount .home .homeTab .ant-tabs-tab {
+  margin: 0 50px;
+}
+
+.carbonAccount .homeFooter {
+  text-align: center;
+  background: transparent;
+}
+
+.carbonAccount .main {
+  position: relative;
+  padding: 10px;
+}
+
+.carbonAccount .main .search {
+  position: relative;
+}
+
+.carbonAccount .main .setButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.carbonAccount .findUser {
+  padding: 10px;
+}
+
+.carbonAccount .findUser .findTitle {
+  color: #35393e;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.carbonAccount .findUser .findTable {
+  height: 50px;
+  padding-left: 20px;
+  line-height: 50px;
+  border: 1px solid #ebedf0;
+}
+
+.carbonAccount .findUser .findTableLabel {
+  background: #f7f9fa;
+  border-right: none;
+}
+
+.carbonAccount .findUser .findTableNotopBorder {
+  border-top: none;
+}
+
+.carbonAccount .findUser .findTableNorightBorder {
+  border-right: none;
+}
+
+.carbonAccount .sceneManagement {
+  width: 830px;
+  margin: 20px auto;
+}
+
+.carbonAccount .sceneManagement .formTitle {
+  color: #35393e;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.carbonAccount .sceneManagement .formCustomLabel::before {
+  display: inline-block;
+  margin-right: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  line-height: 1;
+  content: '*';
+}

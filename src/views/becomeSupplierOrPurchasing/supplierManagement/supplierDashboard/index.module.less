@@ -1,0 +1,45 @@
+@import '@src/styles/var.less';
+
+.supplierManage.supplierManage {
+    margin-bottom: 60px;
+    overflow-x: revert;
+
+    .top_supplier_form {
+        margin-bottom: 16px;
+
+        .become_btn {
+            text-align: right;
+        }
+
+        :global(.ant-input) {
+            width: 200px;
+        }
+
+        :global(.ant-select) {
+            width: 200px !important;
+        }
+    }
+
+    .textGreen {
+        color: @primary-color;
+    }
+
+    .check_img {
+        width: 17px;
+        height: 17px;
+        vertical-align: text-top;
+    }
+
+    :global(.ant-modal-body) {
+        min-height: auto;
+    }
+
+    :global(.ant-popover-inner-content) {
+        padding: 5px 16px;
+        cursor: pointer;
+    }
+
+    :global(.ant-image-img) {
+        margin-top: -2px;
+    }
+}

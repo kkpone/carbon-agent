@@ -1,0 +1,88 @@
+.formTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.emissionSourceModal {
+  :global {
+    .ant-modal-content {
+      // height: 100vh;
+    }
+    .ant-form-text {
+      width: 100%;
+      padding-left: 10px;
+      background-color: #f7f8f9;
+    }
+
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+  }
+
+  .main {
+    padding-top: 10px;
+    .mainHeader {
+      display: flex;
+      justify-content: end;
+
+      .changeListOrGraph {
+        cursor: pointer;
+
+        &:hover {
+          color: #0cbf9f;
+        }
+      }
+    }
+
+    .mainContainer {
+      margin-top: 16px;
+    }
+
+    .buildListMainStep {
+      background: #f7f8f9;
+      height: calc(100% - 60px);
+      margin-top: 12px;
+      .buildListStep {
+        width: 1200px;
+        height: 100%;
+        margin: 0 auto 0 auto;
+        background-color: @whiteBg;
+        overflow-y: auto;
+      }
+    }
+  }
+}
+
+.tabBarTitle {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  color: #343a40;
+  font-weight: 500;
+}
+
+.splitColumn {
+  width: 1px;
+  height: 14px;
+  margin-left: 14px;
+  background: #ebedf0;
+}
+
+.tableSection {
+  padding: 16px;
+}
+
+.okButton {
+  display: none;
+}
+
+.processLibName {
+  width: 326px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}

@@ -1,0 +1,131 @@
+@import '@Variable';
+
+.reducingPlan {
+  height: 100%;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.reducingPlanHeader {
+  padding: 16px 16px 0;
+  background: #fff;
+}
+
+.reducingPlanOperate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reducingPlanDropdown {
+  padding: 0 !important;
+}
+
+.reducingPlanNameContent {
+  display: flex;
+  align-items: center;
+  background: #fff !important;
+  cursor: pointer;
+}
+
+.planName {
+  .body-l-b();
+
+  margin: 0 8px;
+}
+
+.reducingPlanDropdownIcon {
+  transform: rotate(90deg);
+  font-size: 24px;
+  color: @gray7;
+}
+
+.split {
+  margin: 0 24px;
+  width: 1px;
+  height: 16px;
+  border-right: 1px dashed #d2d6da;
+}
+
+.editBtn {
+  margin-right: 12px;
+}
+
+.reducingPlanTabs {
+  margin-top: 8px;
+  display: flex;
+}
+
+.reducingPlanTab {
+  margin-right: 32px;
+  height: 44px;
+  line-height: 44px;
+  color: #6c757d;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.currTab {
+  color: @colorPrimary;
+  font-weight: 500;
+  border-bottom: 3px solid @colorPrimary;
+}
+
+.reducingPlanContent {
+  padding: 16px;
+  height: calc(100% - 106px);
+  overflow-y: auto;
+}
+
+.planItem {
+  margin-bottom: 8px;
+  height: 72px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  border: 1px solid var(--line-border-2, #ebedf0);
+  cursor: pointer;
+}
+
+.currPlanItem {
+  .planItemName {
+    color: @green7;
+  }
+}
+
+.planItemName {
+  .body-m-b();
+}
+
+.planItemTarget {
+  .caption-s();
+}
+
+.selectedText {
+  .caption-s();
+
+  color: @green7;
+}
+
+.deleteIcon {
+  color: @gray6;
+}
+
+.modalAddPlanBtn {
+  .body-m();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+  border-radius: 4px;
+  border: 1px dashed #d2d6da;
+  cursor: pointer;
+  color: @gray6;
+}
+
+.modalAddPlanBtnIcon {
+  margin-right: 4px;
+}

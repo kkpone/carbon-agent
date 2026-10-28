@@ -1,0 +1,16 @@
+.emptyLoadingWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 100%;
+  flex: auto;
+  justify-content: center;
+  align-items: center;
+  .tipWord {
+    color: #666;
+    font-size: 14px;
+  }
+  .icon {
+    font-size: 180px;
+  }
+}

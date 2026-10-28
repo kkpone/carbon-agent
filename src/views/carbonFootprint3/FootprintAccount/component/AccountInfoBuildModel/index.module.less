@@ -1,0 +1,55 @@
+.accountInfoBuildModel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100% - 60px);
+  padding: 0;
+  background-color: #f7f8f9;
+
+  .progressDiv {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 48px;
+    margin-left: -170px;
+    background: #fff;
+    border: 0.5px solid #ebedf0;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 6%);
+
+    .progressMain {
+      display: flex;
+      align-items: center;
+
+      .progressIcon {
+        width: 22px;
+        height: auto;
+      }
+
+      .progressTitle {
+        margin-left: 10px;
+        font-weight: 500;
+      }
+
+      .progress {
+        width: 165px;
+        height: 25px;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  :global(.ant-spin-nested-loading) {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  :global(.ant-spin-container) {
+    height: 100%;
+  }
+}

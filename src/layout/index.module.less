@@ -1,0 +1,55 @@
+@import '@src/styles/var.less';
+
+.layoutContainer {
+  display: flex;
+  flex: 1 1 auto;
+  height: 100vh;
+  flex-flow: column;
+  // margin-bottom: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  // background: linear-gradient(to left, @backgroudGray 10px, @whiteBg 0 100%);
+
+  & > div {
+    flex: 1 1 auto;
+    width: 100%;
+    padding: @mainViewPadding;
+    overflow-x: hidden;
+    background: linear-gradient(to left, @backgroudGray 0, @whiteBg 0 100%);
+  }
+
+  .emptyBg {
+    width: 20px;
+    background-color: @backgroudGray;
+  }
+
+  :global(.ant-dropdown-trigger) {
+    padding: 2px 6px;
+  }
+
+  :global(.ant-dropdown-trigger:hover) {
+    background: #f7f8f9;
+    border-radius: 4px;
+  }
+}
+
+.noWrapper {
+  & > div {
+    padding: 0;
+    padding-right: 0;
+    background: #fff;
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noPadding {
+  padding: 0;
+  .layoutContainer {
+    margin: 0;
+  }
+}

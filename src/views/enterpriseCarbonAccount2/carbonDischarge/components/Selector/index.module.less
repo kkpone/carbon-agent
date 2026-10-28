@@ -1,0 +1,45 @@
+@import '../../../../../styles/var.less';
+
+.selectWrapper {
+  .closeIcon {
+    display: none;
+    color: @text-color-2;
+  }
+}
+
+.select {
+  :global(.ant-select-item-option-content) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .closeIcon {
+    display: none;
+  }
+
+  &:hover .closeIcon {
+    display: block;
+  }
+}
+
+.addItemWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+
+  .addButton {
+    display: block;
+    flex: none;
+    margin-left: 16px;
+    color: @text-color;
+    cursor: pointer;
+  }
+}
+
+.readPretty {
+  padding: 0 10px;
+  background: #f7f8f9;
+}

@@ -1,0 +1,98 @@
+@import '@Variable';
+
+.userSelectModal {
+  :global {
+    .ant-modal-header {
+      margin-bottom: 16px;
+    }
+
+    .ant-modal-footer {
+      margin-top: 24px;
+    }
+  }
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cancelBtn {
+  margin-right: 8px;
+}
+
+.userSelectLabel {
+  .body-m();
+
+  color: @gray7;
+}
+
+.userSelect {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.userTag {
+  .body-m();
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  border: 1px solid var(--line-border-2, #ebedf0);
+}
+
+.closeIcon {
+  margin-left: 4px;
+  color: #999ea4;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.userSelectPopup {
+  :global {
+    .ant-select-item {
+      margin-top: 4px;
+    }
+
+    .ant-select-item-option-selected {
+      background: @green1 !important;
+    }
+  }
+}
+
+.userOption {
+  display: flex;
+  align-items: center;
+}
+
+.selectedOption {
+  .userName {
+    color: @green7;
+  }
+}
+
+.avatarImg {
+  margin-right: 8px;
+  width: 28px;
+  height: 28px;
+}
+
+.userName {
+  .body-m();
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: @gray6;
+}
+
+.split {
+  margin: 0 8px;
+  width: 1px;
+  height: 14px;
+  background: #ebedf0;
+}

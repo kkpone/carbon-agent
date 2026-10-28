@@ -1,0 +1,33 @@
+.selectWrapper {
+  .closeIcon {
+    display: none;
+  }
+}
+.select {
+  :global(.ant-select-item-option-content) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .closeIcon {
+    display: none;
+  }
+  &:hover .closeIcon {
+    display: block;
+  }
+}
+
+.addItemWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  .addButton {
+    flex: none;
+    margin-left: 16px;
+    display: block;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.85);
+  }
+}

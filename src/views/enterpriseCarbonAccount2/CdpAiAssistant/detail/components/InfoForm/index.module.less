@@ -1,0 +1,59 @@
+.formWrapper {
+  // width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  background: var(--fill-gray-1-bghover, #f7f8f9);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .left {
+    width: 30px;
+    height: 100%;
+
+    .menu {
+      width: 30px;
+      height: 100%;
+    }
+    .header {
+    }
+  }
+
+  .right {
+    height: calc(100vh - 128px);
+    min-height: 500px;
+    overflow-y: auto;
+    border-radius: 8px;
+    flex-grow: 1;
+
+    .form {
+      display: flex;
+      padding: 12px 24px 0 24px;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+
+      width: calc(100vw - 570px);
+      max-width: 1052px;
+      margin: 16px auto;
+      align-self: stretch;
+      border-radius: 8px;
+      background: var(--Fill-white, #fff);
+
+      padding-bottom: 12px;
+
+      box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.04);
+      // width: calc(100% - 112px);
+
+      .formCommon {
+        width: 100%;
+      }
+    }
+  }
+
+  .drawOpen {
+    .form {
+      width: calc(100vw - 600px);
+    }
+  }
+}

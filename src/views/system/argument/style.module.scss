@@ -1,0 +1,22 @@
+@import "@src/styles/public.scss";
+
+.agreement {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: px2rem(80px);
+
+  .contents {
+    width: px2rem(1000px);
+    color: #333;
+    font-weight: 400;
+    line-height: px2rem(22px);
+  }
+}
+
+.agreement_loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}

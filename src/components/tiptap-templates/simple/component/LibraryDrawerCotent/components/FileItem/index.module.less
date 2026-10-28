@@ -1,0 +1,77 @@
+.fileItem {
+  display: flex;
+  height: 48px;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  width: 100%;
+  border-radius: 8px;
+  justify-content: space-between;
+
+  .fileItemContent {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+
+    .fileItemIcon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg {
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  .fileItemOperate {
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+
+    .maskHeaderIconGroupItem {
+      cursor: pointer;
+    }
+  }
+
+  .fileItemInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .fileItemContentName {
+      color: #04252b;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px; /* 133.333% */
+    }
+
+    .fileItemContentInfo {
+      display: flex;
+      color: #b5b8bb;
+      font-family: 'PingFang SC';
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 14px; /* 140% */
+      gap: 8px;
+      cursor: default;
+    }
+  }
+}
+
+.fileItem:hover {
+  background: #fafafa;
+
+  .fileItemOperate {
+    opacity: 1;
+  }
+}

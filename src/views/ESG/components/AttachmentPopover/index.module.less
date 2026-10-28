@@ -1,0 +1,43 @@
+.popover {
+  :global {
+    .ant-popover-inner {
+      padding: 0px;
+      width: 294px;
+      border-radius: 6px;
+    }
+  }
+}
+
+.fileList {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.fileItem {
+  padding: 0 12px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 8px;
+  background: #f7f8f9;
+}
+
+.fileName {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.downloadIcon {
+  cursor: pointer;
+  color: #026961;
+}
+
+.deleteIcon {
+  cursor: pointer;
+  color: #b5b8bb;
+}

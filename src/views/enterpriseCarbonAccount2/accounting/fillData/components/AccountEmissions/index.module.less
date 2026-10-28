@@ -1,0 +1,708 @@
+.accountEmissions {
+  padding: 16px 32px;
+  background: #f7f8f9;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.accountEmissionsAgentPreview {
+  padding: 16px;
+
+  .header {
+    min-height: 78px;
+    height: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.24fr) repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .content {
+    margin-top: 16px;
+  }
+
+  .contentHeader {
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > div:last-child {
+      flex: 0 0 auto;
+    }
+  }
+
+  .batchContent {
+    flex: 0 0 auto;
+
+    > div:first-child {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+  }
+
+  .moreBatchOperationsButton {
+    flex: 0 0 auto;
+    width: 140px;
+  }
+
+  .searchNameInput {
+    flex: 0 0 auto;
+    width: 160px;
+  }
+
+  .headerTotalCard,
+  .scopeCard {
+    min-height: 78px;
+    box-sizing: border-box;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  .headerTotalCard {
+    min-width: 0;
+  }
+
+  .scopeCard {
+    width: auto;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .headerTotalTitleRow,
+  .headerTotalLabels,
+  .headerTotalLabel,
+  .headerTotalUnit,
+  .scopeCardLabel {
+    white-space: nowrap;
+  }
+
+  .headerTotalLabel,
+  .headerTotalUnit,
+  .scopeCardLabel {
+    font-size: 14px;
+    line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .totalEmissionValue {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .scopeCardValue {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .totalEmissionValue,
+  .scopeCardValue {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 16px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.headerTotalCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px 24px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.headerTotalTitleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* 与 Figma Frame 1618871999 一致：图标与「总排放量」文案间距 8px，用 margin 控制，避免 iconfont 与 gap 叠加偏差 */
+  gap: 0;
+}
+
+.headerTotalIcon {
+  flex-shrink: 0;
+  margin-inline-end: 8px;
+  font-size: 20px;
+  line-height: 0;
+  color: #026961;
+
+  :global(svg) {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.headerTotalLabels {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  min-width: 0;
+  /* 稿内「总排放量」与单位同组排布，间距略小于与图标的 8px */
+  column-gap: 4px;
+}
+
+.headerTotalLabel {
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.headerTotalUnit {
+  color: #999ea4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.totalEmissionValue {
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1em;
+}
+
+.scopeCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px 24px;
+  background: #fff;
+  border-radius: 12px;
+  border-left: 2px solid transparent;
+}
+
+.scopeCardScopeOne {
+  border-left-color: #0cbf9f;
+}
+
+.scopeCardScopeTwo {
+  border-left-color: #026961;
+}
+
+.scopeCardScopeThree {
+  border-left-color: #004541;
+}
+
+.scopeCardLabel {
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.scopeCardValue {
+  color: #04252b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1em;
+}
+
+.content {
+  margin-top: 16px;
+  padding: 0 16px 16px;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1; // 自动占据剩余空间
+  min-height: 0; // 重要：允许 flex 子元素缩小
+  overflow: hidden; // 防止内容溢出
+}
+
+.contentHeader {
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  flex-shrink: 0; // 防止被压缩
+}
+
+.batchContent {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.selectCount {
+  color: #026961;
+  font-weight: 500;
+  margin: 0 4px;
+}
+
+.searchNameInput {
+  width: 280px;
+}
+
+.searchNameInputIcon {
+  color: #6c757d;
+}
+
+.tableWrapper {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; // 重要：允许 flex 子元素缩小
+}
+
+.table {
+  flex: 1;
+  :global {
+    .ant-table-wrapper
+      .ant-table-tbody
+      .ant-table-row.ant-table-row-selected
+      > .ant-table-cell {
+      background: #fff;
+    }
+
+    .ant-table-wrapper
+      .ant-table-tbody
+      .ant-table-row
+      > .ant-table-cell-row-hover {
+      background: rgb(247, 248, 249) !important;
+    }
+
+    .ant-table-cell-content {
+      height: 100%;
+    }
+
+    .ant-table-tbody {
+      .ant-table-row {
+        .ant-table-cell {
+          padding-top: 0;
+          padding-bottom: 0;
+          min-height: 48px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    // 修复 rowSelection 列的 checkbox 垂直居中
+    .ant-table-selection-column {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ant-table-row-level-0[data-row-key='ghgCategory_0'],
+    .ant-table-row-level-0[data-row-key='ghgCategory_3'],
+    .ant-table-row[data-row-key='ghgCategory_0'],
+    .ant-table-row-[data-row-key='ghgCategory_3'] {
+      .ant-table-cell {
+        background: #ebf8f0;
+      }
+    }
+    .ant-table-row-level-0[data-row-key='ghgCategory_1'],
+    .ant-table-row-level-0[data-row-key='ghgCategory_4'],
+    .ant-table-row[data-row-key='ghgCategory_1'],
+    .ant-table-row[data-row-key='ghgCategory_4'] {
+      .ant-table-cell {
+        background: #fcf7e1;
+      }
+    }
+    .ant-table-row-level-0[data-row-key='ghgCategory_2'],
+    .ant-table-row-level-0[data-row-key='ghgCategory_5'],
+    .ant-table-row[data-row-key='ghgCategory_2'],
+    .ant-table-row[data-row-key='ghgCategory_5'] {
+      .ant-table-cell {
+        background: #e2ecf8;
+      }
+    }
+    .ant-input-number-disabled {
+      background: transparent !important;
+      border-color: transparent !important;
+      color: unset !important;
+      cursor: default;
+      input {
+        cursor: default !important;
+      }
+    }
+  }
+  :global(.ant-table-cell-row-hover) {
+    .dataInput {
+      border-color: #026961;
+      background: #fff;
+    }
+    .tagContainer {
+      .addIcon {
+        color: #026961;
+      }
+      .emptyTagText {
+        color: #026961;
+      }
+      .tag,
+      .submitterTag {
+        background: #fff;
+      }
+    }
+  }
+}
+
+.tableEllipsisText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.columnTitle {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.columnTitleIcon {
+  color: #999ea4;
+  cursor: pointer;
+}
+
+.tableNameColumn {
+  :global {
+    .ant-table-cell-content {
+      width: 100%;
+    }
+  }
+}
+
+.emissionNameContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.tableLineContent {
+  padding-left: 6px;
+  height: 100%;
+  display: flex;
+  column-gap: 12px;
+}
+
+.tableLine {
+  width: 1px;
+  height: calc(100% + 2px);
+  border-left: 1px dashed rgba(58, 184, 110, 0.6);
+}
+
+.emptyExpandIcon {
+  width: 14px;
+}
+
+.groupNameContainer {
+  flex: 1;
+  width: 0;
+}
+
+.methodUpdateTag {
+  display: inline-block;
+  margin: 0 0 8px 8px;
+  padding: 0 4px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 20px 20px 20px 0;
+  background: #cb3430;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.groupNameRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.groupNameCell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.groupNameEditIcon {
+  flex-shrink: 0;
+  color: #999ea4;
+  font-size: 12px;
+  cursor: pointer;
+  &:hover {
+    color: #026961;
+  }
+}
+
+.groupNameInput {
+  flex: 1;
+  height: 24px;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.groupName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #04252b;
+  font-weight: 600;
+}
+
+.emissionName {
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.productFootprintTag {
+  height: 18px;
+  padding: 0 4px;
+  max-width: 72px;
+  flex: 0 1 auto;
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  color: #048677;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 18px;
+  white-space: nowrap;
+  background: #ddf4f2;
+  border-radius: 10px;
+}
+
+.productFootprintTagText {
+  min-width: 0;
+  font-size: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.count {
+  color: #999ea4;
+  font-weight: 500;
+}
+
+.facility {
+  max-width: 72px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  background: #f7f8f9;
+  font-size: 10px;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 20px;
+}
+
+.compareLastYear {
+  display: flex;
+  column-gap: 4px;
+  color: #6c757d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.emissionValue {
+  color: #026961;
+}
+
+.groupEmissionValue {
+  font-weight: 500;
+}
+
+.addEmissionBtn {
+  padding: 0;
+  height: 22px;
+}
+
+.addCustomEmissionSourceMenuButton:global(.ant-btn-link) {
+  color: #343a40;
+
+  &:hover,
+  &:focus-visible {
+    color: #026961;
+  }
+}
+
+.operateColumn {
+  display: flex;
+  column-gap: 16px;
+  :global {
+    .ant-btn {
+      padding: 0;
+      height: 22px;
+      column-gap: 6px;
+    }
+  }
+}
+
+.dataInput {
+  width: 100%;
+  border-color: transparent;
+  background: transparent;
+}
+
+.tagContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+}
+
+.addIcon {
+  color: #999ea4;
+}
+
+.tagContent {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 8px;
+}
+
+.tag {
+  padding: 2px 4px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  background: #f7f8f9;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.submitterTag {
+  padding: 2px 6px 2px 1px;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  border-radius: 30px;
+  border: 0.5px solid #e5e7eb;
+  background: #f7f8f9;
+  font-size: 12px;
+}
+
+.avatarImg {
+  width: 20px;
+  height: 20px;
+}
+
+.tagName {
+  max-width: 70px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileName {
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 12px;
+  }
+}
+
+.closeIcon {
+  color: #999ea4;
+  cursor: pointer;
+  svg {
+    font-size: 8px;
+  }
+}
+
+.emptyTagText {
+  color: #6c757d;
+}
+
+.paramCell {
+  width: 100%;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
+.paramText {
+  width: 100%;
+  height: 38px;
+  line-height: 38px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.changeGroupCount {
+  margin-bottom: 16px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.ghgClassifyNameBox {
+  padding: 0 12px;
+  background: #f7f8f9;
+  border-radius: 8px;
+  color: #3b424d;
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.deleteConfirmTitle {
+  font-size: 24px;
+  color: #171a1d;
+  font-weight: 600;
+
+  .highlightName {
+    color: #026961;
+    font-size: 24px;
+  }
+}
+
+.deleteConfirmContent {
+  display: flex;
+  align-items: center;
+  // margin-top: 12px;
+  font-size: 14px;
+  color: #3b424d;
+
+  .deleteConfirmIcon {
+    color: #b56037;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+}

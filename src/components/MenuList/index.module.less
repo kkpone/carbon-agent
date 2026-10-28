@@ -1,0 +1,248 @@
+// 描述 边框颜色等
+@menuInfo: #ebedf0;
+// 单位颜色 等二级文字颜色
+@unit: #999ea4;
+// 树形相关的主色
+@treeSuccess: #0cbf9f;
+// 字体主色
+@mainText: #343a40;
+// 树形相关背景
+@treeBackground: #f0fbf9;
+
+.menuList {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: 8px 0;
+  .accountInfo {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    border-bottom: 1px solid #ebedf0;
+
+    .accountInfoRow {
+      display: flex;
+      align-items: center;
+      column-gap: 4px;
+
+      .accountName {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #343a40;
+        font-weight: 500;
+        line-height: 22px;
+        font-size: 16px;
+      }
+
+      .editBtn {
+        cursor: pointer;
+        color: #999ea4;
+        &:hover {
+          color: #026961;
+        }
+        svg {
+          font-size: 20px;
+        }
+      }
+
+      .accountTypeTag {
+        padding: 2px 8px;
+        display: flex;
+        align-items: center;
+        column-gap: 4px;
+        background: #ddf4f2;
+        color: #0cbf9f;
+        border-radius: 4px;
+      }
+
+      .accountLifecycleTag {
+        margin-left: 4px;
+        padding: 2px 8px;
+        display: flex;
+        align-items: center;
+        background: #f0f9ff;
+        color: #3491fa;
+        border-radius: 4px;
+      }
+
+      .tagText {
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      .accountDate {
+        color: #6c757d;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+      }
+
+      .accountEmission {
+        max-width: 140px;
+        color: #004245;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 32px; /* 160% */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .accountUnit {
+        color: #999ea4;
+
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22px; /* 157.143% */
+      }
+    }
+  }
+
+  .menuMain {
+    flex: 1;
+    min-height: 0;
+    padding: 8px;
+    overflow-y: auto;
+  }
+
+  .treeMenuMain {
+    padding-bottom: 44px;
+
+    .menuDataTextCount {
+      display: flex;
+      align-items: center;
+
+      .menuDataImg {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+      }
+
+      .menuName {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .menuCount {
+        margin-left: 8px;
+        color: #b5b8bb;
+      }
+    }
+
+    :global {
+      .ant-tree-treenode {
+        position: relative;
+        align-items: center !important;
+        width: 100%;
+        height: 40px;
+        padding-bottom: 0;
+        padding-left: 8px;
+        line-height: 40px;
+        border-radius: 4px;
+        cursor: pointer;
+
+        // &:first-child {
+        //   .ant-tree-switcher {
+        //     display: none;
+        //     width: 0;
+        //     min-width: 0;
+        //   }
+        // }
+      }
+
+      .ant-tree .ant-tree-treenode-disabled .ant-tree-node-content-wrapper {
+        color: @mainText;
+        cursor: pointer;
+      }
+
+      .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle {
+        display: none;
+      }
+
+      .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        color: @treeSuccess;
+        font-weight: 600;
+        background: @treeBackground;
+      }
+
+      .ant-tree.ant-tree-directory
+        .ant-tree-treenode
+        .ant-tree-node-content-wrapper.ant-tree-node-selected {
+        color: @treeSuccess;
+        background: transparent;
+      }
+
+      .ant-tree.ant-tree-directory .ant-tree-treenode-selected::before {
+        background: transparent;
+      }
+
+      .ant-tree-switcher {
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &::before {
+          top: unset;
+        }
+      }
+
+      .ant-tree-switcher-icon {
+        z-index: 10;
+      }
+
+      .ant-tree .ant-tree-node-content-wrapper {
+        width: 100%;
+        padding-left: 8px;
+
+        .ant-dropdown-trigger {
+          position: absolute;
+          right: 16px;
+        }
+      }
+
+      .ant-tree .ant-tree-treenode:hover {
+        background: #f7f8f9;
+        transition: all 0.3s;
+      }
+
+      .ant-tree-treenode-selected {
+        padding-bottom: 0;
+        background: @treeBackground;
+
+        .ant-tree-switcher {
+          background: @treeBackground;
+        }
+
+        .ant-tree-indent {
+          background: @treeBackground;
+        }
+      }
+    }
+  }
+}
+
+.reportActions {
+  position: sticky;
+  z-index: 1;
+  bottom: 0;
+  padding-top: 12px;
+  background: #fff;
+  flex-shrink: 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.reportSnapBtn {
+  margin-left: 16px;
+}

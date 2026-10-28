@@ -1,0 +1,76 @@
+@import '@src/styles/var.less';
+
+.operation-management-wrapper.operation-management-wrapper {
+  padding: 30px 0 110px;
+  position: relative;
+  flex: auto;
+
+  .addlist_content_From {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .addlist_content_From .acf_Item {
+    margin-bottom: 10px;
+  }
+
+  // 修改报错的时候，表单的间距
+  .addlist_content_From .ant-form-item-has-error {
+    margin-bottom: 0;
+  }
+
+  .ant-form-item-control-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+  }
+
+  .Editor {
+    border: 1px solid @borderGray;
+    width: 100%;
+    border-radius: 4px;
+    height: 260px;
+
+    .public-DraftEditorPlaceholder-root {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .bf-container {
+      display: flex;
+      flex-flow: column;
+
+      .bf-content {
+        flex: auto;
+        overflow: hidden;
+
+        .DraftEditor-root {
+          height: 100%;
+          overflow: auto;
+        }
+      }
+    }
+  }
+
+  .m_30 {
+    margin-left: 30px;
+  }
+
+  .w_100 {
+    width: 100%;
+  }
+
+  .w_50 {
+    width: 400px;
+
+    &:nth-child(2n) {
+      margin-left: 30px;
+    }
+  }
+
+  .upload_mark_text {
+    color: #1c94ed;
+  }
+
+}

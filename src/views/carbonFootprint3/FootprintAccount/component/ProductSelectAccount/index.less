@@ -1,0 +1,51 @@
+.overlayWrapperAAA {
+  width: 256px;
+  height: 314px;
+  padding: 8px;
+  background-color: @whiteBg;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 4%), 0 4px 16px rgb(0 0 0 / 8%);
+
+  .optionNodeMain {
+    position: relative;
+    padding: 4px 8px;
+
+    .optionNodeDate {
+      color: #999ea4;
+      font-size: 12px;
+    }
+
+    .optionNodeType {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 20px;
+      margin-top: -10px;
+      font-size: 12px;
+      border-radius: 4px;
+    }
+
+    .optionNodeTypeQuick {
+      color: #3491fa;
+      background: #f0f9ff;
+    }
+
+    .optionNodeTypeProcess {
+      color: #0cbf9f;
+      background: #e6fff6;
+    }
+  }
+
+  .ant-select {
+    width: 100%;
+  }
+
+  .ant-select-dropdown {
+    max-height: 264px;
+    box-shadow: none;
+  }
+}

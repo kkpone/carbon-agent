@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  margin-bottom: 60px;
+
+  body & {
+    padding: 24px 20px;
+  }
+
+  .tableTop {
+    :global(.ant-divider-horizontal) {
+      margin: 8px 0 20px;
+    }
+
+    :global(.ant-checkbox-wrapper + .ant-checkbox-wrapper) {
+      margin-left: 23px;
+    }
+
+    .source {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .moreSearch {
+      display: flex;
+
+      :global(.ant-select) {
+        width: 200px;
+      }
+
+      :global(.ant-row + .ant-row) {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .select {
+    width: 178px;
+  }
+
+  // 没有详情按钮时，添加margin，保持样式对齐 
+  .noDetail {
+    margin-left: 15px;
+  }
+}
+
+form.searchForm {
+  align-items: flex-start;
+}

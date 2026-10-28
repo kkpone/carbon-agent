@@ -1,0 +1,242 @@
+.pendingMessage {
+  &&& {
+    :global {
+      .ant-message-notice-content {
+        padding: 10px 24px;
+        border-radius: 60px;
+        border: 1px solid #048677;
+        background: #ddf4f2;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04),
+          0 4px 16px 0 rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+}
+
+.successMessage {
+  &&& {
+    :global {
+      .ant-message-notice-content {
+        padding: 10px 24px;
+        border-radius: 6px;
+        border: 1px solid #048677;
+        background: #ddf4f2;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04),
+          0 4px 16px 0 rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+}
+
+.messageContent {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.messageText {
+  color: #343a40;
+}
+
+.operate {
+  margin: 16px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.batchOperate {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.selectCountContent {
+  display: flex;
+  column-gap: 4px;
+}
+
+.selectCount {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.searchNameInput {
+  width: 280px;
+}
+
+.searchIcon {
+  color: #6c757d;
+}
+
+.deleteBtn {
+  padding: 0;
+}
+
+.table {
+  height: 604px;
+  &&& {
+    :global {
+      .ant-input-number,
+      .ant-input,
+      .ant-select,
+      .ant-cascader,
+      .ant-select-selector {
+        width: 100%;
+      }
+      .ant-select-disabled {
+        .ant-select-selector {
+          cursor: default;
+          background: transparent;
+          border-color: transparent;
+          color: unset;
+          .ant-select-arrow {
+            visibility: hidden;
+          }
+          input {
+            cursor: default;
+          }
+        }
+        .ant-select-arrow {
+          visibility: hidden;
+        }
+      }
+    }
+  }
+  :global(.ant-table-row:not(:hover)) {
+    :global {
+      .ant-input-number,
+      .ant-input,
+      .ant-select,
+      .ant-cascader,
+      .ant-select-selector {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+      }
+      .ant-select-arrow {
+        visibility: hidden;
+      }
+    }
+    .boldColumn {
+      background: #f7f8f9;
+    }
+  }
+  :global(.ant-table-row:hover) {
+    .boldColumn {
+      background: #edeef0;
+    }
+  }
+}
+
+.tagContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+}
+
+.tagContent {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 8px;
+}
+
+.tag {
+  padding: 2px 4px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  background: #fff;
+}
+
+.tagName {
+  max-width: 120px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileName {
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 12px;
+  }
+}
+
+.segmentedTab {
+  display: flex;
+  column-gap: 10px;
+  color: #6c757d;
+}
+
+.activeSegmentedTab {
+  font-weight: 500;
+  color: #04252b;
+}
+
+.flexRow {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.tipIcon {
+  color: #999ea4;
+}
+
+.tipRow {
+  display: flex;
+  align-items: center;
+}
+
+.bindIcon {
+  color: #fff;
+  svg {
+    font-size: 24px;
+  }
+}
+
+.errorTag {
+  display: flex;
+  padding: 2px 4px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  background: #ffe3e1;
+  color: #c1272d;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 12px;
+  cursor: pointer;
+}
+
+.errorIcon {
+  color: #c1272d;
+}
+
+.errorText {
+  color: #343a40;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.errorPopover {
+  :global {
+    .ant-popover-arrow::before {
+      background: #f6e5e4;
+    }
+    .ant-popover-inner {
+      padding: 8px 16px;
+      border-radius: 6px;
+      background: #f6e5e4;
+    }
+  }
+}

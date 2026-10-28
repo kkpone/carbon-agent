@@ -1,0 +1,90 @@
+@import '@Variable';
+
+.indicatorData {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fillBtn,
+.editBtn {
+  .body-m-b();
+
+  color: @green7;
+  cursor: pointer;
+}
+
+.editBtn {
+  font-weight: 400;
+}
+
+.calcText {
+  .body-m();
+
+  color: @gray6;
+}
+
+.indicatorValText {
+  .body-m-b();
+}
+
+.orgName {
+  .body-m();
+
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.orgIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: @gray1;
+}
+
+.companyOrgIcon {
+  background: @green7;
+}
+
+.companyOrgImg {
+  font-size: 16px;
+  color: #fff;
+}
+
+.modalTitle {
+  .title-s-b();
+
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.modalOrgName {
+  color: @green7;
+}
+
+.monthTitle {
+  .body-m-b();
+
+  margin-bottom: 12px;
+}
+
+.monthData {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.monthDataValue {
+  .caption-s-b();
+
+  min-width: 100px;
+}
+
+.monthIcon {
+  margin-left: 8px;
+  cursor: pointer;
+}

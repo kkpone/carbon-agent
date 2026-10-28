@@ -1,0 +1,268 @@
+.businessAccountSelectModelMain {
+  .searchTitleMain {
+    height: 60px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ebedf0ff;
+
+    .searchTitle {
+      position: absolute;
+      left: 24px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+  :global(.ant-menu-title-content) {
+    font-size: 14px;
+  }
+
+  :global(.ant-menu-item-selected .ant-menu-title-content) {
+    font-weight: 600;
+  }
+}
+
+.selectModelDiv {
+  .selectModelMain {
+    padding-left: 24px;
+    height: 64px;
+    line-height: 64px;
+    text-align: left;
+    background: #f7f8f9;
+    border-radius: 8px !important;
+
+    .selectModelTitle {
+      font-size: 16px;
+    }
+  }
+
+  :global {
+    .ant-modal-content {
+      background: #f7f8f9;
+      padding: 24px !important;
+    }
+    .ant-modal-header {
+      background: #f7f8f9;
+    }
+  }
+
+  .selectModelContent {
+    .businessMain {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      .businessBtn {
+        height: 32px;
+        display: flex;
+        align-items: center;
+      }
+      .businessBtnIcon {
+        width: 16px;
+        height: auto;
+      }
+    }
+
+    .splitLine {
+      margin-top: 16px;
+      margin-bottom: 12px;
+      height: 1px;
+      background: #ebedf0;
+    }
+    .selectFiltrMain {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .typeFiltr {
+        display: flex;
+        column-gap: 16px;
+      }
+      .everyType {
+        color: #6c757d;
+        font-size: 14px;
+        cursor: pointer;
+
+        &:hover {
+          color: #0cbf9f;
+        }
+      }
+      .everyTypeActive {
+        font-weight: 500;
+        color: #343a40;
+        &:hover {
+          color: #343a40;
+        }
+      }
+    }
+  }
+
+  .selectModelData {
+    width: 100%;
+    height: 540px;
+    position: relative;
+    margin-top: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+    grid-gap: 24px;
+    padding-bottom: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    align-content: start;
+
+    .addAcount {
+      height: 160px;
+      border-radius: 4px;
+      box-shadow: 0px 2px 24px 0px rgba(0, 0, 0, 0.08);
+      background: #fff;
+      text-align: center;
+      padding-top: 55px;
+      cursor: pointer;
+      color: #6c757d;
+      &:hover {
+        color: #0cbf9f;
+      }
+
+      .addAcountIcon {
+        display: block;
+        font-size: 20px;
+      }
+
+      .addAcountText {
+        margin-top: 16px;
+      }
+    }
+
+    .everyList {
+      position: relative;
+      border-radius: 4px;
+      padding: 20px 24px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--line-border-2, #ebedf0);
+      background: #fff;
+      &:hover {
+        border-color: #026961;
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04),
+          0 1px 10px 0 rgba(0, 0, 0, 0.08);
+
+        .setBtnMain {
+          opacity: 1;
+        }
+
+        .listIntro {
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.6) 0%,
+            rgba(255, 255, 255, 0.6) 100%
+          );
+        }
+      }
+
+      .modelNameRow {
+        display: flex;
+        column-gap: 8px;
+        align-items: center;
+      }
+
+      .listNameIcon {
+        font-size: 14px;
+        color: #026961;
+      }
+
+      .listNameText {
+        color: #343a40;
+        font-weight: 500;
+        flex: 1;
+        width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .listDetail {
+        margin-top: 16px;
+        margin-bottom: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        .detail {
+          display: flex;
+          padding: 2px 6px;
+          justify-content: center;
+          align-items: center;
+          font-size: 12px;
+          color: #999ea4;
+          border-radius: 2px;
+          background: #f7f8f9;
+        }
+      }
+
+      .listIntro {
+        font-size: 12px;
+        color: #999ea4;
+        line-height: 18px;
+        display: -webkit-box; /* 用于老版本的 WebKit 内核浏览器 */
+        -webkit-line-clamp: 2; /* 设置显示的行数 */
+        -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+        overflow: hidden; /* 隐藏超出的内容 */
+        text-overflow: ellipsis; /* 超出部分显示省略号 */
+        line-height: normal; /* 确保行高适配，根据实际需求设置 */
+      }
+
+      .setBtnMain {
+        position: absolute;
+        left: 24px;
+        bottom: 20px;
+        width: 100%;
+        opacity: 0; /* 默认隐藏 */
+        transition: opacity 0.3s ease;
+
+        .preview {
+          width: 84px;
+          margin-right: 12px;
+        }
+
+        .btnUse {
+          width: calc(100% - 140px);
+        }
+      }
+    }
+  }
+
+  .intro {
+    font-size: 12px;
+    color: #999ea4;
+    margin-top: 16px;
+    display: -webkit-box; /* 用于老版本的 WebKit 内核浏览器 */
+    -webkit-line-clamp: 2; /* 设置显示的行数 */
+    -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+    overflow: hidden; /* 隐藏超出的内容 */
+    text-overflow: ellipsis; /* 超出部分显示省略号 */
+    line-height: normal; /* 确保行高适配，根据实际需求设置 */
+  }
+
+  :global {
+    .ant-modal-body {
+      padding: 0;
+    }
+  }
+}
+
+.modelInfoMain {
+  width: 90vw !important;
+  position: relative;
+
+  .modelInfoSubBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 1;
+  }
+
+  :global {
+    .ant-modal-body {
+      padding: 0;
+    }
+  }
+}

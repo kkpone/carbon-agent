@@ -1,0 +1,59 @@
+.AiImportBtn {
+  display: flex;
+  align-items: center;
+  // gap: 8px;
+  padding: 0 10px 0 10px;
+  height: 38px;
+  width: 110px;
+  border-radius: 8px;
+  background-color: #026961;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 46px;
+    height: 38px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+.AiIcon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+
+  svg {
+    font-size: 32px;
+  }
+}
+
+.importBtnText {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.exampleText {
+  color: #6c757d;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+}

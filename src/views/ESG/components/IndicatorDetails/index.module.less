@@ -1,0 +1,282 @@
+.indicatorDetails {
+  &&& {
+    padding: 0;
+    height: 100%;
+  }
+}
+
+.header {
+  height: 106px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 16px;
+  border-bottom: 1px solid #ebedf0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.backIcon {
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+.backNavText,
+.orgNavText {
+  font-size: 12px;
+}
+
+.backNavText {
+  cursor: pointer;
+  color: #6c757d;
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.introLeft {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+}
+
+.orgName {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.period {
+  color: #999ea4;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.completeCount,
+.totalCount {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.totalCount {
+  color: #b5b8bb;
+}
+
+.progressBar {
+  width: 286px;
+  height: 8px;
+  border-radius: 100px;
+  background: #ebedf0;
+}
+
+.progressBarInner {
+  height: 100%;
+  width: 50%;
+  border-radius: 100px;
+  background: #08a28b;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 20px;
+  background: #fceedf;
+  font-size: 12px;
+}
+
+.completeStatus {
+  background: #e8f6ff;
+}
+
+.notStartStatus {
+  background: #ffe3e1;
+}
+
+.content {
+  height: calc(100% - 106px);
+  display: flex;
+}
+
+.menuContent {
+  width: 228px;
+  padding-left: 40px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.menuSearch {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.searchField {
+  width: 176px;
+}
+
+.menu {
+  width: 184px;
+  border: none !important;
+  :global {
+    .ant-menu-inline {
+      background: transparent !important;
+    }
+    .ant-menu-submenu-title,
+    .ant-menu-item {
+      margin: 4px 0 !important;
+      height: 40px;
+      border-radius: 4px;
+      &:hover {
+        background: #f7f8f9;
+      }
+    }
+    .ant-menu-submenu-title,
+    .ant-menu-item {
+      padding-left: 0 !important;
+    }
+  }
+}
+
+.subjectGroup {
+  display: flex;
+  align-items: center;
+}
+
+.subjectGroupIcon {
+  width: 8px;
+  height: 40px;
+  border-radius: 4px;
+  border-left: 2px solid #3ab86e;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.subjectGroupName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+  color: #343a40;
+}
+
+.menuSubjectName {
+  padding-left: 12px;
+  color: #04252b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menuIndicatorName {
+  padding-left: 36px;
+  color: #04252b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.currMenuIndicatorName {
+  color: #026961;
+  font-weight: 500;
+  background: #f7f8f9;
+}
+
+.indicatorContent {
+  padding: 16px 40px 0 16px;
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  background: #f7f8f9;
+}
+
+.spinning {
+  height: 100%;
+  :global {
+    .ant-spin-container {
+      height: 100%;
+    }
+  }
+}
+
+.detailsContainer {
+  padding: 24px;
+  height: 100%;
+  overflow-y: auto;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.indicatorFooter {
+  margin-top: 16px;
+  display: flex;
+  justify-content: end;
+  column-gap: 16px;
+}
+
+.indicatorName {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.indicatorInfo {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.infoItem {
+  display: flex;
+  column-gap: 16px;
+}
+
+.infoLabel {
+  min-width: 56px;
+  color: #6c757d;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
+}
+
+.infoValue {
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px; /* 171.429% */
+}
+
+.standardContent {
+  display: flex;
+  column-gap: 8px;
+}
+
+.standardTag {
+  padding: 4px 8px;
+  max-width: 102px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 8px;
+  border: 1px solid var(--Line-, #d2d6da);
+  background: var(--Fill-, #f7f8f9);
+  line-height: 20px;
+}
+
+.splitLine {
+  margin: 26px 0;
+  height: 1px;
+  background: #ebedf0;
+}

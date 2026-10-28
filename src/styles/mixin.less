@@ -1,0 +1,52 @@
+// 生成通用的外边距和内边距,有新增需要在下方逗号隔开添加即可
+@list: 6, 8, 10, 16, 20, 24, 30, 40, 50, 60;
+
+@fontSizeList: 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36;
+
+@fontWeightList: 400, 500, 600;
+
+each(@fontWeightList, {
+  .font-weight@{value} {
+    font-weight: @value;
+  }
+});
+
+each(@fontSizeList, {
+  .text-@{value} {
+    font-size: @value * 1px;
+  }
+});
+
+each(@list, {
+  .m-r-@{value} {
+    margin-right: @value * 1px;
+  }
+
+  .m-l-@{value} {
+    margin-left: @value * 1px;
+  }
+
+  .m-b-@{value} {
+    margin-bottom: @value * 1px;
+  }
+
+  .m-t-@{value} {
+    margin-top: @value * 1px;
+  }
+
+  .p-r-@{value} {
+    padding-right: @value * 1px;
+  }
+
+  .p-l-@{value} {
+    padding-left: @value * 1px;
+  }
+
+  .p-b-@{value} {
+    padding-bottom: @value * 1px;
+  }
+
+  .p-t-@{value} {
+    padding-top: @value * 1px;
+  }
+})

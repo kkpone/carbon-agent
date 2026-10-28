@@ -1,0 +1,361 @@
+@import '@Variable';
+
+.report {
+  && {
+    background: @gray1;
+    background-image: url('https://carbonstop-saas.oss-cn-beijing.aliyuncs.com/saas/dashborad/aiReportBg.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+  }
+}
+
+.centerBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  .centerBetween();
+}
+
+.headerLeft {
+  .title-s-b();
+  .centerBetween();
+}
+
+.headerRight {
+  display: flex;
+}
+
+.title {
+  margin-right: 16px;
+}
+
+.headerSelect {
+  width: 192px;
+  margin-right: 12px;
+}
+
+.dataBoardContent {
+  display: flex;
+  margin-top: 12px;
+  column-gap: 16px;
+}
+
+.dataBoard {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  height: 232px;
+  padding: 12px 16px 16px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.dataBoardHeader {
+  .centerBetween();
+
+  margin-bottom: 12px;
+}
+
+.dataBoardHeaderLeft {
+  .centerBetween();
+  .body-m-b();
+}
+
+.dataBoardIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.dataBoardTip {
+  .caption-s();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+
+  color: @gray5;
+}
+
+.reportDataContent {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 8px;
+  column-gap: 8px;
+}
+
+.reportData {
+  height: 80px;
+  padding: 15px 8px 0;
+  background: linear-gradient(
+    180deg,
+    rgb(7 214 219 / 7%) 0%,
+    rgb(7 214 219 / 4%) 100%
+  );
+  border-radius: 4px;
+}
+
+.allReportData {
+  background: linear-gradient(180deg, #e7fcf4 0%, rgb(231 252 244 / 64%) 100%);
+}
+
+.reportDataNum {
+  .title-l-b();
+
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.reportDataName {
+  .caption-s();
+
+  color: @gray7;
+  text-align: center;
+}
+
+.distributionTagContent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.distributionTag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 72px;
+  height: 28px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  padding: 0 8px;
+  border: 1px solid #ebedf0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.distributionName {
+  margin-right: 2px;
+  color: @gray7;
+}
+
+.distributionVal {
+  color: @gray5;
+  font-size: 12px;
+}
+
+.selectedDistributionTag {
+  background: @green7;
+  border: 1px solid @green7;
+
+  .distributionName {
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .distributionVal {
+    color: #fff;
+  }
+}
+
+.placeholder {
+  flex: 1;
+}
+
+.chartContent {
+  display: flex;
+  height: 104px;
+  padding: 0 16px;
+}
+
+.chartContentLeft {
+  width: 148px;
+  height: 104px;
+  margin-right: 12px;
+}
+
+.scoreCount {
+  .title-l-b();
+
+  margin-top: 16px;
+}
+
+.scoreTip {
+  .caption-s();
+
+  margin-top: 4px;
+  color: @gray7;
+}
+
+.scoreCompare {
+  .caption-s();
+
+  margin-top: 22px;
+}
+
+.scoreCompareVal {
+  margin-left: 12px;
+  color: @green7;
+}
+
+.chartContentRight {
+  width: calc(100% - 160px);
+  height: 104px;
+}
+
+.rankCompany {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.companyRankImg {
+  width: 20px;
+  height: 20px;
+}
+
+.companyRank {
+  .caption-s-b();
+
+  width: 20px;
+  color: @gray7;
+  text-align: center;
+}
+
+.companyName {
+  .caption-s-b();
+
+  width: 152px;
+  margin: 0 4px;
+  overflow: hidden;
+  color: @gray8;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.companyBar {
+  flex: 1;
+  height: 6px;
+  overflow: hidden;
+  background: #e2e4e9;
+  border-radius: 100px;
+}
+
+.companyPercentBar {
+  width: 0;
+  height: 100%;
+  background: @green7;
+}
+
+.companyIntensity {
+  width: 84px;
+  margin: 0 4px 0 8px;
+  overflow: hidden;
+  color: @gray8;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.reportTableContent {
+  margin-top: 16px;
+  padding: 0 16px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.typeTab {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+}
+
+.uploadBtnPopover {
+  padding-top: 10px;
+
+  :global {
+    .ant-popover-inner-content {
+      padding: 0;
+    }
+  }
+}
+
+.popover {
+  width: 232px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.popoverHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.popoverText {
+  .caption-s();
+
+  margin-left: 24px;
+  color: @gray7;
+}
+
+.popoverTitle {
+  .body-m-b();
+
+  margin-left: 8px;
+}
+
+.popoverTip {
+  margin-top: 20px;
+}
+
+.popoverBottom {
+  display: flex;
+  justify-content: end;
+  margin-top: 8px;
+}
+
+.analyzeStatus {
+  .body-m();
+
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin-right: 16px;
+  padding: 0 8px;
+  color: @green7;
+  background: rgb(255 255 255 / 40%);
+  border-radius: 104px;
+}
+
+.repeatStatus {
+  color: @orange6;
+}
+
+.failStatus {
+  color: @red6;
+}
+
+.statusText {
+  margin-left: 8px;
+}
+
+.statusOperate {
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+.statusClose {
+  color: #b5b8bb;
+  cursor: pointer;
+}
+
+.inputSearchIcon {
+  color: @gray6;
+}

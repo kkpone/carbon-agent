@@ -1,0 +1,36 @@
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #04252b;
+  margin-bottom: 16px;
+}
+
+.infoIcon {
+  margin-left: 4px;
+  color: #999ea4;
+  cursor: help;
+}
+
+.operationButtons {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  :global {
+    .ant-btn {
+      height: 22px;
+      padding: 0;
+    }
+  }
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 12px;
+}
+
+.rowWithError {
+  :global(.ant-table-cell) {
+    // background-color: #fff2f0 !important;
+  }
+}

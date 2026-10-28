@@ -1,0 +1,131 @@
+.chartContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.chartContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.customLegendContent {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  display: flex;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.emissionLegend,
+.forecastLegend,
+.predictLegend,
+.standardLegend,
+.forecastReduceLegend {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 2px;
+  background-color: #0cbf9f;
+
+  &::before {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border: 2px solid #0cbf9f;
+    border-radius: 50%;
+    content: '';
+  }
+}
+
+.measureReduceLegend {
+  width: 16px;
+  height: 8px;
+  background: rgba(52, 145, 250, 0.24);
+}
+
+.forecastLegend,
+.forecastReduceLegend {
+  background-color: #3491fa;
+
+  &::before {
+    border: 2px solid #3491fa;
+  }
+}
+
+.forecastLegend {
+  background: transparent;
+  height: 0;
+  border-top: 2px dotted #3491fa;
+  &::before {
+    position: absolute;
+    top: -5px;
+  }
+}
+
+.predictLegend {
+  background-color: #fba93e;
+
+  &::before {
+    border: 2px solid #fba93e;
+  }
+}
+
+.standardLegend {
+  background-color: transparent;
+  border-top: 2px dashed #d2d6da;
+  &::before {
+    display: none;
+  }
+}
+
+.legendLabel {
+  margin-left: 8px;
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.tooltipName {
+  color: #343a40;
+  font-size: 12px;
+}
+
+.tooltipUnit {
+  color: #999ea4;
+}
+
+.tooltipItem {
+  display: flex;
+  align-items: center;
+}
+
+.tooltipTitle {
+  min-width: 56px;
+  margin: 0 8px 0 4px;
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.tooltipValue {
+  color: #343a40;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.warnText {
+  margin-left: 20px;
+  color: #fba93e;
+}
+
+.brandText {
+  margin-left: 20px;
+  color: #0cbf9f;
+}

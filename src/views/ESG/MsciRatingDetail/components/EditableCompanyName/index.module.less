@@ -1,0 +1,66 @@
+.editableWrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.input {
+  width: 200px;
+
+  :global(.ant-input-suffix) {
+    padding-right: 8px;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actionIcon {
+  cursor: pointer;
+  color: #026961;
+  font-size: 14px;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #0cbf9f;
+  }
+}
+
+.companyName {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+  transition: color 0.2s;
+  max-width: 100%;
+
+  &:hover {
+    color: #026961;
+  }
+
+  .companyNameText {
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+}
+
+.editIcon {
+  font-size: 14px;
+  color: #026961;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #0cbf9f;
+  }
+}

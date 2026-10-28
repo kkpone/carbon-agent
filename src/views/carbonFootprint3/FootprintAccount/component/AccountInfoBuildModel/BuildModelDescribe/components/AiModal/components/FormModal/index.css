@@ -1,0 +1,15 @@
+.ant-tabs-item-for-error {
+  position: relative; /* 使伪类基于容器定位 */
+}
+
+.ant-tabs-item-for-error::after {
+  position: absolute;
+  top: -4px; /* 调整红点的位置 */
+  right: -4px; /* 调整红点的位置 */
+  width: 8px; /* 红点的直径 */
+  height: 8px; /* 红点的直径 */
+  background-color: red; /* 红点的颜色 */
+  border-radius: 50%; /* 使红点为圆形 */
+  box-shadow: 0 0 2px rgb(0 0 0 / 20%); /* 可选：给红点添加阴影 */
+  content: '';
+}

@@ -1,0 +1,35 @@
+export default {
+  title: '产品碳足迹',
+  description:
+    '输入您想要核算的产品，我们将为您生成符合ISO14067/PAS2050标准的产品碳足迹核算模型',
+  placeholder: '请输入您想核算的产品数量及名称，如：一台笔记本电脑',
+  aiAgent: 'AI Agent',
+  uploadFile: '上传附件',
+  uploadImage: '上传图片',
+  /** @deprecated 官网已拆分为 productUploadFileTip / referUploadFileTip */
+  uploadFileTip: '最多上传1张图片，单张不超过20MB',
+  productUploadFileTip: '最多上传1张图片，单张不超过20MB',
+  referUploadFileTip: '最多5个附件，单个不超过20MB',
+  attachmentNoImage: '附件不支持图片，请上传 PDF、Word、Excel 等文档',
+  scopeFull: '全生命周期',
+  scopeHalf: '半生命周期',
+  factorPreferencePlaceholder: '因子偏好',
+  imageOnlySupported: '仅支持上传图片文件',
+  uploading: '上传中…',
+  uploadFailed: '上传失败',
+  removeFile: '移除文件',
+  altFile: '文件',
+  altUpload: '上传',
+  altSend: '发送',
+  waitForUploadComplete: '请等待文件上传完成',
+  removeFailedFilesRetry: '请移除上传失败的文件后重试',
+  maxFilesExceeded:
+    '最多只能上传 {val1} 个文件，当前已有 {val2} 个，还可以上传 {val3} 个',
+  fileSizeExceeded: '文件大小超过 20MB',
+  uploadFailedWithName: '{val1} 上传失败：{val2}',
+  quickSuggestions: {
+    suggestion1: '一瓶500ml矿泉水',
+    suggestion2: '一盒100抽纸巾',
+    suggestion3: '一件纯棉T恤衫',
+  },
+};

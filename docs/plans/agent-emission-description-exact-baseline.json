@@ -1,0 +1,88 @@
+{
+  "baseline_id": "agent-emission-description",
+  "revision": "feishu-952-agent-description-1",
+  "source": "https://carbonstop.feishu.cn/docx/HzTkdOP2toaTJdxPw0QcsUn8nDd revision952；本会话用户确认agent仅排放源描述，包含智能匹配和替换原备注",
+  "source_commit": "77b23499a9acc9d0e3e545151af408e42f0d7d67",
+  "target_start_commit": "2c5bf2959b115ce8d1d1a0f6285279951f2ede4c",
+  "scope": {
+    "applicable": [
+      "核算/模型排放源共享抽屉",
+      "排放源库新增编辑详情复制",
+      "选择排放源列表和排放源库列表原备注列",
+      "上述描述的三语言文案"
+    ],
+    "excluded": [
+      "LCA信息管理",
+      "运输描述/运输匹配",
+      "agent语言初始化",
+      "其他模块及后端代码"
+    ],
+    "approved_adaptation": "仅提取source排放源描述逻辑；保留目标原有函数、API包装、布局及认证。运输提交时省略新增描述字段。"
+  },
+  "contracts": {
+    "field": "emissionSourceDescription",
+    "optional": true,
+    "maxLength": 200,
+    "counter": false,
+    "legacy_remark": "不回填到描述；保留历史字段，不迁移数据",
+    "save_and_read": [
+      "/footprint3/accountEmission/add|edit|info",
+      "/footprint3/modelEmission/add|edit|info",
+      "/footprint3/libEmission/add|edit|info"
+    ],
+    "matching": "POST /footprint3/factor/matchFactor，描述独立透传，不拼接name；空描述沿原匹配",
+    "readonly": "只读、运输、仅创建因子、非因子匹配时隐藏智能匹配按钮",
+    "runtime": "未验证实际部署接口及浏览器运行，不声明迁移验收完成"
+  },
+  "items": [
+    {
+      "id": "REQ-DESC-TEXT-008",
+      "source_location": "CzPfdqCeRoBJj8x727JcDqGTnbg",
+      "source_quote": "排放源描述",
+      "context": "非运输排放源描述区域；智能匹配遵守既有只读及匹配方式限制",
+      "kind": "text",
+      "expected": "排放源描述",
+      "resource_key": "emissionSourceDescription"
+    },
+    {
+      "id": "DESC-PLACEHOLDER",
+      "source_location": "CzPfdqCeRoBJj8x727JcDqGTnbg",
+      "source_quote": "请描述排放源，可包含数据来源、型号、材质、处置方式、计算方法等",
+      "context": "非运输排放源描述区域；智能匹配遵守既有只读及匹配方式限制",
+      "kind": "text",
+      "expected": "请描述排放源，可包含数据来源、型号、材质、处置方式、计算方法等",
+      "resource_key": "emissionSourceDescriptionPlaceholder"
+    },
+    {
+      "id": "REQ-DESC-TEXT-009",
+      "source_location": "A5TcdCoChoDvMDx3eaLceNEGnpb",
+      "source_quote": "可添加排放源描述后重新匹配因子，有效的描述将实现更加精确的匹配。",
+      "context": "非运输排放源描述区域；智能匹配遵守既有只读及匹配方式限制",
+      "kind": "text",
+      "expected": "可添加排放源描述后重新匹配因子，有效的描述将实现更加精确的匹配。",
+      "resource_key": "emissionDescriptionMatchHint"
+    },
+    {
+      "id": "REQ-DESC-TEXT-010",
+      "source_location": "BGYXd0OCJodz2UxSyjpcZV9anRh；用户确认按需求原文",
+      "source_quote": "智能匹配",
+      "context": "非运输排放源描述区域；智能匹配遵守既有只读及匹配方式限制",
+      "kind": "text",
+      "expected": "智能匹配",
+      "resource_key": "emissionDescriptionMatchLabel"
+    }
+  ],
+  "verification": {
+    "exact_text": "4/4 source match; three locales contain the same four nonempty keys",
+    "diff_check": "git diff --check passed",
+    "query_review": "Current working tree: all three entry save/read/copy/select paths present; transport omitted on submit; no LCA or agent language initialization changes",
+    "lint": {
+      "command": "npm run lint",
+      "exit_code": 127,
+      "error": "sh: eslint: command not found"
+    },
+    "compile": "Not run: target AGENTS requires lint instead of build",
+    "runtime": "Browser, deployed API and database not verified",
+    "agent_lifecycle": "No close/release tool available; query and validation tasks completed"
+  }
+}

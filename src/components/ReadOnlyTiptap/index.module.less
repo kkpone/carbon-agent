@@ -1,0 +1,262 @@
+.readOnlyTiptap {
+  width: 100%;
+
+  // 继承父组件的文本样式
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+
+  // 只读编辑器样式
+  :global(.readonly-editor) {
+    // 禁用选择
+    // user-select: none;
+    // -webkit-user-select: none;
+    // -moz-user-select: none;
+    // -ms-user-select: none;
+
+    // 禁用光标
+    caret-color: transparent;
+
+    // 禁用拖拽
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+
+    // 禁用右键菜单
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+
+    // 基础样式
+    outline: none;
+    border: none;
+    background: transparent;
+
+    // 继承父组件的文本样式
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+
+    // 段落间距
+    p {
+      margin: 0.5em 0;
+      line-height: inherit;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-style: inherit;
+      font-weight: inherit;
+    }
+
+    // 标题样式
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 1em 0 0.5em 0;
+      font-weight: 600;
+      line-height: 1.4;
+      color: inherit;
+      font-family: inherit;
+    }
+
+    h1 {
+      font-size: 1.5em;
+    }
+    h2 {
+      font-size: 1.3em;
+    }
+    h3 {
+      font-size: 1.1em;
+    }
+    h4 {
+      font-size: 1em;
+    }
+    h5 {
+      font-size: 0.9em;
+    }
+    h6 {
+      font-size: 0.8em;
+    }
+
+    // 列表样式
+    ul,
+    ol {
+      margin: 0.5em 0;
+      padding-left: 1.5em;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    li {
+      margin: 0.25em 0;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    // 代码样式
+    code {
+      background-color: #f5f5f5;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.9em;
+      color: inherit;
+    }
+
+    pre {
+      background-color: #f5f5f5;
+      padding: 1em;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 1em 0;
+
+      code {
+        background: none;
+        padding: 0;
+      }
+    }
+
+    // 引用样式
+    blockquote {
+      border-left: 4px solid #ddd;
+      margin: 1em 0;
+      padding-left: 1em;
+      color: #666;
+      font-style: italic;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    // 表格样式
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 0.5em;
+      text-align: left;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    th {
+      background-color: #f5f5f5;
+      font-weight: 600;
+    }
+
+    // 链接样式
+    a {
+      color: #0066cc;
+      text-decoration: underline;
+
+      &:hover {
+        color: #004499;
+      }
+    }
+
+    // 图片样式
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    // 分割线样式
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 2em 0;
+    }
+
+    // 任务列表样式
+    .task-list {
+      list-style: none;
+      padding-left: 0;
+
+      .task-list-item {
+        display: flex;
+        align-items: flex-start;
+        margin: 0.25em 0;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+
+        input[type='checkbox'] {
+          margin-right: 0.5em;
+          margin-top: 0.2em;
+          pointer-events: none;
+        }
+      }
+    }
+
+    // 高亮样式
+    mark {
+      background-color: #ffeb3b;
+      padding: 0.1em 0.2em;
+      border-radius: 2px;
+    }
+
+    // 删除线样式
+    s {
+      text-decoration: line-through;
+      color: #666;
+    }
+
+    // 下划线样式
+    u {
+      text-decoration: underline;
+    }
+
+    // 上标和下标样式
+    sup {
+      vertical-align: super;
+      font-size: 0.8em;
+    }
+
+    sub {
+      vertical-align: sub;
+      font-size: 0.8em;
+    }
+
+    // 文本对齐样式
+    .text-left {
+      text-align: left;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .text-right {
+      text-align: right;
+    }
+    .text-justify {
+      text-align: justify;
+    }
+  }
+
+  // 占位符样式
+  :global(.readonly-editor[data-placeholder]:empty::before) {
+    content: attr(data-placeholder);
+    color: #999;
+    font-style: italic;
+    pointer-events: none;
+  }
+}

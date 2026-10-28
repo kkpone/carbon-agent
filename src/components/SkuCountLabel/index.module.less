@@ -1,0 +1,108 @@
+@import '@Variable';
+
+.skuCount {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin-right: 16px;
+  margin-left: 8px;
+}
+
+.skuNormalCount {
+  border: 1px solid transparent;
+  border-radius: 32px;
+
+  &:hover {
+    background: @green1;
+    border-color: @green4;
+
+    .skuUseCount {
+      .body-m-b();
+
+      color: @green7;
+    }
+
+    .skuCountNum {
+      border-bottom: 1px dashed @gray6;
+    }
+
+    .purchaseButton {
+      width: 72px;
+      padding: 0 12px;
+    }
+  }
+}
+
+.skuImg {
+  margin: 0 8px 0 12px;
+}
+
+.skuUseCount {
+  .body-m();
+
+  color: @gray7;
+  cursor: pointer;
+}
+
+.skuTotalCount {
+  .body-m();
+
+  color: @gray6;
+  cursor: pointer;
+}
+
+.skuCountNum {
+  margin-right: 12px;
+}
+
+.purchaseButton {
+  .caption-s-b();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  height: 28px;
+  margin-right: 1px;
+  overflow: hidden;
+  color: #fff;
+  white-space: nowrap;
+  background: @colorPrimary;
+  border-radius: 100px;
+  box-shadow: 2px 2px 1px 0 rgb(255 255 255 / 24%) inset;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.skuFullCaption {
+  .body-m();
+
+  color: @gray7;
+}
+
+.skuFullBuy {
+  margin-left: 4px;
+  color: @orange6;
+  // text-decoration: underline;
+  cursor: pointer;
+}
+
+.skuPopover {
+  padding: 4px 0;
+}
+
+.skuPopoverIcon {
+  margin-right: 4px;
+  padding-top: 4px;
+  color: @orange6;
+}
+
+.skuPopoverContent {
+  display: flex;
+}
+
+.skuPopoverBottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}

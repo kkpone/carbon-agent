@@ -1,0 +1,349 @@
+@import '@src/styles/var.less';
+
+// ========== AI 消息整体行 ==========
+.aiMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+// ========== 文本内容（无气泡，直接渲染） ==========
+.textContent {
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+  font-family: 'PingFang SC', sans-serif;
+  word-break: break-word;
+  width: 100%;
+
+  :global(.markdown-body) {
+    background: transparent;
+    font-size: 14px;
+    line-height: 22px;
+    color: #04252b;
+  }
+
+  :global(.markdown-body h2),
+  :global(.markdown-body h3),
+  :global(.markdown-body h4) {
+    margin: 0 0 8px;
+    padding: 0;
+    color: #04252b;
+    font-family: 'PingFang SC', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    border: 0;
+  }
+
+  :global(.markdown-body p:last-child) {
+    margin-bottom: 0;
+  }
+}
+
+.loadingDot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+  box-sizing: border-box;
+}
+
+// ========== 表单卡片 ==========
+.formCard {
+  margin-top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 4px 4px;
+  background: #f7f8f9;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: none;
+  transition: opacity 0.25s;
+
+  &.formCardDone {
+    opacity: 1;
+  }
+
+  .formCardTitle {
+    padding: 0 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #04252b;
+    margin-bottom: 8px;
+    font-family: 'PingFang SC', sans-serif;
+    line-height: 22px;
+  }
+
+  .optionList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 0;
+    background: #fff;
+    border-radius: 8px;
+
+    &.optionListStacked {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    &.optionListStacked + .inputFooterActions {
+      margin-top: 14px;
+    }
+  }
+
+  .optionBtn {
+    min-height: 38px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: #f7f8f9;
+    font-size: 14px;
+    color: #04252b;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'PingFang SC', sans-serif;
+    text-align: left;
+    line-height: 22px;
+    white-space: normal;
+    word-break: break-word;
+
+    &.optionBtnBlock {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    &:hover:not(:disabled) {
+      border-color: #026961;
+      color: #04252b;
+      background: #fff;
+    }
+
+    &.optionSelected {
+      border-color: #026961;
+      background: #fff;
+      color: #04252b;
+      font-weight: 400;
+    }
+
+    &.optionDisabled {
+      cursor: not-allowed;
+      opacity: 1;
+    }
+  }
+
+  .inputColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    margin-top: 0;
+    background: #fff;
+    border-radius: 8px;
+  }
+
+  .inputFooterActions {
+    width: 100%;
+  }
+
+  .cardInput {
+    width: 100%;
+    height: 38px;
+    font-size: 16px;
+    font-family: 'PingFang SC', sans-serif;
+    border-color: #e5e7eb;
+    border-radius: 8px;
+
+    :global(.ant-input) {
+      color: #04252b;
+      font-size: 16px;
+      line-height: 24px;
+
+      &::placeholder {
+        color: #b5b8bb;
+      }
+    }
+  }
+
+  .unit {
+    font-size: 12px;
+    color: #8c8c8c;
+  }
+
+  .confirmBtn {
+    height: auto !important;
+    min-height: 38px;
+    padding: 7px 16px !important;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 20px !important;
+    background: #004541 !important;
+    border-color: #004541 !important;
+
+    &:hover,
+    &:focus {
+      background: #026961 !important;
+      border-color: #026961 !important;
+    }
+  }
+
+  .editBtn {
+    height: auto !important;
+    min-height: 38px;
+    padding: 7px 16px !important;
+    font-size: 14px;
+    border-radius: 20px !important;
+    color: #04252b;
+    border-color: #d5d7da;
+
+    &:hover,
+    &:focus {
+      color: #026961 !important;
+      border-color: #026961 !important;
+    }
+  }
+}
+
+// ========== 操作按钮组（继续提供信息 / 更新模型） ==========
+.actionBtnGroup {
+  display: flex;
+  gap: 16px;
+  margin-top: 0;
+  flex-wrap: nowrap;
+  width: 100%;
+
+  .continueBtn {
+    flex: 1;
+    font-size: 16px;
+    height: auto !important;
+    min-height: 38px;
+    padding: 7px 16px !important;
+    line-height: 24px;
+    border-radius: 20px !important;
+    border-color: #d5d7da;
+    color: #04252b;
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 500;
+
+    &:hover,
+    &:focus {
+      border-color: #038a80;
+      color: #038a80;
+    }
+  }
+
+  .updateModelBtn {
+    flex: 1;
+    font-size: 16px;
+    height: auto !important;
+    min-height: 38px;
+    padding: 7px 16px !important;
+    line-height: 24px;
+    border-radius: 20px !important;
+    background: #004541 !important;
+    border-color: #004541 !important;
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 500;
+
+    &:hover,
+    &:focus {
+      background: #026961 !important;
+      border-color: #026961 !important;
+    }
+  }
+}
+
+// ========== 模型评价 ==========
+.evaluationCard {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+}
+
+.evaluationContent {
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+  font-family: 'PingFang SC', sans-serif;
+  width: 100%;
+
+  :global(.markdown-body) {
+    background: transparent;
+    font-size: 14px;
+    line-height: 22px;
+    color: #04252b;
+  }
+
+  :global(.markdown-body h2) {
+    margin: 0 0 8px;
+    padding: 0;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #04252b;
+    font-family: 'PingFang SC', sans-serif;
+  }
+
+  :global(.markdown-body p) {
+    margin: 0 0 8px;
+    color: #04252b;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :global(.markdown-body ul) {
+    margin: 0;
+    padding-left: 18px;
+    list-style-type: disc;
+  }
+
+  :global(.markdown-body li) {
+    margin-bottom: 6px;
+    color: #595959;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.expertBtnWrapper {
+  margin-top: 12px;
+  width: 100%;
+
+  .expertBtn {
+    font-size: 13px;
+    font-weight: 500;
+    height: auto !important;
+    min-height: 36px;
+    padding: 6px 16px !important;
+    border-radius: 8px !important;
+    background: #026961 !important;
+    border-color: #026961 !important;
+    font-family: 'PingFang SC', sans-serif;
+
+    &:hover,
+    &:focus {
+      background: #038a80 !important;
+      border-color: #038a80 !important;
+    }
+  }
+}

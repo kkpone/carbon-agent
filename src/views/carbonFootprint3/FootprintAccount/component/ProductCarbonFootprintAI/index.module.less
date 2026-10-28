@@ -1,0 +1,528 @@
+@import '@src/styles/var.less';
+
+.wrap {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 20px 0;
+  overflow: hidden;
+}
+
+.bgWrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bgImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  max-height: 600px;
+  justify-content: center;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+.aiIconWrap {
+  position: relative;
+  width: 110px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aiIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.titleLine {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.titleText {
+  font-family: PingFang SC, sans-serif;
+  font-size: 32px;
+  line-height: 32px;
+  color: #04252b;
+  margin-bottom: 0;
+}
+
+.titleGradientWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.titleGradient {
+  font-family: PingFang SC, sans-serif;
+  font-size: 36px;
+  line-height: 42px;
+  background: linear-gradient(
+    90deg,
+    rgba(134, 239, 181, 1) 1.25%,
+    rgba(49, 221, 184, 1) 15.79%,
+    rgba(101, 193, 250, 1) 42.5%,
+    rgba(135, 156, 255, 1) 69.2%,
+    rgba(180, 143, 255, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 0;
+}
+
+.titleReveal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 20;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  animation: revealFromLeft 2s ease-out infinite;
+}
+
+@keyframes revealFromLeft {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.description {
+  font-size: 16px;
+  line-height: 24px;
+  color: #999ea4;
+  text-align: center;
+  max-width: 100%;
+  margin-bottom: 12px;
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+}
+
+.inputBox {
+  position: relative;
+  width: 100%;
+  min-height: 120px;
+  border-radius: 16px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.05);
+  padding: 16px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(
+        to right,
+        #49ed92 0%,
+        #33e9c4 28%,
+        #52cabe 45%,
+        #1bd3ba 100%
+      )
+      border-box;
+}
+
+.fileListRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fileListScroll {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.fileChip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-width: 0;
+  padding: 8px;
+  border-radius: 4px;
+  background: rgba(247, 248, 249, 0.8);
+}
+
+.fileChip:hover .fileRemoveBtn {
+  opacity: 1;
+}
+
+.fileIconWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.fileIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.fileMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.fileNameBtn {
+  max-width: 120px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 22px;
+  color: #04252b;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover {
+    color: #0cbf9f;
+  }
+}
+
+.fileNameText {
+  max-width: 120px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.fileSubText {
+  font-size: 12px;
+  line-height: 18px;
+  color: #999ea4;
+  margin: 0;
+}
+
+.fileRemoveBtn {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #04252b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.fileRemoveIcon {
+  width: 12px;
+  height: 12px;
+  color: #fff;
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 32px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.actionRowLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.dropdownContent {
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  border: 1px solid #e0e4e6;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: rgba(12, 191, 159, 0.5);
+  }
+}
+
+.dropdownIcon {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.placeholder {
+  color: #b5b8bb;
+}
+
+.actionRowRight {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.uploadLabel {
+  cursor: pointer;
+  display: block;
+}
+
+.uploadLabelDisabled {
+  cursor: not-allowed;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.uploadCircle {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #e0e4e6;
+  background: #fff;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: #0cbf9f;
+  }
+}
+
+.uploadCircleDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+
+  &:hover {
+    border-color: #e0e4e6;
+  }
+}
+
+.inputInner {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.inputIconWrap {
+  width: 0;
+  height: 18px;
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.inputIcon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.textarea {
+  flex: 1;
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+  outline: none;
+  background: transparent;
+  resize: none;
+  border: none;
+
+  &::placeholder {
+    color: #b5b8bb;
+  }
+}
+
+.sendBtn {
+  width: 32px;
+  height: 32px;
+  background: #0cbf9f;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) {
+    background: #0aa88a;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.sendIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+  color: #fff;
+}
+
+.spinnerCircle {
+  opacity: 0.25;
+}
+
+.spinnerPath {
+  opacity: 0.75;
+}
+
+.pillTriggerScope {
+  min-width: 7.25rem;
+  max-width: 11rem;
+}
+
+.pillTriggerFactor {
+  min-width: 6.75rem;
+  max-width: 12rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.quickWrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quickBtn {
+  background: #fff;
+  border: 1px solid #f3f3f3;
+  border-radius: 100px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+
+  &:hover {
+    border-color: @primary-color;
+  }
+}
+
+.quickIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.quickText {
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+  white-space: nowrap;
+}

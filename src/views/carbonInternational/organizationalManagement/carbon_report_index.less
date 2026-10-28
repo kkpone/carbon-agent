@@ -1,0 +1,333 @@
+@import '@src/styles/var.less';
+
+.input {
+  width: 380px;
+  color: #ccc;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.select_report,
+.Date-Ranager {
+  border-radius: 4px;
+}
+
+.filter_report {
+  padding-top: 0;
+}
+
+.select_btn_list {
+  display: flex;
+  align-items: center;
+}
+
+.sbl_choice {
+  span {
+    color: #ee9e25;
+  }
+}
+
+.sbl_del {
+  margin-left: 20px;
+  color: @dangerTextColor;
+  cursor: pointer;
+}
+
+.Modal_text {
+  text-align: center;
+
+  .Modal_del_icon {
+    font-size: 82px;
+  }
+}
+
+.ant-modal-body {
+  padding: 10px 24px 24px;
+}
+
+.steps_list {
+  width: 70%;
+  margin: 12px auto 30px;
+}
+
+.target_footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 14px 16px;
+  text-align: right;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.shop_all div {
+  display: inline-block;
+}
+
+.shop_all .div_right {
+  float: right;
+}
+
+.shop_list {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+
+  .shop_img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.shop_list_active {
+  background: rgb(7 193 96 / 4%);
+  border: 1px solid @primary-color;
+}
+
+.pro_detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 1100px) and(min-width: 1024px) {
+  .input {
+    width: 310px;
+  }
+
+  //  搜索框
+  .select_report {
+    width: 160px;
+  }
+
+  //日期选择框
+  .Date-Ranager {
+    width: 240px;
+  }
+
+  //
+  .select-con {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+    margin-bottom: 20px;
+  }
+
+  .margin-left30 {
+    margin-left: 0;
+  }
+}
+
+/* >=1024的设备屏幕 */
+
+@media (max-width: 1280px) and(min-width: 1100px) {
+  .input {
+    width: 380px;
+  }
+
+  //  搜索框
+  .select_report {
+    width: 310px;
+  }
+
+  //日期选择框
+  .Date-Ranager {
+    width: 310px;
+  }
+
+  //下拉框总div
+  .select-con {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+    margin-bottom: 20px;
+  }
+
+  .margin-left30 {
+    margin-left: 0;
+  }
+}
+
+/* >=1100的设备屏幕 */
+@media (max-width: 1366px) and (min-width: 1280px) {
+  .input {
+    width: 310px;
+  }
+
+  //  搜索框
+  .select_report {
+    width: 240px;
+  }
+
+  //日期选择框
+  .Date-Ranager {
+    width: 240px;
+  }
+
+  //下拉框总div
+  .select-con {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+    margin-bottom: 20px;
+  }
+
+  .margin-left30 {
+    margin-left: 0;
+  }
+}
+
+/* >=1280的设备屏幕 */
+
+@media (max-width: 1500px) and(min-width: 1366px) {
+  .input {
+    width: 380px;
+  }
+
+  //  搜索框
+  .select_report {
+    width: 310px;
+  }
+
+  //日期选择框
+  .Date-Ranager {
+    width: 310px;
+  }
+
+  //下拉框总div
+  .select-con {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+
+  .margin-left30 {
+    margin-left: 0;
+  }
+}
+
+/* >=1366的设备屏幕 */
+
+@media (max-width: 1680px) and(min-width: 1440px) {
+  .input {
+    width: 280px;
+  }
+
+  //  搜索框
+  .select_report {
+    width: 140px;
+  }
+
+  //日期选择框
+  .Date-Ranager {
+    width: 240px;
+  }
+
+  //下拉框总div
+  .select-con {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+}
+
+/* >=1440的设备屏幕 */
+
+@media (max-width: 1920px) and(min-width: 1680px) {
+  .input {
+    width: 380px;
+  }
+
+  //  搜索框
+  .select_report {
+    width: 200px;
+  }
+
+  //日期选择框
+  .Date-Ranager {
+    width: 298px;
+  }
+}
+
+/* >=1680的设备屏幕 */
+@media screen and(min-width: 1920px) {
+  .input {
+    width: 380px;
+  }
+
+  //  搜索框
+  .select_report {
+    width: 200px;
+  }
+
+  //日期选择框
+  .Date-Ranager {
+    width: 298px;
+  }
+}
+
+/* >=1920的设备屏幕 */
+
+.go_btn {
+  width: 122px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgb(0 0 0 / 6%), inset 0 -1px 0 0 rgb(0 0 0 / 6%);
+}
+
+.modal_img_content {
+  display: flex;
+}
+
+.modal_img_left {
+  position: relative;
+  width: 550px;
+  height: 360px;
+  margin-right: 24px;
+}
+
+.modal_img_left img {
+  width: 550px;
+  height: 360px;
+}
+
+.modal_img_right_content {
+  width: 248px;
+}
+
+.img_content {
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  width: 450px;
+  margin-left: -225px;
+}
+
+.steps-input {
+  width: 420px;
+}
+
+.stepOne {
+  .ant-select {
+    width: 420px !important;
+  }
+
+  .ant-input {
+    width: 420px;
+  }
+}

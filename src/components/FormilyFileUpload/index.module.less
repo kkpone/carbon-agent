@@ -1,0 +1,95 @@
+@import url('@styles/var.less');
+
+.fileUploadWrapper {
+  width: 100%;
+
+  .tips {
+    height: 17px;
+    margin-top: -4px;
+    margin-bottom: 12px;
+    color: #999ea4;
+    font-size: 12px;
+    line-height: 17px;
+  }
+
+  :global {
+    .ant-upload-list {
+      display: flex;
+      flex-flow: row wrap;
+      min-width: 0;
+      margin-right: -8px;
+      margin-left: -8px;
+    }
+
+    .ant-upload-list-text-container {
+      display: block;
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding-right: 8px;
+      padding-left: 8px;
+    }
+  }
+
+  .fileWrapper {
+    display: flex;
+    height: 36px;
+    margin-top: 8px;
+    line-height: 36px;
+    border-radius: 4px;
+
+    &.readPrettyWrapper {
+      padding: 0 16px;
+      background-color: #f7f8f9;
+
+      .name {
+        color: #666f;
+      }
+    }
+
+    &:hover {
+      padding: 0 16px;
+      background-color: rgb(247 248 249 / 100%);
+
+      .name {
+        color: @primary-color;
+      }
+
+      .delBtn {
+        display: block;
+
+        .delIcon {
+          color: @primary-color;
+        }
+      }
+    }
+
+    .name {
+      color: #343a40;
+    }
+
+    .fileContent {
+      flex: 1;
+
+      .fileIcon {
+        margin-right: 8px;
+        font-size: 16px;
+      }
+
+      .name {
+        max-width: 228px;
+        font-weight: 400;
+        font-size: 14px;
+      }
+    }
+
+    .delBtn {
+      display: none;
+      margin-left: 9px;
+      cursor: pointer;
+
+      .delIcon {
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@import '@src/styles/var.less';
+
+.organization_management {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    .searchWrapper {
+      display: flex;
+      flex: 1 1 auto;
+      flex-flow: row wrap;
+
+      .searchItem {
+        display: flex;
+        align-items: center;
+        width: 25%;
+
+        .searchInput {
+          margin-right: 20px;
+        }
+
+        :global(.ant-picker) {
+          width: 100%;
+        }
+
+        .label {
+          flex: 0 0;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .addButton {
+      padding: 0 21px;
+    }
+  }
+
+  .row_detail {
+    margin-right: 30px;
+    color: @primary-color;
+    cursor: pointer;
+  }
+
+  .row_delete {
+    color: @dangerTextColor;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,452 @@
+@import '@Variable';
+
+.purchaseModal {
+  :global {
+    .ant-modal-content {
+      overflow: hidden;
+    }
+
+    .ant-modal-body {
+      padding: 0;
+    }
+  }
+}
+
+.purchaseModalContent {
+  width: 100%;
+  height: 576px;
+}
+
+.orderSpin {
+  width: 100%;
+  height: 100%;
+
+  :global {
+    .ant-spin-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.title {
+  .title-s-b();
+
+  margin-bottom: 20px;
+}
+
+.goodsTitle {
+  padding: 0 24px;
+}
+
+.goodsList {
+  display: flex;
+  flex-direction: column;
+  width: 384px;
+  height: 100%;
+  padding: 24px 0;
+  overflow-y: auto;
+  background: @gray1;
+}
+
+.goodsListContent {
+  flex: 1;
+  padding: 0 24px;
+  overflow-y: auto;
+}
+
+.goodsCard {
+  margin-bottom: 16px;
+  padding: 20px 24px;
+  background: linear-gradient(180deg, #f7f8f9 0%, #fff 100%);
+  border: 2px solid #fff;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 16px 0 rgb(0 0 0 / 8%);
+  }
+}
+
+.selectedGoodsCard {
+  border-radius: 8px;
+  background: #026961;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+
+  .goodsRealPrice,
+  .goodsInfo {
+    color: #fff;
+  }
+
+  .goodsName {
+    .body-l-b();
+
+    color: #fff;
+  }
+
+  .goodsOriginPrice {
+    color: @green1;
+  }
+}
+
+.goodsName {
+  .body-m-b();
+
+  margin-bottom: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.goodsPrice {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.goodsRealPrice {
+  margin-right: 8px;
+  color: @green7;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.goodsOriginPrice {
+  color: @gray7;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.goodsInfo {
+  .caption-s();
+
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.goodsDetails {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+}
+
+.goodsInfoContent {
+  width: 100%;
+  height: 324px;
+  border-bottom: 1px dashed @gray4;
+  overflow-y: auto;
+  padding-bottom: 16px;
+}
+
+.goodsPayContent {
+  flex: 1;
+  width: 100%;
+}
+
+.goodsDetailsName {
+  .body-l-b();
+
+  margin: 4px 0;
+}
+
+.goodsDetailsInfo {
+  .caption-s();
+
+  margin-bottom: 16px;
+
+  display: -webkit-box; /* 必须 */
+  -webkit-box-orient: vertical; /* 必须：设置盒子为垂直方向 */
+  -webkit-line-clamp: 8; /* 限制行数为 10 行 */
+  overflow: hidden; /* 隐藏超出部分 */
+  text-overflow: ellipsis; /* 添加省略号 */
+  word-break: break-word; /* 控制单词换行 */
+}
+
+.goodsSkuList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.goodsSku {
+  .caption-s-b();
+
+  margin-right: 8px;
+  padding: 4px 8px;
+  color: @green7;
+  border-radius: 4px;
+  border: 1px solid #08a28b;
+  background: rgba(8, 162, 139, 0.1);
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.goodsCountCaption {
+  .caption-s();
+
+  margin: 16px 0 8px;
+}
+
+.inputBox {
+  display: flex;
+}
+
+.countInput {
+  width: 60px;
+  color: #000;
+  background: #fff;
+  border-right: none;
+  border-left: none;
+  border-radius: 0;
+
+  :global {
+    .ant-input-number-input {
+      cursor: default;
+    }
+  }
+}
+
+.addButton {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.minusButton {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.goodsPriceContent {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.goodsPriceContentLeft {
+  width: 200px;
+}
+
+.goodsPriceContentRight {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: end;
+}
+
+.goodsSkuCaption {
+  .caption-s();
+
+  margin-bottom: 4px;
+}
+
+.goodsDetailsSku {
+  .caption-s();
+
+  color: @gray8;
+}
+
+.orderPriceBlock {
+  display: flex;
+  align-items: baseline;
+}
+
+.orderPriceTip {
+  .body-m-b();
+}
+
+.orderPrice {
+  color: @green7;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.orderPriceUnit {
+  color: @green7;
+}
+
+.orderOriginPrice {
+  color: @gray7;
+  text-decoration: line-through;
+}
+
+.orderSubmit {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.userAgreement {
+  .body-m();
+
+  color: @gray6;
+}
+
+.agreement {
+  color: @green7;
+  cursor: pointer;
+}
+
+.submitOrderButton {
+  .title-s-b();
+
+  width: 132px;
+  height: 40px;
+  color: #fff;
+}
+
+.orderDetails {
+  width: 512px;
+  height: 100%;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.orderTitle {
+  .title-s-b();
+
+  margin-bottom: 20px;
+}
+
+.orderGoods {
+  margin: 16px 0;
+  padding: 16px 0;
+  border-top: 1px dashed @gray4;
+  border-bottom: 1px dashed @gray4;
+}
+
+.orderGoodsTitle {
+  .body-l-b();
+
+  margin: 4px 0;
+}
+
+.orderItem {
+  margin-bottom: 16px;
+
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+}
+
+.orderItemPrice {
+  display: flex;
+  align-items: center;
+}
+
+.orderItemRealPrice {
+  .body-m-b();
+
+  margin-right: 12px;
+}
+
+.orderItemOriginPrice {
+  color: @gray6;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.payDetails {
+  flex: 1;
+  height: 100%;
+  padding: 24px;
+  overflow-y: auto;
+  background: @gray1;
+}
+
+.orderPayContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.orderPayMoney {
+  .body-m-b();
+
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  color: @green7;
+}
+
+.orderPayMoneyValue {
+  font-size: 24px;
+}
+
+.restPayTime {
+  .caption-s();
+
+  margin-bottom: 8px;
+  color: @gray8;
+}
+
+.time {
+  color: @orange6;
+}
+
+.wxPay {
+  .body-m-b();
+
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.wxPayImg {
+  margin-right: 8px;
+}
+
+.payResultCaption {
+  .caption-s();
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.paySuccessImg {
+  margin: 16px 0;
+}
+
+.orderOperation {
+  margin-top: 16px;
+}
+
+.orderMenuBtn {
+  margin-left: 16px;
+}
+
+.qrCodeContent {
+  position: relative;
+  width: 136px;
+  height: 136px;
+}
+
+.qrCodeExpire {
+  .caption-s();
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background: rgb(0 0 0 / 80%);
+}

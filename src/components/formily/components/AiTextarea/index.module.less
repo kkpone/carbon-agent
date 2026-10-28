@@ -1,0 +1,99 @@
+.editWrapper {
+  position: relative;
+  min-width: 180px;
+  padding-left: 16px;
+
+  .toolbar {
+    display: flex;
+    gap: 4px;
+    .aiLogo {
+      display: flex;
+      width: 32px;
+      height: 32px;
+      padding: 10px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        width: 18px;
+        height: 13px;
+        flex-shrink: 0;
+      }
+    }
+
+    .aiFunc {
+      display: flex;
+      width: 32px;
+      height: 32px;
+      padding: 10px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+
+      cursor: pointer;
+    }
+  }
+
+  .aiAssistant {
+    width: 44px;
+    height: 32px;
+    display: none;
+    padding-right: 12px;
+
+    position: absolute;
+    top: 0;
+    left: -12px;
+
+    .inner {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      background: var(--Fill-white, #fff);
+      box-shadow: 0px 4px 12px 0px rgba(12, 191, 159, 0.24);
+      padding: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    z-index: 1;
+  }
+
+  :global(.ql-editor) {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+}
+
+.editWrapper:hover .aiAssistant {
+  display: block;
+}
+
+.disabled:hover .aiAssistant {
+  display: none;
+}
+
+.disabled {
+  :global(.ql-editor:hover) {
+    cursor: not-allowed;
+    border: 1px solid var(--brand-green-7-normal, #ebedf0);
+  }
+
+  :global(.ql-editor:hover p) {
+    cursor: not-allowed;
+  }
+
+  :global(.ql-editor) {
+    background-color: rgba(0, 0, 0, 0.04);
+    max-width: 300px;
+    overflow-y: auto;
+  }
+}

@@ -1,0 +1,41 @@
+.productList {
+  && {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow-y: auto;
+  }
+}
+
+.header {
+  padding: 32px 40px 28px;
+}
+
+.title {
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.content {
+  padding: 0 40px;
+}
+
+.operate {
+  margin-top: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: end;
+  column-gap: 16px;
+}
+
+.operateColumn {
+  display: flex;
+  column-gap: 16px;
+  :global {
+    .ant-btn {
+      padding: 0;
+    }
+  }
+}

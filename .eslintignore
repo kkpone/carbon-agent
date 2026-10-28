@@ -1,0 +1,15 @@
+/lambda/
+/scripts/*
+.history
+serviceWorker.ts
+/config/*
+/public/*
+*.js
+*.sb.tsx
+*.stories.tsx
+sdks_v2
+/src/views/carbonFootprint/
+/src/views/carbonproduct/
+src/views/workbench/productList.tsx
+
+src/views/ESG/AiGenerateOutline/components/Tree/

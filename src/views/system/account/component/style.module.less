@@ -1,0 +1,452 @@
+@import '@src/styles/var.less';
+@import '@Variable';
+
+.om_ct_li_icon {
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+.om_ct_li_active {
+  color: @primary-color;
+  background: #f0fcf6;
+  border-right: 2px solid @primary-color;
+}
+
+.om_content_con {
+  box-sizing: border-box;
+  width: 940px;
+  background: white;
+}
+
+//我的账号
+.account_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: @text-color;
+  font-weight: 500;
+  font-size: 16px;
+
+  .CreateOrganization {
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    color: @text-color-2;
+    font-weight: normal;
+    font-size: 14px;
+    cursor: pointer;
+
+    .icons {
+      margin-right: 10px;
+      font-size: 12px;
+    }
+  }
+}
+
+.padding_30 {
+  padding: 30px 30px 0;
+}
+
+.margin_b30 {
+  margin-bottom: 30px;
+}
+
+.flex_line_center {
+  display: flex;
+  align-items: center;
+  width: 262px;
+}
+
+.flex_line_between {
+  justify-content: space-between;
+}
+
+.ac_title {
+  color: @text-color;
+  font-size: 14px;
+}
+
+.ac_number {
+  max-width: 180px;
+}
+
+.ac_ipt {
+  width: 220px;
+}
+
+.ac_chanage {
+  color: @primary-color;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.organization {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 100%;
+
+  > div {
+    display: flex;
+    flex: 1 1 100%;
+    flex-flow: column;
+    height: 100%;
+    overflow: auto;
+  }
+}
+
+.AccountNumber {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  width: 400px;
+  height: 100%;
+  margin: 0 auto;
+
+  .key {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .readOnlyInput {
+    background-color: @read-only-bg;
+    border: none;
+  }
+
+  .formItem {
+    margin-top: 24px;
+
+    &.buttons {
+      margin-top: 16px;
+    }
+  }
+
+  .sex {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    button + button {
+      margin-left: 10px;
+    }
+  }
+
+  :global(.ant-radio-wrapper) {
+    margin-right: 27px;
+  }
+}
+
+.am_b_back {
+  margin-right: 20px;
+  border-color: #ddd;
+}
+
+.am_button {
+  height: 40px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.sublist {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 24px;
+}
+
+.sub_btn {
+  width: 80px;
+  height: 34px;
+  border-radius: 4px;
+}
+
+.subCancel {
+  margin-right: 10px;
+}
+
+.ant-modal-body {
+  padding: 24px 24px 0;
+}
+
+//组织管理
+
+/* 四期添加组织样式 */
+.disabledOrganization.disabledOrganization {
+  cursor: not-allowed;
+
+  .companyName {
+    color: @gray6;
+  }
+
+  .companyNum {
+    color: @gray5;
+  }
+
+  &:hover {
+    border: 1px solid @green7;
+
+    .companyName {
+      color: @gray6;
+    }
+
+    .companyNum {
+      color: @gray5;
+    }
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 16px;
+  padding-left: 0;
+  column-gap: 20px;
+  row-gap: 24px;
+}
+
+.companyName {
+  .body-l-b();
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.companyNameText {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.lastLoginTag {
+  .caption-s();
+}
+
+.companyNum {
+  .caption-s();
+
+  margin-top: 5px;
+}
+
+.companyTag {
+  .caption-s-b();
+
+  display: inline-block;
+  margin-top: 27px;
+  padding: 1px 4px;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.activatedTag {
+  background: linear-gradient(103deg, #0cbf9f 0%, #2dccaa 100%);
+}
+
+.trialTag {
+  background: linear-gradient(103deg, #3491fa 0%, #5eafff 100%);
+}
+
+.expiredTag {
+  color: @orange6;
+  background: @orange1;
+}
+
+.disabledTag {
+  color: @gray6;
+  background: @gray1;
+}
+
+/* 四期添加组织样式 end */
+.AC_list_li {
+  padding: 24px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 4%);
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid @green7;
+
+    .companyName {
+      color: @green7;
+    }
+  }
+}
+
+.AC_LLO_title {
+  display: block;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+  text-align: justify;
+  text-overflow: ellipsis;
+}
+
+.AC_LLO_code {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  overflow: hidden;
+  color: @text-color-2;
+  font-size: 14px;
+  letter-spacing: 0;
+  white-space: nowrap; //文本不换行，这样超出一行的部分被截取，显示...
+  text-overflow: ellipsis;
+
+  .disableTag {
+    display: none;
+    flex: 0 0 60px;
+    height: 24px;
+    padding: 0 9px;
+    color: #6c757d;
+    line-height: 24px;
+    background-color: #ebedf0;
+  }
+}
+
+.changePWD {
+  :global(.ant-modal-body) {
+    padding-bottom: 0;
+  }
+
+  :global(.ant-form-item) {
+    margin-bottom: 20px;
+  }
+
+  :global(.ant-modal-header) {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.account_form_trget {
+  :global(.ant-modal-body) {
+    padding: 24px 24px 0;
+  }
+
+  :global {
+    .ant-modal-body {
+      padding: 0;
+    }
+
+    .ant-modal-header {
+      padding: 24px;
+    }
+  }
+}
+
+.account_tip_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 24px;
+
+  li {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 210px;
+    margin-bottom: 14px;
+    padding: 15px 14px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+
+    .account_tip_list_icon {
+      margin-right: 10px;
+      font-size: 30px;
+    }
+  }
+
+  li:nth-of-type(odd) {
+    width: 239px;
+  }
+}
+
+.account_tip_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  color: @text-color;
+  font-size: 16px;
+  background: #f8f8f8;
+
+  span {
+    margin-right: 10px;
+  }
+}
+
+.account_tip_title {
+  padding: 0 24px;
+}
+
+.agreement {
+  display: flex;
+  align-items: center;
+}
+
+.tip {
+  width: 60px;
+  height: 24px;
+  color: @primary-color;
+  line-height: 24px;
+  text-align: center;
+  background: rgb(12 191 159 / 4%);
+  border-radius: 4px;
+}
+
+.order {
+  .caption-s();
+}
+
+.customerService {
+  color: @green7;
+}
+
+.customerServiceImg {
+  width: 13px;
+  height: 13px;
+  margin: -4px 4px 0 8px;
+}
+
+.addIcon {
+  margin-bottom: 4px;
+}
+
+.addCompany {
+  .body-m();
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 144px;
+  color: @gray6;
+  border: 1px dashed #d2d6da;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 4%);
+  cursor: pointer;
+
+  &:hover {
+    color: @green7;
+    background: #fff;
+    border-color: @green7;
+  }
+}

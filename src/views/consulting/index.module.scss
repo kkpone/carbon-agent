@@ -1,0 +1,198 @@
+.tablist {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 46px;
+    margin-bottom: 20px;
+    padding: 0;
+    background: #F8FAFA;
+
+    li {
+        height: 100%;
+        padding: 0 20px;
+        color: #666;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 46px;
+        list-style: none;
+        cursor: pointer;
+    }
+
+    .active {
+        color: #09C199;
+        background-color: white;
+    }
+}
+
+.content {
+    margin: 0;
+    padding: 0;
+
+    .iptwid {
+        width: 320px;
+    }
+
+    .spanLe {
+        margin-left: 10px;
+    }
+
+    .selectwid {
+        display: flex;
+        align-items: center;
+    }
+
+    :global(.ant-form-item-required::before) {
+        display: none !important;
+    }
+
+    :global(.ant-table-thead > tr > td) {
+        padding: 14px;
+
+    }
+}
+
+.sublist {
+    position: absolute;
+    bottom: -27px;
+    left: 17px;
+    width: 96.3%;
+    height: 51px;
+    background: white;
+    border-top: 1px solid #EEE;
+    box-shadow: 0 -1px 2px 0 rgb(0 0 0 / 3%);
+
+    :global(.ant-form-item-control-input-content) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 20px;
+    }
+
+    .subcon {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .subbtn {
+        width: 140px;
+        height: 51px;
+        margin-left: 40px;
+    }
+
+    .tip {
+        color: #333;
+        font-size: 10px;
+
+        span {
+            margin-left: 10px;
+            color: #09C199;
+            font-weight: 400;
+            font-size: 14px;
+        }
+    }
+}
+
+.content {
+    padding-bottom: 100px;
+}
+
+.formlists {
+    padding: 0 20px 20px;
+    padding-bottom: 140px;
+}
+
+.recolor {
+    margin-right: 5px;
+    color: #ED5555;
+}
+
+.tableliststyle {
+    margin: 20px;
+}
+
+.checTab {
+    display: flex;
+
+    li {
+        list-style: none;
+    }
+}
+
+.title {
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.wating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #333;
+    font-weight: 400;
+    font-size: 16px;
+
+    .flextip {
+        display: flex;
+        justify-content: center;
+        margin-top: 22px;
+        font-weight: 400;
+
+        .tipiconspan {
+            margin-right: 29px;
+            color: #666;
+            font-size: 14px;
+
+            .tipicon {
+                margin-right: 10px;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.normalwidth {
+    max-width: min-content;
+}
+
+.inherit {
+    max-width: inherit;
+}
+
+.gonoe {
+    max-width: 67%;
+}
+
+@media (min-width: 2500px) {
+    .gonoe {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 2500px) and (min-width:1920px) {
+    .gonoe {
+        max-width: 67%;
+    }
+}
+
+@media (max-width: 1920px) and (min-width:1404px) {
+    .gonoe {
+        max-width: 65%;
+    }
+}
+
+@media (max-width: 1404px) and (min-width:1000px) {
+    .gonoe {
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .gonoe {
+        max-width: 30%;
+    }
+}

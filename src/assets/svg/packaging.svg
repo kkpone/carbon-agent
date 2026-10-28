@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <rect x="0.5" y="0.5" width="19" height="19" rx="3.5" fill="#F7F8F9"></rect>
+  <path d="M10 6.875L11.875 5L15.625 6.875L13.75 8.75L10 6.875ZM13.75 8.75L15.625 10.625L13.75 11.5625V13.125L10 15L6.25 13.125V11.5625L4.375 10.625L6.25 8.75L10 10.625L13.75 8.75ZM4.375 6.875L8.125 5L10 6.875L6.25 8.75L4.375 6.875Z" fill="#B5B8BB"></path>
+  <rect x="0.5" y="0.5" width="19" height="19" rx="3.5" stroke="#EBEDF0"></rect>
+</svg>

@@ -1,0 +1,138 @@
+@import '@src/styles/var.less';
+.invoiceApplyForInvoiceMain {
+  .ant-input[disabled] {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+  .ant-input-affix-wrapper-disabled {
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+  .mainTitle {
+    .mainTitleSteps {
+      height: 44px;
+      background: #f7f8f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      position: relative;
+      cursor: pointer;
+      .selectSteps {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        color: #6c757d;
+        border: 1px solid #d2d6da;
+      }
+      .selectStepsText {
+        margin-left: 10px;
+        font-weight: 500;
+        color: #6c757d;
+      }
+    }
+    .mainTitleStepsActive {
+      .selectSteps {
+        color: #0cbf9f;
+        border-color: #0cbf9f;
+      }
+      .selectStepsText {
+        color: #0cbf9f;
+      }
+    }
+    .mainTitleStepsClose {
+      .selectSteps {
+        color: #fff;
+        background: #0cbf9f;
+        border-color: #0cbf9f;
+      }
+      .selectStepsText {
+        color: #343a40;
+      }
+    }
+  }
+  .mainBody {
+    margin-top: 24px;
+  }
+  .invoiceManagementMain {
+    height: calc(100vh - 250px);
+    overflow-y: auto;
+  }
+  .writeInvoiceMain {
+    width: 850px;
+    margin: 0 auto;
+    .detailInput {
+      height: 32px;
+      background: #f7f8f9;
+      border-radius: 4px;
+      padding-left: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .detailText {
+      height: 100px;
+      padding: 6px 10px;
+      background: #f7f8f9;
+      border-radius: 4px;
+    }
+  }
+}
+
+.invoiceApplyForInvoiceMainFooter {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  width: calc(100% - 200px);
+  border-top: 1px solid #ebedf0;
+  .footerMain {
+    height: 60px;
+    width: 850px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.orderRecordListFooter {
+  .moneyText {
+    margin-top: 24px;
+    height: 30px;
+    padding-right: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.orderServiceInvoiceModal {
+  .modalTitle {
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    color: @mainDark;
+    padding: 20px 24px;
+  }
+  .ant-modal-body {
+    padding: 0;
+  }
+  //  关闭弹框的样式
+  .closeIcon {
+    position: absolute;
+    height: 25px;
+    line-height: 25px;
+    top: 28px;
+    right: 24px;
+  }
+  .modalMain {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+}

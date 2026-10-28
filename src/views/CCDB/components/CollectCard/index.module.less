@@ -1,0 +1,141 @@
+.card {
+  border-radius: 8px;
+  background: var(--Fill-white, #fff);
+  box-shadow: 0px 16px 40px 0px rgba(153, 158, 164, 0.04);
+  cursor: pointer;
+
+  .header {
+    display: flex;
+    padding: 16px 24px;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    height: 88px;
+
+    .img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .operation {
+        cursor: pointer;
+      }
+
+      .nameWrapper {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+
+      .name {
+        overflow: hidden;
+        color: var(--text-gray-8-primary, #343a40);
+        text-overflow: ellipsis;
+
+        /* Body 内容/@body-l-b */
+        font-family: 'PingFang SC';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 150% */
+
+        max-width: 160px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        cursor: pointer;
+        // overflow-wrap: ;
+      }
+
+      .cValue {
+        color: @colorPrimary;
+
+        /* Body 内容/@body-l-b */
+        font-family: 'PingFang SC';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px; /* 150% */
+        margin-right: 4px;
+      }
+
+      .unit {
+        color: @colorPrimary;
+
+        /* Caption 辅助信息/@caption-s */
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    padding: 12px 24px;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    height: 44px;
+    border-radius: 0px 0px 8px 8px;
+    background: linear-gradient(90deg, #f5fcfc 0%, #fcfbfa 100%);
+    color: var(--text-gray-7-secondary, #6c757d);
+    text-align: center;
+
+    /* Caption 辅助信息/@caption-s */
+    font-family: 'PingFang SC';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+
+    .institution {
+      width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    .year {
+      font-size: 12px;
+    }
+  }
+
+  .collectAndCopy {
+    display: none;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .collectAndCopy:hover {
+    border-radius: 4px;
+    background: var(--fill-gray-1-bghover, #f7f8f9);
+  }
+
+  // .copy {
+
+  // }
+}
+
+.card:hover {
+  box-shadow: 0px 24px 40px 0px rgba(153, 158, 164, 0.16);
+  .name {
+    color: @colorPrimary !important;
+  }
+
+  .collectAndCopy {
+    display: flex;
+  }
+}

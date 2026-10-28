@@ -1,0 +1,280 @@
+.fill {
+  height: 100vh;
+  :global {
+    .ant-formily-item-label-content {
+      label {
+        border-bottom: none;
+        white-space: wrap;
+      }
+    }
+    .ant-formily-item-label-content > span {
+      display: flex;
+    }
+  }
+}
+
+.header {
+  padding: 0 40px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  color: #04252b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px; /* 137.5% */
+}
+
+.questionnaireTag {
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  background: #ddf4f2;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  column-gap: 2px;
+  cursor: pointer;
+}
+
+.langText {
+  font-size: 14px;
+  color: #808080;
+}
+
+.currLangText {
+  color: #000;
+  font-size: 16px;
+}
+
+.content {
+  padding: 32px 0;
+  height: calc(100vh - 118px);
+  overflow-y: auto;
+  background: rgb(245, 247, 250);
+}
+
+.fillContent {
+  margin: 0 auto;
+  width: 536px;
+}
+
+.hide {
+  display: none;
+}
+
+.overviewContent {
+  margin: 0 auto;
+  width: 768px;
+}
+
+.questionnaireTitle {
+  margin-bottom: 16px;
+  color: #000;
+  font-size: 24px;
+  line-height: 30px; /* 125% */
+}
+
+.expireTime {
+  color: #000;
+  font-size: 16px;
+  line-height: 22px; /* 137.5% */
+}
+
+.fillForm {
+  margin-top: 32px;
+}
+
+.overviewTitle {
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px; /* 140% */
+}
+
+.overviewImg {
+  margin: 24px 0;
+  width: 100%;
+}
+
+.chartContent {
+  padding: 32px 0;
+  display: flex;
+  column-gap: 18px;
+}
+
+.pieChartContent {
+  flex: 1;
+}
+
+.secondaryTitle {
+  color: #121615;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px; /* 157.143% */
+}
+
+.emission {
+  margin: 8px 0 16px;
+  display: flex;
+  column-gap: 6px;
+  align-items: end;
+}
+
+.emissionValue {
+  color: #0cbf9f;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+.emissionUnit {
+  position: relative;
+  top: -6px;
+  color: #525866;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+}
+
+.barChartContent {
+  padding-top: 24px;
+  flex: 1;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e1e4ea;
+}
+
+.tipsContent {
+  display: flex;
+  column-gap: 8px;
+}
+
+.tips {
+  max-width: 100px;
+  padding: 0 10px;
+  height: 32px;
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+  border-radius: 0px 30px 30px 0px;
+  background: #019b8f;
+  span {
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 12px;
+  }
+}
+
+.tipText {
+  flex: 1;
+  color: #04252b;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+}
+
+.barArea {
+  margin-top: 24px;
+  padding: 0 16px;
+}
+
+.barTitle {
+  margin-bottom: 8px;
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.footer {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  box-shadow: 0px -5px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+.transportOption {
+  padding-top: 14px;
+  width: 56px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid #e1e4ea;
+  cursor: pointer;
+  background: #fff;
+}
+
+.selectedTransportOption {
+  border-color: #0cbf9f;
+  .transportOptionIcon,
+  .transportOptionLabel {
+    color: #0cbf9f;
+  }
+}
+
+.transportOptionIcon {
+  color: #cacfd8;
+  :global {
+    svg {
+      font-size: 24px;
+    }
+  }
+}
+
+.transportOptionLabel {
+  text-align: center;
+  color: #525866;
+  font-size: 9px;
+  line-height: 12px;
+}
+
+.expired {
+  padding-top: 80px;
+  height: calc(100vh - 118px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 8px;
+  background: rgb(245, 247, 250);
+}
+
+.expiredIcon {
+  svg {
+    font-size: 120px;
+    color: #d9d9d9;
+  }
+}
+
+.expiredText {
+  color: #6c757d;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px; /* 166.667% */
+}
+
+.langIcon {
+  cursor: pointer;
+  svg {
+    font-size: 46px;
+  }
+}

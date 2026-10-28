@@ -1,0 +1,177 @@
+.projectAttachmentPopover {
+  padding: 0;
+
+  :global {
+    .ant-popover-inner {
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 8%);
+      padding: 0;
+    }
+
+    .ant-popover-inner-content {
+      padding: 0;
+    }
+  }
+}
+
+.projectAttachmentMenu {
+  min-width: 156px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+}
+
+.projectAttachmentMenu button {
+  width: 100%;
+  height: 38px;
+  border: 0;
+  border-radius: 4px;
+  background: #fff;
+  color: #04252b;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.projectAttachmentMenu button:hover,
+.projectAttachmentMenu button:focus-visible {
+  background: #f7f8f9;
+  outline: none;
+}
+
+.projectAttachmentFiles {
+  width: min(320px, calc(100vw - 32px));
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.projectAttachmentFiles header {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 42px;
+  border-bottom: 1px solid #eef0f2;
+  padding: 4px 8px;
+}
+
+.projectAttachmentFiles header button {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 30px;
+  background: transparent;
+  color: #526166;
+  cursor: pointer;
+  padding: 0;
+}
+
+.projectAttachmentFiles header button:hover,
+.projectAttachmentFiles header button:focus-visible {
+  background: #f7f8f9;
+  color: #026961;
+  outline: none;
+}
+
+.projectAttachmentFiles header strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectAttachmentFileBody {
+  min-height: 96px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.projectAttachmentFileBody > span {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999ea4;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.projectAttachmentFileBody ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.projectAttachmentFileBody li > button {
+  width: 100%;
+  min-height: 38px;
+  border: 0;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #04252b;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 8px;
+  text-align: left;
+}
+
+.projectAttachmentFileBody li > button:hover,
+.projectAttachmentFileBody li > button:focus-visible {
+  background: #f7f8f9;
+  outline: none;
+}
+
+.projectAttachmentFileBody li img {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.projectAttachmentFileBody li span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectAttachmentFileState {
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  color: #999ea4;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.projectAttachmentFileState button {
+  border: 0;
+  background: transparent;
+  color: #026961;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}

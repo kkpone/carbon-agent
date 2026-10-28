@@ -1,0 +1,288 @@
+@import "@src/styles/public.scss";
+
+.dictWrapper {
+  height: 100%;
+  flex-flow: column;
+  display: flex;
+
+  &>div {
+    background-color: #fff;
+  }
+
+  .header {
+    display: flex;
+    padding: 14px 16px;
+    align-items: center;
+
+    .searcher {
+      width: 200px;
+      margin-right: 20px;
+    }
+
+    .searchButton {
+      margin-right: 20px;
+    }
+  }
+
+  .tableWrapper {
+    display: flex;
+    height: 100%;
+    flex-flow: column;
+    margin-top: 14px;
+    padding: 10px 16px 16px;
+
+    .addDict {
+      align-self: end;
+      padding-right: 0;
+    }
+
+    .table {
+      clear: both;
+      margin-top: 5px;
+    }
+  }
+}
+
+.dictModal {
+  :global(.ant-modal-header) {
+    padding: 20px;
+    border-bottom: none;
+  }
+
+  :global(.ant-modal-body) {
+    padding: 0 20px 24px;
+  }
+
+  :global(.ant-modal-footer) {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  :global(.ant-form-item:last-child) {
+    margin-bottom: 0;
+  }
+}
+
+.emissionFactorWrapper.emissionFactorWrapper {
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+
+  .tabs {
+    flex: 0 0 auto;
+  }
+
+  .main {
+    flex: 1 1 auto;
+  }
+
+  .organization {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    height: 100%;
+
+    .formContent {
+      padding: 0 20px 100px;
+      box-sizing: border-box;
+    }
+
+    .Upload {
+      width: 90px;
+      height: 90px;
+      border-radius: 45px;
+      background-color: azure;
+
+      :global(.ant-upload-select-picture-card) {
+        width: 90px;
+        height: 90px;
+        border-radius: 45px;
+      }
+    }
+
+    .acf_subbtn {
+      bottom: 0;
+      left: 0;
+      z-index: 9;
+      margin-bottom: 0;
+
+      .acf_subbtn_list {
+        display: flex;
+        height: 70px;
+        justify-content: flex-end;
+        align-items: center;
+        border-top: 1px solid #f8f8f8;
+        padding: 24px;
+        box-sizing: border-box;
+        padding-right: 0;
+      }
+
+      .acf_subbtn_cancel {
+        margin-right: 20px;
+      }
+    }
+
+    :global(.ant-input[disabled]) {
+      color: #333333;
+      cursor: pointer;
+    }
+
+    :global(.ant-select-disabled) {
+      color: #333333;
+    }
+
+    :global(.ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector) {
+      color: #333333;
+
+      cursor: pointer;
+    }
+
+    :global(.ant-select-disabled .ant-select-arrow) {
+      display: none;
+    }
+
+    .col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 30px;
+      grid-template-areas:
+        "a1 a2 a3"
+        "a1 a2 a3"
+        "a1 a2 a3"
+        "a1 a2 a3"
+        "a4 a4 a6"
+        "a5 a5 a6"
+        "a7 a7 a7"
+        "a8 a8 a8"
+        "a9 a9 a9"
+        "a10 a10 a10";
+
+      .oneRow {
+        grid-area: a4;
+      }
+
+      .oneRow1 {
+        grid-area: a5;
+      }
+
+      .oneRow2 {
+        grid-area: a7;
+      }
+
+      .oneRow3 {
+        grid-area: a8;
+      }
+
+      .oneRow4 {
+        grid-area: a9;
+      }
+
+      .oneRow10 {
+        grid-area: a10;
+      }
+    }
+
+    .two {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 30px;
+      grid-template-areas:
+        "a1 a2 a3"
+        "a7 a8 a8"
+        "a4 a4 a4"
+        "a5 a5 a5"
+        "a9 a9 a9"
+        "a10 a10 a10";
+      .oneRow4 {
+        grid-area: a1;
+      }
+
+      .oneRow5 {
+        grid-area: a4;
+      }
+
+      .oneRow6 {
+        grid-area: a5;
+      }
+
+      .oneRow7 {
+        grid-area: a7;
+      }
+
+      .oneRow8 {
+        grid-area: a8;
+        display: flex;
+        align-items: center;
+      }
+
+      .oneRow9 {
+        grid-area: a9;
+      }
+      .oneRow10 {
+        grid-area: a10;
+      }
+    }
+  }
+
+  /* 上传列表样式 */
+  .upload {
+    :global(div.ant-upload) {
+      position: relative;
+
+      &::after {
+        display: flex;
+        justify-content: center;
+        // content: "（仅支持PDF、JPG、JPEG、PNG、Word格式的文件，最大50M）";
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 460px;
+        height: 32px;
+        line-height: 32px;
+        color: $gray;
+      }
+    }
+
+    // :global(div.ant-upload.ant-upload-disabled) {
+    //   &::after {
+    //     display: none;
+    //   }
+    // }
+  }
+
+  .uploadWrapper {
+    padding: 6px 10px;
+    background: $brown;
+    margin-top: 10px;
+    width: 520px;
+    display: flex;
+    justify-content: space-between;
+
+    .actions {
+      white-space: nowrap;
+    }
+
+    .fileName {
+      display: flex;
+      align-items: center;
+      color: $lightDark;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .del {
+      color: $danger;
+    }
+  }
+}
+
+.mustCheck::before {
+  display: inline-block;
+  margin-right: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: "*";
+}

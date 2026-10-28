@@ -1,0 +1,33 @@
+@import '@src/views/carbonFootprint/mixin.less';
+
+.text-black {
+  color: @mainDark;
+}
+
+.carbonFootprintDetail {
+  margin-bottom: 60px;
+  padding: 0 6px;
+  position: relative;
+
+  :global(.ant-input) {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+  :global(.ant-table-thead .ant-dropdown-trigger) {
+    padding: 0;
+  }
+  :global(.ant-table-thead .ant-dropdown-trigger:hover) {
+    background: transparent;
+  }
+
+  .customInput {
+    color: #343a40;
+    background-color: #f7f8f9;
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5715;
+    border-radius: 4px;
+    padding: 4px 11px;
+  }
+}

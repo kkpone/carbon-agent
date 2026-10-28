@@ -1,0 +1,66 @@
+@import url('@styles/var.less');
+
+.importFileWrapper {
+  .title {
+    margin-bottom: 16px;
+  }
+  .header {
+    margin-bottom: 24px;
+    .section {
+      height: 100%;
+      padding: 16px;
+      background: #f7f8f9;
+      border-radius: 4px;
+
+      .fileTips {
+        color: #333f;
+        font-weight: 400;
+        font-size: 14px;
+      }
+
+      .fileListBack {
+        display: flex;
+        align-items: center;
+
+        .fileListBackFile {
+          max-width: 60%;
+
+          .fileIcon {
+            margin-right: 4px;
+            color: rgb(15 193 153);
+            font-size: 16px;
+          }
+
+          .fileName {
+            width: calc(100% - 20px);
+          }
+        }
+
+        .uploadWrapper {
+          margin-left: 24px;
+
+          .upload {
+            margin-right: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .tableWrapper {
+    .tabelHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 0;
+
+      .tableTitle {
+        margin: 16px 0 8px;
+        color: #343a40;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  }
+}

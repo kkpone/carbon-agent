@@ -1,0 +1,49 @@
+/**
+ * @file 滚动通知
+ */
+@scrollHeight: 40px;
+
+.wrapper {
+  height: @scrollHeight;
+  background-color: #D7E9FE;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  flex: 0 0 auto;
+  cursor: pointer;
+
+  .content {
+    white-space: nowrap;
+    color: #3491FA;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    .icon {
+      margin-right: 10px;
+    }
+
+    .message {
+      display: flex;
+      flex-flow: row nowrap;
+
+      &,
+      & * {
+        height: @scrollHeight;
+        line-height: @scrollHeight  !important;
+        margin: 0 !important;
+      }
+    }
+  }
+
+  @keyframes moveX {
+    from {
+      transform: translateX(90vw);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.title {
+  display: block;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.close {
+  display: flex;
+  flex: 0 0 16px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  color: #747b80;
+  font-size: 16px;
+  line-height: 16px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  :global(.anticon) {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}

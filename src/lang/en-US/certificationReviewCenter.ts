@@ -1,0 +1,42 @@
+export default {
+  evaluatingIndicator: 'Evaluating indicator ',
+  evaluationMethods: 'Evaluation methods',
+  planName: 'Plan Name',
+  modelCoding: 'Model coding',
+  selectEvaluator: 'Select evaluation plan',
+  proofMaterials: 'Proof materials',
+  reviewDocumentLetter: 'Review document information',
+  certificationInformation: 'Certification information',
+  curre: '{val1} Review documents',
+  carbonEmissionAccounting: 'Corporate carbon accounting audit document',
+  theProductEnvironmentIsSufficient:
+    'Product environment footprint audit document',
+  accountingReportsSuchAs:
+    'If there are any updates to the accounting report, please select the latest one to avoid affecting the certification review',
+  documentName: 'Document Name',
+  documentType: 'Document type',
+  auditDocumentNumber: 'Audit document number',
+  certificationReviewInProgress: 'Certification Review Center',
+  auditDocumentClass: 'Review Document Category',
+  auditDocumentName: 'Audit Document Name',
+  downloadReport: 'Download report',
+  applu: 'Carbonstop report attachment',
+  hasItBeenUploaded:
+    'Has the attachment of proof materials been uploaded? The proof materials will affect the final audit result:',
+  confirmSubmissionOfThis:
+    'Confirm submitting the accounting data for Carbonstop review?',
+  confirmWithdrawalOfThe:
+    'Confirm the withdrawal of the data and need to be re reviewed after it is returned?',
+  enterpriseCarbonAccounting: 'Enterprise carbon accounting:',
+  data: 'Data',
+  withdrawn: 'Withdrawn',
+  underReview: 'Under review',
+  toBeSubmitted: 'Pending Submit',
+  downloadReportsAnd: 'Download reports and certificates',
+  textInformation: 'Text information',
+  reviewContent: 'Review content',
+  confirmDeletionOfThis: 'Are you sure to delete the data?',
+  reviewTime: 'Review time',
+  cbamDataAuditDocument: 'CBAM data audit document',
+  chooseCbam: 'Select Report',
+};

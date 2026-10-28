@@ -1,0 +1,60 @@
+@import '../../styles/var.less';
+
+.layout {
+  &__header {
+    position: relative;
+    width: 100%;
+    height: @headerHeight;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.06);
+    background-color: @primary-color;
+
+    &--fix {
+      transition: width 0.2s;
+    }
+
+    &--top {
+      .layout__header__inner {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+      }
+
+      &-side-bar {
+        flex: 1 1 0%;
+        max-width: 1000px;
+      }
+    }
+
+    &--side {
+      .layout__header__inner {
+        background: @primary-color;
+      }
+    }
+
+    &--light {
+      background: @primary-color;
+    }
+
+    &--dark {
+      background: @menuDarkColor;
+    }
+
+    &--dark&--top {
+      .layout__header__inner {
+        color: #fff;
+      }
+    }
+
+    &__inner {
+      height: 100%;
+
+      &--fixed {
+        max-width: 1200px;
+      }
+
+      &--fluid {
+        padding: 0 20px;
+      }
+    }
+  }
+}

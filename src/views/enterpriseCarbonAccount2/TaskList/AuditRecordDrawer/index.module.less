@@ -1,0 +1,299 @@
+@import '@Variable';
+
+.auditRecordDrawer {
+  :global {
+    .ant-drawer-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .ant-drawer-body {
+      padding: 32px 40px;
+    }
+  }
+}
+
+.drawerTitle {
+  .title-s-b();
+}
+
+.drawerContent {
+  .taskName {
+    .title-m-b();
+    margin-bottom: 24px;
+  }
+
+  .infoRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed #e5e6eb;
+
+    .infoItem {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .label {
+        .caption-s();
+        color: @gray6;
+      }
+
+      .userWrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        :global {
+          .ant-avatar {
+            background: #f2f3f5;
+            color: #c9cdd4;
+          }
+        }
+      }
+
+      .timeWrapper {
+        display: flex;
+        align-items: center;
+        height: 24px; // Align with avatar height
+      }
+
+      .value {
+        .body-m();
+        color: @gray8;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .recordList {
+    display: flex;
+    flex-direction: column;
+    // Remove gap, use padding in item for timeline continuity
+
+    .recordItem {
+      display: flex;
+      padding-bottom: 24px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      .recordLeft {
+        flex-shrink: 0;
+        width: 48px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 0;
+
+        .recordDate {
+          .body-m-b();
+          overflow: hidden;
+          color: #04252b;
+          text-overflow: ellipsis;
+          font-family: 'PingFang SC';
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 18px; /* 150% */
+        }
+
+        .recordDay {
+          .body-m-b();
+          overflow: hidden;
+          color: #04252b;
+          text-align: center;
+          text-overflow: ellipsis;
+          font-family: 'PingFang SC';
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 18px; /* 150% */
+        }
+      }
+
+      .timelineWrapper {
+        position: relative;
+        width: 20px;
+        margin: 0 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+
+        .timelineDot {
+          width: 8px;
+          height: 8px;
+          background: #e5e6eb;
+          border-radius: 50%;
+          margin-top: 7px; // Align with first line height
+          z-index: 1;
+        }
+
+        .timelineLine {
+          position: absolute;
+          top: 15px; // Start below dot
+          bottom: -7px; // Extend to next dot top
+          width: 1px;
+          background: #e5e6eb;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      .recordRight {
+        flex: 1;
+        background: #f9f9f9;
+        border-radius: 4px;
+        padding: 16px;
+
+        .recordHeader {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 12px;
+          flex-wrap: wrap;
+
+          .nodeName {
+            .body-m-b();
+            .nodeNameLabel {
+              overflow: hidden;
+              color: #04252b;
+              text-overflow: ellipsis;
+              font-family: 'PingFang SC';
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px; /* 150% */
+            }
+            .nodeNameValue {
+              overflow: hidden;
+              color: #6c757d;
+              text-overflow: ellipsis;
+              font-family: 'PingFang SC';
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px; /* 150% */
+            }
+          }
+
+          .statusTag {
+            margin: 0;
+            border-radius: 4px;
+            font-size: 12px;
+            padding: 0 8px;
+            height: 22px;
+            line-height: 22px;
+            border: none;
+          }
+
+          .recordTime {
+            margin-left: auto;
+            .caption-s();
+            color: @gray6;
+          }
+        }
+
+        .recordBody {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+
+          .recordRow {
+            display: flex;
+            .body-m();
+            line-height: 22px;
+
+            .recordLabel {
+              color: @gray6;
+              flex-shrink: 0;
+              min-width: 70px; // Align labels
+              text-wrap: nowrap;
+            }
+
+            .recordValue {
+              flex: 1;
+              color: @gray8;
+              word-break: break-all;
+
+              .recordValueNew {
+                display: block;
+                margin-top: 8px;
+              }
+
+              &.recordValuePreLine {
+                white-space: pre-line;
+
+                .revisionItem {
+                  display: block;
+                }
+
+                .revisionSubLabel {
+                  .caption-s();
+                  color: @gray6;
+                  margin-right: 4px;
+                }
+              }
+            }
+          }
+
+          .modifiedData {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 4px;
+          }
+
+          .attachmentList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .attachmentTag {
+              border-radius: 4px;
+              border: 1px solid var(--Neutral-Border-border-1, #d5d7da);
+              background: #fff;
+              color: var(--Brand-brand-2, #026961);
+              font-family: 'PingFang SC';
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px; /* 150% */
+              display: flex;
+              padding: 2px 6px;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.statusSubmit {
+  color: @orange6;
+  background: @orange1;
+}
+
+.statusPass {
+  color: @green7;
+  background: @green1;
+}
+
+.statusReject {
+  color: @red6;
+  background: @red1;
+}
+
+.statusModify {
+  color: #722ed1;
+  background: #f9f0ff;
+}

@@ -1,0 +1,441 @@
+@import '@src/styles/var.less';
+
+@text-black: @text-color;
+@text-14: 14px;
+@text-16: 16px;
+@text-20: 20px;
+@fontweight500: 500;
+@fontweight400: 400;
+@bg-green: #f5fdf9;
+@btn-green: @primary-color;
+@text-green: @primary-color;
+@text-orange: rgba(238, 158, 37, 1);
+@text-gray: rgba(181, 181, 181, 1);
+@text-error: rgba(237, 85, 85, 1);
+@text-blue: rgba(28, 148, 237, 1);
+@text-666: @text-color-2;
+@bg-gray: #f8f8f8;
+@margin-top20: 20px;
+@text-18: 18px;
+
+.ant-radio-button-wrapper {
+  height: auto;
+  padding: 5px 10px;
+  box-shadow: 0 1px 1px 0 rgb(0 0 0 / 6%), 0 -1px 0 0 rgb(0 0 0 / 6%);
+}
+
+.ant-radio-button-wrapper:first-child {
+  border-left: 1px solid rgb(0 0 0 / 10%);
+  border-radius: 4px 0 0 4px;
+}
+
+.set_copy {
+  cursor: pointer;
+}
+
+body .model_content {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  padding: 0 20px 0 0;
+}
+
+.right_content {
+  position: relative;
+
+  .add_btn {
+    position: absolute;
+    top: 11px;
+    right: 0;
+    color: @text-color;
+
+    span {
+      margin-left: 5px;
+    }
+  }
+}
+
+.text-black {
+  color: @text-color;
+}
+
+.text-gray {
+  color: @text-gray;
+}
+
+.text-orange {
+  color: @text-orange;
+}
+
+.text-green {
+  color: @text-green;
+}
+
+.model_left {
+  width: 240px;
+  //height: 100vh;
+  background: @whiteBg;
+  border-right: 1px solid #eee;
+
+  .model_title {
+    box-sizing: border-box;
+    padding: 22px 24px 0;
+    color: @text-black;
+    font-weight: @fontweight500;
+  }
+
+  .model_left_menulist {
+    box-sizing: border-box;
+    padding: 18px 24px;
+    font-weight: @fontweight400;
+    font-size: @text-16;
+    //cursor: pointer;
+
+    .icon_image {
+      display: inline;
+      width: 18px;
+      height: 18px;
+      margin-top: -2px;
+      vertical-align: middle;
+    }
+
+    .text-gray {
+      color: @text-gray;
+    }
+
+    .text-black {
+      color: @text-color;
+    }
+  }
+
+  span {
+    margin-left: 3px;
+  }
+
+  .active_menu {
+    color: @text-green !important;
+    background: @bg-green;
+  }
+}
+
+.model_right {
+  position: relative;
+  display: flex;
+  flex: 1;
+  overflow: auto;
+  background: white;
+}
+
+.target_content {
+  & > form {
+    display: flex;
+    flex: auto;
+    flex-flow: column;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .target_title {
+    box-sizing: border-box;
+    padding: 22px 24px 0;
+    color: @text-black;
+    font-weight: @fontweight500;
+    font-size: @text-16;
+  }
+
+  .target_form {
+    box-sizing: border-box;
+    padding: 0 24px;
+    font-size: @text-14;
+
+    .ant-form-item-label > label {
+      font-weight: @fontweight400 !important;
+      font-size: 14px !important;
+    }
+
+    .ant-form-item-control-input {
+      width: 440px;
+    }
+
+    .ant-input,
+    .ant-select {
+      font-size: @text-14 !important;
+    }
+  }
+
+  .rule {
+    color: #666;
+  }
+
+  .margin-bottom266 {
+    margin-bottom: 50px;
+  }
+
+  .target_footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 14px 0 16px;
+    text-align: right;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+
+    button {
+      margin-right: 30px;
+    }
+  }
+
+  .text-16 {
+    font-size: @text-16;
+  }
+
+  .text-14 {
+    font-size: @text-14;
+  }
+
+  .font-weight400 {
+    font-weight: @fontweight500;
+  }
+
+  .all_checked .ant-form-item-control-input {
+    width: 100% !important;
+
+    .ant-checkbox-inner {
+      width: 16px !important;
+      height: 16px !important;
+    }
+
+    span {
+      font-size: @text-14;
+    }
+  }
+}
+
+.lca_content {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 20px 24px;
+  font-weight: 500;
+
+  .text-right {
+    text-align: right;
+  }
+
+  .margin-right {
+    margin-right: 20px;
+  }
+
+  .lca_bottom_tips {
+    position: absolute;
+    right: px2rem(-24px);
+    bottom: -20px;
+    width: 350px;
+    height: 259px;
+    background: url('../../../assets/icon/Tips.png');
+    background-size: 100% 100%;
+  }
+
+  .tips_content {
+    width: 140px;
+    margin-top: 25px;
+    margin-left: 130px;
+  }
+}
+
+.ant-drawer-content-wrapper,
+.ant-drawer-content {
+  .ant-input {
+    padding: 7px 10px;
+    font-weight: 400;
+    font-size: @text-14;
+  }
+
+  .ant-drawer-title {
+    font-size: @text-18;
+    font-weight: 600;
+  }
+
+  .text-16 {
+    font-weight: 600;
+    font-size: @text-16;
+  }
+
+  .margin-bottom24 {
+    margin-bottom: 24px;
+  }
+
+  .Dialog_content {
+    .ant-col .ant-form-item-control {
+      width: 342px;
+    }
+
+    .ant-input-number {
+      width: 100%;
+    }
+
+    .ant-col .ant-form-item-label {
+      width: 94px;
+      text-align: right;
+    }
+  }
+
+  .bg-gray {
+    background: #f8f8f8;
+  }
+
+  .padding20 {
+    padding: 21px 20px;
+  }
+
+  .radio_text span {
+    font-size: 14px !important;
+  }
+
+  .year_select {
+    width: 140px !important;
+  }
+
+  .margin-top15 {
+    margin-top: 15px;
+  }
+
+  .margin-right33 {
+    margin-right: 33px;
+  }
+
+  .Emission_factor_table {
+    width: 100%;
+  }
+
+  .margin-top20 {
+    margin-top: 20px;
+  }
+
+  .ant-checkbox-group-item,
+  .ant-form-item-explain-error {
+    font-size: 14px;
+  }
+
+  .essmions label {
+    padding-left: 10px;
+    font-size: 14px;
+  }
+
+  .ant-select-selection-item {
+    font-size: @text-14;
+  }
+
+  //排放因子表格
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td,
+  .ant-table tfoot > tr > th,
+  .ant-table tfoot > tr > td {
+    padding: 10px;
+  }
+
+  .text-green {
+    color: #07c160;
+  }
+
+  .ant-select-selection-search {
+    font-size: @text-14;
+  }
+
+  .ant-select-selection-placeholder,
+  .ant-input-number-input {
+    font-size: @text-14;
+  }
+
+  .transport_unit .ant-select-selector {
+    margin: 0;
+  }
+
+  .ant-form label {
+    font-size: @text-14 !important;
+  }
+}
+
+.ant-drawer-content-wrapper .child_drawer .ant-drawer-content {
+  .ant-form-item-label > label {
+    font-size: @text-14 !important;
+  }
+}
+
+.ant-drawer-body .ant-divider-horizontal {
+  margin: 15px 0;
+}
+
+.ant-drawer-header {
+  padding: 16px 24px 0;
+  border: 0;
+}
+
+.ant-drawer-body {
+  padding: 20px;
+}
+
+.blockwidth {
+  width: 120px;
+}
+
+.blockwidth2 {
+  width: 140px;
+}
+
+.blockwidth3 {
+  width: 160px;
+}
+
+.drawer-title {
+  width: 100%;
+  height: 51px;
+  padding: 0 15px;
+  color: @text-color;
+  font-size: 16px;
+  line-height: 51px;
+  background: #f2f5f5;
+
+  p {
+    display: inline-block;
+    margin: 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+  }
+}
+
+.drawer-subtitle {
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 15px;
+  color: @text-color;
+  font-size: 14px;
+
+  p {
+    display: inline-block;
+    margin: 0 5px 5px;
+    overflow: hidden;
+    color: @text-color;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+  }
+}
+
+.drawer-content {
+  width: 100%;
+  padding: 0 15px 6px;
+  border-bottom: 1px solid #eee;
+
+  p {
+    display: inline-block;
+    margin: 0 5px 4px;
+    overflow: hidden;
+    color: #666;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+  }
+}

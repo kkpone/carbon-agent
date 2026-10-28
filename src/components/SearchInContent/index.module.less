@@ -1,0 +1,60 @@
+.wrapper {
+  position: relative;
+  width: 32px;
+  height: 32px;
+
+  .inputBox {
+    position: absolute;
+    top: 32px;
+    right: 4px;
+    z-index: 99;
+    transform: translateY(-500px);
+    transition: transform 0.3s ease-in-out;
+
+    .content {
+      display: flex;
+      align-items: center;
+      width: 392px;
+      height: 40px;
+      padding: 0 12px;
+      background: var(--Fill-white, #FFF);
+      border-radius: 4px;
+      box-shadow: 0 4px 24px 0 rgb(0 0 0 / 8%);
+
+      .left {
+        display: flex;
+        align-items: center;
+        width: 244px;
+        margin-right: 12px;
+        color: #B5B8BB;
+      }
+
+      .btn {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 8px 0 8px 12px;
+        border-left: 1px solid var(--line-border-2, #EBEDF0);
+
+        img {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .show {
+    transform: translateY(0);
+  }
+
+  .search {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+
+    .searchImg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}

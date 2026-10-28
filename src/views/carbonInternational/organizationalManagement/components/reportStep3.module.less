@@ -1,0 +1,59 @@
+@import '@src/styles/var.less';
+
+.report_steps_three {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding-bottom: 70px;
+
+  .topSelect {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    margin: 40px 0 30px;
+    line-height: 22px;
+    // align-items: center;
+  }
+
+  .defaultThumbList {
+    display: flex;
+
+    .thumbItem {
+      flex: 0 0 168px;
+      margin-right: 40px;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+
+      .thumb {
+        display: block;
+        width: 168px;
+        height: 238px;
+        margin-bottom: 10px;
+
+        &.active {
+          outline: 1px solid @primary-color;
+        }
+      }
+
+      .checked {
+        color: @primary-color;
+      }
+    }
+  }
+
+  .cover_title {
+    display: inline-block;
+    width: 100px;
+    margin: 0;
+    text-align: right;
+  }
+
+  :global(.ant-radio-wrapper) {
+    margin-right: 30px;
+  }
+
+  .uploadCover :global(.show-upload-img-wrapper) img {
+    width: auto;
+  }
+}

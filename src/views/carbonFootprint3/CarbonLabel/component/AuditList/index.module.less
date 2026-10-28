@@ -1,0 +1,239 @@
+.auditListMain {
+  height: calc(100vh - 44px - 30px - 56px - 40px);
+  padding: 0 16px;
+  overflow-y: auto;
+
+  .list {
+    padding-bottom: 32px;
+    padding-left: 16px;
+    border-left: 1px dashed #ebedf0;
+
+    &:last-child {
+      border-left: none;
+    }
+
+    .titleMain {
+      position: relative;
+      margin-bottom: 4px;
+
+      .icon {
+        position: absolute;
+        top: 5px;
+        left: -23px;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        background: #fff;
+        border: 2px solid #d2d6da;
+        border-radius: 50%;
+      }
+
+      .iconMain {
+        position: absolute;
+        top: 3px;
+        left: -22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        border-radius: 50%;
+      }
+
+      .iconPass {
+        color: #0cbf9f;
+      }
+
+      .iconNotPass {
+        color: #ed5555;
+      }
+
+      .iconAnnulPass {
+        color: #fba93e;
+      }
+
+      .titleText {
+        color: #6c757d;
+        font-weight: 500;
+      }
+    }
+
+    .passTitleMain {
+      .titleText {
+        color: #0cbf9f;
+      }
+    }
+
+    .noPassTitleMain {
+      .titleText {
+        color: #ed5555;
+      }
+    }
+
+    .annulTitleMain {
+      .titleText {
+        color: #fba93e;
+      }
+    }
+
+    .dateTime {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+
+      .time {
+        color: #999ea4;
+        font-size: 12px;
+      }
+
+      .useName {
+        margin-left: 8px;
+        color: #6c757d;
+        font-weight: 500;
+        font-size: 12px;
+      }
+
+      .version {
+        padding: 4px 8px;
+        color: #0cbf9f;
+        font-weight: 500;
+        font-size: 12px;
+      }
+    }
+
+    .content {
+      padding: 5px 8px;
+      color: #6c757d;
+      font-size: 12px;
+      line-height: 18px;
+      background: #f7f8f9;
+    }
+  }
+}
+
+.popoverTitle {
+  display: flex;
+  align-items: center;
+  height: 24px;
+
+  .title {
+    font-weight: 500;
+  }
+
+  .describe {
+    margin-left: 8px;
+    color: #6c757d;
+    font-size: 12px;
+  }
+
+  .blockColor {
+    display: inline-block;
+    width: 44px;
+    height: 100%;
+    margin-left: 8px;
+    background: #ed555533;
+  }
+}
+
+.auditListMain.embedded {
+  height: auto;
+  padding: 0;
+  overflow: visible;
+
+  .list {
+    position: relative;
+    padding-left: 24px;
+    padding-bottom: 24px;
+    border-left: none;
+    // 连线只连接相邻节点，避免末项继承旧模块边框后出现深色尾线。
+    &:not(:last-child)::before {
+      position: absolute;
+      top: 20px;
+      bottom: -2px;
+      left: 7.5px;
+      width: 1px;
+      background: #e5e7eb;
+      content: '';
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+    .titleMain {
+      padding-right: 56px;
+    }
+    .titleMain .titleText {
+      color: #04252b;
+      font-size: 14px;
+      line-height: 22px;
+    }
+    .passTitleMain .titleText {
+      color: #0cbf9f;
+    }
+    .noPassTitleMain .titleText {
+      color: #cb3430;
+    }
+    .dateTime {
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-bottom: 0;
+      padding-right: 56px;
+    }
+    .dateTime .time,
+    .dateTime .useName {
+      color: #6c757d;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+    }
+    .dateTime .useName {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 0;
+    }
+    .dateTime .version {
+      position: absolute;
+      top: 14px;
+      right: 0;
+      height: 22px;
+      padding: 0;
+      color: #026961;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .content {
+      margin-top: 8px;
+      padding: 0;
+      color: #6c757d;
+      font-size: 14px;
+      line-height: 22px;
+      background: none;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .content.rejectedFeedback {
+      color: #cb3430;
+    }
+  }
+}
+
+.timelineIcon {
+  position: absolute;
+  top: 3px;
+  left: -24px;
+  background: #fff;
+}
+.commentLabel {
+  color: #343a40;
+}
+
+.popoverMain {
+  height: 600px;
+  overflow-y: auto;
+}
+
+.popoverMain.agentPopoverMain {
+  width: 320px;
+  max-width: calc(100vw - 64px);
+  background: #f5f5f7;
+  border-radius: 8px;
+}

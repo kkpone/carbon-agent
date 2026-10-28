@@ -1,0 +1,343 @@
+@text: #04252b;
+@brand: #026961;
+@border: #e5e7eb;
+
+.panel {
+  min-height: 620px;
+  color: @text;
+  font-family: 'PingFang SC', sans-serif;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+}
+
+.toolbarActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.toolbarActions {
+  :global(.ant-btn) {
+    height: 38px;
+    padding: 8px 12px;
+    color: @text;
+    font-size: 14px;
+    line-height: 22px;
+    border-color: #d5d7da;
+    border-radius: 8px;
+    box-shadow: none;
+
+    &:hover,
+    &:focus-visible {
+      color: @brand;
+      border-color: @brand;
+    }
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #ebedf0;
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: @brand;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 4%), 0 4px 16px rgb(0 0 0 / 8%);
+  }
+}
+
+.cardBody {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+}
+
+.statusRibbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+
+  img {
+    display: block;
+    width: 64px;
+    height: 64px;
+  }
+
+  span {
+    position: absolute;
+    top: 10px;
+    right: 1px;
+    width: 46px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: center;
+    white-space: nowrap;
+    transform: rotate(45deg);
+  }
+}
+
+.cardHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding-right: 40px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid @border;
+}
+
+.titleLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+
+  strong {
+    min-width: 0;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.summary {
+  overflow: hidden;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  i {
+    margin: 0 4px;
+    font-style: normal;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: @brand;
+    }
+  }
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 22px;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  span,
+  b {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  span {
+    color: #999ea4;
+  }
+
+  b {
+    color: @text;
+    font-weight: 400;
+  }
+}
+
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 8px 16px;
+  background: #f7f8f9;
+}
+
+.cardAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 4px 8px;
+  color: @brand;
+  font-size: 14px;
+  line-height: 22px;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    color: @brand;
+    background: #fff;
+  }
+}
+
+.deleteAction {
+  color: #b0444b;
+
+  &:hover,
+  &:focus-visible {
+    color: #b0444b;
+  }
+}
+
+.emptyEvidence {
+  padding: 24px;
+  color: #6c757d;
+  text-align: center;
+  background: #f7f8f9;
+  border-radius: 8px;
+}
+
+.evidenceDrawer {
+  :global(.ant-drawer-content) {
+    background: #fff;
+  }
+
+  :global(.ant-drawer-header) {
+    padding: 32px 32px 0;
+    border-bottom: 0;
+  }
+
+  :global(.ant-drawer-header-title) {
+    align-items: center;
+  }
+
+  :global(.ant-drawer-body) {
+    padding: 32px;
+  }
+
+  :global(.ant-drawer-footer) {
+    position: relative;
+    z-index: 1;
+    padding: 12px 40px;
+    background: #fff;
+    border-top: 0;
+    box-shadow: 0 -4px 4px rgb(0 0 0 / 4%);
+  }
+}
+
+.evidenceFormGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+
+  :global(.ant-form-item) {
+    min-width: 0;
+    margin-bottom: 0;
+  }
+
+  :global(.ant-form-item-label) {
+    padding-bottom: 8px;
+  }
+
+  :global(.ant-form-item-label > label) {
+    height: 22px;
+    color: @text;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  :global(.ant-input),
+  :global(.ant-picker),
+  :global(.ant-select-selector) {
+    width: 100%;
+    min-height: 38px;
+    border-radius: 8px !important;
+  }
+
+  :global(textarea.ant-input) {
+    height: 80px;
+    min-height: 80px;
+    padding: 8px 12px;
+    line-height: 22px;
+  }
+}
+
+.evidenceRelationField {
+  color: @text;
+  background: #f7f8f9;
+  cursor: default;
+}
+
+.fullField {
+  grid-column: 1 / -1;
+}
+
+.drawerActions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+
+  :global(.ant-btn) {
+    height: 38px;
+    padding: 8px 16px;
+    border-radius: 8px;
+  }
+
+  :global(.ant-btn-primary) {
+    color: #fff;
+    font-weight: 500;
+    background: #004541;
+    border-color: #004541;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

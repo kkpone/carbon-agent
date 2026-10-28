@@ -1,0 +1,264 @@
+@import '@src/styles/var.less';
+@carbonFootprint: 16px;
+@carbonFootprint3BtnSuccessColor: #0cbf9f;
+@carbonFootprint3BtnDangerColor: #ff4d4f;
+@carbonFootprint3BtnShallowColor: #999ea4;
+
+.stepBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  margin: 0 10px 10px 0;
+  padding: 0 250px;
+  background: #fff;
+}
+
+.columnSetBtn {
+  margin-right: 10px;
+  color: @colorPrimary;
+  cursor: pointer;
+}
+
+.columnSetBtnDisabled {
+  color: rgb(0 0 0 / 25%) !important;
+  cursor: not-allowed;
+}
+
+.carbonFootprint3.carbonFootprint3 {
+  position: relative;
+  width: 100%;
+  overflow-x: initial;
+  overflow-y: auto;
+
+  // 浅色文字
+  .shallowText {
+    color: @carbonFootprint3BtnShallowColor;
+  }
+
+  // 步骤条
+
+  .operateBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .main {
+    position: relative;
+    padding: 0;
+
+    &_table {
+      margin-top: 6px;
+    }
+
+    .mainHeader {
+      .setBtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .btn {
+          min-width: 70px;
+        }
+      }
+    }
+
+    .titleAndBtn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .carbonFootprintSearch {
+      margin-top: 16px;
+    }
+
+    /* 一级标题 */
+    .productTitle {
+      color: @mainDark;
+      font-weight: 500;
+      font-size: @carbonFootprint;
+    }
+
+    .cursorPointerFont {
+      cursor: pointer;
+    }
+
+    .primaryColorFont {
+      color: @colorPrimary;
+    }
+  }
+  // 选择因子的展示
+  .btnContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  // 排放源的头部展示
+  .sourceNnfoTitle {
+    display: flex;
+    align-items: center;
+    height: 52px;
+    padding: 16px;
+  }
+  // 背景透明的横线
+  .customHr {
+    height: 10px;
+    background: #f7f8f9;
+  }
+
+  // tab选中的样式
+  .tabSelectMain {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    .tabSelectMainBtn {
+      display: flex;
+
+      .defaultBtn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 88px;
+        height: 32px;
+        background: rgb(247 248 249 / 100%);
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .activeBtn {
+        color: @carbonFootprint3BtnSuccessColor;
+        background: rgb(12 191 159 / 6%);
+        border: 1px solid @carbonFootprint3BtnSuccessColor;
+      }
+
+      .tabSelectImg {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  // 表单单选设置
+  .quickBusinessAccountingForm {
+    :global(.ant-radio-wrapper) {
+      display: block;
+    }
+  }
+
+  :global(.ant-checkbox-disabled + span) {
+    color: @text-color;
+  }
+
+  :global(.ant-radio-disabled + span) {
+    color: @text-color;
+  }
+
+  :global(.ant-input-affix-wrapper-disabled) {
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+
+  :global(.ant-table-thead .ant-dropdown-trigger) {
+    padding: 0;
+  }
+
+  :global(.ant-table-thead .ant-dropdown-trigger:hover) {
+    background: transparent;
+  }
+
+  :global(.ant-modal-body) {
+    padding: 4px 24px 20px;
+  }
+
+  :global(.ant-modal-footer) {
+    padding: 0 24px 20px;
+  }
+
+  :global(.ant-picker.ant-picker-disabled) {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border-color: #fff;
+    cursor: not-allowed;
+  }
+
+  :global(.ant-picker-input > input[disabled]) {
+    color: @text-color;
+  }
+
+  :global(
+      .ant-select-disabled.ant-select:not(.ant-select-customize-input)
+        .ant-select-selector
+    ) {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+
+  :global(.ant-input[disabled]) {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+}
+
+// 文件上传的样式
+.uploadMain {
+  .uploadDescribe {
+    color: var(--text-gray-5-disabled, #b5b8bb);
+
+    /* Caption 辅助信息/@caption-s */
+    font-family: 'PingFang SC';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+    margin-top: 8px;
+  }
+
+  .uploadTitle {
+    color: @mainDark;
+    font-size: 14px;
+  }
+
+  .showMust {
+    position: relative;
+
+    &::before {
+      display: inline-block;
+      margin-right: 4px;
+      color: @carbonFootprint3BtnDangerColor;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+      line-height: 1;
+      content: '*';
+    }
+  }
+
+  .uploadDetail {
+    color: @thirdDark;
+    font-size: 12px;
+  }
+
+  .fileInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    cursor: pointer;
+  }
+
+  .fileInfoActive {
+    background: @lightGray;
+  }
+}

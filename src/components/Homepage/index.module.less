@@ -1,0 +1,84 @@
+.homePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 32px 110px 0 100px;
+
+  .infoBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 550px + 32px + 442px;
+
+    .introBox {
+      width: 442px;
+      margin-right: 32px;
+
+      .title {
+        margin-bottom: 16px;
+        color: #343a40;
+        font-weight: 500;
+        font-size: 28px;
+        font-style: normal;
+        line-height: 36px;
+      }
+
+      .introText {
+        margin-bottom: 16px;
+        color: #343a40;
+        font-weight: 400;
+        font-size: 14px;
+        font-style: normal;
+        line-height: 22px;
+      }
+    }
+
+    .homeTitleIllustration {
+      width: 550px;
+    }
+  }
+
+  .homeTab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .TabTitle {
+      margin: 38px 0 28px;
+      color: #343a40;
+      font-weight: 400;
+      font-size: 24px;
+      font-style: normal;
+      line-height: 32px;
+      text-align: center;
+    }
+
+    .TabMain {
+      width: 100%;
+
+      :global(.ant-tabs-nav-wrap) {
+        justify-content: center;
+      }
+
+      :global(.ant-tabs-tab) {
+        margin: 0 30px;
+        color: #343a40;
+        font-weight: 400;
+        font-size: 16px;
+      }
+
+      .tabMainItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 16px;
+
+        .cont {
+          margin: 20px 0 35px;
+        }
+      }
+    }
+  }
+}

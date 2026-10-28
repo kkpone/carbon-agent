@@ -1,0 +1,130 @@
+.wrapper {
+  min-width: 0;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #eef3f1;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(20 80 70 / 2%);
+  transition: border-color 0.15s;
+  &:hover {
+    border-color: #a9dcd1;
+  }
+  button {
+    font: inherit;
+  }
+}
+.open {
+  display: flex;
+  width: 100%;
+  min-height: 112px;
+  gap: 16px;
+  align-items: center;
+  padding: 24px 44px 24px 24px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.icon {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+.info {
+  min-width: 0;
+  flex: 1;
+}
+.name {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #273941;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.value {
+  display: block;
+  color: #00564e;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+.unit {
+  font-size: 12px;
+}
+.actions {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  button {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #008e80;
+    cursor: pointer;
+    &:hover {
+      background: #eaf8f3;
+    }
+    &:disabled {
+      color: #aebbb6;
+      cursor: not-allowed;
+    }
+  }
+}
+.source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 24px;
+  width: 100%;
+  border: 0;
+  background: #f7fbfa;
+  color: #7b8a91;
+  font-size: 12px !important;
+  cursor: pointer;
+  text-align: left;
+  span:first-child {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  span:last-child {
+    flex-shrink: 0;
+  }
+}
+.activity {
+  color: #80959c;
+  font-size: 12px;
+  margin: 10px 4px 0;
+}
+.card button:focus-visible {
+  outline: 2px solid #008e80;
+  outline-offset: -2px;
+}
+
+.card:hover .actions,
+.card:focus-within .actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (hover: none) {
+  .actions {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

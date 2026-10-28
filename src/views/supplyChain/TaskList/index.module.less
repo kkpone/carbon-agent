@@ -1,0 +1,92 @@
+.taskList {
+  &&& {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow-y: auto;
+  }
+}
+
+.header {
+  padding: 32px 40px 28px;
+}
+
+.title {
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.content {
+  padding: 0 40px;
+}
+
+.overview {
+  margin-top: 12px;
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 24px;
+}
+
+.overviewItem {
+  padding: 24px;
+  min-height: 106px;
+  border-radius: 12px;
+}
+
+.overviewValue {
+  color: var(--Neutral-Text-text-1, #04252b);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+.operate {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.operateRight {
+  display: flex;
+  column-gap: 16px;
+}
+
+.operateColumn {
+  display: flex;
+  column-gap: 8px;
+  :global {
+    .ant-btn {
+      padding: 0;
+    }
+  }
+}
+
+.status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.notFillStatus {
+  background: #f3f3f3;
+}
+
+.fillingStatus {
+  background: #e8f6ff;
+}
+
+.submittedStatus {
+  background: #ddf4f2;
+}
+
+.rejectStatus {
+  background: #fceedf;
+}
+
+.approveStatus {
+  background: #e8f4e5;
+}

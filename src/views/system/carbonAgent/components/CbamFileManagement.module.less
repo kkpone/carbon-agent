@@ -1,0 +1,539 @@
+.page {
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  color: #04252b;
+  padding: 0 40px 32px;
+}
+
+.header {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.search {
+  width: 240px;
+  height: 38px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #d2d6da;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0 12px;
+}
+
+.search:focus-within {
+  border-color: rgba(12, 191, 159, 0.62);
+  box-shadow: 0 0 0 2px rgba(12, 191, 159, 0.08);
+}
+
+.search img {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+}
+
+.search input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #04252b;
+  font: inherit;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.search input::placeholder {
+  color: #b5b8bb;
+}
+
+.search input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.tableWrap {
+  width: 100%;
+}
+
+.tableHeader,
+.tableRow {
+  display: grid;
+  grid-template-columns:
+    minmax(280px, 2fr) minmax(120px, 1fr) minmax(150px, 1fr)
+    minmax(240px, 1.2fr);
+}
+
+.tableHeader {
+  height: 48px;
+  align-items: center;
+  background: #f7f8f9;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.tableHeader > span {
+  min-width: 0;
+  padding: 0 20px;
+}
+
+.tableRow {
+  min-height: 70px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fff;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.fileCell,
+.textCell,
+.actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+}
+
+.fileCell {
+  gap: 12px;
+}
+
+.fileCell > img {
+  width: 31px;
+  height: 37px;
+  flex: 0 0 31px;
+}
+
+.fileCell > span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fileCell strong,
+.fileCell small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileCell strong {
+  color: #04252b;
+  font-weight: 400;
+}
+
+.fileCell small {
+  color: #999ea4;
+  font-size: 14px;
+}
+
+.textCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.textCell em {
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f7f8f9;
+  color: #04252b;
+  font-style: normal;
+  padding: 4px 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  gap: 16px;
+}
+
+.actions button,
+.state button {
+  border: 0;
+  background: transparent;
+  color: #026961;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.actions button:hover:not(:disabled),
+.actions button:focus-visible:not(:disabled),
+.state button:hover,
+.state button:focus-visible {
+  color: #0cbf9f;
+}
+
+.actions button:disabled {
+  color: #b5b8bb;
+  cursor: not-allowed;
+}
+
+.status {
+  overflow: hidden;
+  color: #999ea4;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.state,
+.empty {
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.state {
+  flex-direction: column;
+  gap: 12px;
+  color: #6c757d;
+}
+
+.pagination {
+  align-self: flex-end;
+  margin-top: 24px;
+}
+
+// Keep the control visually quiet alongside the file cards.
+.pagination:global(.ant-pagination) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  :global(.ant-pagination-item),
+  :global(.ant-pagination-prev),
+  :global(.ant-pagination-next) {
+    min-width: 32px;
+    height: 32px;
+    margin: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #6c757d;
+    line-height: 32px;
+  }
+
+  :global(.ant-pagination-item a) {
+    padding: 0 8px;
+    color: inherit;
+  }
+
+  :global(.ant-pagination-item-link) {
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+  }
+
+  :global(.ant-pagination-item):hover,
+  :global(.ant-pagination-prev):hover,
+  :global(.ant-pagination-next):hover {
+    background: #edf0f2;
+    color: #026961;
+  }
+
+  :global(.ant-pagination-item-active),
+  :global(.ant-pagination-item-active):hover {
+    background: #e8f4ef;
+    color: #026961;
+    font-weight: 500;
+  }
+
+  :global(.ant-pagination-disabled),
+  :global(.ant-pagination-disabled):hover {
+    background: transparent;
+    color: #c5c9cd;
+  }
+
+  :global(.ant-pagination-disabled .ant-pagination-item-link) {
+    color: inherit;
+  }
+
+  :global(.ant-pagination-slash) {
+    margin: 0 8px 0 4px;
+    color: #b5b8bb;
+  }
+
+  :global(.ant-pagination-item):focus-visible,
+  :global(.ant-pagination-item-link):focus-visible,
+  :global(.ant-pagination-simple-pager input):focus-visible {
+    outline: 2px solid #b2d8d1;
+    outline-offset: 2px;
+  }
+}
+
+.mobilePage {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  flex: 1 1 auto;
+  gap: 16px;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  background: #f7f8f9;
+  padding: 16px 16px calc(24px + env(safe-area-inset-bottom));
+
+  .header {
+    min-width: 0;
+    min-height: 38px;
+    flex: 0 0 auto;
+    background: #f7f8f9;
+  }
+
+  .search {
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 12px;
+  }
+
+  .search img {
+    width: auto;
+    height: auto;
+    flex: 0 0 auto;
+  }
+
+  .search input {
+    font-size: 16px;
+  }
+
+  .search input::placeholder {
+    color: #999ea4;
+    font-size: 14px;
+  }
+
+  .tableWrap {
+    min-width: 0;
+  }
+
+  .pagination:global(.ant-pagination) {
+    align-self: center;
+    min-height: 40px;
+    max-width: 100%;
+    gap: 8px;
+    margin-top: 0;
+    padding: 4px 8px;
+
+    :global(.ant-pagination-simple-pager) {
+      min-width: 64px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      border: 0;
+      background: transparent;
+      color: #999ea4;
+      padding: 0;
+    }
+
+    :global(.ant-pagination-simple-pager input) {
+      width: 32px;
+      min-width: 0;
+      height: 28px;
+      margin: 0;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: #04252b;
+      font-weight: 500;
+      text-align: center;
+      padding: 0;
+    }
+  }
+}
+
+.mobileList {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fileCard {
+  min-width: 0;
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px;
+}
+
+.cardHeader {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #ebedf0;
+  padding-bottom: 15px;
+}
+
+.cardIdentity {
+  min-width: 0;
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTitle {
+  min-width: 0;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardTitle strong {
+  overflow: hidden;
+  color: #04252b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardTitle time {
+  overflow: hidden;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversationButton {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0;
+  cursor: pointer;
+}
+
+.conversationButton img {
+  transform: rotate(-90deg);
+}
+
+.conversationButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.conversationButton:focus-visible,
+.downloadButton:focus-visible {
+  outline: 2px solid #0cbf9f;
+  outline-offset: 2px;
+}
+
+.cardDetails {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.cardDetails > div {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardDetails dt {
+  flex: 0 0 auto;
+  max-width: 45%;
+  color: #999ea4;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+.cardDetails dd {
+  min-width: 0;
+  margin: 0;
+  color: #04252b;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.fileType {
+  display: inline-block;
+  max-width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f7f8f9;
+  padding: 3px 7px;
+  vertical-align: middle;
+}
+
+.downloadActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.downloadButton {
+  min-width: 60px;
+  min-height: 32px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 8px;
+  background: #004541;
+  color: #fff;
+  font: inherit;
+  line-height: 22px;
+  padding: 5px 16px;
+  cursor: pointer;
+}
+
+.downloadButton:disabled {
+  background: #e5e7eb;
+  color: #999ea4;
+  cursor: not-allowed;
+}

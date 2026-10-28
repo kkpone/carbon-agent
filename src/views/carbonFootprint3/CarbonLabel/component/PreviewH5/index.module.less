@@ -1,0 +1,483 @@
+.previewH5 {
+  padding: 4px;
+  background: #fff;
+
+  .versionTextHiden {
+    text-decoration: line-through;
+  }
+
+  .versionChange {
+    width: fit-content;
+    padding: 2px 4px;
+    background: #ed555533;
+  }
+
+  .footprintTime {
+    width: fit-content;
+    margin-top: 4px;
+    font-size: 10px;
+    color: #fff;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+    background: #f5f5f7;
+
+    .main {
+      padding: 0 9px;
+
+      .productImg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: auto;
+      }
+
+      .productInfo {
+        position: relative;
+        z-index: 1;
+        margin-top: 280px;
+        padding: 11px;
+        background: #fff;
+        border-radius: 11px;
+
+        .title {
+          width: fit-content;
+          margin-bottom: 10px;
+          font-weight: 500;
+          font-size: 14px;
+        }
+
+        .pinpai {
+          color: #999ea4;
+          font-size: 10px;
+        }
+
+        .name {
+          color: #6c757d;
+          font-size: 10px;
+        }
+      }
+
+      .carbonIsoMain {
+        position: absolute;
+        top: 256px;
+        right: 10px;
+        left: 10px;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        padding: 3px 9px 20px;
+        color: #fff;
+        font-size: 10px;
+        background: rgb(0 0 0 / 40%);
+        border: 0.5px solid rgb(255 255 255 / 88%);
+        border-radius: 11px 11px 0 0;
+        backdrop-filter: blur(20px);
+        span {
+          font-size: 12px;
+        }
+      }
+
+      .carbonFootprintMain {
+        position: relative;
+        width: 100%;
+        margin-top: 22px;
+        padding: 5px;
+        background: #026961;
+        border-radius: 12px;
+
+        .footprintMain {
+          padding: 14px 12px 0;
+
+          .willMain {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+            background-color: #fff;
+            border-radius: 45px;
+
+            .carbonLabelWill {
+              position: relative;
+              z-index: 0;
+              width: 90px;
+              height: 90px;
+            }
+          }
+
+          .footprintTitle {
+            font-weight: 500;
+            font-size: 14px;
+            color: #fff;
+          }
+
+          .footprintUnit {
+            font-size: 10px;
+            color: #fff;
+          }
+
+          .footprintNum {
+            position: relative;
+            z-index: 1;
+            max-width: 183px;
+            font-weight: 700;
+            font-size: 24px;
+            color: #fff;
+
+            .footprintNumText {
+              font-size: 24px;
+              position: relative;
+              z-index: 1;
+            }
+          }
+        }
+
+        .footprintAboutMain {
+          margin-top: 16px;
+          padding: 8px;
+          background: #fff;
+          border-radius: 9px;
+
+          .title {
+            font-weight: 500;
+            font-size: 12px;
+          }
+
+          .aboutContent {
+            display: flex;
+            justify-content: space-around;
+            font-size: 8px;
+
+            .every {
+              width: 100px;
+              padding: 8px;
+
+              .icon {
+                margin-bottom: 4px;
+                text-align: center;
+
+                .iconImg {
+                  width: 24px;
+                  height: 24px;
+                }
+              }
+
+              .noDataIcon {
+                width: 20px;
+                height: 20px;
+                margin: 0 auto 4px;
+                background: #f5f5f5;
+                border-radius: 6px;
+              }
+
+              .iconDetail {
+                text-align: center;
+                height: 100%;
+
+                .num {
+                  color: #004541;
+                  font-weight: 500;
+                }
+                .numDetail {
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .dataMain {
+        margin-top: 9px;
+        padding: 11px;
+        background: #fff;
+        border-radius: 11px;
+
+        .title {
+          width: fit-content;
+          font-weight: 500;
+          font-size: 14px;
+        }
+
+        .cycleMain {
+          margin-top: 14px;
+
+          &:first-child {
+            margin-top: 11px;
+          }
+
+          .titleMain {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            font-size: 12px;
+          }
+
+          .progress {
+            display: flex;
+            width: 100%;
+            height: 10px;
+            margin-top: 2px;
+            background: #f7f8f9;
+
+            .every {
+              background: @colorPrimary;
+            }
+          }
+        }
+      }
+
+      .describeFooter {
+        width: 230px;
+        margin: 6px auto;
+        color: #b5b8bb;
+        font-size: 10px;
+        line-height: 14px;
+      }
+    }
+  }
+}
+
+// 375px H5 设计等比嵌入 Agent 的 320px 预览；旧模块和公开页不使用该变体。
+.previewH5.agentPreview {
+  container-type: inline-size;
+  width: 100%;
+  padding: 0;
+  background: #f5f5f7;
+
+  .content {
+    --h5-px: calc(100cqw / 375);
+    overflow: visible;
+
+    .main {
+      padding: calc(16 * var(--h5-px));
+
+      .productImg {
+        top: calc(16 * var(--h5-px));
+        left: calc(16 * var(--h5-px));
+        width: calc(100% - 32 * var(--h5-px));
+        height: calc(343 * var(--h5-px));
+        object-fit: contain;
+        background: #fff;
+      }
+
+      img.productImg {
+        background: #f7f8f9;
+      }
+
+      .carbonIsoMain {
+        top: calc(268 * var(--h5-px));
+        right: calc(16 * var(--h5-px));
+        left: calc(16 * var(--h5-px));
+        gap: calc(12 * var(--h5-px));
+        padding: calc(6 * var(--h5-px)) calc(16 * var(--h5-px))
+          calc(24 * var(--h5-px));
+        font-size: calc(11 * var(--h5-px));
+        line-height: calc(18 * var(--h5-px));
+        background: rgba(0, 0, 0, 0.28);
+        border: 0;
+        border-radius: calc(16 * var(--h5-px)) calc(16 * var(--h5-px)) 0 0;
+        span {
+          font-size: inherit;
+        }
+      }
+
+      .productInfo {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: calc(8 * var(--h5-px)) calc(16 * var(--h5-px));
+        margin-top: calc(282 * var(--h5-px));
+        padding: calc(16 * var(--h5-px));
+        border-radius: calc(16 * var(--h5-px));
+        .title {
+          flex-basis: 100%;
+          min-width: 0;
+          margin: 0;
+          font-size: calc(16 * var(--h5-px));
+          font-weight: 600;
+          line-height: calc(22 * var(--h5-px));
+          color: #343a40;
+          overflow-wrap: anywhere;
+        }
+        .brandInfo,
+        .footprintTime {
+          min-width: 0;
+          margin: 0;
+          line-height: calc(18 * var(--h5-px));
+          overflow-wrap: anywhere;
+        }
+        .pinpai,
+        .name {
+          font-size: calc(12 * var(--h5-px));
+        }
+      }
+
+      .carbonFootprintMain {
+        margin-top: calc(16 * var(--h5-px));
+        padding: calc(16 * var(--h5-px)) calc(8 * var(--h5-px))
+          calc(8 * var(--h5-px));
+        border-top: 1px solid #fff;
+        border-radius: calc(16 * var(--h5-px));
+        .footprintMain {
+          padding: 0 calc(8 * var(--h5-px));
+          .willMain {
+            // 圆章跨越产品信息卡边缘，需要高于其 z-index: 1。
+            z-index: 2;
+            top: calc(-42 * var(--h5-px));
+            right: calc(14 * var(--h5-px));
+            width: calc(110 * var(--h5-px));
+            height: calc(110 * var(--h5-px));
+            font-size: calc(11 * var(--h5-px));
+            border-radius: 50%;
+            .carbonLabelWill {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .footprintTitle {
+            font-size: calc(14 * var(--h5-px));
+            line-height: calc(22 * var(--h5-px));
+          }
+          .emissionValue {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: calc(4 * var(--h5-px));
+            padding-bottom: calc(16 * var(--h5-px));
+            border-bottom: 0.5px dashed rgba(255, 255, 255, 0.6);
+          }
+          .footprintNum {
+            max-width: 100%;
+            font-size: calc(30 * var(--h5-px));
+            font-weight: 600;
+            line-height: calc(30 * var(--h5-px));
+            overflow-wrap: anywhere;
+            .footprintNumText {
+              font-size: inherit;
+            }
+          }
+          .footprintUnit {
+            font-size: calc(12 * var(--h5-px));
+            line-height: calc(18 * var(--h5-px));
+            overflow-wrap: anywhere;
+          }
+          .footprintTime {
+            margin-top: calc(8 * var(--h5-px));
+            font-size: calc(12 * var(--h5-px));
+            font-weight: 300;
+            line-height: calc(18 * var(--h5-px));
+          }
+        }
+
+        .footprintAboutMain {
+          margin-top: calc(12 * var(--h5-px));
+          padding: calc(12 * var(--h5-px));
+          border-radius: calc(12 * var(--h5-px));
+          .title {
+            color: #343a40;
+            font-size: calc(12 * var(--h5-px));
+            font-weight: 400;
+            line-height: calc(18 * var(--h5-px));
+          }
+          .aboutContent {
+            // 始终保留三个槽位，少于三项时从第一列起排，不均分整行。
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: start;
+            gap: calc(8 * var(--h5-px));
+            margin-top: calc(12 * var(--h5-px));
+            .every {
+              width: auto;
+              min-width: 0;
+              padding: 0;
+              .icon {
+                margin-bottom: calc(8 * var(--h5-px));
+                .iconImg {
+                  width: calc(24 * var(--h5-px));
+                  height: calc(24 * var(--h5-px));
+                }
+              }
+              .noDataIcon {
+                width: calc(24 * var(--h5-px));
+                height: calc(24 * var(--h5-px));
+                margin-bottom: calc(8 * var(--h5-px));
+                background: #e5e7eb;
+                border-radius: calc(8 * var(--h5-px));
+              }
+              .iconDetail {
+                min-height: calc(40 * var(--h5-px));
+                .num {
+                  font-size: calc(14 * var(--h5-px));
+                  font-weight: 600;
+                  line-height: calc(20 * var(--h5-px));
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+                .numDetail {
+                  color: #6c757d;
+                  font-size: calc(12 * var(--h5-px));
+                  line-height: calc(20 * var(--h5-px));
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .dataMain {
+        margin-top: calc(28 * var(--h5-px));
+        padding: calc(16 * var(--h5-px));
+        border-radius: calc(16 * var(--h5-px));
+        .title {
+          color: #343a40;
+          font-size: calc(16 * var(--h5-px));
+          font-weight: 600;
+          line-height: calc(22 * var(--h5-px));
+        }
+        .cycleMain {
+          margin-top: calc(16 * var(--h5-px));
+          .titleMain {
+            gap: calc(8 * var(--h5-px));
+            color: #04252b;
+            font-size: calc(14 * var(--h5-px));
+            font-weight: 400;
+            line-height: calc(22 * var(--h5-px));
+            span:last-child {
+              flex-shrink: 0;
+            }
+          }
+          .progress {
+            height: calc(8 * var(--h5-px));
+            margin-top: calc(4 * var(--h5-px));
+            overflow: hidden;
+            border-radius: 45px;
+            .every {
+              border-radius: inherit;
+            }
+          }
+        }
+      }
+
+      .describeFooter {
+        width: 100%;
+        margin: calc(16 * var(--h5-px)) auto 0;
+        font-size: calc(12 * var(--h5-px));
+        line-height: calc(20 * var(--h5-px));
+        text-align: center;
+      }
+    }
+  }
+}

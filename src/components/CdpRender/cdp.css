@@ -1,0 +1,533 @@
+/* stylelint-disable selector-id-pattern */
+
+.icon--dropdown {
+  font-weight: normal;
+  font-family: icomoon;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-transform: none;
+  vertical-align: middle;
+  *zoom:expression( this.runtimestyle['zoom'] = '1', this.innerhtml = '' );
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale}
+
+.icon--dropdown::before {
+  content: ">"
+}
+
+.icon--dropup {
+  font-weight: normal;
+  font-family: icomoon;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-transform: none;
+  vertical-align: middle;
+  *zoom:expression( this.runtimestyle['zoom'] = '1', this.innerhtml = '' );
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale}
+
+.icon--dropup::before {
+  content: "1"
+}
+
+h1 {
+  font-size: 2.5em
+}
+
+h2 {
+  padding-top: 1.5em;
+  font-size: 1.3em
+}
+
+@media (min-width: 768px) {
+  h2 {
+      font-size:1.2em
+  }
+}
+
+h2+p {
+  padding: 0
+}
+
+p {
+  padding: 1.5em 0 0
+}
+
+@media (min-width: 768px) {
+  p {
+      padding-top:1.1em
+  }
+}
+
+#formatted_responses_ndp__container {
+    padding: 2em;
+    background: #FFF
+}
+
+#formatted_responses_ndp__container h1 {
+    font-weight: bold;
+    font-size: 24px;
+    page-break-before: always
+}
+
+#formatted_responses_ndp__container h3 {
+    font-weight: bold
+}
+
+#formatted_responses_ndp__container .questionnaire__activate_button {
+    display: none;
+    float: right;
+    color: #FFF
+}
+
+#formatted_responses_ndp__container i {
+    color: #FFF
+}
+
+.ndp_formatted_response--climate-change i,.ndp_formatted_response--climate-change a {
+    color: #af545b
+}
+
+.ndp_formatted_response--climate-change .ndp_formatted_response__table th {
+    background-color: #af545b
+}
+
+.ndp_formatted_response--climate-change .ndp_formatted_response__header {
+    color: #af545b
+}
+
+.ndp_formatted_response--climate-change ol>li {
+    list-style-position: inside;
+    list-style-type: decimal
+}
+
+.ndp_formatted_response--climate-change ul>li {
+    list-style-type: none
+}
+
+.ndp_formatted_response--climate-change ul>li::before {
+    position: relative;
+    top: 0.175em;
+    padding-right: 0.2em;
+    color: #af545b;
+    font-size: 2em;
+    line-height: 0;
+    content: "•"
+}
+
+.ndp_formatted_response--water i,.ndp_formatted_response--water a {
+    color: #2c86da
+}
+
+.ndp_formatted_response--water .ndp_formatted_response__table th {
+    background-color: #2c86da
+}
+
+.ndp_formatted_response--water .ndp_formatted_response__header {
+    color: #2c86da
+}
+
+.ndp_formatted_response--water ol>li {
+    list-style-position: inside;
+    list-style-type: decimal
+}
+
+.ndp_formatted_response--water ul>li {
+    list-style-type: none
+}
+
+.ndp_formatted_response--water ul>li::before {
+    position: relative;
+    top: 0.175em;
+    padding-right: 0.2em;
+    color: #2c86da;
+    font-size: 2em;
+    line-height: 0;
+    content: "•"
+}
+
+.ndp_formatted_response--forests i,.ndp_formatted_response--forests a {
+    color: #00775a
+}
+
+.ndp_formatted_response--forests .ndp_formatted_response__table th {
+    background-color: #00775a
+}
+
+.ndp_formatted_response--forests .ndp_formatted_response__header {
+    color: #00775a
+}
+
+.ndp_formatted_response--forests ol>li {
+    list-style-position: inside;
+    list-style-type: decimal
+}
+
+.ndp_formatted_response--forests ul>li {
+    list-style-type: none
+}
+
+.ndp_formatted_response--forests ul>li::before {
+    position: relative;
+    top: 0.175em;
+    padding-right: 0.2em;
+    color: #00775a;
+    font-size: 2em;
+    line-height: 0;
+    content: "•"
+}
+
+.ndp_formatted_response--states-and-regions i,.ndp_formatted_response--states-and-regions a {
+    color: #585b9a
+}
+
+.ndp_formatted_response--states-and-regions .ndp_formatted_response__table th {
+    background-color: #585b9a
+}
+
+.ndp_formatted_response--states-and-regions .ndp_formatted_response__header {
+    color: #585b9a
+}
+
+.ndp_formatted_response--states-and-regions ol>li {
+    list-style-position: inside;
+    list-style-type: decimal
+}
+
+.ndp_formatted_response--states-and-regions ul>li {
+    list-style-type: none
+}
+
+.ndp_formatted_response--states-and-regions ul>li::before {
+    position: relative;
+    top: 0.175em;
+    padding-right: 0.2em;
+    color: #585b9a;
+    font-size: 2em;
+    line-height: 0;
+    content: "•"
+}
+
+.ndp_formatted_response--cities i,.ndp_formatted_response--cities a {
+    color: #585b9a
+}
+
+.ndp_formatted_response--cities .ndp_formatted_response__table th {
+    background-color: #585b9a
+}
+
+.ndp_formatted_response--cities .ndp_formatted_response__header {
+    color: #585b9a
+}
+
+.ndp_formatted_response--cities ol>li {
+    list-style-position: inside;
+    list-style-type: decimal
+}
+
+.ndp_formatted_response--cities ul>li {
+    list-style-type: none
+}
+
+.ndp_formatted_response--cities ul>li::before {
+    position: relative;
+    top: 0.175em;
+    padding-right: 0.2em;
+    color: #585b9a;
+    font-size: 2em;
+    line-height: 0;
+    content: "•"
+}
+
+.ndp_formatted_response--aceee-cces i,.ndp_formatted_response--aceee-cces a {
+    color: #585b9a
+}
+
+.ndp_formatted_response--aceee-cces .ndp_formatted_response__table th {
+    background-color: #585b9a
+}
+
+.ndp_formatted_response--aceee-cces .ndp_formatted_response__header {
+    color: #585b9a
+}
+
+.ndp_formatted_response--aceee-cces ol>li {
+    list-style-position: inside;
+    list-style-type: decimal
+}
+
+.ndp_formatted_response--aceee-cces ul>li {
+    list-style-type: none
+}
+
+.ndp_formatted_response--aceee-cces ul>li::before {
+    position: relative;
+    top: 0.175em;
+    padding-right: 0.2em;
+    color: #585b9a;
+    font-size: 2em;
+    line-height: 0;
+    content: "•"
+}
+
+.ndp_formatted_response--public-authorities i,.ndp_formatted_response--public-authorities a {
+    color: #af545b
+}
+
+.ndp_formatted_response--public-authorities .ndp_formatted_response__table th {
+    background-color: #af545b
+}
+
+.ndp_formatted_response--public-authorities .ndp_formatted_response__header {
+    color: #af545b
+}
+
+.ndp_formatted_response--public-authorities ol>li {
+    list-style-position: inside;
+    list-style-type: decimal
+}
+
+.ndp_formatted_response--public-authorities ul>li {
+    list-style-type: none
+}
+
+.ndp_formatted_response--public-authorities ul>li::before {
+    position: relative;
+    top: 0.175em;
+    padding-right: 0.2em;
+    color: #af545b;
+    font-size: 2em;
+    line-height: 0;
+    content: "•"
+}
+
+#formatted_responses__menu {
+  margin-bottom: 0;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+
+  /* background: #e7ebed; */
+}
+
+#formatted_responses__menu.fixed {
+  position: fixed;
+  display: block
+}
+
+#formatted_responses__menu li {
+  /* border-bottom: 1px solid #fff */
+  padding-left: 2px;
+}
+
+#formatted_responses__menu li .toggle {
+  position: relative;
+  top: 2px;
+  left: -4px;
+  float: left;
+  cursor: pointer;
+
+  img {
+    width: 18px;
+  }
+}
+
+#formatted_responses__menu li .checked {
+    transform: rotate(90deg);
+  }
+
+#formatted_responses__menu li.ndp_formated_response__menu_item--selected>.toggle {
+  /* color: #fff */
+}
+
+#formatted_responses__menu li.ndp_formated_response__menu_item--selected ul li a {
+  color: #999EA4 !important
+}
+
+#formatted_responses__menu li ul {
+  display: none;
+  padding-left: 0;
+  list-style: none;
+
+  /* background: #e7ebed; */
+
+  /* border-top: 1px solid #fff; */
+  border-bottom: none;
+}
+
+#formatted_responses__menu li>ul li {
+  padding-left: 1em
+}
+
+#formatted_responses__menu li a {
+  display: block;
+  width: 80%;
+  margin: 7px 0;
+  padding: 0.5em;
+  color: #000;
+  color: #6C757D;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration: none
+}
+
+.formatted_responses__menu--climate-change .ndp_formated_response__menu_item--selected {
+    /* background-color: #af545b */
+}
+
+.formatted_responses__menu--climate-change .ndp_formated_response__menu_item--selected a {
+    color: #0CBF9F !important;
+    font-weight: 500 !important;
+}
+
+.formatted_responses__menu--water .ndp_formated_response__menu_item--selected {
+    background-color: #2c86da
+}
+
+.formatted_responses__menu--water .ndp_formated_response__menu_item--selected a {
+    color: #0CBF9F !important;
+    font-weight: 500 !important;
+}
+
+.formatted_responses__menu--forests .ndp_formated_response__menu_item--selected {
+    background-color: #00775a
+}
+
+.formatted_responses__menu--forests .ndp_formated_response__menu_item--selected a {
+    color: white !important
+}
+
+.formatted_responses__menu--states-and-regions .ndp_formated_response__menu_item--selected {
+    background-color: #585b9a
+}
+
+.formatted_responses__menu--states-and-regions .ndp_formated_response__menu_item--selected a {
+    color: white !important
+}
+
+.formatted_responses__menu--cities .ndp_formated_response__menu_item--selected {
+    background-color: #585b9a
+}
+
+.formatted_responses__menu--cities .ndp_formated_response__menu_item--selected a {
+    color: white !important
+}
+
+.formatted_responses__menu--aceee-cces .ndp_formated_response__menu_item--selected {
+    background-color: #585b9a
+}
+
+.formatted_responses__menu--aceee-cces .ndp_formated_response__menu_item--selected a {
+    color: white !important
+}
+
+.formatted_responses__menu--public-authorities .ndp_formated_response__menu_item--selected {
+    background-color: #af545b
+}
+
+.formatted_responses__menu--public-authorities .ndp_formated_response__menu_item--selected a {
+    color: white !important
+}
+
+.ndp_formatted_response__answer {
+    padding-left: .5em
+}
+
+.ndp_formatted_response__section {
+    padding: 1em 0
+}
+
+.ndp_formatted_response__section::after {
+    display: table;
+    clear: both;
+    content: ""
+}
+
+.ndp_formatted_response__question {
+    margin-top: 1em;
+    padding-left: .5em
+}
+
+.ndp_formatted_response__title {
+    font-weight: 600
+}
+
+.ndp_formatted_response__title::after {
+    display: table;
+    clear: both;
+    content: ""
+}
+
+.ndp_formatted_response__comments {
+    margin-top: 1em;
+    font-style: italic
+}
+
+td .ndp_formatted_response__comments {
+    margin: 0
+}
+
+.ndp_formatted_response__value {
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto
+}
+
+.ndp_formatted_response__value::after {
+    display: table;
+    clear: both;
+    content: ""
+}
+
+.ndp_formatted_response__value strong {
+    font-weight: 600
+}
+
+.ndp_formatted_response__value em {
+    font-style: italic
+}
+
+.ndp_formatted_response__repeater {
+    padding: 0 0 0 1em
+}
+
+.ndp_formatted_response__table {
+    width: 100%;
+    margin: 20px auto
+}
+
+.ndp_formatted_response__table th {
+    width: auto;
+    color: #fff;
+    font-weight: bold;
+    text-align: left
+}
+
+.ndp_formatted_response__table td,.ndp_formatted_response__table th {
+    padding: 3px;
+    font-size: 0.8em;
+    border: 1px solid #c1c1c1;
+    border-collapse: collapse
+}
+
+.ndp_formatted_response__table tr:nth-child(even) {
+    background: #f5f7f8
+}
+
+.ndp_formatted_response__table.matrix_simple td:nth-child(2),.ndp_formatted_response__table.matrix_simple th {
+    text-align: center
+}
+
+.ndp_formatted_response__answer_group_option td {
+    padding: 3px;
+    font-size: 0.8em;
+    border: 1px solid #c1c1c1
+}

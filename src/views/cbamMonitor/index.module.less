@@ -1,0 +1,595 @@
+@text: #04252b;
+@secondary: #6c757d;
+@tertiary: #999ea4;
+@border: #e5e7eb;
+@brand: #026961;
+@page-horizontal-padding: 40px;
+
+.page {
+  box-sizing: border-box;
+  min-height: 100%;
+  background: #fff;
+  color: @text;
+  font-family: 'PingFang SC', sans-serif;
+}
+
+.pageHeader {
+  box-sizing: border-box;
+  height: 76px;
+  margin: 0;
+  padding: 32px @page-horizontal-padding 16px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.content {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px @page-horizontal-padding 32px;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 84px;
+  padding: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 0;
+  border-top: 2px solid @brand;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 0.5px @border;
+}
+
+.statIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #f7f8f9;
+  border-radius: 12px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.statLabel {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.statValue {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 24px 0 16px;
+}
+
+.search {
+  width: 220px;
+
+  &:hover {
+    :global(.ant-input-affix-wrapper),
+    :global(.ant-input-search-button) {
+      border-color: #004541;
+    }
+  }
+
+  :global {
+    .ant-input-group {
+      display: flex;
+    }
+
+    .ant-input-affix-wrapper {
+      height: 38px;
+      padding: 7px 0 7px 12px;
+      background: #fff;
+      border-color: #d2d6da;
+      border-right: 0;
+      border-radius: 8px 0 0 8px;
+      box-shadow: none;
+    }
+
+    .ant-input {
+      height: 22px;
+      padding: 0;
+      color: @text;
+      font-family: 'PingFang SC', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+    }
+
+    .ant-input::placeholder {
+      color: @tertiary;
+    }
+
+    .ant-input-group-addon {
+      width: 40px;
+      background: #fff;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .ant-input-search-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 38px;
+      padding: 0;
+      color: @tertiary;
+      background: #fff;
+      border-color: #d2d6da;
+      border-left: 0;
+      border-radius: 0 8px 8px 0 !important;
+      box-shadow: none;
+    }
+
+    .ant-input-search-button::before {
+      display: none;
+    }
+
+    .ant-input-search-button .anticon {
+      font-size: 16px;
+    }
+
+    .ant-input-clear-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.filterSelect {
+  width: 160px;
+}
+
+.factoryTable {
+  overflow: hidden;
+  border: 0.5px solid @border;
+  border-radius: 8px;
+}
+
+.factoryEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 144px;
+  overflow: hidden;
+  color: @tertiary;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.factoryEmptyIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+
+  img {
+    width: 68.4px;
+    height: 44.8875px;
+  }
+}
+
+.factoryGroup + .factoryGroup {
+  border-top: 0.5px solid @border;
+}
+
+.factoryRow {
+  display: grid;
+  grid-template-columns: 1.15fr 1.1fr 1.05fr 1.15fr 1fr;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 22px;
+  border-bottom: 0.5px solid @border;
+
+  > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &:not(.tableHeader) {
+    &:hover {
+      background: #f5fcfb;
+    }
+  }
+}
+
+.tableHeader,
+.planHeader {
+  font-weight: 500;
+  background: #f7f8f9;
+}
+
+.factoryName {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  color: @text;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  :global(.anticon) {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    color: @secondary;
+    font-size: 16px;
+  }
+}
+
+.factoryNameText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.factoryHeaderToggle {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  color: @text;
+  font: inherit;
+  font-weight: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  > span:not(:global(.anticon)) {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  :global(.anticon) {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    color: @secondary;
+    font-size: 16px;
+  }
+}
+
+.planPanel {
+  padding: 8px;
+  background: #f7f8f9;
+  border-right: 0.5px solid @border;
+  border-left: 0.5px solid @border;
+}
+
+.planPanelInner {
+  overflow: hidden;
+  background: #fff;
+  border: 0.5px solid @border;
+  border-radius: 8px;
+}
+
+.planPanelTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 20px;
+  background: #fff;
+  border-bottom: 0.5px solid @border;
+}
+
+.planPanelHeading {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.planPanelText {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.planPanelName {
+  overflow: hidden;
+  color: @brand;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+}
+
+.planPanelHint {
+  overflow: hidden;
+  margin-left: 8px;
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+}
+
+.planVersionTag {
+  height: 24px;
+  margin-right: 0;
+  padding: 1px 8px;
+  color: #6c757d;
+  font-size: 12px;
+  line-height: 20px;
+  background: #fff;
+  border-color: @border;
+  border-radius: 8px;
+}
+
+.planRow {
+  display: grid;
+  grid-template-columns: 1.2fr 0.55fr 1fr 0.62fr 1.15fr 1.05fr 1.3fr;
+  gap: 12px;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 22px;
+  border-bottom: 0.5px solid @border;
+
+  &:not(.planHeader) {
+    &:hover {
+      background: #f5fcfb;
+    }
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.planEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 144px;
+
+  :global(.ant-empty) {
+    margin: 0;
+  }
+}
+
+.completionCell {
+  display: grid;
+  grid-template-columns: minmax(70px, 1fr) 38px;
+  gap: 8px;
+  align-items: center;
+}
+
+.statusEditing {
+  color: #8d5a2c;
+  background: #fff4e7;
+  border: 0;
+}
+
+.statusEffective,
+.statusArchived {
+  color: @brand;
+  background: #f0f8f7;
+  border: 0;
+}
+
+.deleteAction {
+  color: #b0444b !important;
+}
+
+.linkAction {
+  padding: 0;
+  color: @brand;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.disabledAction {
+  color: #b5b8bb;
+  cursor: not-allowed;
+}
+
+.addFactoryIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.addFactoryButton {
+  &:hover,
+  &:focus-visible {
+    color: @brand;
+    border-color: @brand;
+
+    .addFactoryIcon {
+      filter: brightness(0) saturate(100%) invert(28%) sepia(30%) saturate(1667%) hue-rotate(127deg) brightness(93%) contrast(98%);
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.factoryDrawer {
+  :global(.ant-drawer-header) {
+    padding: 32px;
+    border-bottom: 0;
+  }
+
+  :global(.ant-drawer-title) {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+
+  :global(.ant-drawer-extra) {
+    display: flex;
+    align-items: center;
+  }
+
+  :global(.ant-drawer-body) {
+    padding: 4px 32px 24px;
+  }
+
+  :global(.ant-drawer-footer) {
+    position: relative;
+    z-index: 1;
+    padding: 12px 40px;
+    background: #fff;
+    border-top: 0;
+    box-shadow: 0 -4px 4px rgb(0 0 0 / 4%);
+  }
+
+  :global(.ant-select-selection-item) {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.factoryDrawerClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  color: @secondary;
+  font-size: 16px;
+  line-height: 16px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    color: @text;
+  }
+}
+
+.factoryOrgCascader {
+  width: 100%;
+}
+
+.factoryOrgCascaderPopup {
+  max-width: 500px;
+  overflow: hidden;
+
+  :global(.ant-cascader-menus) {
+    max-width: 500px;
+    overflow-x: auto;
+  }
+
+  :global(.ant-cascader-menu) {
+    flex: 0 0 220px;
+    width: 220px;
+  }
+
+  :global(.ant-cascader-menu-item) {
+    min-width: 0;
+    max-width: 220px;
+  }
+
+  :global(.ant-cascader-menu-item-content) {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.drawerSectionTitle {
+  margin: 12px 0 16px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.drawerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+}
+
+.drawerFooter {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+
+  :global(.ant-btn) {
+    height: 38px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  :global(.ant-btn-default) {
+    color: @text;
+    border-color: #d5d7da;
+  }
+
+  :global(.ant-btn-primary) {
+    color: #fff;
+    font-weight: 500;
+    background: #004541;
+    border-color: #004541;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 1180px) {
+  .statGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .factoryTable {
+    overflow-x: auto;
+  }
+
+  .factoryRow,
+  .planRow {
+    min-width: 1120px;
+  }
+}

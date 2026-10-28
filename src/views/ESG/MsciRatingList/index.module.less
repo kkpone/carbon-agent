@@ -1,0 +1,117 @@
+.wrapper {
+  // padding: 24px;
+  padding: 0 !important;
+  background: #f7f8f9;
+  min-height: calc(100vh - 64px);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    height: 56px;
+    padding: 16px 40px;
+    border-bottom: 1px solid #ebedf0;
+
+    .title {
+      color: #000;
+      font-family: 'PingFang SC';
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 28px;
+    }
+
+    .aiRatingBtn {
+      background: #52c41a;
+      border-color: #52c41a;
+      height: 32px;
+      padding: 4px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  }
+
+  .filterWrapper {
+    background: #fff;
+    padding: 0 40px;
+    border-radius: 8px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+
+    .filterItem {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .filterLabel {
+        color: #333;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .filterInput,
+      .filterCascader {
+        width: 200px;
+        min-width: 200px;
+      }
+
+      .filterSelect {
+        width: 150px;
+        min-width: 150px;
+      }
+    }
+  }
+
+  .content {
+    padding: 30px 40px;
+    .empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 0;
+      color: #999;
+      font-size: 14px;
+
+      :global(.iconfont) {
+        font-size: 64px;
+        color: #d9d9d9;
+        margin-bottom: 16px;
+      }
+    }
+
+    .cardGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+      gap: 16px;
+    }
+  }
+}
+
+.addAccountBtn {
+  height: 38px;
+  padding-right: 12px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #026961;
+  cursor: pointer;
+}
+
+.addAccountBtnPrefix {
+  position: relative;
+  width: 52px;
+}
+
+.addAccountBtnAiIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -10px;
+  margin-top: -5px;
+}

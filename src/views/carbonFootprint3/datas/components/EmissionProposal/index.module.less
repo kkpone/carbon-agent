@@ -1,0 +1,262 @@
+.emissionProposal {
+  // min-width: calc(888px + 8px);
+  min-height: 418px;
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 214, 219, 0.07) 0%,
+    rgba(7, 214, 219, 0.04) 100%
+  );
+  padding: 0 16px 16px 16px;
+
+  .title {
+    padding: 16px 0;
+    color: #343a40;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    margin: 0;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    .tipList {
+      margin-right: 16px;
+      width: 50%;
+      height: 100%;
+
+      .tipItem {
+        display: flex;
+        align-items: center;
+        margin-bottom: 32px;
+        position: relative;
+
+        .tipDot {
+          width: 10px;
+          height: 10px;
+          border-radius: 100%;
+          background-color: #fff;
+          border: 2px solid #ebedf0;
+          flex-shrink: 0;
+        }
+
+        .line {
+          position: absolute;
+          content: '';
+          height: 32px;
+          width: 1px;
+          background-color: #ebedf0;
+          top: 100%;
+          left: 5px;
+          transform: translate(-50%);
+        }
+        .lineTop {
+          position: absolute;
+          content: '';
+          height: calc((100% - 10px) / 2);
+          width: 1px;
+          background-color: #ebedf0;
+          bottom: 0;
+          left: 5px;
+          transform: translate(-50%);
+        }
+        .lineBottom {
+          position: absolute;
+          content: '';
+          height: calc((100% - 10px) / 2);
+          width: 1px;
+          background-color: #ebedf0;
+          top: 0;
+          left: 5px;
+          transform: translate(-50%);
+        }
+
+        .tipIconBox {
+          display: flex;
+          align-items: center;
+          min-width: 150px;
+          margin: 0 8px;
+
+          .tipIcon {
+            display: flex;
+            font-size: 24px;
+            margin-right: 4px;
+          }
+
+          .iconTitle {
+            color: #343a40;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 22px;
+          }
+        }
+
+        .descBox {
+          // width: 306px;
+          .descTitle {
+            color: #343a40;
+            font-size: 12px;
+            line-height: 18px;
+            margin-bottom: 4px;
+          }
+          .desc {
+            color: #999ea4;
+            font-size: 12px;
+            line-height: 18px;
+          }
+        }
+      }
+    }
+
+    .org {
+      width: 50%;
+      border-radius: 8px;
+      background: #fff;
+      padding: 0px 16px;
+      .orgInfo {
+        padding: 16px 0;
+        position: relative;
+        border-bottom: 1px dashed #ebedf0;
+
+        .concactBtn {
+          cursor: pointer;
+          position: absolute;
+          border-radius: 2px 8px;
+          background: linear-gradient(90deg, #0cbf9f 0%, #28d2b3 100%);
+          top: 0;
+          right: -16px;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+          border: none;
+          color: #fff;
+          width: 91px;
+          height: 26px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .icon {
+            margin-right: 4px;
+            font-size: 16px;
+          }
+          .text {
+            font-size: 12px;
+            color: #fff;
+          }
+        }
+
+        .infoText {
+          color: #0cbf9f;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 22px;
+          margin-bottom: 4px;
+        }
+
+        .infoDesc {
+          color: #343a40;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 18px;
+        }
+      }
+
+      .orgContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: calc(100% - 73px);
+      }
+
+      .orgtable {
+        display: flex;
+        flex-wrap: wrap;
+
+        .orgTableHead,
+        .orgTableContent {
+          display: flex;
+          align-items: center;
+          flex: 1 1 auto;
+        }
+
+        .orgTableContent {
+          display: flex;
+          flex: 1 1 100%;
+          overflow: hidden;
+        }
+
+        .orgTableTitle {
+          display: flex;
+          padding: 11px 8px 3px 8px;
+          align-items: center;
+          gap: 4px;
+          align-self: stretch;
+          color: #999ea4;
+          font-size: 12px;
+          font-weight: 400;
+          width: 100%;
+          white-space: nowrap;
+        }
+
+        .orgTableItem {
+          padding: 11px 8px;
+          color: #343a40;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 100%;
+        }
+      }
+
+      .orgMore {
+        padding: 11px 0px;
+        display: flex;
+        padding: 11px 0px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        align-self: stretch;
+
+        .moreBtn {
+          padding: 0;
+          .icon {
+            margin-left: 4px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.concactBox {
+  cursor: pointer;
+  .concactText {
+    color: #343a40;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .img {
+    border-radius: 4px;
+    border: #ebedf0;
+    width: calc(168px - 80px);
+    height: calc(146px - 32px -8px - 18px);
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.contact {
+  width: 220px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}

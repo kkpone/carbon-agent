@@ -1,0 +1,81 @@
+.popoverWrapper {
+  // width: 80px;
+  // padding: 4px;
+
+  .item {
+    display: flex;
+    min-width: 80px;
+    height: 38px;
+    padding: 0px 12px;
+    align-items: center;
+    gap: 12px;
+    color: var(--Neutral-Text-text-4, #b5b8bb);
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 157.143% */
+    // margin: 6px;
+    margin-bottom: 2px;
+  }
+
+  .item:hover {
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  .active {
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+}
+
+.toolTipItem {
+  display: flex;
+  width: calc(100% + 20px);
+  justify-content: space-between;
+  align-items: center;
+  .arrowIcon {
+    margin-right: 20px;
+  }
+
+  .menuTitleWrapper {
+    width: 79%;
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
+    .menuTitle {
+      display: inline-block;
+      font-size: 14px;
+      width: 96%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.menuIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  // display: flex;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.menuTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}

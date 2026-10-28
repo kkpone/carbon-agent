@@ -1,0 +1,287 @@
+.reducingForecast {
+  width: 100%;
+  height: 100%;
+}
+
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+
+  :global {
+    .ant-spin {
+      max-height: none !important;
+    }
+
+    .ant-spin-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+}
+
+.forecastSetting {
+  padding: 12px 16px 16px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.forecastSettingData {
+  background: #fff;
+}
+
+.notCompleteIcon {
+  margin-right: 8px;
+}
+
+.notComplete {
+  color: #6c757d;
+}
+
+.completeContent {
+  display: flex;
+  margin-top: 16px;
+}
+
+.completeItem {
+  flex: 1;
+  margin-right: 12px;
+  padding: 24px;
+  background: #f7f8f9;
+  border-radius: 4px;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.completeTitle {
+  color: #343a40;
+  font-weight: 500;
+}
+
+.completeDesc {
+  margin-top: 4px;
+  color: #6c757d;
+}
+
+.completedText {
+  color: #0cbf9f;
+}
+
+.operate {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  margin-top: 24px;
+}
+
+.completeTag {
+  color: #0cbf9f;
+  background: #e6fff6;
+  border-color: #aaf2db;
+}
+
+.forecastData {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.numberInput {
+  width: 100%;
+}
+
+.titleContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleContentLeft {
+  display: flex;
+  align-items: center;
+}
+
+.forecastIcon {
+  font-size: 24px;
+}
+
+.forecastTitle {
+  margin: 0 8px;
+  color: #343a40;
+  font-weight: 500;
+}
+
+.forecastDesc {
+  color: #999ea4;
+  font-size: 12px;
+}
+
+.forecastDetails {
+  display: flex;
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px;
+  background: #f7f8f9;
+  border-radius: 4px;
+}
+
+.forecastDetailsItem {
+  margin-right: 22px;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.forecastDetailsTitle {
+  color: #6c757d;
+}
+
+.forecastDetailsValue {
+  margin-top: 4px;
+  color: #343a40;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.forecastDataHeader {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forecastDataTitle {
+  color: #343a40;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.forecastDataDesc {
+  margin-top: 4px;
+  color: #999ea4;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.refreshBtn {
+  margin-left: 8px;
+  color: #0cbf9f;
+  cursor: pointer;
+}
+
+.forecastDataContent {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.forecastDataDetails {
+  display: flex;
+  margin: 16px 0;
+}
+
+.forecastDataDetailsItem {
+  flex: 1;
+  margin-right: 16px;
+  padding: 16px;
+  background: #f7f8f9;
+  border-radius: 4px;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.forecastDataDetailsLabel {
+  color: #6c757d;
+}
+
+.tip {
+  margin-left: 4px;
+  color: #b5b8bb;
+  font-size: 12px;
+}
+
+.forecastDataDetailsValue {
+  margin-top: 4px;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.chartContainer {
+  margin-top: 16px;
+  width: 100%;
+  height: 300px;
+}
+
+.empty {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.emptyImg {
+  width: 128px;
+}
+
+.emptyText {
+  margin-top: 8px;
+  color: #6c757d;
+}
+
+.tooltipName {
+  color: #343a40;
+  font-size: 12px;
+}
+
+.tooltipUnit {
+  color: #999ea4;
+}
+
+.tooltipItem {
+  display: flex;
+  align-items: center;
+}
+
+.tooltipTitle {
+  min-width: 56px;
+  margin: 0 8px 0 4px;
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.tooltipValue {
+  color: #343a40;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.forecastModal {
+  :global {
+    .ant-modal-header {
+      border-bottom: none;
+    }
+
+    .ant-modal-footer {
+      border-top: none;
+    }
+  }
+}

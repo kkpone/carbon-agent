@@ -1,0 +1,46 @@
+.greenSupplier {
+  padding-top: 0 !important;
+  .tip {
+    margin-top: 16px;
+    border-radius: 6px;
+    border: 1px solid #b0ddff;
+    background: #f0f9ff;
+    color: #343a40;
+    font-size: 14px;
+    display: flex;
+    min-height: 40px;
+    padding: 10px 16px;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    margin-bottom: 16px;
+    .icon {
+      color: #3491fa;
+      margin-right: 8px;
+    }
+  }
+
+  :global {
+    .ant-tabs-tab {
+      padding: 16px 0;
+      color: #343a40;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .ant-tabs-tab-active {
+      text-shadow: none;
+      font-weight: 500;
+    }
+    .ant-tabs-tab + .ant-tabs-tab {
+      margin-left: 24px;
+    }
+
+    .ant-tabs-top > .ant-tabs-nav .ant-tabs-ink-bar,
+    .ant-tabs-bottom > .ant-tabs-nav .ant-tabs-ink-bar,
+    .ant-tabs-top > div > .ant-tabs-nav .ant-tabs-ink-bar,
+    .ant-tabs-bottom > div > .ant-tabs-nav .ant-tabs-ink-bar {
+      height: 3px;
+    }
+  }
+}

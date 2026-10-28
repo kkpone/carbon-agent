@@ -1,0 +1,137 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #EBEDF0;
+  border-radius: 4px;
+
+  .tableWrapper {
+    width: 50%;
+    height: 100%;
+    padding: 16px;
+
+    .names {
+      margin-top: 8px;
+      padding: 5px 8px;
+      color: var(--text, #6C757D);
+      font-weight: 400;
+      font-size: 14px;
+
+      /* Body 内容/Medium-常规-CN */
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 22px; /* 157.143% */
+    }
+
+    .table {
+      height: 460px;
+    }
+
+    :global(.ant-table-cell) {
+      background-color: #fff;
+      border: none;
+    }
+
+    :global(.ant-table-header) {
+      height: 40px;
+      background-color: #fff;
+    }
+  }
+
+  .selectedBox {
+    width: 50%;
+    height: 100%;
+    padding: 16px;
+    border-left: 1px solid #EBEDF0;
+
+    .selectedTitle {
+      padding: 8px;
+      color: var(--text, #6C757D);
+      font-weight: 400;
+      font-size: 14px;
+
+      /* Body 内容/Medium-常规-CN */
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 22px; /* 157.143% */
+    }
+
+    .selectedItemWrapper {
+      height: calc(56px * 9);
+      overflow-y: auto;
+
+      .selectedItem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 56px;
+        padding: 8px;
+      }
+
+      .close {
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+
+
+.itemWrapper {
+  color: var(--text, #999EA4);
+  font-weight: 400;
+  font-size: 12px;
+
+  /* 辅助信息/Small-常规-CN */
+  font-family: "PingFang SC";
+  font-style: normal;
+  line-height: 18px; /* 150% */
+  cursor: default;
+
+  .nameWrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin-bottom: 2px;
+
+    .name {
+      display: inline-block;
+      max-width: 200px;
+      margin-right: 4px;
+      overflow: hidden;
+      color: #0CBF9F;
+      font-weight: 400;
+      font-size: 14px; 
+  
+      /* Body 内容/Medium-常规-CN */
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 22px; /* 157.143% */
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      vertical-align: bottom;
+      cursor: pointer;
+    }
+
+    .facility {
+      display: inline-block;
+      max-width: 125px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: default;
+    }
+  }
+}
+
+.modal {
+  :global(.ant-modal-header) {
+    border: none;
+  }
+
+  :global(.ant-modal-footer) {
+    border: none;
+  }
+}

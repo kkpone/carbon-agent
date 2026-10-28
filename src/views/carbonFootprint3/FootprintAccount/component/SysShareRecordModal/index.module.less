@@ -1,0 +1,200 @@
+.sysShareRecordModal {
+  :global {
+    .ant-modal-content {
+      padding: 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .ant-modal-body {
+      padding: 0;
+    }
+
+    .ant-modal {
+      width: 1208px !important;
+      max-width: calc(100vw - 32px);
+    }
+
+    .ant-modal-close {
+      display: none;
+    }
+
+    .ant-table-wrapper .ant-table {
+      color: #04252b;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ant-table-container {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ant-table-thead > tr > th {
+      height: 48px;
+      padding: 13px 20px;
+      color: #04252b;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+      background: #f7f8f9;
+      border-bottom: 1px solid #e5e7eb;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .ant-table-tbody > tr > td {
+      height: 48px;
+      padding: 13px 20px;
+      font-size: 14px;
+      line-height: 22px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .ant-table-tbody > tr:last-child > td {
+      border-bottom: none;
+    }
+
+    .ant-empty {
+      margin: 48px 0;
+    }
+
+    .ant-table-cell-fix-right {
+      background: #fff;
+    }
+
+    .ant-table-thead > tr > th.ant-table-cell-fix-right {
+      background: #f7f8f9;
+    }
+  }
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 0;
+  background: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: #04252b;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.closeBtn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 16px;
+  color: #999ea4;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    color: #04252b;
+    background: #f7f8f9;
+  }
+}
+
+.body {
+  padding: 0 32px;
+}
+
+.tableWrap {
+  width: 100%;
+  overflow: hidden;
+
+  :global {
+    .ant-table {
+      width: 100%;
+    }
+
+    .ant-table-body {
+      overflow-y: hidden !important;
+    }
+  }
+}
+
+.tableWrapScrollable {
+  :global {
+    .ant-table-body {
+      overflow-y: auto !important;
+    }
+  }
+}
+
+/** 操作列容器，对齐 Figma 4147:17166：gap 16px、单行不换行 */
+.actionsCell {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+/** 可点击操作文案：PingFang Regular 14px / 22px，品牌色 #026961 */
+.actionText {
+  flex-shrink: 0;
+  overflow: hidden;
+  color: #026961;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    color: #028a7f;
+  }
+}
+
+.actionLoading {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+/** 不可用态保留灰色，hover 无交互 */
+.actionDisabled {
+  flex-shrink: 0;
+  overflow: hidden;
+  color: #999ea4;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: not-allowed;
+}
+
+.linkCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,201 @@
+.formTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.submitBtn {
+  margin-left: 16px;
+}
+
+.tableHeader {
+  height: 50px;
+  padding: 8px 12px !important;
+}
+
+.inputTableCeil {
+  display: flex;
+  align-items: center;
+}
+
+.inputTableCeilUnit {
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.operateBtn {
+  margin-right: 20px;
+  color: #0cbf9f;
+  cursor: pointer;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.tabBarTitle {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  color: #343a40;
+  font-weight: 500;
+}
+
+.splitColumn {
+  width: 1px;
+  height: 14px;
+  margin-left: 14px;
+  background: #ebedf0;
+}
+
+.mainContainer {
+  height: 100%;
+  padding: 0 !important;
+
+  :global {
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.tableSection {
+  padding: 16px;
+}
+
+.formSection {
+  padding: 16px;
+}
+
+.splitBar {
+  height: 10px;
+  background: #f7f8f9;
+}
+
+.processLibName {
+  width: 326px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.ellipsisText {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.fullModal {
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+
+  :global {
+    .ant-modal-body {
+      height: 100%;
+      padding: 0;
+    }
+
+    .ant-modal-content {
+      height: 100vh;
+      padding: 0 !important;
+      border-radius: 0 !important;
+    }
+  }
+}
+
+.processLib {
+  width: 100%;
+  height: 100%;
+
+  :global {
+    .ant-tree-treenode {
+      &:first-child {
+        .ant-tree-switcher {
+          display: none;
+        }
+      }
+    }
+
+    .ant-tree-indent-unit {
+      &:nth-of-type(1) {
+        width: 0;
+      }
+    }
+  }
+}
+
+.processHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 64px;
+  padding: 0 16px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.backIcon {
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+.displayTypeBtn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    color: #0cbf9f;
+  }
+}
+
+.displayTypeIcon {
+  margin-right: 6px;
+  font-size: 16px;
+}
+
+.processBody {
+  width: 100%;
+  height: calc(100% - 64px);
+  background: #f7f8f9;
+}
+
+.processTable {
+  height: 100%;
+  padding: 16px 0;
+}
+
+.processTableContent {
+  height: 100%;
+  margin: 0 56px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.processGraph {
+  display: flex;
+  height: 100%;
+}

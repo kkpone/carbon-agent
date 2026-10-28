@@ -1,0 +1,356 @@
+.modalRoot :global(.ant-modal-mask) {
+  background: rgb(0 0 0 / 60%);
+}
+
+.modalRoot :global(.ant-modal) {
+  max-width: calc(100vw - 32px);
+}
+
+.modalRoot :global(.ant-modal-content),
+.modal :global(.ant-modal-content) {
+  padding: 0 !important;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.modalRoot :global(.ant-modal-body),
+.modal :global(.ant-modal-body) {
+  padding: 0 !important;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 48px);
+  overflow: hidden;
+  color: #04252b;
+  background: #fff;
+}
+
+.main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32px;
+  padding: 32px;
+  background: #fff;
+}
+
+.header h2 {
+  margin: 0;
+  color: #04252b;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.closeButton {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.closeButton::before,
+.closeButton::after {
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  width: 16px;
+  height: 1.5px;
+  background: #999ea4;
+  border-radius: 2px;
+  content: '';
+}
+
+.closeButton::before {
+  transform: rotate(45deg);
+}
+
+.closeButton::after {
+  transform: rotate(-45deg);
+}
+
+.closeButton:hover:not(:disabled) {
+  background: #f5f7f7;
+}
+
+.closeButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 0;
+  padding: 0 32px 32px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.intro {
+  margin: 0;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.snapshotCard {
+  display: flex;
+  align-items: center;
+  border-top: 2px solid #026961;
+  border-radius: 12px;
+}
+
+.snapshotCardInner {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  min-width: 0;
+  padding: 16px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.snapshotMeta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.snapshotTime {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: #999ea4;
+  white-space: nowrap;
+}
+
+.snapshotTime strong {
+  color: #04252b;
+  font-weight: 400;
+}
+
+.snapshotTitle {
+  color: #04252b;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.snapshotMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.snapshotScope {
+  grid-column: 1 / -1;
+}
+
+.snapshotMetrics > span,
+.totalEmission span,
+.totalEmission strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.totalEmission {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 4px;
+  align-items: center;
+  min-width: 0;
+  color: #6c757d;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.totalEmission span {
+  flex: 0 0 auto;
+  font-weight: 400;
+}
+
+.totalEmission strong {
+  min-width: 0;
+  color: #0cbf9f;
+  font-weight: 500;
+  text-align: left;
+}
+
+.snapshotHint {
+  margin: 0;
+  padding-top: 12px;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.goalSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.goalSection h3 {
+  margin: 0;
+  color: #04252b;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.goalInput,
+.goalInput:global(.ant-input) {
+  min-height: 120px !important;
+  padding: 8px 12px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  border-color: #e5e7eb;
+  border-radius: 8px;
+  resize: none;
+}
+
+.goalInput:hover,
+.goalInput:focus,
+.goalInput:global(.ant-input-focused) {
+  border-color: #0cbf9f;
+  box-shadow: none;
+}
+
+.disabledReason {
+  margin: 0;
+  color: #d46b08;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.footer {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 12px 24px;
+  background: #fff;
+  box-shadow: 0 -4px 4px rgb(0 0 0 / 4%);
+}
+
+.cost {
+  display: flex;
+  align-items: center;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.pointsIcon {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  background: #0cbf9f;
+  mask: url('../../../../../../assets/images/carbonAgent/icons/points-sparkle.svg')
+    center / contain no-repeat;
+}
+
+.cost strong {
+  margin-left: 8px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+  height: 38px;
+  padding: 8px 24px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 22px;
+  background: #004541;
+  border: 1px solid #004541;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #026961;
+  border-color: #026961;
+}
+
+.submitButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (max-width: 640px) {
+  .layout {
+    max-height: calc(100dvh - 24px);
+  }
+
+  .header {
+    padding: 24px 20px;
+  }
+
+  .content {
+    padding: 0 20px 24px;
+  }
+
+  .snapshotMeta,
+  .snapshotTime {
+    align-items: flex-start;
+  }
+
+  .snapshotMeta {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .snapshotMetrics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .snapshotScope {
+    grid-column: auto;
+  }
+
+  .totalEmission {
+    text-align: left;
+  }
+}

@@ -1,0 +1,74 @@
+@import '@src/styles/var.less';
+
+.addEmissionData {
+  position: relative;
+  min-height: 100%;
+
+  .header {
+    display: flex;
+    font-size: 16px;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .headerIcon {
+      color: @primary-color;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 500;
+    margin: 16px 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+  }
+
+  :global(.ant-form-item-hidden) {
+    width: 0;
+    height: 0;
+    margin: 0;
+  }
+
+  :global(.ant-checkbox-wrapper) {
+    margin-right: 30px;
+  }
+
+  :global(.ant-checkbox-group-item) {
+    margin-right: 30px;
+  }
+
+  .mainRow {
+    max-width: 1600px;
+
+  }
+
+  && {
+    padding-bottom: @GlobaFormActionsHeight + 10px;
+  }
+
+  :global(.ant-form-item) {
+    line-height: 2.5715;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .mainForm {
+    display: flex;
+    flex-flow: column;
+
+    :global(.ant-spin-nested-loading) {
+      display: flex;
+      flex-flow: column;
+    }
+  }
+
+}

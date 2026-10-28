@@ -1,0 +1,133 @@
+.deleteConfirmWrap {
+  :global(.ant-modal) {
+    max-width: calc(100vw - 32px);
+    padding-bottom: 0;
+  }
+}
+
+.deleteConfirmModal {
+  :global {
+    .ant-modal-content {
+      padding: 32px;
+      border-radius: 12px;
+      background: #fff;
+      backdrop-filter: blur(50px);
+    }
+
+    .ant-modal-body {
+      padding: 0;
+    }
+
+    .ant-modal-confirm-body-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ant-modal-confirm-body {
+      display: block;
+    }
+
+    .ant-modal-confirm-paragraph {
+      gap: 0;
+      max-width: none;
+    }
+
+    .ant-modal-confirm-title {
+      padding-right: 32px;
+      color: #04252b;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    .ant-modal-confirm-content {
+      margin: 32px 0 0;
+      color: #04252b;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .ant-modal-confirm-btns {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .ant-modal-confirm-btns .ant-btn {
+      min-width: 76px;
+      height: 38px;
+      padding: 8px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .ant-modal-confirm-btns .ant-btn + .ant-btn {
+      margin-inline-start: 0;
+    }
+
+    .ant-modal-confirm-btns .ant-btn > span {
+      word-spacing: -0.48em;
+    }
+
+    .ant-modal-confirm-btns .ant-btn-default {
+      color: #04252b;
+      border-color: #d5d7da;
+      background: #fff;
+    }
+
+    .ant-modal-confirm-btns .ant-btn-primary {
+      color: #fff;
+      border-color: #004541;
+      background: #004541;
+      box-shadow: none;
+    }
+
+    .ant-modal-confirm-btns .ant-btn-primary:hover {
+      border-color: #026961;
+      background: #026961;
+    }
+
+    .ant-modal-close {
+      top: 32px;
+      inset-inline-end: 32px;
+      width: 16px;
+      height: 16px;
+      color: #6c757d;
+    }
+
+    .ant-modal-close-x {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+      line-height: 16px;
+    }
+
+    .ant-modal-close svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.deleteConfirmContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 380px;
+  max-width: 100%;
+
+  > span:last-child {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.deleteConfirmIcon {
+  flex: 0 0 16px;
+  color: #b0663c;
+  font-size: 16px;
+}

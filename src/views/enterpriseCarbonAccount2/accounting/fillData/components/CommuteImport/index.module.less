@@ -1,0 +1,87 @@
+.questionnairePopover {
+  :global {
+    .ant-popover-inner {
+      padding: 4px;
+      border-radius: 8px;
+    }
+  }
+}
+
+.questionnaireList {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.questionnaire {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background: #f9fafb;
+  }
+}
+
+.questionnaireName {
+  width: 174px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px; /* 157.143% */
+}
+
+.questionnaireInfo {
+  display: flex;
+  column-gap: 8px;
+  div {
+    color: #04252b;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.statusTag {
+  padding: 1px 4px;
+  display: inline-block;
+  border-radius: 4px;
+  color: #04252b;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.publishedTag {
+  background: #ddf4f2;
+}
+
+.closeTag {
+  background: #e5e7eb;
+}
+
+.UnpublishTag {
+  background: #fceedf;
+}
+
+.addQuestionnaire {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 8px;
+  cursor: pointer;
+  color: #026961;
+}
+
+.importQuestionnaire {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #d5d7da;
+}

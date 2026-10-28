@@ -1,0 +1,84 @@
+.settingModel {
+  width: 890px;
+  .added {
+    font-weight: 400;
+    font-size: 14px;
+    color: #343a40;
+  }
+
+  .pendingAddList {
+    margin-top: 20px;
+    display: flex;
+  }
+  .pendingAddList::-webkit-scrollbar {
+    display: none;
+  }
+  .standingUseList {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ebedf0;
+    transition: all 0.4s;
+    margin-bottom: 20px;
+    position: relative;
+    // height: 163px;
+  }
+
+  .dashed {
+    background: #fff;
+    border: 1px dashed #d2d6da;
+  }
+  .pendingAddList {
+    display: flex;
+    transition: all 0.4s;
+    flex-wrap: wrap;
+    max-height: 230px;
+    overflow-y: scroll;
+    .pending {
+      border: 2px solid rgba(0, 0, 0, 0);
+    }
+    .pending:hover {
+      border: 2px solid rgba(7, 193, 96, 0.2);
+      // background: url('');
+      .icon {
+        color: #0cbf9f;
+      }
+    }
+    .icon {
+      color: #999ea4;
+      cursor: pointer;
+    }
+  }
+  .ant-modal-body {
+    padding: 0 24px 4px 24px;
+  }
+}
+.standingUseItem {
+  width: 260px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 75px;
+  background: #f7f8f9;
+  border-radius: 4px;
+  margin: 16px 16px 0 0;
+  transition: all 0.4s;
+  justify-content: space-between;
+  // cursor: -webkit-grabbing;
+  border: 1px solid #fff;
+  padding: 0 14px;
+  z-index: 99999;
+}
+.standingUseItem:nth-child(4n) {
+  margin-right: 0;
+}
+.productName {
+  color: #999ea4ff;
+  font-size: 12px;
+  font-weight: 400;
+}
+.activeDrag {
+  border: 1px solid #0cbf9f;
+  box-shadow: 0px 0px 2px rgb(12, 191, 159, 0.7);
+  cursor: -webkit-grabbing;
+}

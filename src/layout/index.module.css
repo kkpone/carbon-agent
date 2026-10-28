@@ -1,0 +1,22 @@
+.c {
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column;
+  padding-bottom: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.layoutContainer > div {
+  flex: 1 1 auto;
+  width: 100%;
+  padding: 10px;
+  padding-right: 30px;
+  overflow-x: hidden;
+  background: linear-gradient(to left, #f8f8f8 20px, #fff 20px 100%);
+}
+
+.layoutContainer .emptyBg {
+  width: 20px;
+  background-color: #f8f8f8;
+}

@@ -1,0 +1,33 @@
+/** table 操作按钮 */
+.actionsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 16px;
+  :global {
+    .ant-btn {
+      padding: 0;
+      height: 22px;
+    }
+  }
+}
+
+.tableDropdownWrapper {
+  // min-width: 80px !important;
+  min-width: auto;
+
+  :global(.ant-dropdown-menu-item) {
+    text-align: center;
+  }
+}
+
+:global(.ant-dropdown-menu) {
+  // width: 96px;
+  // text-align: center;
+}
+
+:global(.ant-dropdown-menu-item) {
+  margin: 0 4px;
+  padding: 4px 0;
+  border-radius: 4px;
+}

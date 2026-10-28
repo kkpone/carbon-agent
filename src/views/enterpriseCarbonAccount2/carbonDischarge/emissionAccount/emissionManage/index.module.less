@@ -1,0 +1,24 @@
+.wrapper {
+  &&&& {
+    overflow: visible;
+  }
+
+  .inner {
+    display: flex;
+
+    :global(.left) {
+      height: auto;
+
+      :global(.resizable-container) {
+        > div {
+          display: flex;
+          overflow: hidden;
+
+          :global(.classify-box) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

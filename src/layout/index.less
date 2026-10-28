@@ -1,0 +1,70 @@
+@import '../styles/var.less';
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  // height: calc(100vh - 62.99px);
+
+  &--side-bar {
+    flex-direction: row;
+    overflow: auto;
+  }
+
+  &__main {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    overflow: hidden;
+    background: @backgroudGray;
+    // padding: 10px 0 0 10px;
+  }
+
+  &--weak {
+    filter: invert(80%);
+  }
+
+  &__route {
+    position: relative;
+    background: @whiteBg;
+    padding: 14px 20px;
+    min-height: calc(100vh - 95px);
+
+    &-enter {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0;
+    }
+
+    &-enter-active {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 1;
+    }
+
+    &-exit {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 1;
+    }
+
+    &-exit-active {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      opacity: 0;
+    }
+  }
+}

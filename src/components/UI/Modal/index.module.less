@@ -1,0 +1,60 @@
+@import '@src/styles/var.less';
+
+.modal {
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.08);
+  @borderRadius: 6px;
+
+  :global(.ant-modal-header) {
+    border-radius: @borderRadius;
+    border-bottom: none;
+  }
+
+  :global(.ant-modal-title) {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+    }
+  }
+
+  :global(.ant-modal-body) {
+    min-height: 189px;
+  }
+
+  :global(.ant-modal-content) {
+    border-radius: @borderRadius;
+  }
+
+  :global(.ant-modal-footer) {
+    button {
+      border-radius: 4px;
+      padding: 0px 20px;
+      font-size: 14px;
+      margin-left: 10px !important;
+    }
+
+    .ant-btn {
+      border-color: #ddd;
+    }
+  }
+}
+
+.centerModal {
+  @extend .modal;
+
+  :global(.ant-modal-footer) {
+    text-align: center;
+  }
+
+  :global(.ant-modal-body) {
+    text-align: center;
+
+    div {
+      color: @text-color;
+      margin-top: 10px;
+    }
+  }
+}

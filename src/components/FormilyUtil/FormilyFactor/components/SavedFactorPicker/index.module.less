@@ -1,0 +1,79 @@
+.dialog {
+  padding-bottom: 0;
+
+  &:global(.ant-modal) :global(.ant-modal-content) {
+    display: flex;
+    flex-direction: column;
+    max-height: min(720px, calc(100dvh - 64px));
+    overflow: hidden;
+    padding: 32px;
+    border-radius: 12px;
+  }
+
+  :global(.ant-modal-content) > :global(.ant-modal-header) {
+    flex: none;
+    margin-bottom: 24px;
+  }
+
+  :global(.ant-modal-title) {
+    padding-right: 32px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+  }
+
+  :global(.ant-modal-content) > :global(.ant-modal-body) {
+    display: flex;
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  :global(.ant-modal-content) > :global(.ant-modal-close) {
+    top: 32px;
+    right: 32px;
+    width: 28px;
+    height: 28px;
+  }
+
+  :global(.ant-modal-content) > :global(.ant-modal-footer) {
+    flex: none;
+    margin-top: 24px;
+    padding: 0;
+
+    :global(.ant-btn) {
+      min-width: 76px;
+    }
+  }
+}
+
+.manageIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.manageButton {
+  padding: 8px 12px;
+  border-color: #d5d7da;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .dialog:global(.ant-modal) :global(.ant-modal-content) {
+    padding: 24px;
+  }
+}
+
+@media (max-height: 640px) {
+  .dialog:global(.ant-modal) :global(.ant-modal-content) {
+    max-height: calc(100dvh - 32px);
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .dialog :global(.ant-modal-content) > :global(.ant-modal-close) {
+    top: 16px;
+  }
+}

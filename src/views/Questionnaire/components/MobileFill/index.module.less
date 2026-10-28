@@ -1,0 +1,252 @@
+.fill {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw !important;
+  height: 100dvh;
+  overflow-y: auto;
+  z-index: 100;
+  background: #f5f7fa !important;
+  &&& {
+    padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  }
+
+  :global {
+    .ant-formily-item {
+      margin-bottom: 16px;
+    }
+
+    .ant-formily-item-label-content {
+      label {
+        white-space: wrap;
+        border-bottom: none;
+      }
+    }
+    .ant-formily-item-label-content > span {
+      display: flex;
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    // 防止ios 聚焦输入框页面放大
+    font-size: 16px !important;
+  }
+}
+
+.header {
+  padding: 16px 20px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 8px;
+  background: #fff;
+}
+
+.content {
+  padding: 22px 20px;
+}
+
+.hide {
+  display: none;
+}
+
+.title {
+  flex: 1;
+  color: #121615;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  cursor: pointer;
+}
+
+.langText {
+  font-size: 12px;
+  color: #808080;
+}
+
+.currLangText {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.expireTime {
+  margin-bottom: 16px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.transportOption {
+  padding-top: 14px;
+  width: 56px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid #e1e4ea;
+  cursor: pointer;
+  background: #fff;
+}
+
+.selectedTransportOption {
+  border-color: #0cbf9f;
+  .transportOptionIcon,
+  .transportOptionLabel {
+    color: #0cbf9f;
+  }
+}
+
+.transportOptionIcon {
+  color: #cacfd8;
+  :global {
+    svg {
+      font-size: 24px;
+    }
+  }
+}
+
+.transportOptionLabel {
+  text-align: center;
+  color: #525866;
+  font-size: 9px;
+  line-height: 12px;
+}
+
+.overviewImg {
+  margin-top: 12px;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.overviewTitle {
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.valueTitle {
+  margin: 20px 0;
+  color: #121615;
+}
+
+.emission {
+  margin: 8px 0 16px;
+  display: flex;
+  column-gap: 6px;
+  align-items: end;
+}
+
+.emissionValue {
+  color: #0cbf9f;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+.emissionUnit {
+  position: relative;
+  top: -6px;
+  color: #525866;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+}
+
+.barChartContent {
+  margin-bottom: 16px;
+  padding-top: 24px;
+  flex: 1;
+  border-radius: 12px;
+  border: 1px solid #e1e4ea;
+  background: #fff;
+}
+
+.tipsContent {
+  display: flex;
+  column-gap: 8px;
+}
+
+.tips {
+  max-width: 100px;
+  padding: 0 10px;
+  height: 32px;
+  display: flex;
+  column-gap: 4px;
+  align-items: center;
+  border-radius: 0px 30px 30px 0px;
+  background: #019b8f;
+  span {
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 12px;
+  }
+}
+
+.tipText {
+  flex: 1;
+  color: #04252b;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+}
+
+.barArea {
+  margin-top: 24px;
+  padding: 0 16px;
+}
+
+.barTitle {
+  margin-bottom: 8px;
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.button {
+  width: 100%;
+}
+
+.expired {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 8px;
+  background: rgb(245, 247, 250);
+}
+
+.expiredIcon {
+  svg {
+    font-size: 120px;
+    color: #d9d9d9;
+  }
+}
+
+.expiredText {
+  color: #6c757d;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px; /* 166.667% */
+}
+
+.langIcon {
+  svg {
+    font-size: 40px;
+  }
+}

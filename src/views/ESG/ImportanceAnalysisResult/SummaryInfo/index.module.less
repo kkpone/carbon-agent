@@ -1,0 +1,118 @@
+.title {
+  margin-bottom: 24px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+}
+
+.summaryContent {
+  display: flex;
+  column-gap: 24px;
+}
+
+.chartContent {
+  width: 676px;
+  flex-shrink: 0;
+  min-height: 266px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  column-gap: 80px;
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+}
+
+.totalCountContent {
+  flex-shrink: 0;
+}
+
+.totalCountLabel {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px; /* 137.5% */
+}
+
+.totalCountUnit {
+  color: #999ea4;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+}
+
+.totalCount {
+  margin-top: 12px;
+  color: var(--Neutral-Text-text-1, #04252b);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.qrCodeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 24px;
+  flex: 1;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+}
+
+.qrCodeHeader {
+  width: 100%;
+}
+
+.qrCodeTitle {
+  color: var(--Neutral-Text-text-1, #04252b);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+.qrCodeUrl {
+  margin-top: 12px;
+  display: flex;
+  column-gap: 16px;
+}
+
+.qrCode {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--Brand-brand-3, #004541);
+  overflow: hidden;
+  &:hover {
+    .downloadQrCodeBtn {
+      bottom: 0;
+    }
+  }
+}
+
+.downloadQrCodeBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
+  transition: all 0.1s ease-in-out;
+  position: absolute;
+  bottom: -32px;
+  height: 32px;
+  border-radius: 0 0 7px 7px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8) 3.13%,
+    #fff 54.14%
+  );
+  cursor: pointer;
+}
+
+.downloadQrCodeText {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}

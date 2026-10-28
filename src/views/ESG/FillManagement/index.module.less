@@ -1,0 +1,268 @@
+.fillManagement {
+  &&& {
+    padding: 0;
+  }
+}
+
+.header {
+  height: 56px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.content {
+  padding: 32px 40px;
+}
+
+.periodContent {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.periodLabel {
+  color: #b5b8bb;
+  font-size: 16px;
+}
+
+.periodControl {
+  display: flex;
+}
+
+.prevBtn,
+.nextBtn {
+  width: 32px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ebedf0;
+  cursor: pointer;
+}
+
+.prevBtn {
+  border-right: none;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.nextBtn {
+  border-left: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.disabledBtn {
+  background: rgba(4, 37, 43, 0.04);
+  cursor: not-allowed;
+}
+
+.prevIcon,
+.nextIcon {
+  color: #999ea4;
+}
+
+.prevIcon {
+  transform: rotate(180deg);
+}
+
+.periodSelector {
+  width: 66px;
+  :global {
+    .ant-select-selector {
+      border-color: #ebedf0 !important;
+      border-radius: 0;
+    }
+  }
+}
+
+.progressOverview {
+  margin: 16px 0 24px;
+}
+
+.title {
+  margin-bottom: 16px;
+  color: #343a40;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.progressContent {
+  display: flex;
+  column-gap: 24px;
+  height: 246px;
+}
+
+.allProgress {
+  padding: 48px 32px 0;
+  min-width: 362px;
+  display: flex;
+  column-gap: 32px;
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+}
+
+.progressGird {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.progressItem {
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.progressLabel {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.progressLabelIcon {
+  height: 14px;
+  width: 3px;
+  border-radius: 8px;
+}
+
+.progressLabelText {
+  color: #000;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.progressValue {
+  color: #000;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+}
+
+.filterContent {
+  margin-bottom: 24px;
+  display: flex;
+  column-gap: 24px;
+}
+
+.filterSelect {
+  width: 228px;
+}
+
+.listContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.listItem {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #ebedf0;
+  overflow: hidden;
+}
+
+.column {
+  padding: 0 24px;
+}
+
+.nameColumn {
+  width: 242px;
+  padding: 0 32px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 8px;
+  border-radius: 20px;
+  background: #fceedf;
+  font-size: 12px;
+}
+
+.completeStatus {
+  background: #e8f6ff;
+}
+
+.notStartStatus {
+  background: #ffe3e1;
+}
+
+.progressColumn {
+  padding: 0 24px;
+  flex: 1;
+}
+
+.updateColumn {
+  width: 260px;
+  padding: 0 16px;
+}
+
+.operateColumn {
+  height: 100%;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 4px 12px 0px rgba(4, 37, 43, 0.1);
+  :global {
+    .ant-btn {
+      padding: 0;
+    }
+  }
+}
+
+.columnLabel {
+  color: #6c757d;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.fillCountContent {
+  display: flex;
+  column-gap: 8px;
+}
+
+.fillCount {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.totalCount {
+  font-size: 12px;
+  color: #b5b8bb;
+  line-height: 20px;
+}
+
+.empty {
+  padding-top: 48px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 8px;
+}
+
+.emptyImg {
+  width: 118px;
+}
+
+.emptyText {
+  font-size: 12px;
+  color: #6c757d;
+  line-height: 29px;
+}

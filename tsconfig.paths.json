@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@src/*": [
+        "./src/*"
+      ],
+      "@router/*": [
+        "./src/router/*"
+      ],
+      "@layout/*": [
+        "./src/layout/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@api/*": [
+        "./src/api/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@typings/*": [
+        "./src/typings/*"
+      ],
+      "@views/*": [
+        "./src/views/*"
+      ],
+      "@Variable": [
+        "./src/styles/variable.module.less"
+      ]
+    }
+  }
+}

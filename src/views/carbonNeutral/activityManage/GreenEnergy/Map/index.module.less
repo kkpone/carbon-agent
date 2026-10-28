@@ -1,0 +1,29 @@
+.mapSvg {
+  width: 100%;
+  height: auto;
+  &_path {
+    cursor: pointer;
+  }
+  &_text {
+    cursor: pointer;
+    font-size: 10px;
+    fill: rgba(127, 135, 141, 1);
+  }
+}
+
+.mapSvg path[data-code] {
+  cursor: pointer;
+}
+
+.mapSvg path[data-code]:hover {
+  stroke-width: 1px;
+  stroke: #026961;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.2));
+}
+
+.mapSvg text {
+  cursor: pointer;
+  font-size: 10px;
+  fill: rgba(127, 135, 141, 1);
+  pointer-events: none;
+}

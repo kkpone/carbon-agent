@@ -1,0 +1,744 @@
+@text-primary: #04252b;
+@text-secondary: #6c757d;
+@surface-muted: #f7f8f9;
+
+.taskTriggerRow {
+  cursor: pointer;
+}
+
+.taskTriggerRow:focus-visible {
+  outline: 2px solid rgba(2, 105, 97, 0.45);
+  outline-offset: -2px;
+}
+
+.projectTaskDrawerLayer {
+  position: fixed;
+  z-index: 1250;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+}
+
+.projectTaskDrawerPopup {
+  z-index: 1350 !important;
+}
+
+.projectTaskDrawerScrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.6);
+  cursor: default;
+}
+
+.projectTaskDrawer {
+  width: min(640px, 100vw);
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: -12px 0 36px rgba(4, 37, 43, 0.12);
+  backdrop-filter: blur(50px);
+  padding: 32px;
+}
+
+.projectTaskDrawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex: 0 0 auto;
+}
+
+.projectTaskDrawerHeader h2 {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: @text-primary;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskDrawerHeader button {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 24px;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.projectTaskDrawerHeader button:hover,
+.projectTaskDrawerHeader button:focus-visible {
+  background: @surface-muted;
+  outline: none;
+}
+
+.projectTaskDrawerHeader button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.projectTaskDrawerHeader img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.projectTaskDrawerBody {
+  min-height: 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 24px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 1px;
+}
+
+.projectTaskDrawerState {
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 12px;
+  color: @text-secondary;
+  font-size: 14px;
+}
+
+.projectTaskDrawerState button {
+  border: 0;
+  background: transparent;
+  color: #026961;
+  cursor: pointer;
+  font: inherit;
+}
+
+.projectTaskDrawerRelated {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: #f7f8f9;
+  padding: 16px;
+}
+
+.projectTaskDrawerRelated > span {
+  color: #6c757d;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.projectTaskDrawerRelated > div {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.projectTaskDrawerRelated > div > div {
+  min-width: 0;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.projectTaskDrawerRelated > div > div:last-child {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.projectTaskDrawerRelated strong,
+.projectTaskDrawerRelated small {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskDrawerRelated strong {
+  color: @text-primary;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.projectTaskDrawerRelated small {
+  color: #999ea4;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.projectTaskDrawerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.projectTaskDrawerField {
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.projectTaskDrawerField > label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.projectTaskDrawerField > label b {
+  color: #cb3430;
+  font-weight: 400;
+}
+
+.projectTaskDrawerTextInput {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: @text-primary;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  outline: none;
+  padding: 8px 12px;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.projectTaskDrawerTextInput::placeholder {
+  color: #b5b8bb;
+}
+
+.projectTaskDrawerTextInput:not(:disabled):hover,
+.projectTaskDrawerTextInput:not(:disabled):focus {
+  border-color: #026961;
+  box-shadow: 0 0 0 2px rgba(2, 105, 97, 0.1);
+}
+
+.projectTaskDrawerTextInput:disabled {
+  border-color: #e5e7eb;
+  background: #f3f4f6;
+  color: #999ea4;
+  cursor: default;
+}
+
+.projectTaskDrawerSelect,
+.projectTaskDrawerDatePicker {
+  width: 100%;
+}
+
+.projectTaskDrawerSelect :global(.ant-select-selector),
+.projectTaskDrawerDatePicker {
+  height: 38px !important;
+  border-color: #e5e7eb !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+}
+
+.projectTaskDrawerSelect:global(.ant-select-single)
+  :global(.ant-select-selector) {
+  padding: 3px 12px !important;
+}
+
+.projectTaskDrawerSelect:global(.ant-select-single)
+  :global(.ant-select-selection-item),
+.projectTaskDrawerSelect:global(.ant-select-single)
+  :global(.ant-select-selection-placeholder) {
+  color: @text-primary;
+  font-size: 14px;
+  line-height: 30px !important;
+}
+
+.projectTaskDrawerSelect:not(:global(.ant-select-disabled)):hover
+  :global(.ant-select-selector),
+.projectTaskDrawerSelect:global(.ant-select-focused)
+  :global(.ant-select-selector) {
+  border-color: #026961 !important;
+  box-shadow: 0 0 0 2px rgba(2, 105, 97, 0.1) !important;
+}
+
+.projectTaskDrawerSelect:global(.ant-select-disabled)
+  :global(.ant-select-selector),
+.projectTaskDrawerDatePicker:global(.ant-picker-disabled) {
+  border-color: #e5e7eb !important;
+  background: #f3f4f6 !important;
+  color: #999ea4 !important;
+  cursor: default;
+}
+
+.projectTaskDrawerSelect:global(.ant-select-disabled)
+  :global(.ant-select-selection-item),
+.projectTaskDrawerDatePicker:global(.ant-picker-disabled)
+  :global(.ant-picker-input > input) {
+  color: #999ea4 !important;
+  cursor: default;
+}
+
+.projectTaskDrawerSelect:global(.ant-select-disabled)
+  :global(.ant-select-arrow),
+.projectTaskDrawerDatePicker:global(.ant-picker-disabled)
+  :global(.ant-picker-suffix) {
+  opacity: 0.45;
+}
+
+.projectTaskDrawerChevron {
+  width: 10px;
+  height: 6px;
+  display: block;
+}
+
+.projectTaskDrawerSelect:global(.ant-select-open)
+  .projectTaskDrawerChevron {
+  transform: rotate(180deg);
+}
+
+.projectTaskDrawerDatePicker {
+  padding: 4px 12px;
+}
+
+.projectTaskDrawerDatePicker :global(.ant-picker-input > input) {
+  color: @text-primary;
+  font-size: 14px;
+}
+
+.projectTaskDrawerCalendar {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.projectTaskDrawerReadonly {
+  width: 100%;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f7f8f9;
+  color: @text-primary;
+  font-size: 14px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 8px 12px;
+}
+
+.projectTaskDrawerFileInput {
+  display: none;
+}
+
+.projectTaskDrawerUpload {
+  height: 38px;
+  border: 1px solid #d2d6da;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  color: @text-primary;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 8px 16px;
+}
+
+.projectTaskDrawerUpload:hover,
+.projectTaskDrawerUpload:focus-visible {
+  border-color: #026961;
+  color: #026961;
+  outline: none;
+}
+
+.projectTaskDrawerUpload:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.projectTaskDrawerUpload img {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.projectTaskDrawerFiles {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.projectTaskDrawerFiles li {
+  max-width: 100%;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  background: #f1f6f5;
+  color: @text-primary;
+  font-size: 13px;
+  padding: 4px 8px 4px 10px;
+}
+
+.projectTaskDrawerFileDownload {
+  max-width: 420px;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskDrawerFileDownload:hover,
+.projectTaskDrawerFileDownload:focus-visible {
+  color: #026961;
+  outline: none;
+  text-decoration: underline;
+}
+
+.projectTaskDrawerFileDownload:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.projectTaskDrawerFileRemove {
+  width: 18px;
+  height: 18px;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #6c757d;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 18px;
+  padding: 0;
+}
+
+.projectTaskDrawerTextarea {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  padding: 8px 12px 28px;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.projectTaskDrawerTextarea:hover,
+.projectTaskDrawerTextarea:focus-within {
+  border-color: #026961;
+  box-shadow: 0 0 0 2px rgba(2, 105, 97, 0.1);
+}
+
+.projectTaskDrawerTextarea[data-disabled='true'] {
+  border-color: #e5e7eb;
+  background: #f3f4f6;
+  box-shadow: none;
+}
+
+.projectTaskDrawerTextarea[data-disabled='true']:hover,
+.projectTaskDrawerTextarea[data-disabled='true']:focus-within {
+  border-color: #e5e7eb;
+  box-shadow: none;
+}
+
+.projectTaskDrawerTextarea textarea {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  resize: none;
+  background: transparent;
+  color: @text-primary;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  outline: none;
+  padding: 0;
+}
+
+.projectTaskDrawerTextarea textarea::placeholder {
+  color: #b5b8bb;
+}
+
+.projectTaskDrawerTextarea textarea:disabled {
+  color: #999ea4;
+  cursor: default;
+}
+
+.projectTaskDrawerTextarea > span {
+  position: absolute;
+  right: 20px;
+  bottom: 4px;
+  color: #b5b8bb;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.projectTaskDrawerTextarea > img {
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  display: block;
+}
+
+.projectTaskDrawerActivity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.projectTaskDrawerActivity h3 {
+  margin: 0;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.projectTaskDrawerActivity ol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.projectTaskDrawerActivity li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  column-gap: 8px;
+  color: @text-primary;
+}
+
+.projectTaskDrawerActivity li:not(:last-child)::after {
+  width: 1px;
+  position: absolute;
+  top: 16px;
+  bottom: -12px;
+  left: 7.5px;
+  background: #d9e4e2;
+  content: '';
+}
+
+.projectTaskDrawerActivity li > i {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  z-index: 1;
+  grid-row: 1 / span 4;
+  border: 1.5px solid #02887d;
+  border-radius: 50%;
+  background: #fff;
+  margin-top: 4px;
+}
+
+.projectTaskDrawerActivity li > i::after {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  top: 3.5px;
+  left: 3.5px;
+  border-radius: 50%;
+  background: #02887d;
+  content: '';
+}
+
+.projectTaskDrawerActivity strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskDrawerActivity p {
+  grid-column: 2;
+  margin: 0;
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.projectTaskDrawerActivity li > span {
+  grid-column: 2;
+  margin-top: 4px;
+  color: #6c757d;
+  font-size: 13px;
+  line-height: 20px;
+  white-space: pre-wrap;
+}
+
+.projectTaskDrawerActivity li > div {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 2;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.projectTaskDrawerActivityFile {
+  border: 0;
+  border-radius: 4px;
+  background: #f1f6f5;
+  color: #026961;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 3px 7px;
+}
+
+.projectTaskDrawerActivityFile:hover,
+.projectTaskDrawerActivityFile:focus-visible {
+  background: #e1f3ec;
+  outline: none;
+}
+
+.projectTaskDrawerActivityFile:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.projectTaskDrawerInlineError,
+.projectTaskDrawerSubmitError {
+  color: #cb3430;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.projectTaskDrawerSubmitError {
+  border-radius: 8px;
+  background: #fff1f0;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 10px 12px;
+}
+
+.projectTaskDrawerFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex: 0 0 auto;
+}
+
+.projectTaskDrawerCancel,
+.projectTaskDrawerSubmit {
+  height: 38px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 8px 24px;
+}
+
+.projectTaskDrawerCancel {
+  border: 1px solid #d5d7da;
+  background: #fff;
+  color: @text-primary;
+}
+
+.projectTaskDrawerSubmit {
+  border: 0;
+  background: #004541;
+  color: #fff;
+  font-weight: 500;
+}
+
+.projectTaskDrawerCancel:disabled,
+.projectTaskDrawerSubmit:disabled {
+  cursor: not-allowed;
+}
+
+.projectTaskDrawerCancel:disabled {
+  opacity: 0.5;
+}
+
+.projectTaskDrawerSubmit:disabled {
+  background: rgba(0, 69, 65, 0.6);
+}
+
+@media (max-width: 760px) {
+  .projectTaskDrawer {
+    width: 100%;
+    gap: 24px;
+    padding: 24px 20px
+      calc(20px + env(safe-area-inset-bottom));
+  }
+
+  .projectTaskDrawerHeader h2 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .projectTaskDrawerGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .projectTaskDrawerRelated > div {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .projectTaskDrawerRelated > div > div:last-child {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .projectTaskDrawerFooter {
+    padding-top: 4px;
+  }
+}

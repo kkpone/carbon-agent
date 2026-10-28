@@ -1,0 +1,283 @@
+@import '@src/styles/var.less';
+
+.formilyFactor {
+  margin-bottom: 4px;
+
+  .describe {
+    margin-bottom: 16px;
+    color: #999ea4;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .factorMain {
+    padding: 16px;
+    border: 1px solid rgb(235 237 240);
+    border-top: 3px solid @colorPrimary;
+    border-radius: 8px;
+    background-color: #fff;
+
+    .cardIcon {
+      color: #0cbf9f;
+      font-size: 16px;
+    }
+
+    .selectFactorIcon {
+      margin-right: 10px;
+    }
+
+    .detailIcon {
+      color: #999ea4;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .factorTitleMain {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 24px;
+
+      .titleMain {
+        display: flex;
+        align-items: center;
+
+        .titleText {
+          margin-right: 10px;
+          font-weight: 500;
+          font-size: 16px;
+          max-width: 210px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      .titleSetMain {
+        display: flex;
+        align-items: center;
+        color: #0cbf9f;
+
+        .setMain {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 90px;
+          cursor: pointer;
+        }
+      }
+
+      .titleSetMainWithExtra {
+        column-gap: 12px;
+
+        :global(.ant-btn-link) {
+          gap: 4px;
+          padding-inline: 0 !important;
+        }
+
+        .actionDivider {
+          flex: 0 0 1px;
+          width: 1px;
+          height: 14px;
+          background: #d2d6da;
+        }
+
+        :global(.m-r-6) {
+          margin-right: 0 !important;
+        }
+      }
+    }
+
+    .factorDetail {
+      display: flex;
+      margin-top: 10px;
+      padding: 12px;
+      background: #fafafa;
+      border-radius: 8px;
+
+      .factorEmission {
+        margin-right: 48px;
+
+        .factorValue {
+          font-weight: 500;
+          line-height: 22px;
+          max-width: 340px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .factorDescribe {
+          color: #999ea4;
+          font-size: 12px;
+          line-height: 18px !important;
+        }
+      }
+    }
+
+    .factorDetailWithType {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)) minmax(
+          7em,
+          1fr
+        );
+      gap: 24px;
+
+      .factorEmission {
+        min-width: 0;
+        margin-right: 0;
+      }
+    }
+
+    .rateAndEvalRow {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .evaluationCard {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .factorRate {
+      flex-shrink: 0;
+
+      .rateTitle {
+        display: flex;
+        align-items: center;
+
+        .riskIcon {
+          margin-right: 4px;
+          color: #ed5555;
+        }
+      }
+
+      .rateMain {
+        display: flex;
+        align-items: center;
+        height: 32px;
+        margin-top: 8px;
+
+        .rateWeightText {
+          font-weight: 400;
+          margin: 0 2px;
+        }
+
+        .oneUnit {
+          min-width: 60px;
+        }
+
+        .rateSpan {
+          margin: 0 5px;
+          font-weight: 500;
+        }
+
+        .rateText {
+          color: #b5b8bb;
+          font-size: 12px;
+        }
+      }
+
+      .error {
+        color: @dangerTextColor;
+        border-color: @dangerTextColor;
+      }
+
+      .errorRegText {
+        margin-top: 3px;
+        color: @dangerTextColor;
+        transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+
+      .inputData {
+        position: relative;
+        top: 2px;
+        width: 80px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border: none;
+        border-bottom: 2px solid #ebedf0;
+        outline: none;
+        box-shadow: none;
+
+        :global(.ant-input-number-input) {
+          position: relative;
+          margin: 0 8px;
+          padding: 0;
+          font-size: 14px;
+          transition: none;
+        }
+      }
+
+      :global(.ant-input-number-focused) {
+        border-bottom: 2px solid @colorPrimary;
+      }
+    }
+  }
+
+  .factorNoDataMain {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 16px;
+    border: 1px solid rgb(235 237 240);
+    border-radius: 8px;
+    background-color: #fff;
+
+    .empty {
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+      font-size: 50px;
+    }
+
+    .noFactorText {
+      width: 100%;
+      // margin-top: 4px;
+      line-height: 12px;
+      color: #b5b8bb;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .factorNoDataSetMain {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+
+      .line {
+        width: 1px;
+        height: 14px;
+        border-right: 1px solid #d2d6da;
+      }
+
+      .factorNoDataSet {
+        margin-right: 10px;
+        margin-left: 10px;
+        color: #0cbf9f;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.widthAuto {
+  width: fit-content;
+}
+
+.tipInfo {
+  display: flex;
+  justify-content: space-between;
+
+  .rateText {
+    color: var(--text-gray-5-disabled, #b5b8bb);
+    font-family: 'PingFang SC';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 180% */
+  }
+}

@@ -1,0 +1,94 @@
+@import '@src/styles/var.less';
+
+.become_supplier_main.become_supplier_main {
+    padding: 0;
+
+    :global(.ant-modal-body) {
+        min-height: auto;
+    }
+
+    .textGray {
+        color: @text-color-secondary;
+    }
+
+    .textGreen {
+        color: @primary-color;
+    }
+
+    .becomeSupplier {
+        width: 700px;
+        margin: 0 auto;
+        margin-top: 30px;
+
+        .write_code {
+            margin-bottom: 20px;
+            color: @text-color;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .code_des {
+            margin-bottom: 20px;
+            color: @text-color-secondary;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .textarea {
+            width: 400px;
+            min-height: 60px;
+        }
+
+
+        .my_info_title {
+            color: @text-color;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .my_info_name {
+            margin-top: 20px;
+            color: @text-color;
+            font-weight: 400;
+            font-size: 14px
+        }
+
+        .my_info_count {
+            margin-top: 20px;
+            color: @text-color;
+            font-weight: 400;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        :global(.ant-popover) {
+            .pop_title {
+                width: 300px;
+
+                .pop_footer {
+                    text-align: right;
+
+                    .pop_button {
+                        width: 70px;
+                        margin: 15px 0;
+                        border-radius: 4px;
+                    }
+                }
+
+            }
+        }
+
+        .become_pur_button {
+            box-sizing: border-box;
+            height: 32px;
+            margin-top: 20px;
+            color: @text-color;
+            font-weight: 400;
+            font-size: 14px;
+            text-align: center;
+            background: @whiteBg;
+            border: 1px solid #D0D3D6;
+            border-radius: 4px;
+        }
+    }
+}

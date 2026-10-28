@@ -1,0 +1,81 @@
+@import '@src/styles/var.less';
+
+.layout {
+  &__navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+    &__nav,
+    &__menu {
+      align-items: center;
+
+    }
+
+    &__menu {
+      justify-content: flex-start;
+      position: relative;
+      flex: 1;
+
+      &-item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 15px;
+        font-size: 16px;
+        transition: background 0.2s;
+
+        &--light {
+          color: @text-color;
+
+
+        }
+
+        &--dark {
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    &__account {
+      margin-left: 10px;
+      font-size: 12px;
+    }
+  }
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: @headerHeight;
+  margin: 0px;
+  box-sizing: border-box;
+  padding-left: 24px;
+  padding-right: 105px;
+  overflow: hidden;
+}
+
+.logo img {
+  width: 100px;
+  height: 31px;
+}
+
+.logo .img-back {
+  font-size: 40px;
+  padding-left: 18px;
+}
+
+.logo .img-all {
+  font-size: 90px;
+}
+
+.layout__side-bar--close {
+  width: 64px;
+}

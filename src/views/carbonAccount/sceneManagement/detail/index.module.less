@@ -1,0 +1,117 @@
+@import '../../../../styles/var.less';
+
+.carbonAccountDetail {
+  &&& {
+    flex: 1 1 auto;
+    margin-bottom: @GlobaFormActionsHeight;
+    padding: 0;
+    padding-right: 10px;
+    background: @backgroudGray;
+
+    .sceneMain {
+      background-color: @backgroudGray;
+    }
+
+    :global(.ant-card) {
+      border: none;
+
+      :global(.ant-form > .ant-row) {
+        max-width: 1440px;
+      }
+    }
+
+    :global(.ant-card + .ant-card) {
+      margin-top: 10px;
+    }
+  }
+
+  .limitWrapper {
+    padding-left: 10px;
+  }
+
+  .limitForm {
+    :global(.ant-form-item-control-input) {
+      height: 0;
+      min-height: 0;
+      overflow: hidden;
+    }
+  }
+
+  .limitItem {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      margin-bottom: 20px;
+    }
+
+    .limitLabel {
+      margin-right: 20px;
+
+      label {
+        margin-right: 12px;
+      }
+    }
+  }
+
+  .addMapButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+}
+
+.qrCodeTitle {
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.qrCodeBtn {
+  display: flex;
+  align-items: center;
+}
+
+.qrCodeIcon {
+  margin-right: 4px;
+}
+
+.qrCodeList {
+  width: 200px;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.qrCodeItem {
+  :global {
+    .ant-dropdown-menu-title-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.qrCodeOpeBtn {
+  margin-right: 8px;
+  cursor: pointer;
+
+  &:hover {
+    color: #0cbf9f;
+  }
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.qrCodeImg {
+  width: 150px;
+  height: 150px;
+}
+
+.qrCodeContent {
+  margin: 8px 0 20px;
+  display: flex;
+  align-items: center;
+}

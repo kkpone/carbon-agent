@@ -1,0 +1,172 @@
+.page.main {
+  background: var(--fill-gray-1-bghover, #F7F8F9);
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  // justify-content: space-between;
+
+  .card {
+    position: relative;
+    width: calc(25% - 16px);
+    height: 190px;
+    margin: 0 16px 16px 0;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 4%);
+
+    .tag {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      padding: 1px 8px;
+      color: var(--Text-white, #FFF);
+      font-weight: 500;
+      font-size: 12px;
+
+      /* Caption 辅助信息/@caption-s-b */
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 18px; /* 150% */
+      text-align: center;
+      background: var(--brand-green-7-normal, #0CBF9F);
+      border-radius: 8px 0;
+    }
+
+    .stylePic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      flex-shrink: 0;
+      width: 100%;
+      height: 72px;
+      object-fit: cover;
+      object-position: left bottom;
+    }
+
+    .stylePicBg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      flex-shrink: 0;
+      width: 100%;
+      height: 72px;
+      background: rgb(0 0 0 / 40%);
+    }
+
+    .info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      height: 124px;
+      padding: 24px 16px;
+      background: #FFF;
+      border-radius: 8px;
+
+      .name {
+        margin-bottom: 4px;
+        color: var(--text-gray-8-primary, #343A40);
+        font-weight: 500;
+        font-size: 14px;
+
+        /* Body 内容/@body-m-b */
+        font-family: "PingFang SC";
+        font-style: normal;
+        line-height: 22px; /* 157.143% */
+        text-overflow: ellipsis;
+      }
+
+      .id {
+        margin-bottom: 16px;
+
+        span {
+          padding: 0 6px;
+          color: var(--text-gray-6-placeholder, #999EA4);
+          font-weight: 400;
+          font-size: 12px;
+
+          /* Caption 辅助信息/@caption-s */
+          font-family: "PingFang SC";
+          font-style: normal;
+          line-height: 18px; /* 150% */
+          background: var(--fill-gray-1-bghover, #F7F8F9);
+          border-radius: 0 4px 4px 0;
+        }
+      }
+
+      .time {
+        color: var(--text-gray-5-disabled, #B5B8BB);
+        font-weight: 400;
+        font-size: 11px;
+        font-family: "PingFang SC";
+        font-style: normal;
+        line-height: 18px; /* 163.636% */
+      }
+    }
+
+    .unlockPic {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      flex-shrink: 0;
+      width: 96px;
+      height: 96px;
+    }
+
+    .delWrapper {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      display: none;
+      width: 25px;
+      height: 25px;
+      background: rgb(0 0 0 / 40%);
+    }
+
+    .del {
+      // position: absolute;
+      // top: 20px;
+      // right: 20px;
+      z-index: 2;
+      display: none;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 8px 0 rgb(0 0 0 / 10%);
+
+    .delWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .del {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@import url('@styles/var.less');
+
+.gridWrapper {
+  :global {
+    .ant-formily-item-feedback-layout-loose {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+.wrapper {
+  .closeIcon {
+    cursor: pointer;
+  }
+
+  :global {
+    .ant-drawer-close {
+      display: none;
+    }
+
+    .ant-drawer-footer {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      align-self: stretch;
+      justify-content: center;
+      padding: 12px 24px;
+      background: @whiteBg;
+      box-shadow: 0 -4px 8px 0 rgb(0 0 0 / 4%);
+    }
+  }
+}

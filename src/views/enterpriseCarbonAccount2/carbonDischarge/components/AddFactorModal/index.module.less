@@ -1,0 +1,33 @@
+/** 添加气体弹窗 ， 添加其它气体 */
+.addfactor {
+  :global(.ant-modal-header) {
+    margin-bottom: 12px;
+    border: none;
+  }
+
+  :global(.ant-modal-footer) {
+    border: none;
+  }
+
+  /** 修改table下拉框样式 */
+  :global(.add-factor-select-sub-gas) {
+    width: 100%;
+  }
+}
+
+.addOtherGas {
+  min-height: 160px;
+
+  && {
+    cursor: initial;
+  }
+
+  .title {
+    margin: 0 0 16px 7px;
+    cursor: pointer;
+  }
+
+  .table {
+    margin-top: 16px;
+  }
+}

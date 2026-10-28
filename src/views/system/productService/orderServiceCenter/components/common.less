@@ -1,0 +1,302 @@
+@import '@src/styles/var.less';
+// 续订弹框的公共样式
+.orderServiceCenterModalCommon {
+  .font14Title {
+    font-weight: 500;
+    font-size: 14px;
+    color: @mainDark;
+  }
+  // 通用的 带绿色竖线的标题
+  .secondTitle {
+    position: relative;
+    padding-left: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    height: 22px;
+    line-height: 22px;
+    color: @mainDark;
+
+    .colorLeftTitle {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 2px;
+      height: 14px;
+      background-color: #0cbf9f;
+    }
+  }
+  .bodyMain {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px;
+    .bodyMainLeft {
+      width: 535px;
+      min-height: 100px;
+      border-right: 1px solid #ebedf0;
+      padding: 20px 20px 20px 0;
+      // 产品描述
+      .productMain {
+        padding: 14px;
+        margin-top: 14px;
+        border: 1px solid #ebedf0;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        .describeTitle {
+          font-size: 14px;
+          font-weight: 500;
+          color: @mainDark;
+        }
+        .describe {
+          margin-top: 8px;
+          font-weight: 400;
+          font-size: 12px;
+          color: #999ea4;
+          letter-spacing: 0;
+          text-align: justify;
+          line-height: 22px;
+        }
+      }
+      // 价格列表
+      .priceMain {
+        display: flex;
+        flex-wrap: wrap;
+        .priceMainListLeft {
+          margin-left: 5%;
+        }
+        .priceMainList {
+          position: relative;
+          margin-top: 14px;
+          width: 30%;
+          border: 1px solid #ebedf0;
+          border-radius: 6px;
+          text-align: center;
+          padding: 16px 0;
+          cursor: pointer;
+          .priceMonth {
+            font-size: 16px;
+            font-weight: 600;
+            color: @mainDark;
+            margin-bottom: 10px;
+          }
+          // 现价
+          .priceMoney {
+            color: @primary-color;
+            margin-bottom: 10px;
+            .priceMoneyDW {
+              font-size: 14px;
+              font-weight: 500;
+            }
+            .priceMoneyText {
+              font-size: 24px;
+              font-weight: 500;
+            }
+          }
+          // 原价格
+          .priceOldMoney {
+            font-weight: 400;
+            font-size: 12px;
+            color: #999ea4;
+            text-decoration: line-through;
+          }
+        }
+        .priceMainListActive {
+          border-color: @primary-color;
+        }
+        .priceMainListActiveMain {
+          width: 0px;
+          height: 0px;
+          position: absolute;
+          right: -30px;
+          bottom: -30px;
+          color: white;
+          border-bottom: 30px solid @primary-color;
+          border-left: 30px solid transparent;
+          border-right: 30px solid transparent;
+          border-top: 30px solid transparent;
+          transform: rotate(135deg);
+        }
+        .priceMainListActiveMainText {
+          position: absolute;
+          right: 5px;
+          bottom: 5px;
+          z-index: 2;
+        }
+      }
+    }
+    .bodyMainRight {
+      width: 245px;
+      min-height: 100px;
+      padding: 20px 0 20px 20px;
+      .productList {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .list {
+          width: 45%;
+          font-size: 12px;
+          text-align: center;
+          margin-left: 10px;
+          padding: 8px;
+          background: #f7f8f9;
+          border-radius: 4px;
+          margin-top: 10px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+      .payTime {
+        padding: 20px 0;
+        border-bottom: 1px solid #ebedf0;
+        display: flex;
+        justify-content: space-between;
+      }
+      .payAll {
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+  // 确认订单样式
+  .orderDetail {
+    margin-top: 14px;
+    height: 50px;
+    background: #f7f8f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px;
+    padding: 0 14px;
+    .detailCompany {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .detailTime {
+      font-size: 12px;
+    }
+  }
+  .orderDetailProduct {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ebedf0;
+    padding-bottom: 14px;
+    .orderDetailProductLeft {
+      width: 50%;
+      border-right: 1px dashed #ebedf0;
+      .productList {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 14px;
+        span {
+          display: flex;
+          align-items: center;
+          color: #6c757d;
+        }
+        .list {
+          font-size: 12px;
+          text-align: center;
+          margin-left: 10px;
+          padding: 8px;
+          background: #f7f8f9;
+          border-radius: 4px;
+          // margin-top: 10px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    .orderDetailProductRight {
+      width: 50%;
+    }
+  }
+  .confirmOrderMain {
+    padding: 0 24px 20px 24px;
+
+    .payMain {
+      .payMainTitle {
+        width: 120px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 14px;
+        color: @mainDark;
+        margin-top: 20px;
+      }
+      .payMainWeixin {
+        margin-top: 5px;
+        display: flex;
+        justify-content: flex-start;
+        .payMainLeft {
+          width: 120px;
+          height: 120px;
+        }
+        .payMainRight {
+          margin-left: 14px;
+          padding-top: 10px;
+        }
+      }
+    }
+  }
+
+  .bodyMainFooter {
+    height: 57px;
+    background: #f7f8f9;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 80px;
+    .bodyMainFooterMain {
+      display: flex;
+      align-items: center;
+      .moneyText {
+        font-size: 14px;
+      }
+      .moneyNumber {
+        font-weight: 500;
+        font-size: 26px;
+        color: @primary-color;
+      }
+    }
+  }
+  // 支付成功
+  .paySuccessMain {
+    text-align: center;
+    padding: 20px 24px 30px 24px;
+    .successIcon {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 10px;
+      margin: 0 auto;
+    }
+    .successBtns {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .paySuccessFooter {
+    padding: 20px 24px 30px 24px;
+  }
+  .modalTitle {
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    color: @mainDark;
+    padding: 24px;
+    border-bottom: 1px solid #ebedf0;
+  }
+  .modalFooter {
+    height: 72px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 24px;
+    align-items: center;
+    .subBtn {
+      width: 200px;
+      height: 44px;
+      margin-left: 14px;
+      border-radius: 4px;
+    }
+  }
+}

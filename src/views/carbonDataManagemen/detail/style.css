@@ -1,0 +1,151 @@
+.golalDetail {
+  display: flex;
+  padding: 16px;
+  overflow: auto;
+}
+.computation_left {
+  flex: 1;
+}
+.computation_right {
+  width: 50%;
+  display: none;
+}
+.bottom-box {
+  height: 60px;
+  background: #FFFFFF;
+  box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, 0.03);
+  filter: blur(0);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.bottom-box button:first-child {
+  margin-right: 10px;
+}
+.bottom-box button:last-child {
+  margin-right: 20px;
+}
+.fromTable .ant-form-item-label > label {
+  width: 100%;
+  display: block;
+}
+.add-linkman {
+  height: 40px;
+  color: #333;
+  text-align: center;
+  border: 1px dashed #DDDDDD;
+  line-height: 40px;
+  margin-top: 10px;
+}
+.add-linkman:hover {
+  transition: all 0.3s;
+  color: #09C199;
+  border: 1px dashed #09C199;
+}
+.addheader {
+  display: flex;
+  height: 405px;
+  border: 1px solid #D2D6DA;
+  border-radius: 4px;
+}
+.addheader .addhader_left {
+  flex: 1;
+  padding: 16px;
+  border-right: 1px solid #D2D6DA;
+  overflow-y: auto;
+}
+.addheader .addhader_left p {
+  font-weight: 400;
+  font-size: 14px;
+  color: #999EA4;
+  text-align: left;
+  margin-top: 16px;
+}
+.addheader .addhader_left p span {
+  font-weight: 400;
+  font-size: 14px;
+  color: #35393E;
+}
+.addheader .addhader_right {
+  padding-top: 22px;
+  padding-left: 16px;
+  flex: 1;
+  overflow-y: auto;
+}
+.addheader .addhader_right h2 {
+  font-weight: 400;
+  font-size: 14px;
+  color: #6C757D;
+}
+.addheader .comstonSearchInput .ant-input {
+  border-right: none;
+}
+.addheader .comstonSearchInput .ant-input-group-addon {
+  background: #fff;
+}
+.submitDataDetail {
+  background: #fff;
+  padding: 16px;
+}
+.submitDataDetail .ant-descriptions-row .ant-descriptions-item-label {
+  background: #F7F8F9;
+}
+.submitDataDetail .comstomTableSummary {
+  width: 100%;
+  background: #F7F9FA;
+}
+.submitDataDetail .detail_title {
+  font-weight: 400;
+  font-size: 14px;
+  color: #35393E;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.submitDataDetail h3 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #35393E;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 16px;
+}
+.baseYearSet_type {
+  width: 50%;
+  float: left;
+}
+.baseYearSet_fixedYear {
+  display: block;
+}
+.model_content {
+  padding: 10px;
+  font-weight: 400;
+  font-size: 12px;
+  background: #F7F8F9;
+  color: #6C757D;
+  letter-spacing: 0;
+  text-align: justify;
+}
+.model_content p {
+  margin: 0;
+  padding: 0;
+}
+.golalDetail .ant-table-tbody .ant-form-item {
+  margin-bottom: 0;
+}
+.golalDetail .computation_left .ant-input-number-disabled {
+  border-right: none;
+}
+.comInput .ant-form-item-control-input-content {
+  display: flex;
+  align-items: flex-end;
+}
+.comInput .ant-form-item-control-input-content .ant-form-item:nth-child(2) {
+  margin-left: 20px;
+}
+.comOperationYear {
+  display: block;
+}

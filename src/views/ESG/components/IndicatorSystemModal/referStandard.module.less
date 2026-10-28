@@ -1,0 +1,50 @@
+.referStandardContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.standardItem {
+  position: relative;
+  padding: 0 16px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid #d5d7da;
+  background: #fff;
+  cursor: pointer;
+  &:hover {
+    border-color: #026961;
+  }
+}
+
+.name {
+  max-width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.logoContent {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  max-width: 70px;
+  max-height: 40px;
+}
+
+.selected {
+  border-color: #026961;
+  background: #f7f8f9;
+}
+
+.tip {
+  color: #b5b8bb;
+}

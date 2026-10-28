@@ -1,0 +1,180 @@
+@import '../../../../../styles/var.less';
+
+.wrapper {
+  --PrimaryColor: @primary-color;
+
+  &.changePrimaryColor {
+    --PrimaryColor: @primary-color;
+  }
+  .primary {
+    color: var(--PrimaryColor);
+  }
+
+  .icon {
+    margin-right: 9px;
+  }
+
+  .info {
+    border-radius: 8px 8px 0 0;
+    border: 1px solid @lineGray;
+    padding: 16px 32px;
+    border-top: 4px solid #08a28b;
+    display: flex;
+    flex-flow: column;
+    background: #f9fafb;
+
+    .top {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .prodName {
+        color: #000;
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px; /* 157.143% */
+
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        .tag {
+          width: 4px;
+          height: 16px;
+          background: #08a28b;
+          border-radius: 10px;
+        }
+
+        .tagRight {
+          background: #026961;
+        }
+      }
+    }
+    aside {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 24px;
+      flex-flow: row nowrap;
+      background-color: @backgroudGray;
+      border-radius: 8px;
+      margin-top: 8px;
+      gap: 24px;
+
+      .itemInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .productPic {
+          width: 50px;
+          height: 50px;
+          border-radius: 8px;
+          background: #e8e9eb;
+        }
+
+        .productName {
+          color: #04252b;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-family: 'PingFang SC';
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 22px; /* 157.143% */
+        }
+
+        .subName {
+          color: #6c757d;
+          font-family: 'PingFang SC';
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 18px; /* 150% */
+        }
+
+        &.unit {
+          margin-left: 0;
+          max-width: 166px;
+        }
+
+        .accountType {
+          display: flex;
+          flex-grow: 0;
+          width: fit-content;
+          height: 24px;
+          padding: 10px 8px;
+          align-items: center;
+          border-radius: 100px;
+
+          /* 辅助信息/Small-常规-CN */
+          font-family: 'PingFang SC';
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 18px; /* 150% */
+          color: #04252b;
+          background: #e8f6ff;
+        }
+
+        .optionNodeTypeQuick {
+          background: var(--Brand-Brand1-, #e6fff6);
+        }
+      }
+
+      .name {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .infoRight {
+    border-top: 4px solid #026961;
+  }
+
+  .dataView {
+    display: flex;
+    padding: 24px 32px;
+    justify-content: space-between;
+    border: 1px solid #e5e7eb;
+    border-radius: 0 0 8px 8px;
+    border-top: none;
+
+    .item {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .itemInfoVal {
+        color: #999ea4;
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+      }
+
+      .itemInfoTotal {
+        color: #04252b;
+        font-family: 'PingFang SC';
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+
+      .itemInfoKey {
+        color: #04252b;
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin-top: 4px;
+      }
+    }
+  }
+}

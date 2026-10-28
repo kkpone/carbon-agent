@@ -1,0 +1,18 @@
+.ellipsis-tooltip {
+  display: inline-block;
+  max-width: 100%; /* 防止超出父容器 */
+}
+
+.ellipsis-tooltip.oneline {
+  white-space: nowrap; /* 单行文本溢出处理 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ellipsis-tooltip.multiline {
+  white-space: normal; /* 多行文本溢出处理 */
+  -webkit-line-clamp: var(--webkit-line-clamp); /* 支持多行溢出处理 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

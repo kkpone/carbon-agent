@@ -1,0 +1,141 @@
+@import '../../../../../styles/var.less';
+@detailTextColor: @secondDark;
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  // max-width: 256px;
+
+  .top {
+    padding: 0 40px;
+    flex: 0 0 auto;
+
+    .search {
+      background-color: @whiteBg;
+    }
+  }
+
+  .searchIcon {
+    color: @text-color-secondary;
+    width: 12px;
+    height: 12px;
+  }
+
+  .filters {
+    display: flex;
+    column-gap: 8px;
+    margin-top: 8px;
+    .filterItem {
+      font-size: 12px;
+      color: #999ea4;
+      padding: 0 12px;
+      height: 24px;
+      line-height: 22px;
+      border-radius: 12px;
+      border: 1px solid @lineGray;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        color: #026961;
+      }
+      &.active {
+        border-color: #026961;
+        color: #026961;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .bottom {
+    margin-top: 8px;
+    padding: 0 40px;
+    flex: 1 1 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    .bottomLoading {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .noMore {
+      margin-top: 16px;
+      text-align: center;
+      color: @detailTextColor;
+    }
+
+    .card {
+      cursor: pointer;
+      display: flex;
+      flex-flow: column;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: 1px solid #ebedf0;
+      background: #fff;
+
+      &.active {
+        border: 1px solid #026961;
+
+        .cardAccountName {
+          color: @mainDark;
+        }
+        .row {
+          color: @mainDark;
+        }
+        .cardProductName {
+          color: #026961;
+        }
+      }
+
+      .cardTitle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        margin-bottom: 5px;
+
+        .cardProductName {
+          font-weight: 500;
+        }
+
+        .tag {
+          color: @primary-color;
+          flex: 0 0 auto;
+          font-size: 12px;
+          height: 24px;
+          border-radius: 12px;
+          background-color: #e8f4e5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3px 8px;
+        }
+
+        .tagProcess {
+          background: #f0f9ff;
+        }
+      }
+
+      .cardAccountName {
+        font-size: 12px;
+        color: @detailTextColor;
+      }
+
+      .row {
+        margin-top: 4px;
+        font-size: 12px;
+        color: @detailTextColor;
+      }
+    }
+    .loading {
+      padding-top: 8px;
+    }
+  }
+}

@@ -1,0 +1,159 @@
+.header {
+  width: 800px;
+  margin: 40px auto 32px;
+
+  display: flex;
+  gap: 28px;
+
+  .time {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background: #f6f9fc;
+
+    .year {
+      color: rgba(4, 37, 43, 0.4);
+      text-align: justify;
+      font-family: Roboto;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 166.667% */
+    }
+
+    .day {
+      color: rgba(4, 37, 43, 0.4);
+      text-align: justify;
+      font-family: Roboto;
+      font-size: 44px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 44px; /* 100% */
+    }
+  }
+
+  .titleWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1 0 0;
+    align-self: stretch;
+
+    .title {
+      color: #04252b;
+      // font-family: 'SourceHanSansCN';
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 40px; /* 125% */
+    }
+
+    .labels {
+      display: flex;
+      align-items: flex-end;
+      align-content: flex-end;
+      gap: 8px 10px;
+      align-self: stretch;
+      flex-wrap: wrap;
+
+      .label {
+        display: flex;
+        padding: 3px 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 100px;
+        border: 1px solid rgba(4, 37, 43, 0.24);
+        color: rgba(4, 37, 43, 0.5);
+        // font-family: 'SourceHanSansCN';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+      }
+    }
+  }
+}
+
+.article {
+  width: 800px;
+  margin: 0 auto;
+
+  img {
+    max-width: 800px;
+  }
+}
+
+.richText blockquote,
+.richText dl,
+.richText dd,
+.richText h1,
+.richText h2,
+.richText h3,
+.richText h4,
+.richText h5,
+.richText h6,
+.richText hr,
+.richText figure,
+.richText p,
+.richText pre {
+  margin: revert;
+}
+.richText b,
+.richText strong {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+/* H1 */
+.richText h1 {
+  font-size: 22px !important;
+  line-height: 32px;
+}
+/* H2 */
+.richText h2 {
+  font-size: 16px;
+  line-height: 32px;
+}
+/* 小字 */
+.richText h5 {
+  font-size: 12px;
+  color: #04252b80;
+  line-height: 32px;
+}
+/* 正文 */
+.richText p {
+  /* 默认字号 font-size: 14px; */
+  font-size: 14px;
+  color: #04252b;
+  line-height: 32px;
+}
+
+.richText img {
+  display: initial;
+  height: auto !important;
+}
+/* 移动端图片都是100% */
+.mobile-richText img {
+  width: 100% !important;
+  display: initial;
+  height: auto !important;
+}
+
+.richText ul {
+  list-style: initial;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 32px;
+}
+
+.richText ol {
+  list-style: auto;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 32px;
+}

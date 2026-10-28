@@ -1,0 +1,88 @@
+.buttonSelectContainer {
+  display: flex;
+}
+
+.tabSelectContainer {
+  border-bottom: 1px solid #ebedf0;
+}
+
+.defaultBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // width: 128px;
+  padding: 0 10px;
+  height: 38px;
+  margin-right: 10px;
+  color: #999ea4;
+  border: 1px solid #ebedf0;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.activeBtn {
+  color: @colorPrimary;
+  background: rgb(12 191 159 / 6%);
+  border: 1px solid @colorPrimary;
+}
+
+.defaultIcon {
+  margin-right: 8px;
+  color: #999ea4;
+}
+
+.activeIcon {
+  color: @colorPrimary;
+}
+
+.disabledBtn {
+  cursor: not-allowed;
+}
+
+.tabBtn {
+  height: 42px;
+  padding: 0 8px;
+  margin-right: 28px;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+
+  &:hover {
+    color: @colorPrimary;
+  }
+}
+
+.tabActiveBtn {
+  color: #08383e;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid @colorPrimary;
+}
+
+.selectImg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.readPretty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 32px;
+  padding: 0 10px;
+  font-weight: 500;
+  background-color: #f7f8f9;
+}

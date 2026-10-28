@@ -1,0 +1,77 @@
+.nestedTable {
+  :global {
+    .ant-table-row-expand-icon {
+      display: none;
+    }
+  }
+}
+
+.dataInputContent {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  column-gap: 8px;
+}
+.dataInput {
+  flex: 1;
+  border-color: transparent;
+  background: transparent;
+  &:hover {
+    border-color: unset;
+  }
+  :global {
+    .ant-input-number-focused {
+      border-color: unset;
+    }
+  }
+}
+
+.tableNameColumn {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.indicatorName {
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.groupName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #04252b;
+  font-weight: 500;
+}
+
+.emptyExpandIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.headTitle {
+  color: #04252b;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+}
+
+.customRow {
+  display: flex;
+  column-gap: 16px;
+  flex-wrap: nowrap;
+}
+
+.customCol {
+  flex: 1;
+}
+
+.attachmentIcon {
+  cursor: pointer;
+  color: #026961;
+}

@@ -1,0 +1,70 @@
+@import '../../styles/var.less';
+
+.resizable-container {
+  min-height: 160px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.drag-handle {
+  div {
+    border-left: 1px solid #ebedf0;
+    // background-color: #EBEDF0 !important;
+    width: 10px !important;
+    position: relative;
+    right: 2px !important;
+    transition: all 0.3s;
+  }
+
+  div:hover {
+    border-left: 1px solid #0cbf9f !important;
+    // background-color: #0CBF9F !important;
+  }
+
+  div:hover.drag-line {
+    background: url('../../assets/images/drag-line-act-icon.png') no-repeat;
+    background-size: 100% 100%;
+  }
+}
+
+// .close-style {
+//   position: relative;
+//   left: -20px;
+// }
+.hidden-handle {
+  display: none;
+}
+
+.close-icon {
+  position: absolute;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  top: 160px;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 1.3s;
+}
+
+.closeable {
+  transition: all 1.3s;
+  transform: rotateZ(180deg);
+}
+
+.drag-line {
+  position: absolute;
+  width: 16px;
+  right: -5px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: url('../../assets/images/drag-line-icon.png') no-repeat center;
+  background-size: 16px 16px;
+  transition: all 0.3s;
+}
+
+.drag-line:hover {
+  background: url('../../assets/images/drag-line-act-icon.png') no-repeat center;
+  background-size: 16px 16px;
+}

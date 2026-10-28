@@ -1,0 +1,79 @@
+@import url('@styles/var.less');
+
+.uncertaintyWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .successTip {
+    text-align: right;
+    color: #0cbf9f;
+  }
+
+  .warnTip {
+    text-align: right;
+    color: red;
+  }
+
+  .titleWrapper {
+    font-size: 14px;
+    font-weight: bold;
+    border-left: 3px solid @primary-color;
+    padding-left: 6px;
+    margin-bottom: 12px;
+  }
+
+  .titleHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    .filter {
+      display: flex;
+    }
+  }
+
+  .analysisWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .processWrapper {
+    .processMain {
+      display: flex;
+      align-items: center;
+
+      .progressBox {
+        width: 500px;
+        margin-right: 100px;
+      }
+    }
+  }
+
+  .resultWrapper {
+    position: relative;
+    padding-bottom: 16px;
+
+    .chartWrap {
+      width: 100%;
+      height: 300px;
+      margin-bottom: 16px;
+
+      .chart {
+        width: 100%;
+        height: 300px !important;
+      }
+    }
+
+    .echartsExport {
+      text-align: right;
+      padding-right: 32px;
+    }
+  }
+}

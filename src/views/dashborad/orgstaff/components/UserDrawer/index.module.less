@@ -1,0 +1,54 @@
+.extraInfo {
+  position: relative;
+  width: 100%;
+  height: 18px;
+
+  .mobile {
+    position: absolute;
+    color: var(--text, #b5b8bb);
+    font-weight: 400;
+    font-size: 12px;
+
+    /* 辅助信息/Small-常规-CN */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    line-height: 18px; /* 150% */
+    width: 50%;
+  }
+
+  .email {
+    position: absolute;
+    left: 258px;
+    color: var(--text, #b5b8bb);
+    font-weight: 400;
+    font-size: 12px;
+
+    /* 辅助信息/Small-常规-CN */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    line-height: 18px; /* 150% */
+    width: 50%;
+  }
+}
+
+.userDrawer {
+  :global(.ant-formily-item) {
+    margin-bottom: 0 !important;
+  }
+
+  :global(.ant-formily-item-label) {
+    margin-top: 16px;
+  }
+}
+
+.titleWrapper {
+  margin-top: 24px;
+  margin-bottom: 8px;
+
+  .title {
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

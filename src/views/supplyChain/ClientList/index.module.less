@@ -1,0 +1,60 @@
+.clientList {
+  && {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow-y: auto;
+  }
+}
+
+.header {
+  padding: 32px 40px 28px;
+}
+
+.title {
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.content {
+  padding: 0 40px;
+}
+
+.contentHeader {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.operateColumn {
+  display: flex;
+  column-gap: 16px;
+  :global {
+    .ant-btn {
+      padding: 0;
+    }
+  }
+}
+
+.status {
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  border-radius: 20px;
+}
+
+.pendingStatus {
+  background: #fceedf;
+}
+
+.rejectedStatus {
+  background: #ffe3e1;
+}
+
+.resolvedStatus {
+  background: #ddf4f2;
+}

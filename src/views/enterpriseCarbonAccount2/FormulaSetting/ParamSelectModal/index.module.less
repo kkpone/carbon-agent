@@ -1,0 +1,75 @@
+.paramSelect {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paramTableContent {
+  padding: 16px;
+  width: 508px;
+  height: 514px;
+  border-radius: 8px;
+  border: 1px solid #ebedf0;
+  overflow-y: auto;
+}
+
+.selectedParamsContent {
+  padding: 16px;
+  width: 320px;
+  height: 514px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  border-radius: 8px;
+  border: 1px solid #ebedf0;
+  overflow-y: auto;
+}
+
+.countRow {
+  display: flex;
+  padding: 8px 12px;
+  column-gap: 4px;
+}
+
+.countText {
+  color: #999ea4;
+}
+
+.countValue {
+  color: '#004541';
+  font-weight: 600;
+}
+
+.paramItem {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  &:hover {
+    background: #f7f8f9;
+  }
+}
+
+.paramName {
+  flex: 1;
+  width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.closeIcon {
+  color: #999ea4;
+  cursor: pointer;
+  svg {
+    font-size: 12px;
+  }
+}
+
+.searchInput {
+  margin-bottom: 16px;
+}
+
+.searchIcon {
+  color: #999ea4;
+}

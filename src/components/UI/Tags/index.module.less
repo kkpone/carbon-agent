@@ -1,0 +1,128 @@
+@import '@src/styles/var.less';
+
+//变量字体颜色
+.textColor(@color) {
+  .tagWord {
+    color: @color;
+  }
+}
+
+//变量圆角
+.borderRadius(@radius) {
+  border-radius: @radius;
+}
+
+//初始化标签样式
+.initBaseTag {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 26px;
+  text-align: center;
+  border: none;
+  padding: 0 8px;
+  box-sizing: border-box;
+  min-width: 72px;
+  border-radius: inherit;
+}
+
+//基础标签颜色 主要修改了关于设计文档的主要颜色
+.basetagColor {
+  &:global(.ant-tag-orange) {
+    .textColor(#f8a231);
+    background-color: rgba(248, 162, 49, 0.06);
+  }
+
+  &:global(.ant-tag-blue) {
+    .textColor(#3e96fa);
+    background-color: rgba(62, 150, 250, 0.06);
+  }
+
+  &:global(.ant-tag-red) {
+    .textColor(#ed5555);
+    background-color: rgba(237, 85, 85, 0.06);
+  }
+
+  &:global(.ant-tag-default) {
+    .textColor(#6c757d);
+    background-color: rgba(102, 102, 102, 0.06);
+  }
+
+  &:global(.ant-tag-green) {
+    .textColor(@primary-color);
+    background-color: rgba(9, 193, 153, 0.06);
+  }
+}
+
+//特殊标签颜色 主要修改了关于设计文档的主要颜色
+.baseBadgeColor {
+  .textColor(#fff);
+
+  &:global(.ant-tag-orange) {
+    background-color: #f8a231;
+  }
+
+  &:global(.ant-tag-blue) {
+    background-color: #3e96fa;
+  }
+
+  &:global(.ant-tag-red) {
+    background-color: #ed5555;
+  }
+
+  &:global(.ant-tag-green) {
+    background-color: @primary-color;
+  }
+}
+
+//基础标签
+.baseTags {
+  .basetagColor;
+  .initBaseTag;
+}
+
+//圆角标签
+.radiusTags {
+  .baseTags;
+  .borderRadius(15px);
+}
+
+//特殊标签
+.badgeTags {
+  .initBaseTag;
+  .baseBadgeColor;
+  font-size: 10px;
+  min-width: 32px;
+  padding: 3px 6px;
+  box-sizing: border-box;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+  font-family: HelveticaNeue;
+}
+
+//删除标签
+.deleteTags {
+  .baseTags;
+  color: @text-color;
+  background: #f7f8f9;
+
+  :global(.ant-tag-close-icon) {
+    font-size: 12px;
+    color: @text-color-2;
+  }
+
+  &:hover {
+    .tagWord {
+      color: @primary-color;
+    }
+
+    :global(.ant-tag-close-icon) {
+      color: @primary-color;
+    }
+  }
+}
+
+//长度太长标签
+.overlengthTags {
+  width: 100px;
+}

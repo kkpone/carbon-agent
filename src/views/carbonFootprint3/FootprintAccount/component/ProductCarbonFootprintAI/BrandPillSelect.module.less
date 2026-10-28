@@ -1,0 +1,114 @@
+.trigger {
+  position: relative;
+  display: inline-flex;
+  height: 32px;
+  flex-shrink: 0;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid #e0e4e6;
+  background: transparent;
+  padding-left: 12px;
+  padding-right: 24px;
+  outline: none;
+  transition: border-color 0.2s;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    border-color: rgba(12, 191, 159, 0.5);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba(12, 191, 159, 0.25);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.triggerOpen {
+  border-color: #0cbf9f;
+}
+
+.label {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 4px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 500;
+  color: #04252b;
+}
+
+.labelMuted {
+  color: #b5b8bb;
+}
+
+.chevron {
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: 10px;
+}
+
+.panel {
+  position: fixed;
+  z-index: 1200;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #b8ead9;
+  background: #fff;
+  padding: 4px 0;
+  box-shadow: 0 8px 24px rgba(4, 37, 43, 0.12);
+}
+
+.option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 12px;
+  line-height: 20px;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+  color: #04252b;
+
+  &:hover,
+  &:focus-visible {
+    background: #f5f7f8;
+  }
+}
+
+.optionMuted {
+  color: #999ea4;
+}
+
+.optionSelected {
+  border-color: #0cbf9f;
+  background: #f0fffb;
+  font-weight: 500;
+  color: #026961;
+
+  &:hover,
+  &:focus-visible {
+    background: #f0fffb;
+  }
+}

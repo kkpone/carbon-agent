@@ -1,0 +1,55 @@
+.buttonSelectContainerMain {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-bottom: 20px;
+}
+.buttonSelectContainer {
+  display: flex;
+}
+
+.defaultBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 32px;
+  margin-right: 10px;
+  background: rgb(247 248 249 / 100%);
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.activeBtn {
+  color: #0cbf9f;
+  background: rgb(12 191 159 / 6%);
+  border: 1px solid #0cbf9f;
+}
+
+.disabledBtn {
+  cursor: not-allowed;
+}
+
+.selectImg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.readPretty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 32px;
+  padding: 0 10px;
+  font-weight: 500;
+  background-color: #f7f8f9;
+}

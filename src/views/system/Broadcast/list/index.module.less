@@ -1,0 +1,40 @@
+/**
+ * @file 通知列表
+ */
+@import '@src/styles/var.less';
+
+.wrapper {
+  position: relative;
+
+  padding-top: 8px;
+
+  tr th:first-child,
+  tr td:first-child {
+    padding-left: 22px;
+  }
+
+  .fixRight {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    z-index: 9;
+  }
+}
+
+.firstCell {
+  position: relative;
+
+  .unReadDot {
+    position: absolute;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    height: 0;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.active {
+      border-color: @primary-color;
+    }
+  }
+}

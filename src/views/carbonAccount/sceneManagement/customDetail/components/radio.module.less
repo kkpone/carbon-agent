@@ -1,0 +1,38 @@
+.box {
+  display: flex;
+  align-items: center;
+
+  .btn {
+    display: flex;
+    // flex: 1 0 0;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 136px;
+    height: 44px;
+    margin-right: 16px;
+    padding: 11px 24px;
+    border: 1px solid var(--line-border-2, #EBEDF0);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .active {
+    background: var(--brand-green-1-light, #E6FFF6);
+    border: 1px solid var(--brand-green-7-normal, #0CBF9F);
+    border-radius: 4px;
+  }
+}
+
+.tips {
+  height: 18px;
+  margin: 12px 0 0;
+  color: var(--text-gray-6-placeholder, #999EA4);
+  font-weight: 400;
+  font-size: 12px;
+
+  /* Caption 辅助信息/@caption-s */
+  font-family: "PingFang SC";
+  font-style: normal;
+  line-height: 18px; /* 150% */
+}

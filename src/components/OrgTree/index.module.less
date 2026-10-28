@@ -1,0 +1,124 @@
+@import '@Variable';
+
+.iconImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: @green7;
+  border-radius: 4px;
+}
+
+.orgIcon {
+  color: #fff;
+  font-size: 16px;
+}
+
+.title {
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px 0;
+  column-gap: 8px;
+}
+
+.enterpriseTitle {
+  .body-m-b();
+}
+
+.orgName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.orgIconImg {
+  background: @gray1;
+}
+
+.tree {
+  :global {
+    // .root-node {
+    //   .ant-tree-switcher {
+    //     display: none;
+    //   }
+    // }
+
+    .ant-tree-treenode {
+      margin-bottom: 4px;
+      padding-bottom: 0;
+      width: 100%;
+      align-items: center;
+    }
+
+    .ant-tree-indent-unit {
+      width: 12px;
+    }
+
+    .ant-tree-treenode-selected {
+      background-color: #f7f8f9;
+      border-radius: 4px;
+    }
+
+    // rc-tree 用 span 包标题；默认 flex 子项 min-width:auto 会按整段文字撑开，内层 ellipsis 永远不触发
+    .ant-tree-node-content-wrapper {
+      display: inline-flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .ant-tree-title {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .ant-tree-node-content-wrapper.ant-tree-node-selected {
+      background-color: #f7f8f9;
+    }
+
+    .ant-tree-treenode-selected {
+      background-color: #f7f8f9;
+      border-radius: 4px;
+    }
+
+    .ant-tree-switcher {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &::before {
+        top: unset;
+      }
+    }
+  }
+}
+
+.matchText {
+  color: @green7;
+}
+
+.orgSearchInput {
+  margin-bottom: 16px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyText {
+  .caption-s();
+
+  margin-top: 8px;
+}

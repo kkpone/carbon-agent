@@ -1,0 +1,285 @@
+/**
+ * @file 顶部导航头像 通知 反馈 使用说明区域
+ */
+@import '@src/styles/var.less';
+@import '@Variable';
+
+.loading {
+  position: absolute;
+  top: 100%;
+  z-index: 9999;
+  width: 100%;
+  min-height: 300px;
+}
+
+/** avatar dropdown */
+.avatarWrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  :global(.anticon) {
+    svg {
+      font-size: 18px;
+    }
+  }
+
+  .toolsIcon {
+    display: block;
+    padding: 7px;
+    color: #fff;
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(0 0 0 / 10%);
+      border-radius: 3px;
+    }
+
+    & + .toolsIcon {
+      margin-left: 8px;
+    }
+  }
+}
+
+.tel {
+  color: #fff;
+}
+
+.messageModal {
+  :global(.ant-modal-content) {
+    width: 640px;
+
+    :global(.ant-modal-body) {
+      padding: 0;
+      overflow: hidden;
+    }
+  }
+}
+
+.headerMenus {
+  display: flex;
+  flex-flow: row nowrap;
+  box-sizing: border-box;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  /* just firefox now */
+  scrollbar-width: none;
+
+  /* for webkit */
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .menuTitle {
+    display: block;
+    flex: 0 0 auto;
+    float: left;
+    margin-left: 10px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 32px;
+    letter-spacing: 0;
+    cursor: pointer;
+
+    &.active,
+    &:hover {
+      > span {
+        font-weight: 600;
+        background-color: rgb(0 0 0 / 10%);
+        border-radius: 3px;
+        opacity: 1;
+      }
+    }
+
+    &.active {
+      > span {
+        background-color: rgb(0 0 0 / 6%);
+      }
+    }
+
+    span {
+      display: inline-block;
+      margin: 6px 0;
+      padding: 0 10px;
+    }
+  }
+}
+
+.navDropdowWrapper {
+  left: 0 !important;
+  width: 100%;
+
+  .navContent {
+    position: absolute;
+    top: 20px;
+    top: 100%;
+    left: 0;
+    z-index: 99;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    width: 100%;
+    padding: 26px;
+    color: #000;
+    background: #fff;
+    box-shadow: 0 2px 5px 0 rgb(135 150 176 / 26%);
+
+    span {
+      cursor: pointer;
+    }
+
+    .titleItem {
+      margin-right: 14px;
+
+      &First {
+        display: block;
+        padding-bottom: 20px;
+        padding-left: 20px;
+        color: @text-color-2;
+        font-weight: 400;
+        font-size: 16px;
+      }
+
+      &Two {
+        grid-template-columns: minmax(30px, 1fr) minmax(30px, 0fr);
+
+        &Text {
+          display: block;
+          margin-bottom: 10px;
+          padding-left: 20px;
+          font-weight: 400;
+          font-size: 13px;
+          line-height: 32px;
+          cursor: pointer;
+
+          &:hover {
+            color: @primary-color;
+            background-color: rgb(12 191 159 / 6%);
+          }
+        }
+
+        span {
+          &:hover {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.avatarDropdown {
+  width: 256px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
+}
+
+.avatarCompanyName {
+  .body-m-b();
+
+  margin-top: 5px;
+  padding: 0 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.avatarUser {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 8px 4px;
+  border-bottom: 1px solid #ebedf0;
+}
+
+.avatarUserIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.avatarUserContent {
+  width: 188px;
+  margin-left: 12px;
+}
+
+.avatarUserNickname {
+  .body-m-b();
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.avatarUserName {
+  .caption-s();
+
+  margin-top: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.avatarSplit {
+  height: 1px;
+  margin: 8px 0 0;
+  background: #ebedf0;
+}
+
+.avatarBtn {
+  .body-m();
+
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 9px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    .body-m-b();
+
+    color: @green7;
+    background: #f7f8f9;
+  }
+}
+
+.avatarBtnIcon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.avatarLogoutBtn {
+  &:hover {
+    color: @red6;
+  }
+}
+
+.companyTag {
+  .caption-s-b();
+
+  display: inline-block;
+  padding: 1px 4px;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.activatedTag {
+  background: linear-gradient(103deg, #0cbf9f 0%, #2dccaa 100%);
+}
+
+.trialTag {
+  background: linear-gradient(103deg, #3491fa 0%, #5eafff 100%);
+}
+
+.expiredTag {
+  color: @orange6;
+  background: @orange1;
+}

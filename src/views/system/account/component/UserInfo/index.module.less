@@ -1,0 +1,111 @@
+.userInfoWrapper {
+  width: 100%;
+  // height: 100%;
+}
+
+.contentWrapper {
+  width: 100%;
+  height: 100%;
+
+  .baseInfo {
+    // height: 110px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-bottom: 30px;
+
+    .title {
+      // height: 56px;
+      padding: 0 0 24px 0;
+      color: var(--text, #343a40);
+      font-weight: 500;
+      font-size: 16px;
+
+      /* Title 标题/Small-加粗-CN */
+      font-family: 'PingFang SC';
+      font-style: normal;
+      line-height: 24px; /* 150% */
+    }
+  }
+}
+
+.loginMethod {
+  // height: calc(100% - 76px);
+  margin: 0 auto;
+  // padding: 0 24px;
+  background-color: #fff;
+
+  .title {
+    height: 56px;
+    // padding: 16px 0;
+    color: var(--text, #343a40);
+    font-weight: 500;
+    font-size: 16px;
+
+    /* Title 标题/Small-加粗-CN */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    line-height: 24px; /* 150% */
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 48px;
+    margin-bottom: 32px;
+
+    .itemLeft {
+      display: flex;
+
+      .imgBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        margin-right: 16px;
+        font-size: 48px;
+        background-color: #f7f8f9;
+        border-radius: 24px;
+      }
+
+      .img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      .itemMain {
+        margin-bottom: 4px;
+        color: var(--text, #343a40);
+        font-weight: 500;
+        font-size: 14px;
+
+        /* Body 内容/Medium-加粗-CN */
+        font-family: 'PingFang SC';
+        font-style: normal;
+        line-height: 22px; /* 157.143% */
+      }
+
+      .itemDes {
+        color: var(--text, #b5b8bb);
+        font-weight: 400;
+        font-size: 12px;
+
+        /* 辅助信息/Small-常规-CN */
+        font-family: 'PingFang SC';
+        font-style: normal;
+        line-height: 18px; /* 150% */
+      }
+    }
+  }
+}

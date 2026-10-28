@@ -1,0 +1,81 @@
+.wrapper {
+  width: 100%;
+  height: 800px;
+
+  display: flex;
+
+  .left {
+    display: flex;
+    width: 296px;
+    padding: 40px 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 8px 0 0 8px;
+    // gap: 56px;
+    flex-shrink: 0;
+    align-self: stretch;
+    background: var(--fill-gray-1-bghover, #f7f8f9);
+
+    .title {
+      color: var(--text-gray-8-primary, #343a40);
+
+      /* headline 大标题/@headline-s-b */
+      font-family: 'PingFang SC';
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 32px; /* 133.333% */
+      margin-bottom: 16px;
+    }
+
+    .des {
+      overflow: hidden;
+      color: var(--text-gray-7-secondary, #6c757d);
+      text-align: justify;
+      text-overflow: ellipsis;
+
+      /* Body 内容/@body-m */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+      margin-bottom: 56px;
+    }
+  }
+
+  .right {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+
+    .step0 {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .step0Btn {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .step1Btn {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .step1FormWrapper {
+        height: 80%;
+        overflow-y: auto;
+      }
+    }
+  }
+}

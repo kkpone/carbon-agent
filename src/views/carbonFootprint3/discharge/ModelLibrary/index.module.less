@@ -1,0 +1,162 @@
+.container {
+  height: 100%;
+  background: #f7f8f9;
+  &&& {
+    padding: 0;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 96px;
+  gap: 12px;
+  padding: 0 40px;
+  background: #fff;
+  border-bottom: 1px solid #ebedf0;
+
+  .title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #04252b;
+    line-height: 28px;
+  }
+
+  .description {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+    color: #04252b;
+    line-height: 22px;
+
+    .highlight {
+      font-size: 16px;
+      font-weight: 500;
+      color: #0cbf9f;
+      line-height: 24px;
+    }
+  }
+}
+
+.content {
+  height: calc(100% - 96px);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 0;
+  background: #fff;
+  overflow-y: auto;
+}
+
+/** 卡片模式：外层不滚动，由 CardList 区域单独滚动 */
+.contentCardMode {
+  overflow: hidden;
+}
+
+.cardViewSlot {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.filterBar {
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+
+  .filterRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .filterLeft {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .filterRight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.tabBar {
+  padding: 0 40px;
+  :global {
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.iconBtnContent {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.iconBtn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  &:hover {
+    color: #026961;
+    background: #f7f8f9;
+  }
+}
+
+.activeIconBtn {
+  color: #026961;
+  background: #f7f8f9;
+}
+
+.tabItem {
+  cursor: pointer;
+  user-select: none;
+}
+
+.viewSwitch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+
+  .switchBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #d2d6da;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #6c757d;
+
+    &.active {
+      border-color: #026961;
+      color: #026961;
+    }
+  }
+}
+
+.contextMenu {
+  :global {
+    .ant-dropdown-menu-item-danger {
+      color: #ff4d4f;
+    }
+  }
+}

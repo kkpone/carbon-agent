@@ -1,0 +1,419 @@
+.reportSection {
+  z-index: 10;
+  height: 104px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #6c757d;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.gaugeTitle {
+  margin-bottom: 4px;
+}
+
+.select {
+  width: 208px !important;
+}
+
+.columnChart {
+  height: 402px;
+  margin-bottom: 16px;
+  padding: 0 16px 16px;
+  background-color: #fff;
+
+  .global {
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.columnChartTab {
+  :global {
+    .ant-tabs-nav-wrap {
+      height: 56px;
+    }
+
+    .ant-tabs-nav {
+      margin-bottom: 0;
+
+      .ant-tabs-tab-btn {
+        font-size: 16px;
+      }
+
+      &::before {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.detailsBtn {
+  margin-right: 16px;
+  padding: 0;
+}
+
+.yearSelect {
+  width: 112px;
+}
+
+.columnChartContent {
+  height: 324px;
+}
+
+.cateChart {
+  height: 360px;
+  margin-bottom: 16px;
+}
+
+.cateChartAgentPreview {
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr));
+  gap: 16px;
+
+  .infoItem {
+    align-items: stretch;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .infoItemLeft {
+    flex: 0 0 20px;
+    box-sizing: border-box;
+    height: auto;
+    border-right: 0;
+  }
+
+  .infoItemRight {
+    flex: 1;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    border: 1px solid #ebedf0;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .infoItemRightBody,
+  .infoItemRightBottom {
+    box-sizing: border-box;
+  }
+
+  .infoItemRightBody {
+    height: 100%;
+  }
+
+  .cateChartContent {
+    float: none;
+    width: 100%;
+    min-width: 0;
+    height: 360px;
+    box-sizing: border-box;
+    margin-right: 0;
+    overflow: hidden;
+  }
+
+  .cateContent {
+    min-width: 528px;
+  }
+}
+
+.cateChartContent {
+  float: left;
+  width: calc(50% - 8px);
+  height: 100%;
+  padding: 16px;
+  background-color: #fff;
+
+  &:nth-of-type(1) {
+    margin-right: 16px;
+  }
+}
+
+.cateContent {
+  height: calc(100% - 26px);
+  overflow: hidden;
+}
+
+.pieContent {
+  float: left;
+  height: 100%;
+}
+
+.infoContent {
+  float: left;
+  width: 260px;
+}
+
+.infoItem {
+  display: flex;
+  width: 100%;
+  height: 78px;
+  margin-top: 16px;
+  border: 1px solid #ebedf0;
+  border-radius: 2px;
+}
+
+.infoItemLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  border-right: 1px solid #ebedf0;
+  writing-mode: vertical-rl; /* 或者 vertical-lr */
+  text-orientation: mixed; /* 保持字符的正常方向 */
+}
+
+.infoItemRight {
+  width: calc(100% - 20px);
+  height: 100%;
+}
+
+.infoItemRightBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 24px);
+}
+
+.infoTip {
+  overflow: hidden;
+  color: #999ea4;
+  font-size: 12px;
+}
+
+.infoTxt {
+  color: #343a40;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.split {
+  width: 1px;
+  height: 24px;
+  margin: 0 12px;
+  background-color: #ebedf0;
+}
+
+.infoItemRightBottom {
+  height: 24px;
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 24px;
+  text-align: center;
+  border-top: 1px solid #ebedf0;
+}
+
+.scopeChart {
+  height: 402px;
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.scopeContent {
+  height: calc(100% - 26px);
+}
+
+.sankeyChart {
+  // height: 388px;
+  overflow: hidden;
+  padding: 16px;
+  background-color: #fff;
+}
+
+.sankeyContent {
+  // height: calc(100% - 26px);
+  min-width: 528px;
+  padding-bottom: 80px;
+}
+
+.gaugeChart {
+  height: 188px;
+  margin-bottom: 16px;
+}
+
+.gaugeChartItem {
+  float: left;
+  width: calc(50% - 8px);
+  height: 100%;
+  padding: 16px;
+  background-color: #fff;
+
+  &:nth-of-type(1) {
+    margin-right: 16px;
+  }
+}
+
+.gaugeChartItemContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: calc(100% - 26px);
+}
+
+.gaugeChartContent {
+  width: 148px;
+  height: 148px;
+}
+
+.gaugeInfoContent {
+  display: flex;
+  align-items: center;
+  float: left;
+  width: calc(100% - 148px);
+  height: 100%;
+}
+
+.gaugeInfoBlock {
+  width: 168px;
+  height: 100%;
+  padding-top: 22px;
+}
+
+.gaugeSplit {
+  width: 1px;
+  height: 72px;
+  background: #ebedf0;
+}
+
+.infoValue {
+  margin: 8px 0;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.unitDropDown {
+  padding: 0 !important;
+}
+
+.dropDownBody {
+  cursor: pointer;
+}
+
+.upImg {
+  position: relative;
+  top: -2px;
+  margin-left: 6px;
+  transform: translate(-1000px);
+}
+
+.chartTooltip {
+  display: flex;
+  align-items: center;
+  padding: 16px 8px;
+}
+
+.scopeChartTooltip {
+  padding: 16px 8px;
+}
+
+.scopeChartTooltipItem {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.scopeChartTitle {
+  margin-bottom: 8px;
+  color: #343a40;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.scopeChartText {
+  color: #6c757d;
+  font-size: 12px;
+}
+
+.scopeChartValueText {
+  margin: 0 4px 0 16px;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.chartTooltipCircle {
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  background: #698cff;
+  border-radius: 50%;
+}
+
+.chartTooltipText {
+  flex: 1;
+}
+
+.floatEmpty {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #fff;
+}
+
+.empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.emptyText {
+  margin-top: 6px 0 0 6px;
+  color: #6c757d;
+}
+
+.detailsModal {
+  :global {
+    .ant-modal-body {
+      height: 514px;
+      padding: 0 24px;
+    }
+  }
+}
+
+.detailsModalContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.modalTableContent {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.modalTable {
+  :global {
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+      padding: 10.5px 16px;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import '@Variable';
+
+.measuresModal {
+  :global {
+    .ant-modal-body {
+      height: 480px;
+      overflow-y: auto;
+    }
+  }
+}
+
+.formBlock {
+  margin-bottom: 24px;
+}
+
+.formBlockTitle {
+  .body-m-b();
+
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.baseFormItem {
+  margin-bottom: 0;
+}
+
+.baseFormLabel {
+  .body-m();
+
+  color: @gray7;
+}
+
+.costFormContent {
+  padding: 16px;
+  border-radius: 4px;
+  background: #f7f8f9;
+}
+
+.paramItemTable {
+  &&& {
+    table {
+      overflow: auto;
+    }
+  }
+}
+
+.defaultValueInput {
+  width: 100%;
+}

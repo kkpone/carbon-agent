@@ -1,0 +1,152 @@
+/**
+ * @file 文字链接下划线 hover active
+ */
+@import "@src/styles/public.scss";
+
+.textHoverGreen:hover,
+.textHoverGreen:active {
+    text-decoration: underline $primary-color;
+}
+
+.textHoverRed:hover,
+.textHoverRed:active {
+    text-decoration: underline #ed5555;
+}
+
+.textHoverYellow:hover,
+.textHoverYellow:active {
+    text-decoration: underline #ee9e25;
+}
+
+.textHoverBlue:hover,
+.textHoverBlue:active {
+    text-decoration: underline #1c94ed;
+}
+
+.cursorPoint {
+    cursor: pointer;
+}
+
+.ant-table-cell-fix-left,
+.ant-table-cell-fix-right {
+    z-index: 0;
+}
+
+/**
+ * 文字颜色
+ */
+.textError {
+    color: #ed5555;
+}
+
+.textBlue {
+    color: #1c94ed;
+}
+
+.textYellow {
+    color: #ee9e25;
+}
+
+.textGreen {
+    color: $primary-color;
+}
+
+.textBlack {
+    color: #333;
+}
+
+/**
+ * padding内间距
+ */
+.padding {
+    padding: 20px 24px;
+}
+
+/**
+ * margin间距
+ */
+.margin {
+    margin: 24px;
+}
+
+.marginTop {
+    margin-top: 20px;
+}
+
+.marginBottom30 {
+    margin-bottom: 30px;
+}
+
+
+/**
+ * 字体大小
+ */
+.text14 {
+    font-size: 14px;
+}
+
+.text16 {
+    font-size: 16px;
+}
+
+.text18 {
+    font-size: 18px;
+}
+
+.text20 {
+    font-size: 20px;
+}
+
+.text22 {
+    font-size: 22px;
+}
+
+.text28 {
+    font-size: 28px;
+}
+
+/**
+ * 文字左右对齐
+ */
+.textLeft {
+    text-align: left;
+}
+
+.textRight {
+    text-align: right;
+    // &:hover{
+    //     background: #F8FAFA;
+    //     border-radius: 4px;
+    // }
+}
+
+/**
+ * 按钮效果
+ */
+.btnGreenHover:hover {
+    background: #07c160;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+/**
+* 搜索框 背景颜色
+*/
+.searchBackground {
+    background: #fff;
+}
+
+.all_checked {
+    label {
+        //  background: #07c160;
+        margin-bottom: 20px;
+        //  width: 95px;
+    }
+}
+
+.tableText {
+    font-weight: "Medium";
+    font-size: 16px;
+    color: #333333;
+}

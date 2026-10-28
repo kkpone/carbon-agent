@@ -1,0 +1,89 @@
+@import './var.less';
+
+@theme_color: @primary-color;
+@toast_bg_color: #f0fcf6;
+@toast_error_color: @dangerBg;
+@toast_error_bg_color: #fef5f5;
+@toast_warn_color: #eea10f;
+@toast_warn_bg_color: #fefaf1;
+@toast_info_color: #1c94ed;
+@toast_info_bg_color: #f3f9ff;
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toast {
+  :global {
+    .ant-message-notice-content {
+      display: flex;
+      // min-width: 240px;
+      // height: 46px;
+      // box-sizing: border-box;
+      // padding: 0 20px;
+      // line-height: 46px;
+      // border-radius: 4px;
+    }
+    .ant-message-custom-content {
+      display: flex;
+    }
+  }
+}
+
+.toast_success {
+  :global {
+    .ant-message-notice-content {
+      background: @toast_bg_color;
+      border: 1px solid @theme_color;
+      color: @theme_color;
+    }
+
+    .ant-message-success .anticon {
+      color: @theme_color;
+    }
+  }
+}
+
+.toast_error {
+  :global {
+    .ant-message-notice-content {
+      background: @toast_error_bg_color;
+      border: 1px solid @toast_error_color;
+      color: @toast_error_color;
+    }
+
+    .ant-message-success .anticon {
+      color: @toast_error_color;
+    }
+  }
+}
+
+.toast_warn {
+  :global {
+    .ant-message-notice-content {
+      background: @toast_warn_bg_color;
+      border: 1px solid @toast_warn_color;
+      color: @toast_warn_color;
+    }
+
+    .ant-message-success .anticon {
+      color: @toast_warn_color;
+    }
+  }
+}
+
+.toast_info {
+  :global {
+    .ant-message-notice-content {
+      background: @toast_info_bg_color;
+      border: 1px solid @toast_info_color;
+      color: @toast_info_color;
+    }
+
+    .ant-message-info .anticon {
+      color: @toast_info_color;
+    }
+  }
+}

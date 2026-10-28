@@ -1,0 +1,120 @@
+@import '@src/styles/var.less';
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  padding: 0 !important;
+  flex-grow: 1;
+
+  .titleText {
+    display: flex;
+    height: 56px;
+    padding: 16px 40px;
+    align-items: center;
+    flex-shrink: 0;
+    border-bottom: 1px solid #e5e7eb;
+    background: var(--White, #fff);
+  }
+
+  main {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+
+    .compareName {
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .left,
+    .right {
+      flex: 0 0 calc(50% - 8px);
+    }
+
+    .startCompare {
+      position: absolute;
+      top: 57px;
+      right: calc(50% - 29px);
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      border-radius: 60px;
+      border: 1px solid #e5e7eb;
+      color: #004541;
+      font-family: 'PingFang SC';
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 22px; /* 110% */
+      text-align: center;
+      line-height: 60px;
+      cursor: pointer;
+    }
+
+    .startCompare:hover {
+      border: 1px solid #026961;
+    }
+
+    .detailStart {
+      border: 1px solid #0cbf9f;
+      color: #0cbf9f;
+      top: 27px;
+    }
+
+    .detailStart:hover {
+      border: 1px solid #0cbf9f;
+      color: #0cbf9f;
+    }
+
+    .enable {
+      border: none;
+      background: #004541;
+      color: #fff;
+    }
+
+    .enable:hover {
+      border: none;
+      background: #026961;
+      color: #fff;
+    }
+  }
+
+  footer {
+    padding: 40px;
+    height: 380px;
+
+    .footerText {
+      color: var(--Neutral-Text-text-1, #04252b);
+      font-feature-settings: 'ss01' on, 'cv01' on, 'cv11' on;
+      font-family: 'PingFang SC';
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px; /* 150% */
+    }
+
+    .more {
+      color: #999ea4;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-align: end;
+      cursor: pointer;
+      margin: 16px 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    .compareList {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

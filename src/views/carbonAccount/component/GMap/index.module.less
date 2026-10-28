@@ -1,0 +1,29 @@
+.wrapper {
+  position: relative;
+
+  .formWrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 9;
+
+    .select {
+      width: 300px;
+    }
+
+    .circleRadius {
+      width: 120px;
+      margin-left: 10px;
+    }
+  }
+
+  .map {
+    width: 720px;
+    height: 240px;
+
+    :global(.amap-marker:first-child .amap-icon img) {
+      width: 25px;
+      height: 34px;
+    }
+  }
+}

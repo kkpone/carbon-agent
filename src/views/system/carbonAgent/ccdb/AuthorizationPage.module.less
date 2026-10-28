@@ -1,0 +1,448 @@
+@brand: #006b5b;
+@brand-strong: #005548;
+@mint: #ecfaf5;
+@line: #d9e5e1;
+@text: #112420;
+@muted: #697a76;
+
+.page {
+  background: #f5f8f7;
+  color: @text;
+  // The application shell locks body scrolling; authorization owns its viewport.
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  width: 100%;
+}
+
+.topbar {
+  align-items: center;
+  background: #fff;
+  border-bottom: 1px solid @line;
+  display: flex;
+  height: 76px;
+  justify-content: space-between;
+  padding: 0 clamp(24px, 5vw, 72px);
+}
+
+.brand,
+.homeLink {
+  align-items: center;
+  color: @text;
+  display: inline-flex;
+  font-weight: 600;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brandLogo {
+  height: 32px;
+  object-fit: contain;
+  width: 42px;
+}
+
+.brandText {
+  font-size: 21px;
+  letter-spacing: -0.02em;
+}
+
+.homeLink {
+  color: @brand;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.main {
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  padding: clamp(24px, 4vh, 40px) 20px max(24px, env(safe-area-inset-bottom));
+}
+
+.card {
+  background: #fff;
+  border: 1px solid @line;
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgb(20 50 43 / 8%);
+  max-width: 640px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: clamp(24px, 3vw, 32px);
+  width: 100%;
+}
+
+.appBridge {
+  align-items: center;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.appLogo {
+  align-items: center;
+  background: #f4f7f6;
+  border: 1px solid #e2ebe8;
+  border-radius: 13px;
+  display: flex;
+  font-size: 22px;
+  font-weight: 700;
+  height: 52px;
+  justify-content: center;
+  object-fit: contain;
+  padding: 10px;
+  width: 52px;
+}
+
+.appLogo {
+  background: #18211f;
+  color: #fff;
+}
+
+.deviceAppLogo {
+  background: #268f70;
+  border-color: #268f70;
+}
+
+.carbonLogo {
+  height: 46px;
+  object-fit: contain;
+  width: 56px;
+}
+
+.bridgeLine {
+  background: #cbd8d4;
+  height: 1px;
+  width: 34px;
+}
+
+.eyebrow {
+  color: @brand;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.title {
+  color: @text;
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+  margin: 0;
+  text-align: center;
+}
+
+.lead {
+  color: @muted;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 18px 0 14px;
+}
+
+.lead strong {
+  color: #344641;
+}
+
+.deviceCode {
+  background: @mint;
+  border: 1px solid #c9e9de;
+  border-radius: 12px;
+  margin: 16px 0 18px;
+  padding: 14px 18px;
+  text-align: center;
+}
+
+.deviceLabel {
+  color: @muted;
+  display: block;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.deviceValue {
+  color: @text;
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+}
+
+.deviceHelp {
+  color: @muted;
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.codeForm {
+  margin: 16px 0 12px;
+}
+
+.codeLabel {
+  color: #344641;
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.codeInput {
+  background: #fff;
+  border: 1px solid #baccc6;
+  border-radius: 10px;
+  color: @text;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  min-height: 52px;
+  outline: none;
+  padding: 0 15px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+
+  &:focus {
+    border-color: @brand;
+    box-shadow: 0 0 0 3px rgb(0 107 91 / 10%);
+  }
+}
+
+.permissions {
+  border: 1px solid @line;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.permission {
+  align-items: flex-start;
+  display: flex;
+  gap: 14px;
+  padding: 13px 16px;
+
+  & + & {
+    border-top: 1px solid @line;
+  }
+}
+
+.permissionIcon {
+  align-items: center;
+  background: @mint;
+  border-radius: 9px;
+  color: @brand;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 15px;
+  font-weight: 650;
+  height: 34px;
+  justify-content: center;
+  width: 34px;
+}
+
+.permission strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.permission p {
+  color: @muted;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 2px 0 0;
+}
+
+.privacy {
+  background: #f5f7f6;
+  border-radius: 9px;
+  color: @muted;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 13px 0 0;
+  padding: 10px 12px;
+}
+
+.actions {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  margin-top: 18px;
+}
+
+.primaryButton,
+.secondaryButton,
+.linkButton {
+  align-items: center;
+  border-radius: 9px;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 600;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  text-decoration: none;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease,
+    opacity 160ms ease;
+}
+
+.primaryButton {
+  background: @brand;
+  border: 1px solid @brand;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: @brand-strong;
+    border-color: @brand-strong;
+  }
+}
+
+.secondaryButton {
+  background: #fff;
+  border: 1px solid #c8d7d2;
+  color: @text;
+
+  &:hover:not(:disabled) {
+    border-color: @brand;
+    color: @brand;
+  }
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.stateCard {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+  justify-content: center;
+  text-align: center;
+}
+
+.stateIcon {
+  align-items: center;
+  background: #ddf7ed;
+  border-radius: 50%;
+  color: @brand;
+  display: flex;
+  font-size: 24px;
+  height: 78px;
+  justify-content: center;
+  margin-bottom: 24px;
+  width: 78px;
+}
+
+.okText {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.errorIcon {
+  background: #fff0ee;
+  color: #a63b37;
+}
+
+.stateText {
+  color: @muted;
+  line-height: 1.7;
+  margin: 14px auto 0;
+  max-width: 480px;
+}
+
+.stateActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.completionCard .stateText {
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.linkButton {
+  background: @brand;
+  border: 1px solid @brand;
+  color: #fff;
+}
+
+.loading {
+  align-items: center;
+  color: @muted;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  min-height: 300px;
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    height: 64px;
+    padding: 0 18px;
+  }
+
+  .brandText {
+    font-size: 18px;
+  }
+
+  .homeLink {
+    font-size: 13px;
+  }
+
+  .main {
+    padding: 24px 12px max(24px, env(safe-area-inset-bottom));
+  }
+
+  .card {
+    border-radius: 14px;
+    padding: 24px 20px;
+  }
+
+  .appLogo {
+    height: 50px;
+    width: 50px;
+  }
+
+  .carbonLogo {
+    height: 46px;
+    width: 56px;
+  }
+
+  .deviceValue {
+    font-size: 21px;
+  }
+}
+
+@media (max-height: 800px) {
+  .topbar {
+    height: 64px;
+  }
+
+  .main {
+    padding-top: 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .card {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .appBridge {
+    margin-bottom: 12px;
+  }
+}

@@ -1,0 +1,131 @@
+.wrapperHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+
+  .title {
+    color: #343a40;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  .card {
+    position: relative;
+    box-sizing: border-box;
+    width: calc(20% - 13px);
+    height: 158px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      height: 56px;
+      padding: 10px 10px 10px 16px;
+      color: #fff;
+      background-image: url('./titleBg.png');
+      background-size: 100% 56px;
+      border-radius: 8px 8px 0 0;
+
+      .name {
+        width: calc(100% - 34px);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .more {
+        font-weight: bold;
+        font-size: 10px;
+      }
+    }
+
+    .content {
+      position: relative;
+      top: -16px;
+      width: 100%;
+      height: 118px;
+      padding: 24px 16px;
+      overflow: hidden;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 8px;
+
+      .text {
+        /* stylelint-disable-next-line value-no-vendor-prefix */
+        display: -webkit-box;
+        width: 100%;
+        overflow: hidden;
+        color: #999ea4;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .useCount {
+        position: absolute;
+        bottom: 20px;
+        left: 16px;
+        color: #b5b8bb;
+      }
+    }
+
+    .menu {
+      position: absolute;
+      bottom: -32px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+      height: 32px;
+      padding: 0 16px;
+      transition: bottom 0.1s;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 16px;
+      }
+    }
+  }
+
+  .card:hover {
+    .menu {
+      position: absolute;
+      bottom: 17px;
+    }
+
+    .content {
+      .text {
+        color: #0cbf9f;
+      }
+    }
+
+    .useCount {
+      display: none;
+    }
+  }
+
+  .card:nth-child(5n) {
+    margin-right: 0;
+  }
+}
+
+.pagination {
+  position: absolute;
+  right: 26px;
+  bottom: 26px;
+  display: flex;
+  justify-content: flex-end;
+}

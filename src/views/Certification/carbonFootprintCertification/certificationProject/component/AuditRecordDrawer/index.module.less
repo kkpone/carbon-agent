@@ -1,0 +1,70 @@
+.auditRecordDrawer {
+  :global {
+    .ant-drawer-header {
+      border-bottom: none;
+    }
+    .ant-drawer-header-title {
+      color: #343a40;
+      font-size: 16px;
+      font-weight: 500;
+      display: flex;
+    }
+    .ant-drawer-close {
+      order: 2;
+    }
+    .ant-drawer-body {
+      padding-top: 0;
+    }
+  }
+}
+.auditContent {
+  padding-top: 4px;
+  .lineContent {
+    .title {
+      color: #343a40;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+    }
+    .extra {
+      display: flex;
+      margin: 4px 0;
+      .time {
+        color: #999ea4;
+        font-size: 12px;
+        white-space: 'wrap';
+      }
+      .name {
+        color: #6c757d;
+        font-size: 12px;
+        font-weight: 500;
+        margin-left: 8px;
+        white-space: 'wrap';
+      }
+    }
+
+    .des {
+      border-radius: 0px 4px 4px 4px;
+      background: #f7f8f9;
+      color: #6c757d;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 8px;
+    }
+    .failStatus {
+      color: #ed5555;
+    }
+    .successStatus {
+      color: #0cbf9f;
+    }
+  }
+
+  :global {
+    .ant-timeline-item {
+      padding-bottom: 32px;
+    }
+    .ant-timeline-item-tail {
+      border-inline-start: 1px dashed #ebedf0;
+    }
+  }
+}

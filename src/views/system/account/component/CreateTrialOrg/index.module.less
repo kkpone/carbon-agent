@@ -1,0 +1,103 @@
+@import '@Variable';
+
+.createTrialOrg {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.formilyCommon {
+  width: 100%;
+}
+
+.formContent {
+  display: flex;
+  width: 847px;
+  margin: 0 auto;
+  padding: 56px 64px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+  flex-shrink: 0;
+  background: #fff;
+  backdrop-filter: blur(50px);
+
+  :global {
+    .ant-formily-item-label-content {
+      // color: @gray7;
+      color: @colorPrimaryText;
+    }
+  }
+}
+
+.simple {
+  width: auto;
+  padding: 0;
+}
+
+.title {
+  color: #04252b;
+  font-family: 'PingFang SC';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+}
+.subTitle {
+  margin-top: 16px;
+  color: var(--neutral-color-text-2, #6c757d);
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+}
+
+.highlight {
+  color: var(--brand-brand-1, #0cbf9f);
+}
+
+.caption {
+  .body-m();
+
+  margin-left: 8px;
+  color: @gray6;
+}
+
+.createTip {
+  .caption-s();
+
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+  color: @gray5;
+}
+
+.createTipIcon {
+  margin-right: 4px;
+}
+
+.formButtons {
+  display: flex;
+  align-self: flex-end;
+  // flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.logoutBtn {
+  .body-m();
+
+  margin-top: 16px;
+  color: @gray6;
+  cursor: pointer;
+}
+
+.scaleRadio {
+  :global {
+    .ant-radio-wrapper {
+      margin-bottom: 4px;
+    }
+  }
+}

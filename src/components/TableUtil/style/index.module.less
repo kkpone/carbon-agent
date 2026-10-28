@@ -1,0 +1,17 @@
+@import '@src/styles/var.less';
+
+.base_table {
+  :global(.ant-table-cell) {
+    height: 50px;
+    padding: 14px 20px;
+    color: @text-color;
+  }
+
+  :global(.ant-pagination-total-text) {
+    font-size: 14px;
+    margin-right: 16px;
+  }
+  :global(.ant-table-tbody > tr.ant-table-row-selected > td) {
+    background: #f7f8f9;
+  }
+}

@@ -1,0 +1,65 @@
+.productModal {
+  :global {
+    .ant-modal-header {
+      margin-bottom: 16px !important;
+    }
+  }
+}
+
+.productForm {
+  :global {
+    .ant-formily-item {
+      margin-bottom: 0;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+  }
+}
+
+.productBaseInfoRow {
+  display: flex;
+  column-gap: 20px;
+}
+
+.productPicUploadWrapper {
+  width: 165px;
+  height: 152px;
+  overflow: hidden;
+}
+
+.productPicUpload {
+  :global {
+    .ant-upload,
+    .ant-upload-list-item,
+    .ant-upload-list-item-container {
+      width: 165px !important;
+      height: 152px !important;
+    }
+  }
+}
+
+.productNameWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.productInfoRow {
+  display: flex;
+  column-gap: 32px;
+  :global {
+    .ant-formily-item {
+      flex: 1;
+    }
+  }
+}
+
+.perWeightRow {
+  flex: 1;
+  display: flex;
+  column-gap: 8px;
+}

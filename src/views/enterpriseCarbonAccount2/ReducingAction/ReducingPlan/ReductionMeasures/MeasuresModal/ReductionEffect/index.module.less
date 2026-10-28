@@ -1,0 +1,39 @@
+@import '@Variable';
+
+.effectItem {
+  position: relative;
+  margin-bottom: 8px;
+  padding: 16px;
+  border-radius: 4px;
+  background: var(--fill-gray-1-bghover, #f7f8f9);
+}
+
+.baseFormItem {
+  margin-bottom: 0;
+}
+
+.labelContainer {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.baseFormLabel {
+  .body-m();
+
+  color: @gray7;
+}
+
+.addBtn {
+  .body-m-b();
+
+  width: 100%;
+  height: 40px;
+  color: @green7;
+}
+
+.deleteIcon {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  z-index: 1000;
+}

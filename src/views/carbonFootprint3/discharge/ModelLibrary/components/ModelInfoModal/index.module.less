@@ -1,0 +1,138 @@
+.accountTypeContent {
+  margin-bottom: 24px;
+}
+
+.accountTypeLabel {
+  margin-bottom: 8px;
+  color: #343a40;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.accountTypeList {
+  display: flex;
+  gap: 12px;
+}
+
+.accountTypeCard {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid #d2d6da;
+  color: #6c757d;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s;
+
+  &.active {
+    border-color: #048677;
+    color: #048677;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  .accountTypeIcon {
+    svg {
+      font-size: 18px;
+    }
+  }
+
+  .accountTypeName {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  .checkIcon {
+    position: absolute;
+    right: -1px;
+    bottom: -2px;
+
+    svg {
+      font-size: 18px;
+    }
+  }
+}
+
+.boundaryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 12px;
+}
+
+.boundaryCard {
+  position: relative;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d2d6da;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s;
+
+  &:hover:not(.disabled) {
+    background: #f0fbf9;
+    border-color: #0cbf9f;
+
+    .boundaryTitle,
+    .boundaryDesc {
+      color: #048677;
+    }
+  }
+
+  &.active {
+    border-color: #048677;
+
+    .boundaryTitle {
+      color: #048677;
+      font-weight: 500;
+    }
+
+    .boundaryDesc {
+      color: #048677;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  .boundaryTitle {
+    color: #6c757d;
+    line-height: 22px;
+  }
+
+  .boundaryDesc {
+    margin-top: 4px;
+    color: #999ea4;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .checkIcon {
+    position: absolute;
+    right: -1px;
+    bottom: -2px;
+
+    svg {
+      font-size: 18px;
+    }
+  }
+}
+
+.customCycleCheckbox {
+  margin-top: 8px;
+
+  :global(.ant-checkbox-wrapper) {
+    margin-left: 0;
+    color: #b5b8bb;
+    font-weight: 400;
+    font-size: 12px;
+  }
+}

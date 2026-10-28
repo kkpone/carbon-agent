@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+cd "$(dirname -- "$0")/.." || exit 1
+
+# GUI / IDE 提交时 PATH 常不含 nvm/node
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+  . "$HOME/.nvm/nvm.sh"
+fi
+export PATH="$PWD/node_modules/.bin:/usr/local/bin:/opt/homebrew/bin:$PATH"
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "husky: node not found. 请在 ~/.huskyrc 中配置 Node 环境，或在终端执行 git commit。"
+  exit 1
+fi
+
+node_modules/.bin/lint-staged || exit 1

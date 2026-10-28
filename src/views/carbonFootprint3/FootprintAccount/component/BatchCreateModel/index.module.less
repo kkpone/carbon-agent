@@ -1,0 +1,1805 @@
+/* 弹框右上角关闭按钮：主窗口 / 二次确认等共用 */
+.modalCloseBtn() {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #6c757d;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    color: #6c757d;
+    background: #f7f8f9;
+  }
+
+  svg {
+    font-size: 20px;
+  }
+}
+
+/* 二次确认弹窗：重新识别 / 撤销解析等，标题「提示」16px，正文 14px */
+.confirmModal {
+  :global(.ant-modal-confirm-title) {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  :global(.ant-modal-confirm-content) {
+    font-size: 14px;
+    line-height: 22px;
+    color: #595959;
+  }
+}
+
+/* Figma 4088:19692 — 删除模型确认弹框 */
+.deleteConfirmModal {
+  :global {
+    .ant-modal-content {
+      padding: 40px;
+      border-radius: 12px;
+    }
+
+    .ant-modal-body {
+      padding: 0;
+    }
+
+    .ant-modal-close {
+      top: 32px;
+      inset-inline-end: 32px;
+      .modalCloseBtn();
+
+      .ant-modal-close-x {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+        line-height: 1;
+      }
+    }
+
+    .ant-modal-confirm-body {
+      > .anticon {
+        display: none;
+      }
+    }
+
+    .ant-modal-confirm-paragraph {
+      row-gap: 32px;
+      max-width: none;
+    }
+
+    .ant-modal-confirm-title {
+      color: #04252b;
+    }
+
+    .ant-modal-confirm-content {
+      margin-inline-start: 0 !important;
+      font-size: 14px;
+      line-height: 22px;
+      color: #04252b;
+    }
+
+    .ant-modal-confirm-btns {
+      margin-top: 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+
+      .ant-btn {
+        height: auto;
+        margin-inline-start: 0 !important;
+        padding: 8px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .ant-btn-default {
+        border-color: #d5d7da;
+        color: #04252b;
+        background: #fff;
+      }
+    }
+  }
+}
+
+.deleteConfirmContent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  width: 380px;
+}
+
+.deleteConfirmIcon {
+  flex-shrink: 0;
+  margin-top: 4px;
+  font-size: 16px;
+  color: #d48806;
+}
+
+.deleteConfirmText {
+  margin: 0;
+  flex: 1;
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+  word-break: break-word;
+}
+
+.deleteConfirmHighlight {
+  font-weight: 500;
+}
+
+.deleteConfirmOkBtn {
+  border-color: #004541 !important;
+  background: #004541 !important;
+  font-weight: 500;
+
+  &:hover {
+    border-color: #026961 !important;
+    background: #026961 !important;
+  }
+}
+
+/* 参考 BatchParseModel：body 滚动 + footer 固定贴底 */
+.createModelModal {
+  /* className 挂在 .ant-modal 上，需联合选择器覆盖全局 body .ant-modal .ant-modal-footer */
+  &:global(.ant-modal) {
+    :global(.ant-modal-footer) {
+      flex-shrink: 0;
+      margin-top: 18px;
+      border-top: none;
+    }
+  }
+
+  :global {
+    .ant-modal-content {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      height: min(948px, calc(100vh - 134px));
+      max-height: calc(100vh - 134px);
+    }
+    .ant-modal-body {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0;
+    }
+  }
+}
+
+/* Figma 3997:12658 — 1264×948，内边距 32，header 与主体 gap 24 */
+.modalRoot {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.modalBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 32px 32px 0;
+  gap: 24px;
+}
+
+.mainBlock {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  gap: 16px;
+}
+
+.bodyWrap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+
+  :global {
+    .ant-spin-nested-loading,
+    .ant-spin-container {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+    }
+  }
+}
+
+/* 建模结果页：内容区与弹框底部保留 32px，对齐 Figma 3977:11198 */
+.bodyWrapResult {
+  padding-bottom: 32px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.titleWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.aiLogo {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+}
+
+.title {
+  color: #04252b;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.closeIcon {
+  .modalCloseBtn();
+}
+
+.tipRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.tipRowError {
+  color: #b04465;
+  .infoIcon {
+    color: #b04465;
+  }
+}
+
+.tipRowModeling {
+  color: #026961;
+  .infoIcon {
+    color: #026961;
+  }
+}
+
+.infoIcon {
+  flex: 0 0 auto;
+  color: #04252b;
+  font-size: 16px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  min-height: 0;
+  height: 100%;
+}
+
+.treePanel,
+.formPanel {
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.treePanel {
+  display: flex;
+  flex: 0 0 600px;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+  padding: 20px;
+}
+
+.formPanel {
+  display: flex;
+  flex: 0 0 560px;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 560px;
+  min-height: 0;
+  padding: 20px;
+  overflow-y: auto;
+
+  /* Figma 4000:16483 — 输入框高度 38、边框 #d2d6da */
+  :global {
+    .ant-input,
+    .ant-input-number,
+    .ant-input-number-input,
+    .ant-picker,
+    .ant-select-selector {
+      min-height: 38px;
+      border-color: #d2d6da !important;
+      border-radius: 8px !important;
+    }
+    .ant-input-number {
+      width: 100%;
+    }
+    .ant-input-number-input {
+      height: 36px;
+    }
+    .ant-select-selector {
+      align-items: center;
+    }
+    .ant-picker {
+      width: 100%;
+    }
+  }
+}
+
+.dividerHandle {
+  display: flex;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.dividerHandleIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+  color: #343a40;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.panelTitle {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.headerActions {
+  display: flex;
+  gap: 16px;
+  :global {
+    .ant-btn {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border-radius: 8px;
+      border-color: #e5e7eb;
+    }
+  }
+}
+
+.headerActionRefresh {
+  :global {
+    .ant-btn {
+      background: #fff;
+    }
+  }
+}
+
+.treeList {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.treeNodeWrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.treeNodeWrapFirstInsertTarget::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 3;
+  height: 2px;
+  border-radius: 1px;
+  background: #026961;
+  content: '';
+  pointer-events: none;
+}
+
+.treeChildGroup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding-left: 32px;
+}
+
+/* 菜单树连线：只画在缩进空白区，不影响节点 hover / 选中 / 拖拽样式 */
+.treeChildGroup::before {
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  z-index: 0;
+  width: 1px;
+  height: 27px;
+  background: #e5e7eb;
+  content: '';
+  pointer-events: none;
+}
+
+.treeChildGroup > .treeNodeWrap:last-child::before {
+  position: absolute;
+  top: 19px;
+  left: -12px;
+  z-index: 0;
+  width: 8px;
+  height: 1px;
+  background: #e5e7eb;
+  content: '';
+  pointer-events: none;
+}
+
+.treeChildGroup > .treeNodeWrap:not(:last-child)::after {
+  position: absolute;
+  top: 19px;
+  bottom: -31px;
+  left: -12px;
+  z-index: 0;
+  width: 1px;
+  background: #e5e7eb;
+  content: '';
+  pointer-events: none;
+}
+
+.treeNode {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 38px;
+  padding: 8px 12px 8px 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #f7f8f9;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Figma 4115:12789 — 悬停：1px #026961 虚线描边 + 卡片投影 */
+.treeNode:hover:not(.treeNodeDragging):not(.treeNodeSelected):not(
+    .treeNodeDropTarget
+  ) {
+  border: 1px dashed #026961;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Figma 4082:11608 — 选中：1px #026961 描边 */
+.treeNodeSelected:not(.treeNodeDragging) {
+  border-color: #026961;
+  box-shadow: none;
+}
+
+/* Figma 4000:16316 — 左侧 2px 品牌色描边，按 8px 圆角单独绘制，避免被整卡片边框状态影响 */
+.treeNodeT1:not(.treeNodeDropTarget):not(.treeNodeDragging)::after {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  z-index: 2;
+  box-sizing: border-box;
+  width: 10px;
+  border-left: 2px solid #026961;
+  border-radius: 8px 0 0 8px;
+  content: '';
+  pointer-events: none;
+}
+
+/* Figma 4082:12086 — 拖拽目标：白底 + 1px #026961 实线描边 + 底部移动/复制区 */
+.treeNodeDropTarget {
+  padding: 0;
+  border: 1px solid #026961;
+  background: #fff;
+  box-shadow: none;
+
+  .treeNodeRow {
+    padding: 8px 12px;
+  }
+
+  .treeName {
+    font-weight: 500;
+  }
+}
+
+/* Figma 4082:13619 — 拖拽中：纯 CSS 绘制圆角虚线，避免 ResizeObserver 导致树节点闪动 */
+.treeNodeDragging {
+  border: none;
+  background: #f7f8f9;
+  box-shadow: none;
+  opacity: 0.3;
+  cursor: grabbing;
+}
+
+.treeNodeDragging::before {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  border: 1px dashed #026961;
+  border-radius: 8px;
+  content: '';
+  pointer-events: none;
+}
+
+/* 右上角 AI补全 角标预留宽度，避免遮挡删除按钮 */
+.treeNodeAiFill {
+  padding-right: 52px;
+}
+
+.treeNodeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  padding-left: 12px;
+}
+
+.treeLeadingIcon {
+  position: relative;
+  display: flex;
+  flex: 0 0 16px;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.treeDragHandle {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.treeNodeDragging .treeDragHandle {
+  opacity: 1;
+}
+
+.treeDragHandleIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.t1InsertZone {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  width: 100%;
+  height: 12px;
+  margin: -12px 0;
+}
+
+.t1InsertZoneFirst {
+  margin-top: 0;
+}
+
+.t1InsertZoneFirst.t1InsertZoneActive::after {
+  display: none;
+}
+
+.t1InsertZoneActive::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 1px;
+  background: #026961;
+  content: '';
+}
+
+.treeNodeMain {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+}
+
+.treeExpandBtn {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.treeNodeDragging .treeExpandBtn {
+  opacity: 0;
+}
+
+.treeArrow {
+  flex: 0 0 auto;
+  color: #999ea4;
+  font-size: 10px;
+}
+
+.treeNameGroup {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.treeName {
+  overflow: hidden;
+  flex: 0 1 auto;
+  min-width: 0;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.treeNode:hover:not(.treeNodeDragging) .treeName,
+.treeNodeSelected:not(.treeNodeDragging) .treeName,
+.treeNodeDragging .treeName {
+  font-weight: 500;
+}
+
+.levelTag {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 20px;
+  background: #ddf4f2;
+  color: #048677;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.treeActions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.referCountWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.referIconBox {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 2px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #fff;
+  line-height: 1;
+}
+
+.referIconImg {
+  display: block;
+  width: 9px;
+  height: 9px;
+}
+
+.referCount {
+  color: #04252b;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.aiFillTag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  height: 16px;
+  min-width: 40px;
+  padding: 0 4px;
+  border-radius: 0 8px 0 8px;
+  background: #048677;
+  color: #fff;
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.quickMoveActions {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+}
+
+.quickMoveActionItem {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  background: #f7f8f9;
+  color: #026961;
+  font-size: 12px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+/* 默认高亮「移动到此模型」 */
+.quickMoveActionMove {
+  border-right: 2px solid #fff;
+  border-radius: 0 0 0 8px;
+  background: rgba(12, 191, 159, 0.06);
+}
+
+.quickMoveActionMove.quickMoveActionInactive {
+  background: #f7f8f9;
+}
+
+.quickMoveActionCopy {
+  border-radius: 0 0 8px 0;
+}
+
+.quickMoveActionCopy.quickMoveActionActive {
+  background: rgba(12, 191, 159, 0.06);
+}
+
+.linkBtn,
+.dangerBtn {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.linkBtn {
+  color: #026961;
+}
+
+.dangerBtn {
+  color: #b04465;
+}
+
+.disabledBtn {
+  color: #b5b8bb;
+  cursor: not-allowed;
+}
+
+.aiSwitch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #343a40;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+/* Figma 4000:16489 — 表单区块行间距 20 */
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+
+  :global {
+    .ant-input,
+    .ant-input-number,
+    .ant-select,
+    .ant-picker,
+    .ant-cascader {
+      margin: 0;
+    }
+  }
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.formLabel {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 0;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  span {
+    color: #b04465;
+  }
+}
+
+.formFieldError {
+  margin: 0;
+  padding: 0;
+  color: #b04465;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.formControlWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.productSelectWrap {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.productSelect {
+  width: 100%;
+  min-width: 0;
+
+  :global {
+    .ant-select-selector,
+    .ant-select-selection-search,
+    .ant-select-selection-item {
+      min-width: 0;
+    }
+
+    .ant-select-selection-item {
+      overflow: hidden;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+/* Figma 4082:18033 — 关联产品新增标识：输入框外右上角胶囊 */
+.newProductTag {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  min-width: 40px;
+  padding: 0 8px;
+  border-radius: 20px;
+  background: #048677;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* 建模结果页 — 产品名后 inline 展示 */
+.newProductTagInline {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 20px;
+  background: #ddf4f2;
+  color: #048677;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.amountRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: start;
+}
+
+.unitCascader {
+  width: 100%;
+}
+
+.rangePicker {
+  width: 100%;
+}
+
+/* Figma 4000:16546 — 半/全生命周期并排，自定义生命周期独立一行 */
+.scopeSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.scopeRow {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.scopeCard,
+.customScopeCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d2d6da;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.scopeCard {
+  flex: 1 1 calc(50% - 6px);
+  min-width: calc(50% - 6px);
+  align-self: stretch;
+}
+
+.customScopeCard {
+  width: 100%;
+  cursor: pointer;
+
+  /* checkbox 选项文案 12px，标题沿用 .scopeCardTitle 14px */
+  .scopeChecks {
+    :global {
+      .ant-checkbox-wrapper,
+      .ant-checkbox-wrapper > span:last-child {
+        font-size: 12px;
+        line-height: 18px;
+      }
+    }
+  }
+}
+
+.scopeCardTitle {
+  flex-shrink: 0;
+  height: 20px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.scopeCardDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  min-height: 36px;
+}
+
+.scopeCardDescLine {
+  margin: 0;
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+.scopeCardActive {
+  border-color: #026961;
+}
+
+/* Figma 4000:16557 — 5 个 checkbox 单行排列，gap 12 */
+.scopeChecks {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  overflow-x: auto;
+
+  :global {
+    .ant-checkbox-wrapper {
+      flex-shrink: 0;
+      margin-inline-start: 0 !important;
+      color: #b5b8bb;
+      font-size: 12px;
+      line-height: 18px;
+      white-space: nowrap;
+    }
+    .ant-checkbox + span {
+      padding-inline-start: 4px;
+    }
+    .ant-checkbox .ant-checkbox-inner {
+      width: 16px;
+      height: 16px;
+      border-color: #d2d6da;
+      border-radius: 4px;
+    }
+    .ant-checkbox-disabled .ant-checkbox-inner {
+      background: #f5f5f5 !important;
+      border-color: #d2d6da !important;
+    }
+    .ant-checkbox-checked .ant-checkbox-inner {
+      background: #026961;
+      border-color: #026961;
+    }
+  }
+}
+
+.scopeChecksEnabled {
+  :global {
+    .ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled) {
+      color: #04252b;
+    }
+  }
+}
+
+/* Figma 4000:16563 — 文件区与表单 gap 24（由 formPanel gap 承担），内部 gap 16 */
+.fileSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.fileTabHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fileTabs {
+  display: flex;
+  padding: 2px;
+  border-radius: 8px;
+  background: #f7f8f9;
+  button {
+    height: 34px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #6c757d;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .fileTabActive {
+    background: #fff;
+    color: #04252b;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.uploadActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  /* 选择文件 / 上传文件：同色同字号 */
+  .linkBtn {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+.uploadBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #026961;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fileCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 42px;
+}
+
+.fileInfo {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.fileIcon {
+  flex: 0 0 auto;
+  svg {
+    font-size: 30px;
+  }
+}
+
+.fileName {
+  max-width: 280px;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 12px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileDate {
+  color: #b5b8bb;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.fileActions {
+  display: flex;
+  gap: 16px;
+}
+
+.empty {
+  padding: 24px 0;
+  color: #999ea4;
+  text-align: center;
+}
+
+.footerActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+
+  :global(.ant-btn + .ant-btn) {
+    margin-inline-start: 0;
+  }
+}
+
+.footerBtn {
+  min-width: 76px;
+  border-radius: 8px;
+}
+
+.primaryBtn {
+  border-color: #004541;
+  background: #004541;
+  &:hover {
+    border-color: #026961 !important;
+    background: #026961 !important;
+  }
+}
+
+/* Figma 3977:13294 — 其他引用弹框，底部栏对齐批量建模主弹框 */
+.otherReferModal {
+  &:global(.ant-modal) {
+    :global(.ant-modal-footer) {
+      flex-shrink: 0;
+      margin-top: 18px;
+      border-top: none;
+    }
+  }
+
+  :global {
+    .ant-modal-content {
+      overflow: hidden;
+      border-radius: 12px;
+    }
+  }
+}
+
+.selectFileModal {
+  :global {
+    .ant-modal-content {
+      border-radius: 12px;
+    }
+  }
+}
+
+.otherReferModalRoot {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.otherReferHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 32px 0;
+}
+
+.otherReferTitle {
+  min-width: 0;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.otherReferClose {
+  flex-shrink: 0;
+  .modalCloseBtn();
+}
+
+.otherReferBody {
+  padding: 24px 32px 0;
+}
+
+.otherReferTable {
+  :global {
+    .ant-table {
+      overflow: hidden;
+      border: 0.5px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .ant-table-thead > tr > th {
+      height: 48px;
+      padding: 13px 20px;
+      color: #04252b;
+      font-weight: 500;
+      line-height: 22px;
+      background: #f7f8f9;
+      border-bottom: 0.5px solid #e5e7eb;
+    }
+
+    .ant-table-thead > tr > th::before {
+      display: none;
+    }
+
+    .ant-table-tbody > tr > td {
+      height: 48px;
+      padding: 13px 20px;
+      color: #04252b;
+      line-height: 22px;
+      border-bottom: 0.5px solid #e5e7eb;
+    }
+
+    .ant-table-tbody > tr:last-child > td {
+      border-bottom: none;
+    }
+
+    .ant-table-cell {
+      vertical-align: middle;
+    }
+
+    .ant-spin-nested-loading,
+    .ant-spin-container,
+    .ant-table-container {
+      border-radius: 8px;
+    }
+  }
+}
+
+.otherReferFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.otherReferPaginationTotal {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.otherReferPaginationCount {
+  color: #004541;
+  font-weight: 600;
+}
+
+/* 列表/卡片 hover：浅灰背景 + 轻阴影 */
+.resultItemHover() {
+  transition: background-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    background: #f7f8f9;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.selectFileGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.selectFileCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  width: 100%;
+  max-width: 240px;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  .resultItemHover();
+}
+
+.selectFileCardChecked {
+  border-color: #048677;
+}
+
+.selectFileMeta {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.selectFileSubRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.selectFileName {
+  overflow: hidden;
+  color: #04252b;
+  font-size: 12px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Figma 3977:11198 — 建模结果页 */
+.resultContent {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.resultMenu {
+  display: flex;
+  flex: 0 0 300px;
+  flex-direction: column;
+  width: 300px;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px;
+  overflow: hidden;
+  border-right: 1px solid #e5e7eb;
+}
+
+.resultMenuScroll {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.resultMenuList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.resultMenuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 40px;
+  min-width: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  .resultItemHover();
+}
+
+.resultMenuItemActive {
+  background: #f7f8f9;
+}
+
+.resultMenuNameWrap {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.resultMenuNameOuter {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+
+  :global(> *) {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+}
+
+.resultStatusSuccess,
+.resultStatusWarning {
+  flex: 0 0 auto;
+  font-size: 14px;
+}
+
+.resultStatusSuccess {
+  color: #048677;
+}
+
+.resultStatusWarning {
+  color: #f3983e;
+}
+
+.resultMenuName {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resultLevelTag {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  max-width: 80px;
+  height: 22px;
+  padding: 0 8px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #ddf4f2;
+  color: #048677;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.originalFileSection {
+  flex-shrink: 0;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.originalFileEntry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 0 8px;
+  border-radius: 8px;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  cursor: pointer;
+  .resultItemHover();
+}
+
+.originalFileEntryActive {
+  background: #f7f8f9;
+}
+
+.originalFileName {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.originalFileIcon {
+  flex-shrink: 0;
+  color: #fba93e;
+  font-size: 16px;
+}
+
+.originalFileCount {
+  flex-shrink: 0;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.resultRightPanel {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.resultDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.resultDetailHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.resultDetailTitle {
+  color: #343a40;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.resultDetailTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.resultDeletedTag {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 4px;
+  background: #eceeef;
+  color: #6c757d;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.resultEnterBtn {
+  height: 32px;
+  padding: 0 16px;
+  border-color: #004541;
+  border-radius: 8px;
+  background: #004541;
+}
+
+.resultTopFields,
+.resultInfoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.resultField {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resultFieldLabel {
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.resultFieldValue {
+  min-width: 0;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.resultEmission {
+  color: #026961;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.resultEmissionEmpty {
+  color: #f3983e;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.adviceBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(105deg, #f6fbfa 0%, #f2fbf5 100%);
+}
+
+.adviceTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #026961;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.adviceList {
+  margin: 0;
+  padding-left: 22px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.emptyAdvice {
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.resultProduct {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.resultFilesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.resultFileList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resultFileRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  gap: 16px;
+  padding: 0 8px;
+  border-radius: 4px;
+  .resultItemHover();
+
+  .fileInfo {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.resultFileName {
+  color: #04252b;
+  font-size: 12px;
+  line-height: 20px;
+  word-break: break-all;
+}
+
+.originalLevelTabs {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.originalLevelTab {
+  position: relative;
+  height: 38px;
+  padding: 4px 4px 12px;
+  border: 0;
+  background: transparent;
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.originalLevelTabActive {
+  color: #04252b;
+  font-weight: 500;
+  &::after {
+    position: absolute;
+    right: 4px;
+    bottom: -1px;
+    left: 4px;
+    height: 2px;
+    border-radius: 8px 8px 0 0;
+    background: #04252b;
+    content: '';
+  }
+}

@@ -1,0 +1,35 @@
+.commonHeaderWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  height: 52px;
+  background: #fff;
+
+  .contentItem {
+    margin-bottom: 0;
+    color: #343a40;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    max-width: 260px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .label {
+      color: #6c757d;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .text {
+      max-width: 300px;
+    }
+  }
+
+  .contentItem + .contentItem {
+    margin-left: 24px;
+  }
+}

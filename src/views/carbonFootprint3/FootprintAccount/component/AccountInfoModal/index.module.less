@@ -1,0 +1,182 @@
+.header {
+  display: flex;
+}
+
+.infoGrid {
+  margin-left: 16px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 8px;
+  column-gap: 16px;
+
+  :global {
+    .ant-formily-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.extraInfoGrid {
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 8px;
+  column-gap: 16px;
+
+  :global {
+    .ant-formily-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.amountGrid {
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 12px;
+  :global {
+    .ant-formily-item {
+      width: 50%;
+    }
+    .ant-formily-item-label-content {
+      white-space: nowrap;
+    }
+  }
+}
+
+.splitLine {
+  margin: 24px 0;
+  height: 1px;
+  background: #ebedf0;
+}
+
+.accountTypeContent {
+  margin-bottom: 24px;
+}
+
+.accountTypeReadonly {
+  pointer-events: none;
+  user-select: none;
+}
+
+.modalFormReadonly {
+  :global {
+    .ant-input,
+    .ant-input-number,
+    .ant-select-selector,
+    .ant-picker,
+    .ant-cascader-picker {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.accountType {
+  position: relative;
+  margin-top: 8px;
+  padding: 0 24px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 8px;
+  border: 1px solid #048677;
+  color: #048677;
+}
+
+.accountTypeIcon {
+  svg {
+    font-size: 18px;
+  }
+}
+
+.accountTypeName {
+  /* Body 内容/@body-m-b */
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+}
+
+.accountTypeCheckIcon {
+  position: absolute;
+  right: -1px;
+  bottom: -2px;
+  svg {
+    font-size: 18px;
+  }
+}
+
+.factorPreferenceSelect {
+  width: 100%;
+}
+
+.factorPreferencePopup {
+  :global {
+    .ant-select-item-option-content {
+      min-width: 0;
+    }
+
+    .ant-select-item-option {
+      border: 1px solid transparent;
+      border-radius: 8px;
+    }
+
+    .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+      background-color: #f5f7f8;
+    }
+
+    .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+      border-color: #0cbf9f;
+      background-color: #f0fffb;
+    }
+
+    .ant-select-item-option-selected.ant-select-item-option-active:not(
+        .ant-select-item-option-disabled
+      ) {
+      background-color: #f0fffb;
+    }
+  }
+
+  :global(
+      .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
+    )
+    .factorPreferenceOptionName {
+    color: #026961 !important;
+  }
+
+  :global(
+      .ant-select-item-option-selected:not(.ant-select-item-option-disabled)
+    )
+    .factorPreferenceOptionSource {
+    color: #0b8f7c !important;
+  }
+}
+
+.factorPreferenceOption {
+  max-width: 100%;
+  padding: 2px 0;
+}
+
+.factorPreferenceOptionName,
+.factorPreferenceOptionSource {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.factorPreferenceOptionName {
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.factorPreferenceOptionSource {
+  margin-top: 2px;
+  color: #6b7d83;
+  font-size: 12px;
+  line-height: 18px;
+}

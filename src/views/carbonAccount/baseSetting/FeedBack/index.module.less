@@ -1,0 +1,47 @@
+@import '../../../../styles/var.less';
+
+.detailWrapper {
+  margin-bottom: @GlobaFormActionsHeight;
+
+  .main {
+    padding-top: 20px;
+  }
+
+  .fileWrapper {
+    margin-bottom: 20px;
+
+    .fileTitle {
+      margin-bottom: 13px;
+    }
+  }
+
+  :global(.ant-list-item) {
+    justify-content: flex-start;
+
+    .key {
+      flex: 0 0 90px;
+    }
+
+    .value {
+      word-break: break-all;
+    }
+  }
+
+  .fileItem {
+    width: 100px;
+    margin-right: 10px;
+    overflow: hidden;
+  }
+}
+
+/** 列表 */
+.wrapper {
+  .searchForm {
+    margin-bottom: 20px;
+
+    :global(> .ant-form-item) {
+      min-width: 230px;
+      margin-bottom: 20px;
+    }
+  }
+}

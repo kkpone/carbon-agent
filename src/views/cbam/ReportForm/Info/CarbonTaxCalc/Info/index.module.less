@@ -1,0 +1,77 @@
+@import url('@styles/var.less');
+
+.wrapper {
+  :global(.ant-drawer-close) {
+    display: none;
+  }
+
+  :global(.ant-drawer-title) {
+    text-align: left;
+  }
+
+  :global(.ant-drawer-body) {
+    padding-bottom: 40px;
+  }
+
+  :global(.ant-drawer-footer) {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    align-self: stretch;
+    justify-content: center;
+    padding: 12px 24px;
+    background: @whiteBg;
+    box-shadow: 0 -4px 8px 0 rgb(0 0 0 / 4%);
+  }
+}
+
+.closeIcon {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.precursorTable {
+  margin-top: 12px;
+}
+
+.addPrecursorButton {
+  margin-top: 12px;
+}
+
+.selectionWrapper {
+  width: 100%;
+}
+
+.valueSectionRow {
+  :global(.ant-form-item-label) {
+    display: flex;
+    min-height: 44px;
+    align-items: flex-end;
+  }
+
+  :global(.ant-form-item-label > label) {
+    height: auto;
+    line-height: 20px;
+    white-space: normal;
+  }
+
+  :global(.ant-select),
+  :global(.ant-input),
+  :global(.ant-input-number) {
+    width: 100%;
+  }
+}
+
+.parameterRow {
+  :global(.ant-form-item-label) {
+    display: flex;
+    min-height: 32px;
+    align-items: flex-end;
+  }
+
+  :global(.ant-select),
+  :global(.ant-input),
+  :global(.ant-input-number) {
+    width: 100%;
+  }
+}

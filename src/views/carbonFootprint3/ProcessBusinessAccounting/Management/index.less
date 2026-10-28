@@ -1,0 +1,147 @@
+.treeUtilMain {
+  .ant-tree-treenode {
+    // display: flex;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 0px;
+    align-items: center !important;
+    position: relative;
+    padding-bottom: 0;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .ant-tree .ant-tree-treenode-disabled .ant-tree-node-content-wrapper {
+    color: #343a40;
+    cursor: pointer;
+  }
+
+  .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle {
+    display: none;
+  }
+
+  .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+    background: #f0fbf9;
+    color: #0cbf9f;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .ant-tree.ant-tree-directory
+    .ant-tree-treenode
+    .ant-tree-node-content-wrapper.ant-tree-node-selected {
+    background: transparent;
+    color: #0cbf9f;
+  }
+
+  .ant-tree.ant-tree-directory .ant-tree-treenode-selected::before {
+    background: transparent;
+  }
+
+  // .ant-tree-treenode .ant-tree-draggable-icon {
+  //   visibility: hidden;
+  //   // display: none;
+  //   font-size: 12px;
+  //   min-width: 20px;
+  //   height: 20px;
+  // }
+
+  // .ant-tree-treenode:hover .ant-tree-draggable-icon {
+  //   transition: all 0.3s;
+  //   display: block;
+  //   visibility: inherit;
+  // }
+
+  .ant-tree-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 10px;
+  }
+
+  .ant-tree .ant-tree-node-content-wrapper {
+    width: 100%;
+    padding-left: 8px;
+
+    .ant-dropdown-trigger {
+      position: absolute;
+      right: 16px;
+    }
+  }
+
+  // .ant-tree .drag-over-gas-bottom {
+  //   overflow: hidden;
+  //   // height: 100px;
+  //   // padding: 10px 0 10px 0;
+  // }
+
+  // .ant-tree .drop-target {
+  //   overflow: hidden;
+  //   // height: 100px;
+  //   // padding: 10px 0 10px 0;
+  // }
+
+  // .ant-tree-draggable-icon:hover {
+  //   color: #0CBF9F;
+  // }
+
+  // .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  //   background: transparent;
+  //   color: #0CBF9F;
+  // }
+
+  .ant-tree .ant-tree-treenode:hover {
+    transition: all 0.3s;
+    background: #f7f8f9;
+  }
+
+  .ant-tree-treenode {
+    &:first-child {
+      .ant-tree-switcher {
+        width: 0;
+        min-width: 0;
+        display: none;
+      }
+      .ant-tree-node-content-wrapper {
+        padding: 0;
+      }
+
+      .ant-tree-node-content-wrapper {
+        padding-left: 8px;
+      }
+    }
+  }
+  .ant-tree-treenode-selected {
+    padding-bottom: 0;
+    background: #f0fbf9;
+
+    .ant-tree-switcher {
+      background: #f0fbf9;
+    }
+
+    .ant-tree-indent {
+      background: #f0fbf9;
+    }
+  }
+
+  // .ant-tree .ant-tree-treenode {
+  //   display: flex;
+  //   width: 100%;
+  //   height: 32px;
+  //   margin-bottom: 6px;
+  //   align-items: center;
+  // }
+
+  // .ant-dropdown-trigger .anticon-more {
+  //   margin-left: 10px;
+  //   color: #343A40;
+  //   visibility: hidden;
+  // }
+
+  // .ant-tree-treenode:hover .anticon-more {
+  //   visibility: inherit;
+  // }
+}

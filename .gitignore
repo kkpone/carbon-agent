@@ -1,0 +1,37 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+/.agents/mydoc
+# production
+/build  
+
+# misc
+.idea
+.DS_Store
+*.local
+.env.development.local
+.env.test.local
+.env.production.local
+.lh
+.history
+/src/sdks/**/.openapi-generator
+/src/sdks/**/.*ignore
+/src/sdks/**/*.sh
+/src/views/carbonFootPrintLCA_bk
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+
+# Playwright MCP runtime cache
+.playwright-mcp/
+.sentryclirc
+Jenkinsfile
+.gitlab-ci.yml.bak

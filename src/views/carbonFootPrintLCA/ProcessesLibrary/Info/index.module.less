@@ -1,0 +1,84 @@
+@import url('@styles/var.less');
+
+@menuWidth: 232px;
+@describeHeight: 78px;
+
+.wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column;
+  height: 100%;
+
+  .headerWrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 24px;
+    background: @whiteBg;
+    border-bottom: 1px solid @lineGray;
+
+    .commonHeaderWrapper {
+      flex: 1;
+    }
+
+    .headerRightBtn {
+      display: flex;
+      align-items: center;
+    }
+
+    .flowChartBtn {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .flowChartIcon {
+        margin-right: 8px;
+      }
+
+      .flowButton {
+        color: var(--text-gray-8-primary, #343a40);
+        font-weight: 400;
+        font-size: 14px;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        line-height: 22px;
+      }
+    }
+  }
+
+  .container {
+    display: flex;
+    height: calc(100% - @GlobalFormActionsHeight - @describeHeight);
+    overflow: hidden;
+    background-color: @whiteBg;
+    margin: 12px 56px;
+
+    .left {
+      flex: 1;
+      width: @menuWidth;
+    }
+
+    .right {
+      width: calc(100% - @menuWidth);
+      height: 100%;
+      padding: 16px 0;
+      overflow: hidden;
+
+      .processDataWrapper {
+        height: 100%;
+        padding: 0 24px 0 16px;
+        overflow-y: auto;
+
+        .section {
+          margin-bottom: 24px;
+        }
+      }
+
+      .fatorDatabaseWrapper {
+        height: 100%;
+        padding: 0 24px 0 16px;
+        overflow-y: auto;
+      }
+    }
+  }
+}

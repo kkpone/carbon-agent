@@ -1,0 +1,68 @@
+$theme_color: #343a40;
+$toast_bg_color: #f0fcf6;
+$toast_error_color: #94343b;
+$toast_error_bg_color: #fef5f5;
+$toast_warn_color: #a25f3a;
+$toast_warn_bg_color: #fefaf1;
+$toast_info_color: #1c94ed;
+$toast_info_bg_color: #f3f9ff;
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toast {
+  :global {
+    .ant-message-custom-content {
+      display: flex;
+    }
+  }
+}
+.toast_success {
+  :global {
+    .ant-message-notice-content {
+      background: $toast_bg_color;
+      // border: 1px solid $theme_color;
+      color: $theme_color;
+    }
+    .ant-message-success .anticon {
+      color: #026961 !important;
+    }
+  }
+}
+.toast_error {
+  :global {
+    .ant-message-notice-content {
+      background: $toast_error_bg_color;
+      // border: 1px solid $toast_error_color;
+      color: $toast_error_color;
+    }
+    .ant-message-success .anticon {
+      color: #b0444b !important;
+    }
+  }
+}
+.toast_warn {
+  :global {
+    .ant-message-notice-content {
+      background: $toast_warn_bg_color;
+      // border: 1px solid $toast_warn_color;
+      color: $toast_warn_color;
+    }
+    .ant-message-success .anticon {
+      color: #b0663c !important;
+    }
+  }
+}
+.toast_info {
+  :global {
+    .ant-message-notice-content {
+      background: $toast_info_bg_color;
+      // border: 1px solid $toast_info_color;
+      color: $toast_info_color;
+    }
+    .ant-message-info .anticon {
+      color: $toast_info_color;
+    }
+  }
+}

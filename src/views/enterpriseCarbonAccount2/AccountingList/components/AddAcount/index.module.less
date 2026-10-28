@@ -1,0 +1,113 @@
+@import '@Variable';
+
+.formContent {
+  padding-bottom: 36px;
+
+  :global {
+    .ant-form-item-required {
+      width: 100%;
+    }
+  }
+}
+
+.label {
+  .body-m();
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: @gray7;
+}
+
+.yearPicker {
+  width: 316px;
+}
+
+.emailInputContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.emailInput {
+  &&& {
+    width: 308px;
+  }
+}
+
+.selectEmployBtn {
+  .body-m();
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: @gray6;
+  &:hover {
+    color: @green7;
+  }
+}
+
+.historyBtn {
+  .body-m();
+
+  padding: 0 12px;
+  display: inline-block;
+  color: @green7;
+  cursor: pointer;
+}
+
+.copyIcon {
+  margin-right: 2px;
+  font-size: 16px;
+}
+
+.confirmModal {
+  :global {
+    .ant-modal-body {
+      padding: 24px;
+    }
+  }
+}
+
+.confirmModalTitle {
+  .title-s-b();
+}
+
+.confirmModalContent {
+  .body-m();
+
+  color: @gray7;
+}
+
+.confirmModalWarnText {
+  color: @orange6;
+}
+
+.confirmModalBtn {
+  border-color: @orange6 !important;
+  background: @orange6 !important;
+}
+
+.orgName {
+  display: flex;
+  align-items: center;
+}
+
+.orgIcon {
+  margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: @gray1;
+}
+
+.orgNameText {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

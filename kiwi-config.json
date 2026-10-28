@@ -1,0 +1,31 @@
+{
+  "fileType": "ts",
+  "kiwiDir": "./src/lang",
+  "srcLang": "zh-CN",
+  "distLangs": ["en-US"],
+  "googleApiKey": "",
+  "baiduApiKey": {
+    "appId": "20230628001727612",
+    "appKey": "MItlvwBvqRGW7pTCJ55o"
+  },
+  "baiduLangMap": {
+    "en-US": "en",
+    "zh-TW": "cht"
+  },
+  "translateOptions": {
+    "concurrentLimit": 10,
+    "requestOptions": {}
+  },
+  "defaultTranslateKeyApi": "Baidu",
+  "importI18N": "import I18N from '@src/lang/I18N';",
+  "ignoreDir": [
+    "src/api/",
+    "src/assets/",
+    "src/sdks",
+    "src/sdks_v2",
+    "src/store",
+    "src/styles",
+    "src/lang"
+  ],
+  "ignoreFile": []
+}

@@ -1,0 +1,47 @@
+.processLib {
+  && {
+    padding: 0;
+  }
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  height: 60px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #ebedf0;
+}
+
+.title {
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+}
+
+.searchContent {
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tableContent {
+  padding: 0 40px;
+}
+
+.operateColumn {
+  display: flex;
+  column-gap: 16px;
+  flex-wrap: wrap;
+  :global {
+    .ant-btn {
+      height: 22px;
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.radioGroup {
+  display: flex;
+  height: 32px;
+  padding: 0px 2px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--Fill-, #F7F8F9);
+
+  .item {
+    display: flex;
+    height: 28px;
+    padding: 0px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .checked {
+    background: var(--Fill-, #FFF);
+    /* 投影/滑块 */
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.06);
+  }
+}

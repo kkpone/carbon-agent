@@ -1,0 +1,135 @@
+@import '@src/styles/var.less';
+
+.cardAccountMain {
+  height: 110px;
+  padding: 8px;
+  background: linear-gradient(180deg, #f7f8f9 0%, #fff 100%);
+  border-radius: 8px;
+
+  .accountTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    color: @thirdDark;
+    font-size: 12px;
+
+    .selectAccountName {
+      display: flex;
+      align-items: center;
+      color: @mainDark;
+      cursor: pointer;
+      width: 160px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      .selectAccountNameInner {
+        width: 160px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .selectAccountNameIcon {
+        margin-left: 4px;
+        color: @thirdDark;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .accountInfo {
+    height: 68px;
+    padding: 11px 16px;
+    background: @whiteBg;
+    border: 1px solid @lineGray;
+    border-radius: 8px;
+    cursor: pointer;
+
+    .infoNameMain {
+      display: flex;
+      align-items: center;
+      .data {
+        display: inline-block;
+        font-weight: 500;
+        font-size: 16px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-wrap: nowrap;
+      }
+
+      .dataUnit {
+        margin-left: 2px;
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+
+    .infoAccountData {
+      position: relative;
+
+      .infoName {
+        color: @secondDark;
+        font-size: 12px;
+      }
+
+      .infoDate {
+        color: @textColorGray;
+        font-size: 12px;
+      }
+
+      .infoDetailBtn {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        display: none;
+        width: 68px;
+        height: 24px;
+        margin-top: -24px;
+        color: @whiteBg;
+        background: @colorPrimary;
+        border-color: @whiteBg;
+      }
+    }
+
+    &:hover {
+      color: @whiteBg;
+      background: @colorPrimary;
+      border-color: transparent;
+
+      .infoName,
+      .infoDate {
+        color: @whiteBg;
+      }
+
+      .infoDetailBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  .accountNotInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 68px;
+    color: @thirdDark;
+    border: 1px dashed @lineGray;
+    border-radius: 8px;
+    cursor: pointer;
+
+    .accountNotInfoIcon {
+      margin-right: 4px;
+      font-size: 14px;
+    }
+
+    &:hover {
+      color: #fff;
+      background: @colorPrimary;
+      border-color: @success;
+    }
+  }
+}

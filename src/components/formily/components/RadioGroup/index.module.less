@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  height: 56px;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+
+  .item {
+    border-radius: 4px;
+    border: 1px solid var(--line-border-1, #d2d6da);
+    background: var(--Fill-white, #fff);
+    display: flex;
+    width: 168px;
+    height: 56px;
+    padding: 16px 0px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+
+    .checkedIcon {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    display: none;
+    visibility: hidden;
+  }
+
+  .disabledChecked {
+    display: flex;
+    visibility: visible;
+    border-radius: 4px;
+    background: var(--fill-gray-1-bghover, #f7f8f9);
+    border: none;
+    cursor: not-allowed;
+  }
+
+  .checked {
+    border-radius: 4px;
+    border: 1px solid var(--brand-green-7-normal, #0cbf9f);
+    background: var(--brand-green-1-light, #e6fff6);
+  }
+}

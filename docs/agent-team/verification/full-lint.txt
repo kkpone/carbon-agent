@@ -1,0 +1,179 @@
+npm warn Unknown project config "canvas_binary_host_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "shamefully-hoist". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown user config "python". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> c-cloud@0.2.0 lint
+> eslint ./src --ext .js,.jsx,.ts,.tsx --quiet
+
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/BasicForm/index.tsx
+  80:3  error  'noIndustry' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/BuildModel/ProcessList/ProcessFactorForm/index.tsx
+   54:10  error  'ModalConfirm' is defined but never used               @typescript-eslint/no-unused-vars
+   58:3   error  'emissionFactorSchema' is defined but never used       @typescript-eslint/no-unused-vars
+   64:3   error  'CALC_WAY' is defined but never used                   @typescript-eslint/no-unused-vars
+   70:3   error  'TRANS_EMISSION_UNIT_LABEL' is defined but never used  @typescript-eslint/no-unused-vars
+  122:9   error  'formNameUseRef' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  220:24  error  'typeExtra' is assigned a value but never used         @typescript-eslint/no-unused-vars
+  352:11  error  'modal' is assigned a value but never used             @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/BuildModel/ProcessList/ProcessTable/Columns.tsx
+  7:3  error  'ALL_EMISSION' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/BuildModel/QuickList/Columns.tsx
+  6:3  error  'ALL_EMISSION' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/bossService.ts
+   61:71  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+   78:42  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+   86:38  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+   94:40  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  102:43  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  109:42  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  116:45  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  123:40  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  131:38  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  139:44  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  162:44  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  169:46  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  177:45  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  188:7   error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  201:7   error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  209:75  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  217:71  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/CarbonLabelAuditPlanDrawer/index.tsx
+   83:19  error  Use object destructuring  prefer-destructuring
+  161:13  error  Use object destructuring  prefer-destructuring
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/CarbonLabelAuditPlanDrawer/schema.tsx
+  5:1  error  Expected 1 empty line after import statement not followed by another import  import/newline-after-import
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/CarbonLabelAuditReportDrawer/schema.tsx
+  90:44  error  '_path' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/CarbonLabelFile/AnnotationModal.tsx
+  64:37  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/ComfirmCertificate/index.tsx
+  192:25  error  Empty components are self-closing  react/self-closing-comp
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/CompanyInfoCard/index.tsx
+   6:10  error  'saveAs' is defined but never used                    @typescript-eslint/no-unused-vars
+  42:48  error  'downloadLoading' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  43:9   error  'history' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  86:11  error  Empty components are self-closing                     react/self-closing-comp
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/EnterpriseAuditPlanDrawer/index.tsx
+  156:13  error  Use object destructuring  prefer-destructuring
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/EnterpriseAuditPlanDrawer/schema.tsx
+  6:1  error  Expected 1 empty line after import statement not followed by another import  import/newline-after-import
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/EnterpriseAuditReportDrawer/schema.tsx
+  61:44  error  '_path' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/FootprintAuditPlanDrawer/index.tsx
+  166:13  error  Use object destructuring  prefer-destructuring
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/FootprintAuditReportDrawer/schema.tsx
+  86:44  error  '_path' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/InputSelect/index.tsx
+  5:41  error  'maxInputLen' PropType is defined but prop is never used  react/no-unused-prop-types
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/OnSiteReview/index.tsx
+  16:10  error  'uniqueId' is defined but never used            @typescript-eslint/no-unused-vars
+  26:7   error  'getBase64' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/PreliminaryReview/index.tsx
+  17:10  error  'isNil' is defined but never used     @typescript-eslint/no-unused-vars
+  17:17  error  'uniqueId' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/UploadCertificate/index.tsx
+  4:10  error  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+  4:38  error  'Radio' is defined but never used   @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/components/UploadConfirmationFile/index.tsx
+   4:10  error  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+   4:38  error  'Radio' is defined but never used   @typescript-eslint/no-unused-vars
+  88:21  error  Empty components are self-closing   react/self-closing-comp
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/saasService.ts
+  18:69  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  43:7   error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  51:36  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  59:47  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  66:48  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  74:43  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+  82:46  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/Certification/CertificationForm/schema.tsx
+  176:44  error  '_path' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/WPSFile/index.tsx
+   13:20  error  'useUnmount' is defined but never used  @typescript-eslint/no-unused-vars
+  123:9   error  Empty components are self-closing       react/self-closing-comp
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/AuditRecordDrawer/index.tsx
+    3:10  error  'Drawer' is defined but never used                                                               @typescript-eslint/no-unused-vars
+    6:14  error  'memo' is defined but never used                                                                 @typescript-eslint/no-unused-vars
+    6:20  error  'useMemo' is defined but never used                                                              @typescript-eslint/no-unused-vars
+   93:6   error  'rest' is defined but never used                                                                 @typescript-eslint/no-unused-vars
+  150:35  error  Do not use Array index in keys                                                                   react/no-array-index-key
+  161:21  error  Fragments should contain more than one child - otherwise, there’s no need for a Fragment at all  react/jsx-no-useless-fragment
+  162:23  error  Empty components are self-closing                                                                react/self-closing-comp
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/ComfirmFiles/index.tsx
+  34:15  error  Empty components are self-closing  react/self-closing-comp
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/EmissionSourceDrawer/ModalDetail/index.tsx
+  28:3  error  'emissionFactorSchema' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/EmissionSourceDrawer/ModalDetail/schema.ts
+  5:3  error  'CALC_WAY' is defined but never used    @typescript-eslint/no-unused-vars
+  8:3  error  'TRANS_ENUM' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/EmissionSourceDrawer/components/Remove.tsx
+  1:10  error  'DeleteOutlined' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/EmissionSourceDrawer/index.tsx
+   57:10  error  'ModalConfirm' is defined but never used               @typescript-eslint/no-unused-vars
+   61:3   error  'emissionFactorSchema' is defined but never used       @typescript-eslint/no-unused-vars
+   67:3   error  'CALC_WAY' is defined but never used                   @typescript-eslint/no-unused-vars
+   74:3   error  'TRANS_EMISSION_UNIT_LABEL' is defined but never used  @typescript-eslint/no-unused-vars
+  403:24  error  'typeExtra' is assigned a value but never used         @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/EmissionSourceDrawer/schema.ts
+   6:3   error  'CALC_WAY' is defined but never used           @typescript-eslint/no-unused-vars
+   9:3   error  'TRANS_ENUM' is defined but never used         @typescript-eslint/no-unused-vars
+  13:17  error  'SUPPLIER' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/Factor/FactorDetail/util2.tsx
+  54:23  error  Unexpected block statement surrounding arrow body; move the returned value immediately after the `=>`  arrow-body-style
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/components/byWidth.tsx
+  33:16  error  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/formilyComponents/FormilyFactor/index.tsx
+   37:3  error  'AdditionalFormItem' PropType is defined but prop is never used  react/no-unused-prop-types
+  145:9  error  'getFactorInfoByLabel' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+/Volumes/7100/work/backend/new_carbon_cloud/src/views/subModules/CarbonFootprintModel/index.tsx
+  11:17  error  Unexpected require()                            global-require
+  22:25  error  Unexpected require()                            global-require
+  29:22  error  Unexpected require()                            global-require
+  32:3   error  'ModelItem' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  35:1   error  Import in body of module; reorder to top        import/first
+  37:1   error  Import in body of module; reorder to top        import/first
+  38:1   error  Import in body of module; reorder to top        import/first
+  39:1   error  Import in body of module; reorder to top        import/first
+  40:1   error  Import in body of module; reorder to top        import/first
+  41:1   error  Import in body of module; reorder to top        import/first
+  45:1   error  Import in body of module; reorder to top        import/first
+  46:1   error  Import in body of module; reorder to top        import/first
+
+✖ 98 problems (98 errors, 0 warnings)
+  47 errors and 0 warnings potentially fixable with the `--fix` option.
+

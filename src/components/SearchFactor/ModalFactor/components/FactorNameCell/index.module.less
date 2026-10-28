@@ -1,0 +1,87 @@
+.cell {
+  width: 100%;
+  min-width: 0;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px 8px;
+}
+
+.name {
+  flex: 1 1 200px;
+  min-width: 0;
+
+  && {
+    margin: 0;
+    color: #243b42;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    overflow-wrap: anywhere;
+  }
+}
+
+.badges {
+  display: inline-grid;
+  flex-shrink: 0;
+  grid-template-columns: 20px 44px;
+  align-items: center;
+  gap: 4px;
+  padding-top: 1px;
+}
+
+.aiIcon {
+  display: block;
+  grid-column: 1;
+  width: 20px;
+  height: 20px;
+}
+
+.used {
+  display: inline-flex;
+  flex-shrink: 0;
+  grid-column: 2;
+  align-items: center;
+  justify-self: start;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 3px;
+  background: #e6fff6;
+  color: #0cbf9f;
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.referenceProductName {
+  && {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    color: #64747a;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.recommendReason {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 660px;
+  margin-top: 8px;
+  padding: 2px 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #f7f8f9;
+  color: #04252b;
+  font-family: 'PingFang SC';
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-overflow: ellipsis;
+}

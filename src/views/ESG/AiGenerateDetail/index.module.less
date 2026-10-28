@@ -1,0 +1,107 @@
+.AiGenerateDetail {
+  padding: 0 !important;
+  height: 100vh;
+  overflow: hidden;
+
+  .header {
+    box-sizing: content-box;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 40px;
+    border-bottom: 1px solid #ebedf0;
+    background: var(--Fill-white, #fff);
+
+    .title {
+      color: #333;
+      text-align: center;
+      font-family: 'PingFang SC';
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px; /* 150% */
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .back {
+        cursor: pointer;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .notAllow {
+        cursor: not-allowed;
+      }
+    }
+
+    .rightBtns {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .ratingBtn {
+        height: 32px;
+      }
+
+      .tips {
+        color: #026961;
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 200% */
+        cursor: pointer;
+      }
+
+      .download {
+        cursor: pointer;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  .aiGenerating {
+    display: flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    border: 1px solid #026961;
+    // box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+
+    position: absolute;
+    bottom: 60px;
+    // width: 144px;
+    height: 38px;
+    left: calc(50% - 62px);
+    background-color: #fff;
+    z-index: 1000;
+
+    gap: 8px;
+  }
+}
+
+.contact {
+  width: 220px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}

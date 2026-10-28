@@ -1,0 +1,20 @@
+.pageWrapper {
+  padding: 0 40px 40px !important; // 旧逻辑有个 > div 设置 padding, 所以这里需要覆盖掉。旧逻辑下掉后移除
+  height: 100vh;
+  overflow-y: auto;
+
+  .breadcrumb {
+    margin: 16px 0;
+  }
+
+  .title {
+    color: #04252b;
+    font-feature-settings: 'ss01' on, 'cv01' on, 'cv11' on;
+    font-family: 'PingFang SC';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px; /* 140% */
+    margin-bottom: 16px;
+  }
+}

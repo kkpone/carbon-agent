@@ -1,0 +1,118 @@
+@import '@Variable';
+
+.uploadModal {
+  width: 448px;
+
+  :global {
+    .ant-modal-header {
+      border-bottom: none;
+    }
+
+    .ant-modal-footer {
+      padding: 12px 24px;
+      border-top: none;
+    }
+
+    .ant-modal-body {
+      padding: 0 24px;
+    }
+  }
+}
+
+.modalTitle {
+  .title-s-b();
+}
+
+.upload {
+  :global {
+    .ant-upload-btn {
+      padding: 26px 0 !important;
+    }
+  }
+}
+
+.uploadText {
+  .body-m-b();
+
+  margin: 8px 0 4px;
+}
+
+.uploadClickText {
+  color: @green7;
+}
+
+.uploadTip {
+  .caption-s();
+}
+
+.uploadFile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  margin-top: 8px;
+  padding: 0 8px;
+  background: @gray1;
+  border-radius: 4px;
+}
+
+.uploadFileLeft {
+  display: flex;
+  align-items: center;
+}
+
+.fileName {
+  .body-m();
+
+  max-width: 340px;
+  margin: 0 8px;
+  overflow: hidden;
+  color: @gray7;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.uploadingIcon {
+  color: @green7;
+}
+
+.fileDeleteIcon {
+  width: 16px;
+  height: 16px;
+  color: @gray7;
+  cursor: pointer;
+}
+
+.fileRank {
+  margin-top: 20px;
+}
+
+.fileRankText {
+  .body-m();
+
+  display: flex;
+  align-items: center;
+  color: @gray7;
+
+  .red {
+    margin-right: 2px;
+    color: @red6
+  }
+}
+
+.fileRankTip {
+  .caption-s();
+
+  margin-left: 4px;
+  column-gap: @gray5;
+}
+
+.fileRankSelect {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.errorIcon,
+.errorFileName {
+  color: @red6;
+}

@@ -1,0 +1,109 @@
+@import '@src/styles/var.less';
+// 产品碳足迹 - 每个菜单标题的字号
+@carbonFootprint: 16px;
+@carbonFootprintSecond: 14px;
+@tableMarginTop6: 6px;
+
+:global(.ant-form-item) {
+  margin-bottom: 20px;
+}
+.carbonFootprintDropdown {
+  :global {
+    .ant-dropdown-menu-item {
+      padding: 7px 30px;
+    }
+  }
+}
+
+.carbonFootprintAdd {
+  :global {
+    .ant-form-item-label > label {
+      width: 100%;
+    }
+  }
+}
+
+/* 表单的详情 - 自定义 */
+.carbonFootprintFormDetail {
+  .detailLabel {
+  }
+
+  .detailInput {
+    width: 400px;
+    height: 32px;
+    background: #f7f8f9;
+    border-radius: 4px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .detailText {
+    height: 80px;
+    padding: 6px 10px;
+    padding-right: 50px;
+    background: #f7f8f9;
+    border-radius: 4px;
+    margin-right: 120px;
+  }
+}
+
+.cursorPointerFont {
+  cursor: pointer;
+}
+
+.primaryColorFont {
+  color: @primary-color;
+}
+
+/* 一级标题 */
+.productTitle {
+  font-weight: 500;
+  font-size: @carbonFootprint;
+  color: @mainDark;
+}
+
+/* 二级标题 */
+.secondLevelTitle {
+  font-size: @carbonFootprintSecond;
+  color: @mainDark;
+}
+
+// 文件上传的样式
+.uploadMain {
+  .uploadTitle {
+    color: @mainDark;
+    font-size: 14px;
+  }
+
+  .showMust {
+    position: relative;
+
+    &:before {
+      display: inline-block;
+      margin-right: 4px;
+      color: #ff4d4f;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+      line-height: 1;
+      content: '*';
+    }
+  }
+
+  .uploadDetail {
+    color: @thirdDark;
+    font-size: 12px;
+  }
+
+  .fileInfo {
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .fileInfoActive {
+    background: @lightGray;
+  }
+}

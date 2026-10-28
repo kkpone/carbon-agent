@@ -1,0 +1,582 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    color: var(--Neutral-Text-text-1, #04252b);
+    font-family: 'PingFang SC';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40px; /* 125% */
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 356px;
+  }
+
+  .agentRewardTitle {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .agentRewardTitleLine {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .agentRewardPrefix,
+  .agentRewardPoints,
+  .agentRewardSubtitle {
+    font-size: 28px;
+    line-height: 40px;
+  }
+
+  .agentRewardPoints {
+    color: transparent;
+    font-weight: 500;
+    background: linear-gradient(
+      90deg,
+      #86efb5 1.25%,
+      #31ddb8 15.79%,
+      #65c1fa 42.5%,
+      #879cff 69.21%,
+      #b48fff 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .tabWrapper {
+    display: flex;
+    height: 48px;
+    padding: 4px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+    margin-bottom: 40px;
+
+    border-radius: ~'@{borderRadius}px';
+    background: #f7f8f9;
+
+    .normal {
+      display: flex;
+      border: 0;
+      padding: 12px;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex: 1 0 0;
+      align-self: stretch;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--Neutral-Text-text-1, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+      cursor: pointer;
+
+      .icon {
+      }
+    }
+
+    .checked {
+      background: #fff;
+    }
+
+    .normal:focus-visible {
+      outline: 2px solid #31ddb8;
+      outline-offset: 2px;
+    }
+  }
+
+  .checkbox {
+    margin-top: 20px;
+    color: var(--Neutral-Text-text-1, #04252b);
+    font-family: 'PingFang SC';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px; /* 161.538% */
+
+    .read {
+      font-size: 13px;
+    }
+
+    .link {
+      color: var(--Functional-Success-success-1-normal, #026961);
+      font-family: 'PingFang SC';
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 21px;
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      text-decoration-skip-ink: none;
+      text-decoration-thickness: auto;
+      text-underline-offset: auto;
+      text-underline-position: from-font;
+    }
+  }
+
+  .wechatQRCode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .qrCodeWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+
+      .qrCodeImage {
+        width: 200px;
+        height: 200px;
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .qrCodeFrame {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .qrCodeTip {
+        color: var(--Neutral-Text-text-2, #6b7280);
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        text-align: center;
+      }
+
+      .qrCodeMask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 32px; // 留出底部提示文案
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.65),
+          rgba(0, 0, 0, 0.45)
+        );
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 16px;
+        text-align: center;
+        color: #fff;
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        line-height: 22px;
+        backdrop-filter: blur(2px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease,
+          transform 0.2s ease;
+
+        .refreshIcon {
+          font-size: 22px;
+        }
+
+        span {
+          display: block;
+          max-width: 160px;
+        }
+
+        &:hover {
+          background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.72),
+            rgba(0, 0, 0, 0.55)
+          );
+          border-color: rgba(255, 255, 255, 0.35);
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    .qrCodeLoading,
+    .qrCodeError {
+      padding: 40px 20px;
+      color: var(--Neutral-Text-text-2, #6b7280);
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px;
+      text-align: center;
+      width: 200px;
+      height: 234px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  :global {
+    .ant-formily-item-control-content {
+      min-height: 22px !important;
+
+      .ant-formily-item-control-content-component {
+        min-height: 22px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    :global {
+      input,
+      textarea,
+      select,
+      .ant-input,
+      .ant-input-affix-wrapper input,
+      .ant-select-selection-search-input,
+      .MuiInputBase-input {
+        font-size: 16px !important;
+      }
+    }
+  }
+}
+
+.loginPage {
+  box-sizing: border-box;
+  width: 852px;
+  height: 495px;
+  padding: 8px;
+  flex-direction: row;
+  gap: 8px;
+  background: #fff;
+  border-radius: 12px;
+
+  .wechatPanel {
+    display: flex;
+    flex: 0 0 364px;
+    flex-direction: column;
+    padding: 32px;
+    background: #f7fbff;
+    border-radius: 12px;
+
+    .wechatSlogan {
+      .wechatTitle {
+        color: #04252b;
+        font-family: 'PingFang SC';
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 38px;
+      }
+
+      p {
+        margin: 4px 0 0;
+        color: #6c757d;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+      }
+    }
+
+    .wechatQRCode {
+      flex: 1;
+
+      .qrCodeWrapper {
+        gap: 20px;
+      }
+
+      .qrCodeFrame {
+        width: 200px;
+        height: 200px;
+        padding: 15px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(2, 105, 97, 0.08);
+        overflow: hidden;
+      }
+
+      .qrCodeImage {
+        width: 170px;
+        height: 170px;
+        border-radius: 0;
+      }
+
+      .qrCodeTip {
+        color: #04252b;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+      }
+
+      .qrCodeLoading,
+      .qrCodeError {
+        width: 200px;
+        height: 244px;
+      }
+    }
+  }
+
+  .formPanel {
+    box-sizing: border-box;
+    width: 464px;
+    padding: 32px;
+    border-radius: 0 12px 12px 0;
+
+    .title {
+      margin-bottom: 24px;
+      color: #04252b;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 38px;
+    }
+
+    .tabWrapper {
+      margin-bottom: 20px;
+
+      .normal {
+        color: #6c757d;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .checked {
+        color: #026961;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+      }
+    }
+
+    .checkbox {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 22px;
+
+      .read,
+      .link {
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .link {
+        text-decoration: none;
+      }
+    }
+
+    :global(.ant-btn-primary) {
+      background: #04252b;
+      border-color: #04252b;
+      border-radius: 8px;
+      box-shadow: none;
+      font-family: 'PingFang SC';
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    :global(.Mui-focused .MuiOutlinedInput-notchedOutline) {
+      border-color: #004541 !important;
+    }
+  }
+}
+
+.agentLoginModal {
+  box-sizing: border-box;
+  width: 836px;
+  height: 555px;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 48px;
+  padding-right: 48px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 12px;
+  backdrop-filter: blur(50px);
+
+  .agentWechatPanel {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 340px;
+    flex-direction: column;
+    width: 340px;
+    height: 555px;
+    padding: 40px 32px;
+    background-image: linear-gradient(
+        162.41deg,
+        rgba(255, 255, 255, 0.7) 26.25%,
+        rgba(255, 255, 255, 0) 91.58%
+      ),
+      url('./image/agent-login-background.png');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .agentLoginLogo {
+    display: block;
+    flex: 0 0 auto;
+    width: 231px;
+    height: 48px;
+  }
+
+  .agentWechatPanel .wechatQRCode {
+    flex: 1;
+    width: 100%;
+
+    .qrCodeWrapper {
+      gap: 20px;
+    }
+
+    .qrCodeFrame {
+      box-sizing: border-box;
+      width: 200px;
+      height: 200px;
+      padding: 15px;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 1px 4px rgba(2, 105, 97, 0.08);
+    }
+
+    .qrCodeImage {
+      width: 170px;
+      height: 170px;
+      border-radius: 0;
+    }
+
+    .qrCodeTip {
+      color: #04252b;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    .qrCodeMask {
+      bottom: 44px;
+      border-radius: 50%;
+    }
+
+    .qrCodeLoading,
+    .qrCodeError {
+      width: 200px;
+      height: 244px;
+    }
+  }
+
+  .agentFormPanel {
+    box-sizing: border-box;
+    flex: 0 0 400px;
+    width: 400px;
+    padding: 48px 0;
+
+    .title {
+      width: 400px;
+      margin-bottom: 24px;
+      color: #04252b;
+      font-size: 30px;
+      line-height: 38px;
+    }
+
+    .agentRewardTitle {
+      gap: 8px;
+    }
+
+    .agentRewardPrefix,
+    .agentRewardPoints,
+    .agentRewardSubtitle {
+      font-size: 28px;
+      line-height: 38px;
+    }
+
+    .agentRewardPrefix {
+      font-weight: 600;
+    }
+
+    .agentRewardSubtitle {
+      font-weight: 400;
+    }
+
+    .tabWrapper {
+      width: 400px;
+      margin-bottom: 24px;
+      border-radius: 8px;
+
+      .normal {
+        color: #6c757d;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .checked {
+        color: #026961;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+      }
+    }
+
+    .checkbox {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 22px;
+
+      .read,
+      .link {
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .link {
+        text-decoration: none;
+      }
+    }
+
+    :global(.ant-formily-form) {
+      width: 100%;
+    }
+
+    :global(.ant-btn-primary) {
+      background: #04252b;
+      border-color: #04252b;
+      border-radius: 8px;
+      box-shadow: none;
+      font-family: 'PingFang SC';
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    :global(.Mui-focused .MuiOutlinedInput-notchedOutline) {
+      border-color: #004541 !important;
+    }
+  }
+}
+
+.agentLoginModalEnglish {
+  .agentFormPanel {
+    .agentRewardTitleLine {
+      gap: 8px;
+    }
+
+    .agentRewardSubtitle {
+      width: 385px;
+      font-size: 22px;
+      line-height: 38px;
+    }
+  }
+}

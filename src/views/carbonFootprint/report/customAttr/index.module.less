@@ -1,0 +1,32 @@
+@import '@src/views/carbonFootprint/mixin.less';
+
+.addCustomAttrModal {
+  :global(.ant-modal-footer) {
+    padding: 0 24px 20px 24px;
+  }
+}
+:global(.ant-modal-body) {
+  padding: 4px 24px 20px 24px;
+
+  p {
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    color: @mainDark;
+  }
+}
+
+.productManagementCustomAttr {
+  position: relative;
+  padding: 0 6px;
+
+  .setBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    .btn {
+      width: 70px;
+    }
+  }
+}

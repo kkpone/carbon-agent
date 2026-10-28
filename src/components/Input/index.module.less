@@ -1,0 +1,27 @@
+@import '@src/styles/var.less';
+
+.inputReadonly:global(.ant-input) {
+  color: @text-color;
+  background-color: @readOnlyInputStyle;
+  border: none;
+}
+
+.inputReadonly {
+  &&,
+  && :global(.ant-input) {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+}
+
+.inputDisabled:global(.ant-input) {
+  color: @input-placeholder-color;
+}
+
+.inputDisabled {
+  &&,
+  && :global(.ant-input) {
+    color: @input-placeholder-color;
+  }
+}

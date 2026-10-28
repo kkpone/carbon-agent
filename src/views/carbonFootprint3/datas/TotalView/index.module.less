@@ -1,0 +1,504 @@
+@import '../../../../styles/var.less';
+
+.wrapper {
+  &&& {
+    background: @backgroudGray;
+    padding: 0;
+  }
+
+  .header {
+    padding: 0 40px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #ebedf0;
+    color: #343a40;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+  }
+
+  h1 {
+    flex: 0 0 auto;
+    margin: 0;
+    padding-bottom: 16px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  main {
+    height: calc(100% - 58px);
+    display: flex;
+    flex-flow: row;
+    overflow: hidden;
+
+    .left {
+      padding: 24px 0;
+      background: #fff;
+      flex: 0 0 326px;
+      display: flex;
+    }
+
+    .rightNoData {
+      flex: 1;
+      padding-top: 40px;
+      text-align: center;
+      background-color: @whiteBg;
+      img {
+        width: 200px;
+        height: 100px;
+      }
+
+      .noDataText {
+        color: @secondDark;
+        font-size: 14px;
+      }
+    }
+
+    .right {
+      flex: 1;
+      background: @backgroudGray;
+      padding: 16px;
+      overflow: auto;
+
+      .rightContent {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+        background: #fff;
+        border-radius: 12px;
+      }
+
+      .rightHeader {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+      }
+
+      .title {
+        color: var(--text-gray-8-primary, #343a40);
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 28px; /* 140% */
+      }
+
+      .info {
+        display: flex;
+        margin: 8px 0 16px;
+        column-gap: 24px;
+        section {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .key {
+          color: #999ea4;
+          font-size: 12px;
+          line-height: 18px;
+        }
+        .val {
+          color: #343a40;
+          font-size: 12px;
+          line-height: 18px;
+        }
+        .dropdownInner {
+          padding-top: 0;
+          padding-bottom: 0;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+        }
+
+        .arrowIcon {
+          margin-left: 4px;
+          cursor: pointer;
+          svg {
+            color: #343a40;
+          }
+        }
+      }
+
+      .emissionOut {
+        padding: 20px 16px;
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid @lineGray;
+        border-left: 3px solid #026961;
+        display: flex;
+        align-items: center;
+        column-gap: 16px;
+
+        .icon {
+          width: 32px;
+          height: 32px;
+          font-size: 32px;
+          border-radius: 8px;
+          flex-shrink: 0;
+          color: #f00;
+          margin-right: 16px;
+          svg {
+            width: 32px;
+            height: 32px;
+            color: #f00;
+            fill: #f00;
+          }
+        }
+        .totalEmission {
+          display: flex;
+          flex-direction: column;
+          row-gap: 4px;
+          width: 184px;
+        }
+
+        .emissionLabel {
+          color: var(--text-gray-7-secondary, #6c757d);
+          font-size: 12px;
+          line-height: 18px; /* 150% */
+        }
+
+        .emissionValue {
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color: #026961;
+          font-weight: 500;
+          font-size: 24px;
+          line-height: 32px; /* 133.333% */
+        }
+
+        .split {
+          width: 1px;
+          height: 40px;
+          background: #ebedf0;
+        }
+
+        .hiddenSplit {
+          .split();
+          background: transparent;
+        }
+
+        .maxEmission {
+          flex: 1;
+        }
+
+        .maxEmissionDesc {
+          display: flex;
+          align-items: center;
+          column-gap: 4px;
+        }
+
+        .maxEmissionName {
+          color: var(--text-gray-8-primary, #343a40);
+          font-weight: 500;
+          line-height: 22px; /* 157.143% */
+        }
+
+        .maxEmissionValue {
+          flex: 1;
+          width: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color: #026961;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px; /* 150% */
+        }
+      }
+
+      .compare {
+        display: flex;
+        flex-flow: column;
+        border-radius: 8px;
+
+        .compareContent {
+          margin-top: 16px;
+          display: flex;
+          column-gap: 16px;
+        }
+
+        .compareLeft {
+          flex: 1;
+
+          .emissionItem {
+            margin-bottom: 16px;
+            &:nth-last-of-type(1) {
+              margin-bottom: 0;
+            }
+            padding: 8px 12px;
+            display: flex;
+            column-gap: 12px;
+            align-items: end;
+            cursor: pointer;
+            border-radius: 8px;
+            &:hover {
+              background: #f7f8f9;
+              .compareBar {
+                background: #fff;
+              }
+            }
+          }
+
+          .currEmissionItem {
+            background: #f7f8f9;
+            .emissionName {
+              color: #026961;
+              font-weight: 500;
+            }
+            .compareValue {
+              color: #026961;
+              font-weight: 500;
+            }
+            .comparePercent {
+              color: #026961;
+            }
+            .compareBar {
+              background: #fff;
+            }
+          }
+
+          .emissionItemLeft {
+            min-width: 102px;
+            display: flex;
+            align-items: center;
+            column-gap: 8px;
+            .icon {
+              svg {
+                fill: #026961;
+              }
+            }
+          }
+
+          .emissionName {
+            color: var(--text-gray-7-secondary, #6c757d);
+            font-size: 12px;
+            line-height: 18px; /* 150% */
+          }
+
+          .emissionItemRight {
+            flex: 1;
+          }
+
+          .emissionCompare {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          .compareValue,
+          .comparePercent {
+            color: #6c757d;
+            font-size: 12px;
+            line-height: 18px; /* 150% */
+          }
+
+          .compareBar {
+            height: 12px;
+            width: 100%;
+            border-radius: 60px;
+            background: #f9fafb;
+          }
+          .compareBarInner {
+            height: 100%;
+            border-radius: 60px;
+            background: #048677;
+          }
+        }
+
+        .compareRight {
+          flex: 1;
+          height: 290px;
+          padding: 16px;
+          border-radius: 8px;
+          background-color: @backgroudGray;
+          border: 1px solid @lineGray;
+          position: relative;
+          z-index: 1;
+
+          .triangle {
+            content: '.';
+            border: 1px solid @lineGray;
+            width: 12px;
+            height: 12px;
+            left: 0px;
+            top: 24px;
+            position: absolute;
+            display: block;
+            transform-origin: 50%;
+            z-index: 11;
+            background-color: @backgroudGray;
+            border-top: none;
+            border-right: none;
+            transform: translate3d(-50%, -100%, 0) rotate(45deg);
+          }
+        }
+
+        .rightNoData {
+          background: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .top10,
+      .compare,
+      .sankeyChartWrapper {
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid #ececec;
+        width: 100%;
+        .title {
+          color: #343a40;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 22px;
+        }
+      }
+
+      .top10 {
+        height: 332px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+          display: flex;
+          flex-flow: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      .sankeyChartWrapper {
+        border-radius: 8px;
+
+        .sankeyCate {
+          margin-top: 16px;
+          height: 38px;
+          display: flex;
+          justify-content: space-between;
+          padding: 0 8px;
+          > div {
+            padding: 0 8px;
+            color: #999ea4;
+            font-size: 12px;
+            border-left: 1px dashed @lineGray;
+
+            &:last-child {
+              border-right: 1px dashed @lineGray;
+              border-left: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 去除对比数据 弹窗箭头 */
+.popoverWrapper {
+  :global(.ant-popover-arrow) {
+    display: none;
+  }
+
+  .popover {
+    width: 232px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+
+    .row {
+      display: flex;
+      align-items: center;
+      color: @text-color-secondary;
+
+      &.title {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 18px;
+        margin-bottom: 8px;
+        color: @text-color;
+      }
+
+      .total {
+        margin-bottom: 4px;
+      }
+
+      .key {
+        flex: 0 0 36px;
+        width: 66px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        margin-right: 16px;
+        color: @text-color-2;
+      }
+
+      .val {
+        margin-right: 4px;
+        color: @text-color;
+      }
+    }
+  }
+}
+
+/** 排放量详情弹窗 */
+.emissionSortModal {
+  .title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 20px;
+  }
+
+  .columnChart {
+    margin-bottom: 16px;
+  }
+
+  .table {
+    padding: 0;
+  }
+
+  :global(.ant-modal) {
+    // height: 639px;
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+    flex-flow: column;
+
+    :global(.ant-modal-content) {
+      overflow: auto;
+      flex: 1 1 100%;
+    }
+  }
+  :global(.ant-modal-header) {
+    padding: 19px 24px;
+    border: none;
+  }
+  :global(.ant-modal-body) {
+    padding: 0 24px 19px;
+  }
+}
+
+.lifeCycleTag {
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  border-radius: 20px;
+  background: #d8efd3;
+  color: #04252b;
+  font-size: 12px;
+}
+
+.halfLifeCycleTag {
+  background: #e8f6ff;
+}
+
+.customLifeCycleTag {
+  background: #e5e5fb;
+}

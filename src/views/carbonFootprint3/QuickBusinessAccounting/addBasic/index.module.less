@@ -1,0 +1,69 @@
+.quickBusinessAccountingMain {
+  height: 100%;
+
+  .stepBoxBack {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    left: 16px;
+    cursor: pointer;
+  }
+
+  .stepsClass {
+    :global(.ant-steps-item-icon) {
+      width: 24px;
+      height: 24px;
+      line-height: 20px;
+    }
+    :global(.ant-steps-item-container) {
+      display: flex;
+      align-items: center;
+    }
+    :global(.ant-steps-item-active .ant-steps-item-title) {
+      color: #0cbf9f;
+    }
+    :global(.ant-steps-icon) {
+      font-size: 12px;
+    }
+  }
+
+  .quickBusinessAccountingBasicFormMainDiv {
+    width: 100%;
+    height: calc(100% - 120px);
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background: #f7f8f9;
+
+    .quickBusinessAccountingBasicFormMain {
+      width: 1200px;
+      margin: 0 auto;
+      height: 100%;
+      background-color: #fff;
+      padding: 16px 24px;
+    }
+  }
+
+  .stepBox {
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    margin: 0 auto;
+
+    // padding: 0 250px;
+    background: #fff;
+  }
+
+  .operateBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .title {
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,749 @@
+.dialog {
+  top: 24px;
+  max-width: calc(100vw - 32px);
+  padding-bottom: 24px;
+}
+
+.dialog :global(.ant-modal-content) {
+  display: flex;
+  max-height: calc(100vh - 48px);
+  flex-direction: column;
+  padding: 32px;
+  overflow: hidden;
+  border-radius: 12px;
+  backdrop-filter: blur(50px);
+}
+
+.dialog :global(.ant-modal-header) {
+  flex: 0 0 auto;
+  margin: 0 0 24px;
+  padding: 0;
+}
+
+.dialog :global(.ant-modal-title) {
+  color: #04252b;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.dialog :global(.ant-modal-close) {
+  top: 32px;
+  inset-inline-end: 32px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: rgb(255 255 255 / 72%);
+  border: 1px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dialog :global(.ant-modal-close:hover),
+.dialog :global(.ant-modal-close:focus-visible) {
+  background: #fff;
+  border-color: #e5e7eb;
+}
+
+.dialog :global(.ant-modal-close-x) {
+  display: block;
+  width: 32px;
+  height: 32px;
+  line-height: normal;
+}
+
+.dialogCloseIcon {
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.dialogCloseIcon::before,
+.dialogCloseIcon::after {
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  width: 14px;
+  height: 1.5px;
+  background: #6c757d;
+  border-radius: 999px;
+  content: '';
+}
+
+.dialogCloseIcon::before {
+  transform: rotate(45deg);
+}
+
+.dialogCloseIcon::after {
+  transform: rotate(-45deg);
+}
+
+.dialog :global(.ant-modal-body) {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.form {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+}
+
+.taskList {
+  display: flex;
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: calc(100vh - 258px);
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.taskList:not(:empty) {
+  margin: -4px;
+  padding: 4px;
+}
+
+.taskCard {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: 0 8px 8px;
+  overflow: hidden;
+  background: #f7f8f9;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.taskCard:hover,
+.taskCard:focus-within {
+  border-color: #048677;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 4%), 0 4px 16px rgb(0 0 0 / 8%);
+}
+
+.taskCardHeader {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px;
+}
+
+.emissionSourceField {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.emissionSourceField :global(.ant-form-item-control-input) {
+  min-height: 48px;
+}
+
+.emissionSourceField :global(.ant-form-item-explain) {
+  display: none;
+}
+
+.emissionSourceSelect {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.emissionSourceSelect :global(.ant-select-selector) {
+  width: auto !important;
+  min-width: 0;
+  max-width: calc(100% - 24px);
+  height: 48px !important;
+  flex: 0 1 auto;
+  padding: 0 !important;
+  color: #343a40 !important;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.emissionSourceSelect :global(.ant-select-single .ant-select-selector),
+.emissionSourceSelect :global(.ant-select-selection-item),
+.emissionSourceSelect :global(.ant-select-selection-placeholder) {
+  line-height: 48px !important;
+}
+
+.emissionSourceSelect :global(.ant-select-selection-placeholder) {
+  color: #343a40;
+  opacity: 1;
+}
+
+.emissionSourceSelect :global(.ant-select-selection-item),
+.emissionSourceSelect :global(.ant-select-selection-placeholder) {
+  padding-inline-end: 0 !important;
+}
+
+.emissionSourceSelect :global(.ant-select-arrow) {
+  position: static;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 8px;
+  transform: none;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.sourceSuffixButton {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.sourceSelectIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+.sourceSuffixButton:disabled {
+  cursor: not-allowed;
+}
+
+.deleteButton {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  padding: 8px;
+  background: transparent;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 160ms ease, background-color 160ms ease;
+}
+
+.taskCard:hover .deleteButton,
+.taskCard:focus-within .deleteButton,
+.deleteButton:focus-visible {
+  opacity: 1;
+}
+
+.deleteButton:hover:not(:disabled),
+.deleteButton:focus-visible:not(:disabled) {
+  background: #ebedf0 !important;
+}
+
+.deleteIcon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  padding: 1px;
+}
+
+.taskToggle {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent !important;
+  border-radius: 6px;
+  box-shadow: none !important;
+  transition: background-color 160ms ease;
+}
+
+.taskToggle:hover:not(:disabled),
+.taskToggle:focus-visible:not(:disabled) {
+  background: #ebedf0 !important;
+}
+
+.taskToggleIcon {
+  display: block;
+  width: 10px;
+  height: 6px;
+  transition: transform 160ms ease;
+}
+
+.taskCardExpanded .taskToggleIcon {
+  transform: rotate(180deg);
+}
+
+.taskCardCollapsed {
+  padding-bottom: 0;
+}
+
+.taskCardCollapsed .taskCardBody {
+  display: none;
+}
+
+.taskCardBody {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.taskMeta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.taskMeta > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.taskMeta span,
+.taskMeta strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.taskMeta span {
+  color: #999ea4;
+}
+
+.taskMeta strong {
+  color: #04252b;
+  font-weight: 400;
+}
+
+.projectTypeSection {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.requiredLabel {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.requiredLabel b {
+  color: #cb3430;
+  font-weight: 400;
+}
+
+.projectTypeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.projectTypeCard {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  background: #f7f8f9;
+  border-radius: 8px;
+}
+
+.projectTypeCard :global(.ant-checkbox-wrapper) {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.projectTypeCard :global(.ant-checkbox-wrapper > span:not(.ant-checkbox)) {
+  padding: 0;
+}
+
+.projectTypeCard :global(.ant-checkbox) {
+  top: 0;
+}
+
+.projectTypeCard :global(.ant-checkbox-inner) {
+  width: 16px;
+  height: 16px;
+  border-color: #d5d7da;
+  border-radius: 4px;
+}
+
+.projectTypeCard :global(.ant-checkbox-checked .ant-checkbox-inner) {
+  background: #026961;
+  border-color: #026961;
+}
+
+.projectTypeCardBody {
+  min-width: 0;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.singleProjectTypeSection {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.singleProjectTypeLabel {
+  display: inline-flex;
+  width: fit-content;
+  align-items: flex-start;
+  gap: 4px;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.singleProjectTypeLabel b {
+  color: #cb3430;
+  font-weight: 400;
+}
+
+.singleProjectTypeSection .assignmentFields {
+  gap: 16px;
+}
+
+.singleProjectTypeSection
+  .assignmentField
+  :global(.ant-form-item-required::before) {
+  display: none !important;
+}
+
+.assignmentFields {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.assignmentField {
+  min-width: 0;
+  margin: 0;
+}
+
+.assignmentField :global(.ant-form-item-row) {
+  display: block;
+}
+
+.assignmentField :global(.ant-form-item-row),
+.assignmentField :global(.ant-form-item-control),
+.assignmentField :global(.ant-form-item-control-input),
+.assignmentField :global(.ant-form-item-control-input-content),
+.assignmentField :global(.ant-select),
+.assignmentField :global(.ant-picker) {
+  width: 100%;
+  min-width: 0;
+}
+
+.assignmentField :global(.ant-form-item-label) {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0 0 8px;
+  overflow: hidden;
+  text-align: start;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.assignmentField :global(.ant-form-item-label > label) {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 22px;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.assignmentField :global(.ant-form-item-label > label::after) {
+  display: none;
+}
+
+.assignmentField :global(.ant-form-item-required::before) {
+  color: #cb3430 !important;
+  margin-inline-end: 4px !important;
+}
+
+.assignmentField :global(.ant-select-selector),
+.assignmentField :global(.ant-picker) {
+  height: 32px;
+  color: #04252b;
+  font-size: 14px;
+  background: #fff;
+  border-color: #e5e7eb;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.assignmentField :global(.ant-select-single .ant-select-selector) {
+  padding: 0 10px;
+}
+
+.assignmentField :global(.ant-select-single .ant-select-selection-item),
+.assignmentField :global(.ant-select-single .ant-select-selection-placeholder) {
+  line-height: 30px;
+}
+
+.assignmentField :global(.ant-picker) {
+  padding: 4px 10px;
+}
+
+.assignmentField :global(.ant-select-focused .ant-select-selector),
+.assignmentField :global(.ant-picker-focused) {
+  border-color: #026961 !important;
+  box-shadow: 0 0 0 4px rgb(2 105 97 / 10%) !important;
+}
+
+.assignmentField :global(.ant-form-item-explain) {
+  display: none;
+}
+
+.controlSuffixIcon {
+  display: block;
+  width: 10px;
+  height: 6px;
+}
+
+.calendarSuffixIcon {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+.addButton {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 7px 20px;
+  color: #343a40;
+  font-size: 14px;
+  border-color: #e5e7eb;
+  border-style: dashed;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.taskList:not(:empty) + .addButton {
+  margin-top: 24px;
+}
+
+.addButton :global(.anticon) {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.addButton:hover:not(:disabled),
+.addButton:focus-visible:not(:disabled) {
+  color: #026961;
+  border-color: #026961;
+}
+
+.footer {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.footer :global(.ant-btn) {
+  height: 38px;
+  padding: 8px 24px;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.footer :global(.ant-btn-primary) {
+  background: #004541;
+  border-color: #004541;
+}
+
+.footer :global(.ant-btn-primary:hover:not(:disabled)),
+.footer :global(.ant-btn-primary:focus-visible:not(:disabled)) {
+  background: #026961;
+  border-color: #026961;
+}
+
+.footer :global(.ant-btn-primary:disabled),
+.footer :global(.ant-btn-primary:disabled:hover) {
+  color: #fff;
+  background: rgb(0 69 65 / 60%);
+  border-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .dialog {
+    position: absolute;
+    inset: auto 0 0;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dialog :global(.ant-modal-content) {
+    display: flex;
+    width: 100vw;
+    max-height: calc(var(--mobile-visual-viewport-height, 100dvh) - 16px);
+    flex-direction: column;
+    padding: 24px 24px calc(24px + env(safe-area-inset-bottom));
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -8px 32px rgb(4 37 43 / 14%);
+  }
+
+  .dialog :global(.ant-modal-header) {
+    margin-bottom: 24px;
+  }
+
+  .dialog :global(.ant-modal-close) {
+    display: none;
+  }
+
+  .dialog :global(.ant-modal-body),
+  .form {
+    overflow: hidden;
+  }
+
+  .taskList {
+    max-height: calc(var(--mobile-visual-viewport-height, 100dvh) - 238px);
+    gap: 16px;
+    scrollbar-width: none;
+  }
+
+  .taskList:not(:empty) {
+    margin: 0;
+    padding: 0;
+  }
+
+  .taskList::-webkit-scrollbar {
+    display: none;
+  }
+
+  .taskCard,
+  .taskCard:hover,
+  .taskCard:focus-within {
+    border-color: #e5e7eb;
+    box-shadow: none;
+  }
+
+  .taskCardHeader {
+    height: 48px;
+    gap: 4px;
+    padding: 0 12px;
+  }
+
+  .deleteButton {
+    opacity: 1;
+  }
+
+  .taskToggle {
+    width: 24px;
+    height: 32px;
+    flex: 0 0 24px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .taskToggle:hover:not(:disabled),
+  .taskToggle:focus:not(:disabled),
+  .taskToggle:focus-visible:not(:disabled),
+  .taskToggle:active:not(:disabled) {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .taskMeta {
+    gap: 16px;
+  }
+
+  .projectTypeGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .projectTypeCardBody {
+    padding: 12px 12px 8px;
+  }
+
+  .projectTypeCard .assignmentField :global(.ant-form-item-required::before) {
+    display: none !important;
+  }
+
+  .assignmentFields {
+    grid-template-columns: 110px minmax(0, 1fr);
+  }
+
+  .singleProjectTypeSection {
+    width: 100%;
+  }
+
+  .taskList:not(:empty) + .addButton {
+    margin-top: 16px;
+  }
+
+  .footer {
+    position: relative;
+    z-index: 1;
+    gap: 0;
+    margin: 24px -24px calc(-24px - env(safe-area-inset-bottom));
+    padding: 16px 24px calc(24px + env(safe-area-inset-bottom));
+    background: #fff;
+    box-shadow: 0 -5px 4px rgb(0 0 0 / 5%);
+  }
+
+  .footer :global(.ant-btn) {
+    width: 100%;
+    height: 48px;
+  }
+
+  .footer :global(.ant-btn-default) {
+    display: none;
+  }
+}

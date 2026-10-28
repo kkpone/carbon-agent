@@ -1,0 +1,24 @@
+.wrap {
+  // z-index: 1055;
+}
+
+.fullscreenModal {
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+
+  :global(.ant-modal-body) {
+    height: 100%;
+    padding: 0;
+  }
+
+  :global(.ant-modal-content) {
+    height: 100%;
+    padding: 0 !important;
+    border-radius: 0 !important;
+  }
+}

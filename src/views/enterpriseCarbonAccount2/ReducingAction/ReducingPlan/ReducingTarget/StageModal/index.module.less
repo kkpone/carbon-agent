@@ -1,0 +1,60 @@
+@import '@Variable';
+
+.targetYearSelect {
+  width: 256px !important;
+}
+
+.stageMark {
+  .caption-s-b();
+
+  margin-top: 4px;
+}
+
+.scopeInputContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+}
+
+.scopeInputItem {
+  min-height: 90px;
+  display: flex;
+  background: #f7f8f9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scopeInputItemLeft {
+  .caption-s-b();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  // height: 100%;
+  padding: 0 4px;
+  color: #fff;
+  word-break: break-all;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.scopeInputItemRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.scopeInput {
+  margin-top: 4px;
+}
+
+.scopeThreeClassifyCount {
+  margin-top: 8px;
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+  color: @green7;
+}

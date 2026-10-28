@@ -1,0 +1,56 @@
+@import '@Variable';
+
+.indicatorTypeContent {
+  margin-bottom: 20px;
+  padding: 0 2px;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  border-radius: 4px;
+  background: #f7f8f9;
+}
+
+.indicatorType {
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  height: 28px;
+  cursor: pointer;
+  color: #6c757d;
+  border-radius: 4px;
+}
+
+.currIndicatorType {
+  background: #fff;
+}
+
+.indicatorLabel {
+  .body-m();
+
+  margin-bottom: 8px;
+  color: @gray7;
+}
+
+.input {
+  width: 100%;
+}
+
+.quarterContent {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 20px;
+}
+
+.monthContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 20px;
+  column-gap: 16px;
+}
+
+.footer {
+  padding-top: 24px;
+  display: flex;
+  justify-content: end;
+  column-gap: 12px;
+}

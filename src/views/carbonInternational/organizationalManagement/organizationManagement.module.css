@@ -1,0 +1,103 @@
+.organization_content {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.organization_content .header .titleWrapper {
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+}
+.organization_content .header .titleWrapper button {
+  padding: 0 21px;
+}
+.organization_content .header .titleWrapper .addIcon {
+  display: inline-block;
+  width: 16px;
+  margin-right: 8px;
+}
+.organization_content .searchWrapper {
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: row wrap;
+}
+.organization_content .searchWrapper .searchItem {
+  display: flex;
+  flex: 0 0 30%;
+  flex-flow: row nowrap;
+  align-items: center;
+  max-width: 400px;
+  margin-bottom: 20px;
+  padding-right: 30px;
+}
+.organization_content .searchWrapper .searchItem :global(.ant-select),
+.organization_content .searchWrapper .searchItem :global(.ant-picker) {
+  width: 100%;
+}
+.organization_content .organizationa_management_table {
+  flex: 1 1 auto;
+}
+/* 数据提报 */
+.reportModalWrapper :global(.ant-modal-header) {
+  padding-bottom: 0;
+}
+.reportModalWrapper :global(.ant-modal-footer) {
+  padding-top: 0;
+}
+.reportModalWrapper .mainContent {
+  display: flex;
+  flex-flow: column;
+}
+.reportModalWrapper .mainContent header > div {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 20px;
+}
+.reportModalWrapper .mainContent .reportForm {
+  display: flex;
+  flex-flow: row wrap;
+}
+.reportModalWrapper .mainContent .reportForm :global(.ant-row) {
+  flex: 0 0 350px;
+}
+.reportModalWrapper .mainContent .reportForm :global(.ant-row):first-child {
+  flex: 0 0 100%;
+}
+.reportModalWrapper .mainContent .reportForm :global(.ant-row):nth-child(3) {
+  margin-left: 20px;
+}
+.reportModalWrapper .mainContent .reportForm :global(.ant-picker) {
+  width: 100%;
+}
+.reportModalWrapper .mainContent .reportForm .selectTarget.selectTarget {
+  flex: 0 0 100%;
+  margin-left: 0;
+}
+.dropDown {
+  position: absolute;
+  top: 11px;
+  width: 100px;
+  height: 34px;
+}
+.noValues {
+  display: block;
+  padding: 10px 0;
+  color: #bbb;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+.downloadWrapper {
+  display: flex;
+}
+.riskModal :global(.ant-modal-body) {
+  padding: 20px 24px;
+}
+.riskModal :global(.ant-modal-confirm-title) {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+}

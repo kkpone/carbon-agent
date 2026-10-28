@@ -1,0 +1,133 @@
+.treeContent {
+  padding: 0 16px;
+
+  :global {
+    .ant-tree-treenode {
+      position: relative;
+      align-items: center !important;
+      width: 100%;
+      height: 40px;
+      padding-bottom: 0;
+      padding-left: 8px;
+      line-height: 40px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:first-child {
+        margin-top: 16px;
+
+        .ant-tree-switcher {
+          display: none;
+          width: 0;
+          min-width: 0;
+        }
+      }
+    }
+
+    .ant-tree .ant-tree-treenode-disabled .ant-tree-node-content-wrapper {
+      color: #343a40;
+      cursor: pointer;
+    }
+
+    .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle {
+      display: none;
+    }
+
+    .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      color: #0cbf9f;
+      font-weight: 600;
+      background: #f0fbf9;
+    }
+
+    .ant-tree.ant-tree-directory
+      .ant-tree-treenode
+      .ant-tree-node-content-wrapper.ant-tree-node-selected {
+      color: #0cbf9f;
+      background: transparent;
+    }
+
+    .ant-tree.ant-tree-directory .ant-tree-treenode-selected::before {
+      background: transparent;
+    }
+
+    .ant-tree-switcher {
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ant-tree-switcher-icon {
+      z-index: 10;
+    }
+
+    .ant-tree .ant-tree-node-content-wrapper {
+      width: 100%;
+      padding-left: 8px;
+
+      .ant-dropdown-trigger {
+        position: absolute;
+        right: 16px;
+      }
+    }
+
+    .ant-tree .ant-tree-treenode:hover {
+      background: #f7f8f9;
+      transition: all 0.3s;
+    }
+
+    .ant-tree-treenode-selected {
+      padding-bottom: 0;
+      background: #f0fbf9;
+
+      .ant-tree-switcher {
+        background: #f0fbf9;
+      }
+
+      .ant-tree-indent {
+        background: #f0fbf9;
+      }
+    }
+
+    .ant-tree-indent-unit {
+      &:nth-of-type(1) {
+        width: 0;
+      }
+    }
+  }
+}
+
+.treeTitle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.processAccountingInfo {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.processAccountingInfoHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px 16px;
+  border-bottom: 1px solid #ebedf0ff;
+}
+
+.processAccountingInfoContent {
+  display: flex;
+  width: 100%;
+}
+
+.infoLabel {
+  color: '#999EA4';
+}
+
+.accountName {
+  max-width: 200px;
+}

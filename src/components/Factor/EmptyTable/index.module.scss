@@ -1,0 +1,16 @@
+@import "@src/styles/public.scss";
+
+.wrapper {
+  min-height: 130px;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  height: 100%;
+
+  span {
+    color: $primary-color;
+    cursor: pointer;
+  }
+}

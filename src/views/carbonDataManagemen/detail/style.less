@@ -1,0 +1,230 @@
+@import '@src/styles/var.less';
+
+.golalDetail {
+    display: flex;
+    padding: 16px;
+    overflow: auto;
+    
+}
+
+.computation_left {
+    flex: 1;
+}
+
+.computation_right {
+    display: none;
+    width: 50%;
+}
+
+.bottom-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 60px;
+    background: @white;
+    box-shadow: 0 -1px 2px 0 rgb(0 0 0 / 3%);
+    filter: blur(0);
+
+    button:first-child {
+        margin-right: 10px;
+    }
+
+    button:last-child {
+        margin-right: 20px;
+    }
+}
+
+.fromTable {
+    .ant-form-item-label>label {
+        display: block;
+        width: 100%;
+    }
+}
+
+.add-linkman {
+    height: 40px;
+    margin-top: 10px;
+    color: @text-color;
+    line-height: 40px;
+    text-align: center;
+    border: 1px dashed #DDD;
+}
+
+.add-linkman:hover {
+    color: @primary-color;
+    border: 1px dashed @primary-color;
+    transition: all 0.3s;
+}
+
+// 添加负责人
+.addheader {
+    display: flex;
+    height: 405px;
+    border: 1px solid @borderGray;
+    border-radius: 4px;
+
+    .addhader_left {
+        flex: 1;
+        padding: 16px;
+        overflow-y: auto;
+        border-right: 1px solid @borderGray;
+
+        p {
+            margin-top: 16px;
+            color: @thirdDark;
+            font-weight: 400;
+            font-size: 14px;
+            text-align: left;
+
+            span {
+                color: @text-color;
+                font-weight: 400;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .addhader_right {
+        flex: 1;
+        padding-top: 22px;
+        padding-left: 16px;
+        overflow-y: auto;
+
+        h2 {
+            color: @secondDark;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+    }
+
+    .comstonSearchInput {
+        .ant-input {
+            border-right: none;
+        }
+
+        .ant-input-group-addon {
+            background: @white;
+        }
+    }
+
+}
+
+.submitDataDetail {
+    padding: 16px;
+    background: @white;
+
+    .ant-descriptions-row {
+        .ant-descriptions-item-label {
+            background: @lightGray;
+        }
+    }
+    // 自定义 总结栏
+    .comstomTableSummary {
+        width: 100%;
+        background: #F7F9FA;
+    }
+
+    .detail_title {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: @text-color;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    h3 {
+        margin: 0;
+        margin-bottom: 16px;
+        padding: 0;
+        color: @text-color;
+        font-weight: 500;
+        font-size: 16px;
+    }
+}
+
+.baseYearSet_type {
+    align-items: baseline;
+    float: left;
+    width: 50%;
+}
+
+.baseYearSet_fixedYear {
+    display: block;
+}
+
+.model_content {
+    padding: 10px;
+    color: @secondDark;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-align: justify;
+    background: @lightGray;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.golalDetail {
+    .ant-table-tbody {
+        .ant-form-item {
+            margin-bottom: 0;
+        }
+    }
+
+    .computation_left {
+        .ant-input-number-disabled {
+            border-right: none;
+        }
+    }
+
+}
+
+.comInput {
+    .ant-form-item-control-input-content {
+        display: flex;
+        align-items: flex-end;
+
+        .ant-form-item {
+            &:nth-child(2) {
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+.comOperationYear {
+    display: block;
+}
+
+.carbonData_content{
+    min-height: 566px;
+    margin-bottom: 60px;
+    overflow: hidden;
+}
+
+.carbonDataTable{
+    height: 100%;
+
+    .ant-form-item{
+        margin-bottom: 0;
+    }
+
+    .ant-spin-nested-loading,.ant-spin-container,.ant-table{
+        display: flex;
+        flex: 1 1 auto;
+        flex-flow: column;
+        height: 100%;
+    }
+}
+
+.thirdDark{
+    color: @thirdDark;
+}

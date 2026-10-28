@@ -1,0 +1,48 @@
+.wrapper {
+  padding: 0 !important;
+  background: #f7f8f9 !important;
+
+  .header {
+    display: flex;
+    height: 56px;
+    padding: 16px 40px;
+    align-items: center;
+    flex-shrink: 0;
+    border-bottom: 1px solid #e5e7eb;
+    background: var(--White, #fff);
+
+    .back {
+      cursor: pointer;
+      margin-right: 16px;
+
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-items: center;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .searchWrapper {
+    display: flex;
+    margin-bottom: 12px;
+    gap: 24px;
+    padding: 20px 40px 0;
+  }
+
+  .content {
+    padding: 20px 40px;
+    width: 100%;
+    max-height: calc(100vh - 180px);
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+  }
+}

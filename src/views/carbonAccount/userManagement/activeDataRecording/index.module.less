@@ -1,0 +1,40 @@
+@import '../../../../styles/var.less';
+
+.carbonAccount {
+  .removeRecord {
+    display: flex;
+    align-items: center;
+
+    .removeRecordLength {
+      color: @primary-color;
+    }
+  }
+
+  .searchWrapper {
+    display: flex;
+    justify-content: space-between;
+
+    :global(.ant-form-item) {
+      margin-bottom: 20px;
+    }
+    .exportBtn {
+      padding: 4px 20px;
+    }
+  }
+}
+
+.exportAlert {
+  margin-bottom: 24px;
+}
+
+.cancelRevokeModal {
+  :global(.ant-btn-primary) {
+    background: @primary-color;
+    border-color: @primary-color;
+  }
+
+  :global(.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover) {
+    background: @primary-color;
+    border-color: @primary-color;
+  }
+}

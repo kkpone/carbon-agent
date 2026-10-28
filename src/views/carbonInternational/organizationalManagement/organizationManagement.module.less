@@ -1,0 +1,137 @@
+.organization_content {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  .header {
+    .titleWrapper {
+      display: flex;
+      flex-flow: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      overflow: hidden;
+
+      button {
+        padding: 0 21px;
+      }
+
+      .addIcon {
+        display: inline-block;
+        width: 16px;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .searchWrapper {
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: row wrap;
+
+    .searchItem {
+      display: flex;
+      flex: 0 0 30%;
+      flex-flow: row nowrap;
+      align-items: center;
+      max-width: 400px;
+      margin-bottom: 20px;
+      padding-right: 30px;
+
+      :global(.ant-select),
+      :global(.ant-picker) {
+        width: 100%;
+      }
+    }
+  }
+
+  .organizationa_management_table {
+    flex: 1 1 auto;
+  }
+
+}
+
+/* 数据提报 */
+.reportModalWrapper {
+  @marginBottom: 20px;
+
+  :global(.ant-modal-header) {
+    padding-bottom: 0;
+  }
+
+  :global(.ant-modal-footer) {
+    padding-top: 0;
+  }
+
+  .mainContent {
+    display: flex;
+    flex-flow: column;
+
+    header {
+      >div {
+        display: flex;
+        flex-flow: row nowrap;
+        margin-bottom: @marginBottom;
+      }
+    }
+
+    .reportForm {
+      display: flex;
+      flex-flow: row wrap;
+
+      :global(.ant-row) {
+        flex: 0 0 350px;
+
+        &:first-child {
+          flex: 0 0 100%;
+        }
+
+        &:nth-child(3) {
+          margin-left: 20px;
+        }
+      }
+
+      :global(.ant-picker) {
+        width: 100%;
+      }
+
+      .selectTarget.selectTarget {
+        flex: 0 0 100%;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.dropDown {
+  position: absolute;
+  top: 11px;
+  width: 100px;
+  height: 34px;
+}
+
+.noValues {
+  display: block;
+  padding: 10px 0;
+  color: #bbb;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+// 下载弹窗
+.downloadWrapper {
+  display: flex;
+}
+
+.riskModal {
+  :global(.ant-modal-body) {
+    padding: 20px 24px;
+  }
+
+  :global(.ant-modal-confirm-title) {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+  }
+}

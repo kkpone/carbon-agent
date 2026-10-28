@@ -1,0 +1,410 @@
+.applayCertification {
+  width: 100%;
+  height: calc(100% - 86px);
+  min-height: 640px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background: #fff;
+  padding: 0;
+  display: flex;
+
+  .anchorPane {
+    position: relative;
+    width: 224px;
+    height: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    padding: 24px 40px;
+    overflow: visible;
+    border-right: 1px solid #e5e7eb;
+    background: #fff;
+    transition: width 0.2s ease, padding 0.2s ease;
+  }
+
+  .anchorPaneCollapsed {
+    width: 0;
+    padding: 0;
+    border-right: 0;
+  }
+
+  .anchorList {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+  }
+
+  .anchorLink {
+    display: flex;
+    flex: 0 0 38px;
+    height: 38px;
+    align-items: center;
+    min-width: 0;
+    width: 100%;
+    color: #343a40;
+    font-family: 'PingFang SC';
+    font-size: 16px !important;
+    font-weight: 400;
+    line-height: 24px !important;
+    text-decoration: none;
+
+    &:hover {
+      color: #026961;
+    }
+  }
+
+  .anchorText {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    color: inherit;
+    font-weight: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+
+  .anchorLinkActive {
+    color: #026961;
+    font-weight: 500;
+  }
+
+  .anchorToggle {
+    position: absolute;
+    top: 37px;
+    right: -20px;
+    z-index: 2;
+    width: 20px;
+    height: 98px;
+    padding: 0;
+    border: 1px solid #e5e7eb;
+    border-left: 0;
+    border-radius: 0 28px 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .anchorToggleIcon {
+    width: 6px;
+    height: 6px;
+    border-right: 1.5px solid #999ea4;
+    border-bottom: 1.5px solid #999ea4;
+    transform: rotate(135deg);
+  }
+
+  .anchorToggleIconCollapsed {
+    transform: rotate(-45deg);
+  }
+
+  .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+    height: calc(100%);
+    padding: 32px 40px 32px 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    min-width: 0;
+  }
+}
+
+.embeddedFooter.embeddedFooter {
+  left: 0;
+}
+
+.enterpriseEmbeddedFooter.enterpriseEmbeddedFooter {
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: auto;
+}
+
+.enterpriseEmbeddedPage.enterpriseEmbeddedPage {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    min-height: 0;
+    padding: 0 !important;
+
+    > div:first-child {
+      display: flex;
+      align-items: center;
+      min-height: 56px !important;
+      margin: 0 !important;
+      padding: 0 32px !important;
+    }
+  }
+
+  .Wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .applayCertification {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+  }
+
+  .contentWrapper {
+    container-name: certification-content;
+    container-type: inline-size;
+    padding-bottom: 94px;
+  }
+}
+
+.embeddedStep {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  padding: 0 32px;
+  overflow: hidden;
+
+  > div {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    gap: 8px;
+    justify-content: flex-start !important;
+    padding: 12px 0 16px !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    > div {
+      flex: 0 0 auto;
+    }
+
+    > div > div:first-child {
+      flex-shrink: 0;
+    }
+
+    > div > div:nth-child(2) {
+      flex-shrink: 0;
+      font-size: 14px !important;
+      font-weight: 400 !important;
+      line-height: 22px !important;
+      white-space: nowrap;
+    }
+
+    > div > div:last-child:not(:nth-child(2)) {
+      width: 56px;
+      min-width: 56px;
+      flex: 0 0 56px;
+    }
+  }
+}
+
+@container certification-content (max-width: 900px) {
+  .enterpriseCertificateFiles {
+    // ComfirmFiles comes from the shared certification submodule. Keep the
+    // download action visible while allowing its fixed-width filename to
+    // shrink inside the Agent preview.
+    > div:last-child > div {
+      min-width: 0;
+
+      > div:first-child {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+
+        > div:last-child {
+          flex: 1;
+          min-width: 0;
+          overflow: hidden;
+
+          > div {
+            width: 100% !important;
+            max-width: 100%;
+          }
+        }
+      }
+
+      > div:last-child {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .enterpriseEmbeddedPage :global(#certification-material) > div:nth-child(2) {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+
+    > div {
+      min-width: 240px;
+    }
+
+    :global(.ant-btn) {
+      white-space: nowrap;
+    }
+  }
+
+  .enterpriseEmbeddedPage
+    :global(#certification-report)
+    > div:has(> div:last-child > button) {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+    height: auto;
+    min-height: 140px;
+
+    > div:first-child {
+      min-width: 0;
+
+      > div:first-child,
+      > div:last-child {
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+
+      > div:nth-child(2) {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px 16px;
+
+        > div {
+          min-width: 0;
+        }
+
+        > div:nth-child(4) {
+          display: none;
+        }
+      }
+
+      > div:last-child > span {
+        height: auto;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+    }
+
+    > div:last-child {
+      flex-direction: row;
+      align-self: flex-end;
+
+      button {
+        min-width: 96px;
+      }
+    }
+  }
+}
+
+@container certification-content (max-width: 600px) {
+  .enterpriseEmbeddedPage :global(#certification-material) > div:nth-child(2) {
+    grid-template-columns: minmax(240px, 1fr);
+  }
+
+  .enterpriseEmbeddedPage
+    :global(#certification-report)
+    > div:has(> div:last-child > button)
+    > div:first-child
+    > div:nth-child(2) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.Wrapper {
+  height: calc(100vh - 160px);
+  overflow-y: scroll;
+  // margin: 0 -40px;
+}
+
+.pageTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 28px;
+}
+
+.pageTitleText {
+  min-width: 0;
+  color: #04252b;
+  font-family: 'PingFang SC';
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.historyButton {
+  height: 22px;
+  padding: 0;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  background: transparent;
+  color: #04252b;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.historyIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #026961;
+}
+
+.sectionAnchor {
+  scroll-margin-top: 0;
+}
+
+.historyDrawer {
+  :global {
+    .ant-drawer-header {
+      padding: 20px 24px 12px;
+      border-bottom: 0;
+    }
+
+    .ant-drawer-title {
+      color: #04252b;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+
+    .ant-drawer-close {
+      color: #6c757d;
+    }
+
+    .ant-drawer-body {
+      padding: 12px 24px 24px;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@import '@src/views/carbonFootprint/mixin.less';
+
+.productManagementDropdown {
+  :global {
+    .ant-dropdown-menu-item {
+      padding: 7px 30px;
+      text-align: center;
+    }
+  }
+}
+
+.technologyExpandAdd {
+  padding-top: 0 !important;
+  margin-bottom: 60px;
+  position: relative;
+
+  .addBtn {
+    position: absolute;
+    right: 16px;
+    top: 6px;
+  }
+
+  .mainHead {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .businessAccountTree {
+    padding-top: 16px;
+  }
+
+  .rightMain {
+    padding: 16px;
+  }
+
+  .main {
+    position: relative;
+
+    .btnAdd {
+      position: absolute;
+      top: -56px;
+      right: 0px;
+    }
+
+    .mainTitle {
+      color: @thirdDark;
+      font-size: 14px;
+    }
+  }
+
+  :global(.ant-modal-body) {
+    padding: 4px 24px 0px 24px;
+  }
+
+  :global(.ant-modal-footer) {
+    padding: 0 24px 20px 24px;
+  }
+}

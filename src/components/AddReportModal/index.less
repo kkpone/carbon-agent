@@ -1,0 +1,63 @@
+.optionReportNodeMain {
+  position: relative;
+  padding: 4px 8px;
+
+  .optionNodeDate {
+    color: #999ea4;
+    font-size: 12px;
+  }
+
+  .optionNodeType {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 20px;
+    margin-top: -10px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+
+  .optionNodeTypeQuick {
+    color: #3491fa;
+    background: #f0f9ff;
+  }
+
+  .optionNodeTypeProcess {
+    color: #0cbf9f;
+    background: #e6fff6;
+  }
+}
+
+.reportMain {
+  .add-report-table-form-item {
+    > .ant-form-item-label,
+    > .ant-form-item-row > .ant-form-item-label,
+    > .ant-row > .ant-form-item-label,
+    > .ant-formily-item-label {
+      display: none !important;
+    }
+  }
+
+  .ant-table {
+    .ant-table-thead {
+      & > tr > th {
+        background: #f7f8f9;
+        color: #343a40;
+        font-size: 14px;
+        border-color: #f7f8f9;
+        font-weight: 500;
+        padding: 13px 10px;
+        // border-right: none !important;
+      }
+    }
+  }
+
+  .ant-btn.ant-btn-block {
+    height: auto;
+    padding: 10px;
+  }
+}

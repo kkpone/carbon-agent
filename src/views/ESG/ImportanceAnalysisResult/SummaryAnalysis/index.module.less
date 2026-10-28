@@ -1,0 +1,362 @@
+.summaryAnalysis {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  & > div {
+    width: calc(50% - 12px);
+  }
+}
+
+.title {
+  margin-bottom: 12px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--neutral-color-text-1, #04252b);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px; /* 137.5% */
+}
+
+.chartAnalysis {
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.chartConfig {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.esgCategory {
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 40px;
+}
+
+.esgCategoryItem {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  &:nth-of-type(1) {
+    .esgCategoryItemIcon {
+      background: #3ab86e;
+    }
+  }
+  &:nth-of-type(2) {
+    .esgCategoryItemIcon {
+      background: #f0d56c;
+    }
+  }
+  &:nth-of-type(3) {
+    .esgCategoryItemIcon {
+      background: #6e9fda;
+    }
+  }
+}
+
+.esgCategoryItemIcon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.chartContent {
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+.axisText {
+  position: absolute;
+  color: var(--Neutral-Text-text-2, #6c757d);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px; /* 100% */
+}
+
+.xAxisText {
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.yAxisText {
+  left: 0;
+  height: 100%;
+  text-align: center;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+
+.xAxisRecord {
+  position: absolute;
+  left: 46px;
+  bottom: 40px;
+  width: calc(100% - 66px);
+  display: flex;
+  text-align: end;
+}
+
+.yAxisRecord {
+  position: absolute;
+  left: 30px;
+  height: calc(100% - 46px);
+  display: flex;
+  flex-direction: column;
+}
+
+.recordNum {
+  flex: 1;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.zeroRecord {
+  position: absolute;
+  left: 30px;
+  bottom: 40px;
+}
+
+.chartContainer {
+  margin-left: 46px;
+  margin-right: 20px;
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
+
+.scoreInput {
+  position: absolute;
+  width: 40px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.xAxisLine {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 1px;
+  background-color: #999ea4;
+  transition: all 0.3s ease;
+  &::after {
+    position: absolute;
+    top: -3px;
+    right: 0;
+    content: '';
+    border-top: 3.5px solid transparent;
+    border-bottom: 3.5px solid transparent;
+    border-left: 3.5px solid #999ea4;
+  }
+}
+
+.yAxisLine {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 1px;
+  background-color: #999ea4;
+  transition: all 0.3s ease;
+  &::after {
+    position: absolute;
+    left: -3px;
+    top: 0;
+    content: '';
+    border-left: 3.5px solid transparent;
+    border-right: 3.5px solid transparent;
+    border-bottom: 3.5px solid #999ea4;
+  }
+}
+
+.sectorChart {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.fan {
+  position: absolute;
+  transition: all 0.3s ease;
+  aspect-ratio: 1 / 1;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  border-radius: 50%;
+}
+
+.quadrants {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.quadrantsItem {
+  transition: width 0.3s ease;
+  transition: height 0.3s ease;
+  display: flex;
+  &:nth-of-type(1) {
+    padding: 0 4px 4px 0;
+    .quadrantsItemBg {
+      background: rgba(12, 191, 159, 0.08);
+    }
+  }
+  &:nth-of-type(2) {
+    padding: 0 0 4px 4px;
+    .quadrantsItemBg {
+      background: rgba(12, 191, 159, 0.16);
+    }
+  }
+  &:nth-of-type(3) {
+    padding: 4px 4px 0 0;
+    .quadrantsItemBg {
+      background: rgba(247, 248, 249, 0.6);
+    }
+  }
+  &:nth-of-type(4) {
+    padding: 4px 0 0 4px;
+    .quadrantsItemBg {
+      background: rgba(12, 191, 159, 0.08);
+    }
+  }
+}
+
+.hiddenQuadrantsItem {
+  display: none;
+}
+
+.quadrantsItemBg {
+  width: 100%;
+  height: 100%;
+}
+
+.topicCircle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ETopicCircle {
+  background: #3ab86e;
+}
+
+.STopicCircle {
+  background: #f0d56c;
+}
+
+.GTopicCircle {
+  background: #6e9fda;
+}
+
+.tableContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  overflow-y: auto;
+}
+
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.topicGroupHeader {
+  padding-left: 16px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  color: #04252b;
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  border-radius: 4px;
+  border-left: 4px;
+}
+
+.ETopicGroupHeader {
+  border-left: 4px solid #3ab86e;
+  background: rgba(58, 184, 110, 0.1);
+}
+
+.STopicGroupHeader {
+  border-left: 4px solid #f0d56c;
+  background: #fcf7e2;
+}
+
+.GTopicGroupHeader {
+  border-left: 4px solid #6e9fda;
+  background: #e2ecf8;
+}
+
+.topicNameCell {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.tableTopicName {
+  max-width: calc(100% - 36px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tableTopicLevel {
+  padding: 0 6px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-size: 10px;
+  line-height: 10px;
+  font-weight: 600;
+}
+
+.inputCell {
+  width: 100%;
+  padding-right: 10px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  &:hover {
+    border-color: #026961;
+    background: #fff;
+    .resetBtn {
+      visibility: visible;
+    }
+  }
+}
+
+.tableScoreInput {
+  flex: 1;
+}
+
+.resetBtn {
+  padding: 0;
+  height: 22px;
+  visibility: hidden;
+}

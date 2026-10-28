@@ -1,0 +1,34 @@
+✔ refresh during upload preserves earlier advice and does not attach active tools to the previous answer (2.444583ms)
+✔ a partially persisted active answer is left to replay while earlier results remain (0.231375ms)
+✔ events without a matching historical answer cannot fall back to the previous turn (0.188375ms)
+✔ completed sessions retain trace results from both turns (0.323792ms)
+✔ other business and error cards stay on the historical turn; active, unknown and hidden events are excluded (0.578542ms)
+✔ published operation report cards and download access survive another turn running (0.913542ms)
+✔ active-turn replay and cursor resume use the same message and deduplicate stream events (26.451208ms)
+✔ trace failure remains recoverable without basic-history fallback (0.23775ms)
+✔ a hidden trace event cannot be made visible by its payload (0.188083ms)
+✔ hidden live tools and business cards advance the cursor without rendering (0.49525ms)
+✔ Long IDs are parsed losslessly while prices and versions stay numeric (2.922ms)
+✔ unlimited omits limitValue; specified zero retains versions and rejects below usage (0.468166ms)
+✔ exclusive dates use Beijing and quote expiry is enforced (3.11925ms)
+✔ CSV escapes formulas, quotes and embedded newlines (0.263542ms)
+✔ business denials do not become login expiry (0.266334ms)
+✔ late and duplicate starts preserve failed tool state and ordering (1.138208ms)
+✔ live and historical tool presentation honors nested visibility and stage name (0.355042ms)
+✔ form keeps typed choices, boolean false, numeric zero and one-row arrays (2.290042ms)
+✔ form defaultValue precedes default and required rows validate individually (0.766625ms)
+✔ resume template preserves checkpoint, fills nested path, cancellation has no validation (1.183375ms)
+✔ seat orders and point orders use independent polling/terminal states (0.093833ms)
+✔ a quote cannot authorize a different quantity, action, name or expired price (0.408833ms)
+✔ CSV row limit counts logical rows, not newlines inside quoted cells (0.614667ms)
+✔ execution export rejects over-limit, duplicates, changed totals and incomplete pages (9.191542ms)
+✔ tool diagnostic presentation strips secrets and internal stack traces (0.425208ms)
+✔ finance uses numeric commerce payment states and Beijing timestamps (3.320834ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 918.173042

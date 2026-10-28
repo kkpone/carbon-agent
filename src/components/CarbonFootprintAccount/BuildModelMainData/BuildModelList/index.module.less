@@ -1,0 +1,25 @@
+// 菜单容器宽度
+@menuWidth: 232px;
+
+.buildModelList {
+  box-sizing: border-box;
+  height: 100%;
+  padding: 16px 56px;
+
+  .main {
+    display: flex;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 4px;
+
+    .mainMenu {
+      width: @menuWidth;
+      height: 100%;
+      border-right: 1px solid #ebedf0;
+    }
+
+    .mainTable {
+      width: calc(100% - @menuWidth);
+    }
+  }
+}

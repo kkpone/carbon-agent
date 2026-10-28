@@ -1,0 +1,54 @@
+.cardSelectContainer {
+  display: flex;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  flex: 1;
+  margin-right: 16px;
+  padding: 12px 16px;
+  border: 1px solid #ebedf0;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.cardSelected {
+  border-color: #0cbf9f;
+}
+
+.cardTitleContent {
+  display: flex;
+  align-items: center;
+}
+
+.cardIcon {
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+.cardTitle {
+  color: #343a40;
+  font-size: 14px;
+}
+
+.cardTitleSelected {
+  color: #0cbf9f;
+  font-weight: 500;
+}
+
+.cardDesc {
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.selectedImg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

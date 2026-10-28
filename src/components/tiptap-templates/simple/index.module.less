@@ -1,0 +1,187 @@
+.editorWrapper {
+  display: flex;
+  height: calc(100vh - 110px);
+  justify-content: center;
+  position: relative;
+  .editor {
+    flex-grow: 1;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+
+    .toc {
+      height: calc(100% - 64px);
+      overflow-y: auto;
+      // width: 254px;
+      padding: 16px 32px;
+      box-sizing: content-box;
+
+      display: flex;
+      gap: 8px;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      .close {
+        display: flex;
+        width: 19px;
+        padding: 4px 0px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .tocTitle {
+        color: #000;
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 22px; /* 183.333% */
+      }
+
+      .tocContent {
+        width: 0;
+        color: #000;
+        font-family: 'PingFang SC';
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px; /* 220% */
+        overflow: hidden;
+        transition: width 0.3s ease; /* 添加动画过渡效果 */
+
+        ul {
+          padding-inline-start: 0;
+          width: 230px;
+          li {
+            list-style: none;
+            list-style-type: none;
+            height: 22px;
+            margin-bottom: 6px;
+          }
+        }
+      }
+      .expand {
+        width: 230px;
+        overflow-y: auto;
+        transition: width 0.3s ease; /* 添加动画过渡效果 */
+      }
+    }
+
+    .contentWrapper {
+      // width: ;
+      flex-grow: 1;
+      padding-left: 0;
+      transition: padding-left 0.3s ease;
+      overflow-x: hidden;
+      padding-top: 20px;
+
+      .header {
+        max-width: 640px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+
+        margin-top: 16px;
+
+        .time {
+          color: #b5b8bb;
+          font-family: 'PingFang SC';
+          font-size: 10px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px; /* 200% */
+        }
+
+        .btns {
+          display: flex;
+          gap: 8px;
+
+          position: absolute;
+          top: 20px;
+          right: calc(50% - 282px);
+          // transition: right 0.3s ease;
+
+          z-index: 99;
+
+          .btn {
+            display: flex;
+            height: 24px;
+            padding: 0px 8px;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            border-radius: 4px;
+            border: 0.5px solid #026961;
+            color: #000;
+            font-family: 'PingFang SC';
+            font-size: 10px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 22px; /* 220% */
+            cursor: pointer;
+            background-color: #fff;
+          }
+        }
+      }
+
+      .alert {
+        display: flex;
+        max-width: 640px;
+        padding: 10px 16px;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        border: 1px solid var(--info-blue-3-light-hover, #b0ddff);
+        background: var(--info-blue-1-light, #f0f9ff);
+        margin: 10px auto;
+      }
+    }
+
+    .openWrapper {
+      // padding-left: 300px;
+      transition: padding-left 0.3s ease;
+    }
+
+    transition: width 0.3s ease-in-out;
+
+    .model {
+      width: 0px;
+      transition: width 0.3s ease; /* 添加动画过渡效果 */
+      overflow: hidden;
+      flex-shrink: 0;
+
+      .modelContent {
+        width: 490px;
+      }
+    }
+    .open {
+      width: 570px;
+      transition: width 0.3s ease; /* 添加动画过渡效果 */
+      background: #fff;
+      box-shadow: -1px 4px 10px 0px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(50px);
+    }
+  }
+}
+
+.btnWrapper {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  aspect-ratio: 1/1;
+  border-radius: 4px;
+  border: 0.5px solid #026961;
+  cursor: pointer;
+  background: #fff;
+}
+
+.pointerEventsNone {
+  pointer-events: none;
+  cursor: not-allowed;
+}

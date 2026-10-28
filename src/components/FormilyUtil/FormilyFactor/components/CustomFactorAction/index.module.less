@@ -1,0 +1,39 @@
+.arrow {
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+
+.trigger {
+  gap: 4px;
+}
+
+.open .arrow {
+  transform: rotate(180deg);
+}
+
+.menu {
+  min-width: 143px;
+
+  &:global(.ant-dropdown) :global(.ant-dropdown-menu) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 4px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 4%), 0 4px 16px rgb(0 0 0 / 8%);
+  }
+
+  &:global(.ant-dropdown) :global(.ant-dropdown-menu-item) {
+    min-height: 38px;
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 22px;
+
+    &:hover,
+    &:global(.ant-dropdown-menu-item-active) {
+      background: #f9fafb;
+    }
+  }
+}

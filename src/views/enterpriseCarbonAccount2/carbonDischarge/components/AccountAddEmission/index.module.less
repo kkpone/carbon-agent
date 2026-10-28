@@ -1,0 +1,130 @@
+.addEmissionTop {
+  .tips {
+    margin-bottom: 8px;
+  }
+}
+
+.formBox {
+  padding: 16px 24px;
+}
+
+.box {
+  :global(.factor-box .factor-empty) {
+    width: 100%;
+  }
+
+  :global(.factor-box .factor-card-box) {
+    width: 100%;
+  }
+
+  :global(.factor-box .factor-card-box .factor-border .factor-info) {
+    width: 100%;
+  }
+}
+
+.nameFieldTitle {
+  display: inline-flex;
+}
+
+.emissionTip {
+  margin-left: 6px;
+  color: #b5b8bb;
+}
+
+.emissionViewBtn {
+  margin-left: 6px;
+  color: #0cbf9f;
+  cursor: pointer;
+}
+
+.isAdd {
+  margin-bottom: 50px;
+}
+
+.methodFieldTitle {
+  display: inline-flex;
+  column-gap: 12px;
+}
+
+.methodUpdateBtn {
+  padding: 0 8px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #cb3430;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.detailTabs {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.detailTabItem {
+  flex: 0 0 128px;
+  min-width: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  font-family: inherit;
+  background: #fff;
+
+  &:hover,
+  &:focus-visible {
+    color: #0cbf9f;
+    border-color: #0cbf9f;
+    outline: none;
+  }
+}
+
+.detailTabItemActive {
+  background: #e6fff6;
+}
+
+.detailTabIcon {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.detailTabLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.agentPreviewFormActions {
+  height: 62px;
+  padding: 12px 40px;
+  background: #fff;
+  box-shadow: 0 -4px 4px rgb(0 0 0 / 4%);
+
+  :global {
+    .ant-btn {
+      min-width: 76px;
+      height: 38px;
+      padding: 8px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 22px;
+      box-shadow: none;
+    }
+
+    .ant-btn + .ant-btn {
+      margin-left: 16px;
+    }
+
+    .ant-btn-primary {
+      min-width: 76px;
+      padding: 8px 16px;
+      background: #004541;
+      border-color: #004541;
+      color: #fff;
+    }
+  }
+}

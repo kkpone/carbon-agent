@@ -1,0 +1,136 @@
+@import '@src/styles/var.less';
+/* 通知 */
+@border-color: #D8D8D8;
+
+.wrapper {
+  width: 340px;
+  height: 385px;
+  box-shadow: 0 0 5px 0px @border-color;
+  background-color: #fff;
+  display: flex;
+  flex-flow: column;
+
+  :global(.ant-tabs),
+  footer {
+    flex: 0 0 auto;
+  }
+
+  main {
+    flex: 1 1 auto;
+    overflow: auto;
+    display: flex;
+    flex-flow: column;
+
+    .noData {
+      // height: ;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: @text-color-2;
+      font-size: 12px;
+
+      .icon {
+        font-size: 206px;
+      }
+
+      .tip {
+        transform: translateY(-20px);
+      }
+    }
+
+    .messageCard {
+      position: relative;
+      padding: 14px 20px;
+      cursor: pointer;
+      border-bottom: 1px solid @border-color;
+
+      &.readed {
+
+        .title,
+        .time {
+          color: @text-color-secondary;
+        }
+      }
+
+      &:hover {
+        .viewed {
+          display: block;
+        }
+
+        .title {
+          color: @primary-color;
+        }
+
+        & {
+          background-color: #F7F8F9;
+        }
+      }
+    }
+
+    .title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .time {
+      color: @text-color-2;
+      font-size: 12px;
+      line-height: 18px;
+      margin-top: 10px;
+    }
+
+    .viewed {
+      display: none;
+      position: absolute;
+      right: 20px;
+      bottom: 14px;
+    }
+
+    .loadmore {
+      padding: 10px;
+    }
+  }
+
+  :global(.ant-radio-group) {
+    display: flex;
+
+    label {
+      flex: 0 0 50%;
+      height: 40px;
+      display: flex;
+      border-radius: 0;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid @border-color;
+      border-left: 0px;
+
+      &:focus-within {
+        box-shadow: none;
+      }
+    }
+
+    label+label {
+      border-right: 0;
+    }
+  }
+
+  .active {
+    background-color: #F7F8F9;
+  }
+
+  :global(.ant-tabs-nav) {
+    margin: 0;
+  }
+
+  :global(.ant-tabs-nav-list) {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+    :global(.ant-tabs-tab) {
+      justify-content: center;
+      margin: 0;
+    }
+  }
+}

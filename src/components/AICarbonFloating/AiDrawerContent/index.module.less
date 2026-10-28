@@ -1,0 +1,536 @@
+.wrapper {
+  width: 490px;
+  max-height: calc(100vh - 100px);
+  padding: 32px 40px;
+  background: radial-gradient(
+      86.24% 91.18% at 69.08% 101.87%,
+      rgba(162, 223, 212, 0) 0%,
+      rgba(162, 223, 212, 0.08) 100%
+    ),
+    radial-gradient(
+      62.75% 70.18% at 50% 80.26%,
+      rgba(204, 238, 204, 0) 0%,
+      rgba(204, 238, 204, 0.09) 100%
+    ),
+    radial-gradient(
+      93.73% 104.92% at 46.73% 75.99%,
+      rgba(162, 223, 212, 0) 0%,
+      rgba(162, 223, 212, 0.06) 100%
+    ),
+    #fff;
+
+  height: 860px;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-grow: 0;
+
+    .title {
+      color: var(--, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px; /* 133.333% */
+
+      display: flex;
+      gap: 6px;
+      align-items: center;
+
+      .icon {
+        width: 42px;
+        height: 42px;
+      }
+
+      .titleText {
+        color: var(--, #04252b);
+        font-family: 'PingFang SC';
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px; /* 133.333% */
+      }
+
+      .historyIcon {
+        cursor: pointer;
+      }
+    }
+
+    .headerRight {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow: hidden;
+
+      .clear {
+        color: #999ea4;
+        text-overflow: ellipsis;
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px; /* 157.143% */
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .close {
+        width: 20px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 12px 12px 12px 0;
+    margin-top: 8px;
+
+    .empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: center;
+      .emptyTitle {
+        height: 45px;
+        align-self: stretch;
+        color: #026961;
+        text-align: center;
+        font-family: 'PingFang SC';
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 45px; /* 187.5% */
+        margin-bottom: 16px;
+      }
+
+      .emptyText {
+        color: #676d75;
+        text-align: center;
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px; /* 157.143% */
+        margin-bottom: 32px;
+      }
+
+      .toolBar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        .toolBarItem {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          display: flex;
+          width: 190px;
+          height: 38px;
+          padding: 8px 16px;
+          align-items: center;
+          gap: 8px;
+          border-radius: 8px;
+          border: 1px solid #ebedf0;
+          background: #fff;
+          cursor: pointer;
+
+          .toolBarItemText {
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    flex-grow: 0;
+
+    .inputWrapper {
+      border-radius: 12px;
+      border: 1px solid #026961;
+      background: #fff;
+      box-shadow: 0px 4px 10px 0px rgba(2, 47, 44, 0.1);
+      display: flex;
+      padding: 12px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      align-self: stretch;
+
+      .referencesTextWrapper {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border-radius: 8px;
+        background: #f7f8f9;
+        padding: 4px;
+        align-items: flex-start;
+
+        .referencesTextIcon {
+          width: 16px;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+      }
+
+      .referencesText {
+        display: flex;
+        // max-height: 80px;
+        // padding: 4px;
+        align-items: flex-start;
+        gap: 4px;
+        align-self: stretch;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        word-break: break-word;
+      }
+
+      .selectText {
+        border-radius: 8px;
+        background: #ddf4f2;
+        padding: 20px 12px;
+        position: relative;
+
+        .text {
+          display: -webkit-box; /* 多行限制所需 */
+          -webkit-line-clamp: 3; /* 限制最大行数 */
+          line-clamp: 3; /* 标准属性 */
+          -webkit-box-orient: vertical; /* 垂直排列 */
+          overflow: hidden; /* 隐藏溢出内容 */
+          text-overflow: ellipsis; /* 可选：补充提示 */
+          word-break: break-word;
+        }
+
+        .close {
+          position: absolute;
+          right: 8px;
+          top: 8px;
+          cursor: pointer;
+        }
+      }
+
+      .actItems {
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0px 0px 10px 0px rgba(2, 63, 58, 0.1);
+        display: flex;
+        padding: 4px;
+        align-items: flex-start;
+        gap: 4px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0px 0px 10px 0px rgba(2, 63, 58, 0.1);
+        width: fit-content;
+
+        .actItem {
+          display: flex;
+          padding: 2px 8px;
+          align-items: center;
+          gap: 4px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .active {
+          background: #f7f8f9;
+          border-radius: 8px;
+        }
+      }
+
+      .inputContainer {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 6px;
+
+        .svg {
+          width: 16px;
+          height: 16px;
+          aspect-ratio: 1/1;
+          margin-top: 4px;
+        }
+
+        .inputMenuTag {
+          position: relative;
+          top: -2px;
+          padding: 0 4px;
+          display: flex;
+          align-items: center;
+          height: 28px;
+          color: #026961;
+          border-radius: 4px;
+          cursor: pointer;
+          &:hover {
+            background: #f7f8f9;
+            .closeIcon {
+              display: block;
+            }
+          }
+        }
+
+        .closeIcon {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          right: -5px;
+          top: -5px;
+          line-height: 10px;
+          display: none;
+        }
+
+        .fileUploadTip {
+          width: 100%;
+          line-height: 26px;
+        }
+
+        .fileUploadBtn {
+          margin-left: 8px;
+          height: 26px;
+          padding: 0 4px;
+          display: inline-flex;
+          align-items: center;
+          column-gap: 4px;
+          color: #026961;
+          cursor: pointer;
+          border-radius: 4px;
+          background: #f7f8f9;
+        }
+
+        .disabledFileUploadBtn {
+          cursor: not-allowed;
+          background: #f7f8f9;
+          color: #b5b8bb;
+        }
+
+        .fileList {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .fileItem {
+          position: relative;
+          height: 30px;
+          padding: 0 4px;
+          display: flex;
+          align-items: center;
+          column-gap: 8px;
+          border-radius: 4px;
+          background: #f7f8f9;
+          cursor: pointer;
+          &:hover {
+            .closeIcon {
+              display: block;
+            }
+          }
+        }
+
+        .fileTypeIcon {
+          svg {
+            font-size: 16px;
+          }
+        }
+
+        .fileName {
+          max-width: 96px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .input {
+          border: none;
+          line-height: 22px;
+          resize: none;
+          width: calc(100% - 24px);
+          max-height: 300px;
+        }
+
+        .input:focus {
+          outline: none;
+        }
+      }
+
+      .footerRight {
+        display: flex;
+        width: 100%;
+        height: 32px;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .add {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          cursor: pointer;
+        }
+
+        .send {
+          display: flex;
+          width: 32px;
+          height: 32px;
+          padding: 4px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 8px;
+          background: rgba(2, 105, 97, 0.5);
+          cursor: not-allowed;
+        }
+
+        .enable {
+          background: #026961;
+          cursor: pointer;
+        }
+
+        .deepThinkBtn {
+          padding: 0 12px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          column-gap: 4px;
+          border-radius: 20px;
+          border: 1px solid #d0d3d6;
+          cursor: pointer;
+
+          &:hover {
+            border-color: #d0d3d6;
+            background: #f7f8f9;
+          }
+
+          &.activeDeepThinkBtn {
+            color: #026961;
+            border-color: #026961;
+          }
+
+          &.disabledDeepThinkBtn {
+            color: #999ea4;
+            border-color: #d0d3d6;
+            background: #f7f8f9;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+
+    .tip {
+      color: #999ea4;
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+      margin-top: 16px;
+    }
+  }
+}
+
+.historyWrapper {
+  .historyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .historyHeaderTitle {
+      color: var(--, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px; /* 133.333% */
+    }
+
+    .historyHeaderClose {
+      cursor: pointer;
+    }
+  }
+  .historyList {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .historyItemWrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+
+      .historyItem {
+        display: flex;
+        height: 38px;
+        padding: 8px 16px;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+        border-radius: 8px;
+        color: #002a23;
+        font-family: 'PingFang SC';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px; /* 157.143% */
+        cursor: pointer;
+
+        .historyItemTitle {
+          width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      .delHistoryItem {
+        display: none;
+        cursor: pointer;
+      }
+    }
+
+    .historyItemWrapper:hover {
+      .delHistoryItem {
+        display: block;
+      }
+    }
+
+    .active {
+      border-radius: 8px;
+      background: #f7f8f9;
+      color: #026961;
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px; /* 157.143% */
+    }
+  }
+}
+
+.inputMenuTrigger {
+  width: 0;
+}

@@ -1,0 +1,31 @@
+/**
+ * @file 全局弹窗通知
+ */
+@import '@src/styles/var.less';
+
+.globalConfirmWrapper {
+  :global(.ant-modal-body) {
+    padding: 20px 24px;
+  }
+
+  :global(.ant-modal-confirm-title) {
+    color: @text-color;
+    font-size: 18px;
+  }
+
+  :global(.ant-modal-confirm-content) {
+    margin-top: 30px;
+    color: @text-color-2;
+    line-height: 25px;
+  }
+
+  :global(.ant-btn-primary) {
+    background: @primary-color;
+    border-color: @primary-color;
+  }
+
+  :global(.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover) {
+    background: @primary-color;
+    border-color: @primary-color;
+  }
+}

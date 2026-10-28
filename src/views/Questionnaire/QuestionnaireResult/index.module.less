@@ -1,0 +1,195 @@
+.result {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.header {
+  padding: 0 40px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  justify-content: center;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.prevNav {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+}
+
+.prevIcon {
+  :global {
+    svg {
+      font-size: 12px;
+    }
+  }
+}
+
+.navText {
+  color: #6c757d;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.currNavText {
+  .navText();
+
+  color: #04252b;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+}
+
+.questionnaireTag {
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  background: #ddf4f2;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.content {
+  padding: 32px 40px;
+  height: calc(100% - 158px);
+  overflow-y: auto;
+}
+
+.infoContent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 24px;
+}
+
+.info {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  border-radius: 8px;
+  border: 1px solid #d2d6da;
+}
+
+.infoName {
+  color: #04252b;
+  line-height: 22px;
+}
+
+.infoUnit {
+  font-size: 12px;
+  color: #b5b8bb;
+  line-height: 22px;
+}
+
+.infoValue {
+  color: #026961;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.infoIcon {
+  cursor: pointer;
+}
+
+.secondaryTitle {
+  margin-top: 24px;
+  color: var(--, #04252b);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px; /* 137.5% */
+}
+
+.searchContent {
+  margin: 16px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchContentLeft {
+  display: flex;
+  column-gap: 16px;
+  :global {
+    .ant-input,
+    .ant-select {
+      width: 230px;
+    }
+  }
+}
+
+.delBtn {
+  padding: 0;
+}
+
+.footer {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 16px;
+  z-index: 10;
+  background: #fff;
+  box-shadow: 0px -4px 8px 0px rgba(0, 0, 0, 0.04);
+}
+
+.employeeCountInput {
+  width: 100%;
+}
+
+.employeeInfoIcon {
+  margin-right: 4px;
+  color: #026961;
+}
+
+.emissionValue {
+  margin-left: 4px;
+  color: #026961;
+  font-weight: 500;
+}
+
+.emissionDetails {
+  position: relative;
+  padding-left: 12px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    border-radius: 50%;
+    width: 4px;
+    height: 4px;
+    background: #343a40;
+  }
+}
+
+.detailList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeValue {
+  color: #6c757d;
+}

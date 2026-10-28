@@ -1,0 +1,149 @@
+@backgroundMain: #f7f8f9;
+
+.visualGraphContainer {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+
+  .graphBoxMain {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .graphBox {
+      width: 100%;
+      height: calc(100vh - 120px);
+      overflow: hidden;
+
+      & > canvas {
+        background: @backgroundMain;
+        background-image: linear-gradient(@backgroundMain 13px, transparent 0),
+          linear-gradient(90deg, rgb(235 236 237) 2px, transparent 0);
+        background-size: 15px 15px, 15px 15px;
+      }
+    }
+
+    .graphZoom {
+      position: fixed;
+      right: calc(var(--footprint-ai-chat-offset, 0px) + 16px);
+      bottom: 16px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      transition: right 0.2s ease;
+
+      .graphZoomNum {
+        width: 70px;
+        height: 32px;
+        color: #6c757d;
+        line-height: 32px;
+        text-align: center;
+        background-color: #fff;
+        border: 1px solid #ebedf0;
+
+        :global {
+          .ant-input-number-input-wrap {
+            height: 100%;
+          }
+
+          .ant-input-number-input {
+            height: 30px;
+            padding: 0 24px 0 12px;
+            color: #6c757d;
+            line-height: 30px;
+            text-align: center;
+          }
+        }
+      }
+
+      .graphZoomNumPercent {
+        position: absolute;
+        top: 50%;
+        right: 40px;
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        background-color: #fff;
+        transform: translateY(-50%);
+      }
+
+      .graphZoomBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border: none;
+      }
+    }
+
+    .graphFixedSet {
+      position: fixed;
+      right: calc(var(--footprint-ai-chat-offset, 0px) + 160px);
+      bottom: 16px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      transition: right 0.2s ease;
+
+      .changeTypMain {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 4px;
+        background: #fff;
+        border: 0.5px solid #ebedf0;
+        border-radius: 4px;
+
+        .typeBtn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3px 6px;
+          color: #999ea4;
+          border-radius: 4px;
+          cursor: pointer;
+
+          &:last-child {
+            margin-left: 8px;
+          }
+        }
+
+        .typeBtnActive {
+          color: #6c757d;
+          background: @backgroundMain;
+        }
+      }
+    }
+  }
+
+  & > canvas {
+    background: @backgroundMain;
+  }
+}
+
+.agentPreviewVisualGraphContainer {
+  .graphBoxMain {
+    position: relative;
+  }
+
+  .graphBoxMain .graphBox {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .graphBoxMain .graphZoom {
+    position: absolute;
+    right: 16px;
+    bottom: 28px;
+    z-index: 4;
+  }
+
+  .graphBoxMain .graphFixedSet {
+    position: absolute;
+    right: 160px;
+    bottom: 28px;
+    z-index: 4;
+  }
+}

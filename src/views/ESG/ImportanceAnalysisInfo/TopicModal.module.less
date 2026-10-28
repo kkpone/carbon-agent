@@ -1,0 +1,92 @@
+.topicContent {
+  display: flex;
+  column-gap: 24px;
+}
+
+.topicGroup {
+  flex: 1;
+}
+
+.ETopicGroup {
+  .topicGroupHeader {
+    background: #ebf8f0;
+  }
+  .topicGroupBar {
+    background: #3ab86e;
+  }
+}
+
+.STopicGroup {
+  .topicGroupHeader {
+    background: #fcf7e2;
+  }
+  .topicGroupBar {
+    background: #f0d56c;
+  }
+}
+
+.GTopicGroup {
+  .topicGroupHeader {
+    background: #e2ecf8;
+  }
+  .topicGroupBar {
+    background: #6e9fda;
+  }
+}
+
+.topicGroupHeader {
+  padding: 0 16px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 12px 12px 0 0;
+}
+
+.topicGroupBar {
+  width: 4px;
+  height: 16px;
+  border-radius: 10px;
+}
+
+.topicGroupName {
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px; /* 157.143% */
+}
+
+.topicList {
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  height: 282px;
+  overflow-y: auto;
+  border-radius: 0 0 2px 12px;
+  border-right: 1px solid var(--Neutral-Border-border-2, #e5e7eb);
+  border-bottom: 1px solid var(--Neutral-Border-border-2, #e5e7eb);
+  border-left: 1px solid var(--Neutral-Border-border-2, #e5e7eb);
+}
+
+.topicItem {
+  padding: 0 8px;
+  height: 30px;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+  &:hover {
+    border-radius: 4px;
+    background: #f7f8f9;
+  }
+}
+
+.topicName {
+  flex: 1;
+  width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

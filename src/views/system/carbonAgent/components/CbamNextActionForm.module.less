@@ -1,0 +1,339 @@
+.cbamNextActionCard {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f7f8f9;
+  padding: 4px;
+  margin-top: 18px;
+}
+
+.cbamNextActionHeader {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 4px 8px;
+}
+
+.cbamNextActionHeaderCopy {
+  min-width: 0;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cbamNextActionHeader strong {
+  flex: 0 0 auto;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.cbamNextActionHeaderCopy > span {
+  min-width: 0;
+  overflow: hidden;
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cbamNextActionToggle {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  cursor: pointer;
+}
+
+.cbamNextActionToggle:hover {
+  background: #eef2f3;
+}
+
+.cbamNextActionToggleIcon {
+  width: 6px;
+  height: 10px;
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.cbamNextActionToggleIconCollapsed {
+  transform: rotate(0deg);
+}
+
+.cbamNextActionPanel {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px;
+}
+
+.cbamNextActionGroup {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cbamNextActionLabel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.cbamNextActionLabel b {
+  color: #cb3430;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.cbamExecutionDetails {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  margin: 0;
+}
+
+.cbamExecutionDetail {
+  min-width: 0;
+  border: 1px solid #edf0ef;
+  border-radius: 8px;
+  background: #fafcfb;
+  padding: 10px 12px;
+}
+
+.cbamExecutionDetailHighlight {
+  border-color: #b8e2d9;
+  background: linear-gradient(90deg, #f0fbf8 0%, #f8fcfb 100%);
+  box-shadow: inset 3px 0 0 #0cbf9f;
+}
+
+.cbamExecutionDetailHighlight dt {
+  color: #047766;
+}
+
+.cbamExecutionDetailHighlight dd {
+  color: #063f38;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.cbamExecutionDetails dt {
+  color: #65716f;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.cbamExecutionDetails dd {
+  margin: 2px 0 0;
+  color: #1f3431;
+  font-size: 14px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.cbamDefaultPolicyOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cbamDefaultPolicyOption,
+.cbamDeliverableOption {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #f7f8f9;
+  color: #04252b;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.cbamDefaultPolicyOption {
+  height: 34px;
+  padding: 4px 10px;
+}
+
+.cbamDefaultPolicyOption:hover,
+.cbamDeliverableOption:hover {
+  border-color: #0cbf9f;
+}
+
+.cbamDefaultPolicyOptionSelected {
+  border-color: #026961;
+  background: #fff;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cbamDeliverableOptions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cbamDeliverableOption {
+  position: relative;
+  min-width: 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-color: #e5e7eb;
+  background: #fff;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.cbamDeliverableOptionTitle {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.cbamDeliverableOptionMeta {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+}
+
+.cbamDeliverableOption em {
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: #f7f8f9;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 20px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+
+.cbamDeliverableOption i {
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  background: #0cbf9f;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  padding: 0 7px;
+}
+
+.cbamDeliverableOptionSelected {
+  border-color: #026961;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cbamNextActionFooter {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cbamNextActionFooter > span {
+  min-width: 0;
+  overflow: hidden;
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cbamNextActionFooter button {
+  height: 30px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 20px;
+  background: #004541;
+  color: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.cbamNextActionFooter button:disabled,
+.cbamDefaultPolicyOption:disabled,
+.cbamDeliverableOption:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cbamDefaultPolicyOption:disabled:hover {
+  border-color: transparent;
+}
+
+.cbamDeliverableOption:disabled:hover {
+  border-color: #e5e7eb;
+}
+
+.errorText {
+  color: #d92d20;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@container conversationPanel (max-width: 560px) {
+  .cbamNextActionHeaderCopy {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cbamNextActionHeaderCopy > span {
+    white-space: normal;
+  }
+
+  .cbamDeliverableOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .cbamExecutionDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .cbamNextActionFooter {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cbamNextActionFooter button {
+    align-self: flex-end;
+  }
+}

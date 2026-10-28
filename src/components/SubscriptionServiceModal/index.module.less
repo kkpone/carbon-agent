@@ -1,0 +1,937 @@
+.subscriptionServiceModalBody {
+  position: relative;
+  background: #f7f8f9;
+
+  .closeIcon {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.45);
+    transition: color 0.3s;
+
+    svg {
+      font-size: 26px;
+      width: 26px;
+      height: 26px;
+    }
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}
+
+.subscriptionContent {
+  padding: 40px;
+  background: #f7f8f9;
+  height: 100%;
+  height: calc(100vh - 120px);
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+
+    .title {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+      color: #04252b;
+      margin: 0;
+    }
+  }
+
+  .content {
+    height: calc(100vh - 300px);
+    overflow-y: auto;
+  }
+
+  .section {
+    margin-bottom: 32px;
+
+    .sectionTitle {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 24px;
+      color: #04252b;
+      margin-bottom: 16px;
+    }
+  }
+
+  // 方案卡片网格
+  .plansGrid {
+    display: grid;
+    // 使用 auto-fit 自动适应容器宽度，卡片宽度最小 280px，最大 1fr（自动增长）
+    // auto-fit 会创建尽可能多的列，每列最小 280px，最大 1fr（会平均分配剩余空间）
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    // 设置间隔
+    gap: 24px;
+    // 当一行能放下所有卡片时，卡片会自动增长填充剩余空间
+    // 当一行放不下所有卡片时，会自动换行
+
+    // 卡片宽度由 grid 控制，最小 280px，最大自动增长
+    .planCard {
+      width: 100%;
+      // 当容器宽度不足以放下所有卡片时，卡片宽度会自动增长
+      // 如果一行能放下所有卡片，卡片会增长以填充可用空间
+      // 如果一行放不下所有卡片，会自动换行
+    }
+  }
+
+  // 方案卡片
+  .planCard {
+    background: linear-gradient(180deg, #f7f8f9 0%, #ffffff 100%);
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    padding: 8px;
+    width: 250px;
+    min-height: 424px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &.selected {
+      border-color: #49ed92;
+      box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.05);
+    }
+
+    &.premium {
+      justify-content: space-between;
+    }
+
+    .planCardContent {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .planHeader {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .planTitleRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 28px;
+    }
+
+    .planTitleLeft {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+    }
+
+    .planTitle {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #04252b;
+    }
+
+    .currentTag {
+      background: #ddf4f2;
+      border-radius: 20px;
+      padding: 2px 8px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: #04252b;
+    }
+
+    .radioWrapper {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .priceSection {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .price {
+      display: flex;
+      align-items: center;
+    }
+
+    .currency {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      color: #04252b;
+    }
+
+    .priceValue {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 40px;
+      color: #04252b;
+    }
+
+    .priceUnit {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 30px;
+      color: #04252b;
+    }
+
+    .description {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 20px;
+      color: #999ea4;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .premiumDescription {
+      color: var(--Neutral-Text-text-1, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px; /* 162.5% */
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .featuresList {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0 16px;
+    }
+
+    .featureItem {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 20px;
+      color: #04252b;
+    }
+
+    .checkIcon {
+      width: 16px;
+      height: 16px;
+      font-size: 16px;
+      color: #026961;
+      flex-shrink: 0;
+    }
+
+    .premiumButton {
+      padding-top: 16px;
+
+      .consultButton {
+        width: 100%;
+        height: 38px;
+        border: 1px solid #d5d7da;
+        border-radius: 20px;
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+        color: #04252b;
+      }
+
+      .consultButton:hover {
+        background: #026961;
+        color: #ffffff;
+      }
+    }
+  }
+
+  // 二维码内容样式（在 features 区域显示）
+  .qrCodeContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+
+    .qrCodeTitle {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      color: #04252b;
+      text-align: center;
+    }
+
+    .qrCodeImage {
+      width: 140px;
+      height: 140px;
+      display: block;
+    }
+  }
+
+  // 单选组
+  .radioGroup {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+
+    :global(.ant-radio-wrapper) {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: #04252b;
+    }
+  }
+
+  // 数字输入框
+  .numberInput {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+
+    .numberButton {
+      width: 40px;
+      height: 32px;
+      padding: 0;
+      border: 1px solid #d2d6da;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: #04252b;
+      min-width: 40px;
+
+      &:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        border-right: none;
+        border-right: 1px solid #d2d6da;
+      }
+
+      &:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-left: none;
+        border-left: 1px solid #d2d6da;
+        // background: #f5f5f5;
+      }
+
+      &:hover:not(:disabled) {
+        color: #04252b;
+        border-color: #d2d6da;
+        background: #ffffff;
+      }
+
+      &:disabled {
+        background: #f5f5f5;
+        color: #999ea4;
+        border-color: #d2d6da;
+        cursor: not-allowed;
+      }
+
+      &:first-child:disabled {
+        background: #f5f5f5;
+      }
+    }
+
+    .numberInputField {
+      width: 120px;
+      height: 32px;
+      border: 1px solid #d2d6da;
+      border-left: none;
+      border-right: none;
+      border-radius: 0;
+
+      :global(.ant-input-number-input) {
+        height: 32px;
+        padding: 0 12px;
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #343a40;
+        text-align: center;
+      }
+    }
+  }
+
+  // 专业服务网格
+  .servicesGrid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  // 服务卡片
+  .serviceCard {
+    background: linear-gradient(180deg, #f7f8f9 0%, #ffffff 100%);
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid transparent;
+
+    .serviceHeader {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .serviceTitleRow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .serviceTitle {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      color: #04252b;
+    }
+
+    .serviceFooter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .quantityLabel {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: #04252b;
+    }
+  }
+
+  // 底部
+  .footer {
+    position: sticky;
+    bottom: 0;
+    background: #ffffff;
+    padding: 16px 40px;
+    margin: 0 -40px -40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px -4px 8px 0px rgba(0, 0, 0, 0.04);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    .orderAmount {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .orderAmountLabel {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: #04252b;
+    }
+
+    .orderAmountValue {
+      display: flex;
+      align-items: center;
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 600;
+      font-size: 0;
+      line-height: 0;
+      color: #04252b;
+
+      .currency {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      &::after {
+        content: attr(data-amount);
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 32px;
+      }
+    }
+
+    .footerActions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .termsCheckbox {
+      :global(.ant-checkbox-wrapper) {
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #6c757d;
+
+        .link {
+          color: #026961;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .payButton {
+      width: 240px;
+      height: 38px;
+      background: #004541;
+      border-radius: 8px;
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+      color: #ffffff;
+      border: none;
+
+      &:hover {
+        background: #026961;
+      }
+
+      &:disabled {
+        background: #d5d7da;
+        color: #999ea4;
+      }
+    }
+  }
+}
+
+// 全局样式覆盖
+:global {
+  .subscriptionServiceModal {
+    z-index: 9999;
+    .ant-modal-content {
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 0;
+    }
+  }
+
+  .paymentModal {
+    z-index: 10000;
+    .ant-modal-content {
+      border-radius: 12px;
+      overflow: hidden;
+      padding: 0;
+    }
+  }
+}
+
+// 支付 Modal 样式
+.paymentModalContent {
+  background: #ffffff;
+  backdrop-filter: blur(50px);
+  border-radius: 12px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+}
+
+.paymentModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.paymentModalTitle {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #04252b;
+  margin: 0;
+}
+
+.paymentModalClose {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #04252b;
+
+  svg {
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.paymentModalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+}
+
+// 付款方式选择
+.paymentMethodSection {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.paymentMethodLabel {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+}
+
+.paymentMethodRadioGroup {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.paymentMethodRadio {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+}
+
+// 应付金额区域
+.paymentAmountSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.paymentTip {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 20px;
+  color: #04252b;
+  text-align: center;
+}
+
+.paymentAmount {
+  display: flex;
+  align-items: end;
+  gap: 4px;
+}
+
+.paymentCurrency {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #04252b;
+}
+
+.paymentAmountValue {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 30px;
+  color: #04252b;
+}
+
+.paymentTimeRemaining {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.paymentTimeLabel {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #04252b;
+}
+
+.paymentTimeBox {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #d5d7da;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #04252b;
+  background: #ffffff;
+}
+
+.paymentTimeSeparator {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #04252b;
+}
+
+// 二维码区域
+.paymentQrCodeSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+}
+
+.paymentQrCodeWrapper {
+  position: relative;
+  width: 136px;
+  height: 136px;
+  background: #ffffff;
+  border: 1px solid #ebedf0;
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paymentQrCode {
+  width: 136px;
+  height: 136px;
+}
+
+.paymentServiceQrCode {
+  width: 136px;
+  height: 136px;
+  object-fit: contain;
+}
+
+.paymentQrCodeExpire {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 1;
+
+  span {
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #ffffff;
+  }
+}
+
+.paymentAgreement {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.paymentAgreementCheckbox {
+  width: 16px;
+  height: 16px;
+}
+
+.paymentAgreementText {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #6c757d;
+}
+
+.paymentAgreementLink {
+  color: #026961;
+  cursor: pointer;
+}
+
+// 支付成功区域
+.paymentSuccessSection {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  width: 100%;
+}
+
+.paymentSuccessIconWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.paymentSuccessImg {
+  width: 56px;
+  height: 56px;
+}
+
+.paymentSuccessTitle {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #04252b;
+  text-align: center;
+}
+
+.paymentSuccessDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #6c757d;
+}
+
+.paymentSuccessDetailRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.paymentSuccessDetailLabel {
+  color: #6c757d;
+}
+
+.paymentSuccessDetailValue {
+  color: #6c757d;
+}
+
+.paymentSuccessActions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.paymentSuccessSecondaryButton {
+  background: #ffffff;
+  border: 1px solid #d5d7da;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #04252b;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    border-color: #026961;
+    color: #026961;
+  }
+}
+
+.paymentSuccessPrimaryButton {
+  background: #004541;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #026961;
+  }
+}
+
+.serPriceValue {
+  color: var(--Neutral-Text-text-1, #04252b);
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.serCurrency {
+  color: var(--Neutral-Text-text-1, #04252b);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+}
+
+.countContainer {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+}

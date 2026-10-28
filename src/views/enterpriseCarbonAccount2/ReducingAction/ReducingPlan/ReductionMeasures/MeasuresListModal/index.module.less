@@ -1,0 +1,204 @@
+@import '@Variable';
+
+.modal {
+  :global {
+    .ant-modal-content {
+      padding: 0 !important;
+    }
+  }
+}
+
+.header {
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ebedf0;
+}
+
+.headerTitle {
+  .title-s-b();
+}
+
+.nameInput {
+  width: 512px;
+}
+
+.closeIcon {
+  cursor: pointer;
+}
+
+.content {
+  height: 640px;
+  display: flex;
+}
+
+.contentLeft {
+  padding: 12px;
+  width: 192px;
+  height: 100%;
+  border-right: 1px solid #ebedf0;
+}
+
+.contentRight {
+  flex: 1;
+  height: 100%;
+}
+
+.category {
+  .body-m();
+
+  padding: 0 8px;
+  margin-bottom: 4px;
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: #ebedf0;
+  }
+}
+
+.currCategory {
+  .body-m-b();
+
+  background: @green7 !important;
+  color: #fff;
+}
+
+.categorySplit {
+  margin: 12px 0 8px;
+  width: 100%;
+  height: 1px;
+  background: #ebedf0;
+}
+
+.searchContent {
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchContentLeft {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.typeSelect {
+  width: 136px;
+}
+
+.spinning {
+  height: calc(100% - 60px);
+  :global {
+    .ant-spin-container {
+      height: 100%;
+    }
+  }
+}
+
+.measuresContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  height: 100%;
+  overflow-y: auto;
+  border-top: 1px solid #ebedf0;
+  background-color: #f7f8f9;
+}
+
+.emptyContent {
+  border-top: 1px solid #ebedf0;
+  background-color: #f7f8f9;
+}
+
+.measures {
+  padding: 18px 16px;
+  display: flex;
+  column-gap: 16px;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.typeTag {
+  .caption-s-b();
+
+  padding: 0 6px;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background: @green7;
+  border-radius: 4px;
+}
+
+.measuresNameContent {
+  width: 368px;
+}
+
+.measuresName {
+  .body-m-b();
+
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.measuresDesc {
+  .caption-s();
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.measuresInfoContent {
+  width: 198px;
+}
+
+.measuresInfoLabel {
+  .caption-s();
+
+  margin-bottom: 4px;
+}
+
+.measuresScope {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.measuresInfo {
+  .body-m();
+  max-width: 156px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scopeBubble {
+  .caption-s();
+  padding: 2px 8px;
+  border-radius: 1000px;
+  border: 1px solid #ebedf0;
+  cursor: pointer;
+}
+
+.operateContent {
+  width: 112px;
+  height: 44px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  column-gap: 12px;
+}

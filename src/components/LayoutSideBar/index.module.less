@@ -1,0 +1,131 @@
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  .header {
+    display: inline-flex;
+    height: 56px;
+    padding: 0px 20px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    position: relative;
+    .logo {
+      height: 28px;
+      object-fit: contain;
+      transition: all 0.3s;
+      &.collapsedLogo {
+        width: 30px;
+        object-fit: cover;
+        object-position: left; /* Keep left part (icon) visible */
+      }
+    }
+  }
+
+  .collapseTrigger {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 4px 12px;
+    border-radius: 4px;
+    transition: background 0.3s;
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .menu {
+    flex-grow: 1;
+    height: calc(100vh - 208px);
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE 和 Edge */
+    scrollbar-width: none; /* Firefox */
+
+    :global {
+      .ant-menu-sub > .ant-menu-item {
+        margin-block: 0px;
+        height: 32px;
+        padding-left: 54px !important;
+        background-color: #002a23 !important;
+      }
+
+      .ant-menu-sub {
+        background-color: #002a23 !important;
+      }
+
+      .ant-menu-submenu-popup {
+        .ant-menu {
+          background-color: #002a23 !important;
+        }
+        .ant-menu-sub {
+          background-color: #002a23 !important;
+        }
+        .ant-menu-item {
+          background-color: #002a23 !important;
+        }
+      }
+
+      // .ant-menu-submenu-title {
+      //   padding-left: 24px !important;
+      // }
+    }
+  }
+  /* 针对 WebKit 内核浏览器 */
+  .menu::-webkit-scrollbar {
+    display: none; /* 隐藏滚动条 */
+  }
+
+  .infoCard {
+    // height: 172px;
+    flex-grow: 0;
+    border-top: 1px solid #33554f;
+    &.collapsedInfoCard {
+      display: flex;
+      justify-content: center;
+      :global {
+        .user-name,
+        .user-role {
+          display: none;
+        } /* Assuming structure */
+      }
+    }
+  }
+}
+
+@keyframes shrinkWidth {
+  from {
+    width: 248px;
+  }
+  to {
+    width: 212px;
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 212px;
+  }
+  to {
+    width: 248px;
+  }
+}
+
+.enSideBar {
+  background-color: #002a23;
+  transition: width 0.2s ease-in-out;
+  // animation: shrinkWidth 0.2s ease-in-out forwards;
+  width: 212px;
+}
+
+// .expand {
+//   width: 248px;
+// }
+
+.enSideBar:hover {
+  // animation: expandWidth 0.2s ease-in-out forwards;
+  width: 248px;
+}

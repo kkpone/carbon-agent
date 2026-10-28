@@ -1,0 +1,144 @@
+@import url('@styles/var.less');
+
+@describeHeight: 84px;
+
+.wrapper {
+  height: calc(100% - @GlobalFormActionsHeight - @describeHeight);
+  margin: 12px 56px;
+  display: flex;
+
+  .left {
+    width: 232px;
+    min-width: 232px;
+    max-width: 232px;
+    height: 100%;
+    margin-right: 18px;
+  }
+
+  .container {
+    background-color: @whiteBg;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    padding: 16px 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      .headerLeft {
+        .headerLeftMethod {
+          color: #999ea4;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .titleHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .filter {
+        display: flex;
+        gap: 8px;
+        margin-right: 12px;
+
+        & > span {
+          color: #343a40;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .calcBtn {
+      text-align: right;
+    }
+
+    .successTip {
+      text-align: right;
+      color: #0cbf9f;
+    }
+
+    .warnTip {
+      text-align: right;
+      color: red;
+    }
+
+    .impactResult {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+
+    .main {
+      position: relative;
+      margin-bottom: 16px;
+
+      .carbonTotalWrap {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 12px;
+        color: @primary-color;
+        font-weight: 500;
+        font-size: 14px;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        line-height: 22px;
+
+        .iconWrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
+          background: @primary-color;
+          border-radius: 6px;
+
+          .icon {
+            color: @white;
+          }
+        }
+
+        .carbonTotal {
+          font-size: 20px;
+          line-height: 32px;
+
+          .unit {
+            margin-left: 4px;
+            color: var(--text-gray-6-placeholder, #999ea4);
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+      }
+
+      .cutOff {
+        margin-bottom: 16px;
+      }
+
+      .chartWrap {
+        width: 100%;
+        margin-bottom: 32px;
+
+        .chart {
+          width: 100%;
+        }
+      }
+    }
+
+    :global {
+      .ant-table-thead > tr > th,
+      .ant-table-tbody > tr > td {
+        padding: 13px 16px;
+      }
+    }
+  }
+}

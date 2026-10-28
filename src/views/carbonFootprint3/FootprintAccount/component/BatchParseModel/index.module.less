@@ -1,0 +1,607 @@
+/* 参考排放源 quickVisualizationDrawer：body 滚动 + footer 固定贴底 */
+:global(.batchParseDrawer) {
+  .ant-drawer-content {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .ant-drawer-header {
+    flex-shrink: 0;
+  }
+
+  .ant-drawer-body {
+    flex: 1;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .ant-drawer-footer {
+    flex-shrink: 0;
+    border-top: none;
+    padding: 0 !important;
+  }
+}
+
+.titleWrap {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.aiLogo {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+}
+
+.modalTitle {
+  color: #04252b;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.closeIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #6c757d;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: #f7f8f9;
+  }
+
+  svg {
+    font-size: 20px;
+  }
+}
+
+.formSection {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  margin-bottom: 12px;
+}
+
+.sectionLabel {
+  color: #04252b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.labelTip {
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.promptTextAreaWrap {
+  position: relative;
+  width: 100%;
+  align-self: stretch;
+}
+
+.promptTextArea {
+  width: 100%;
+  height: 120px;
+  min-height: 120px;
+  max-height: 280px;
+  padding: 8px 12px 30px;
+  border-color: #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  resize: vertical !important;
+  box-shadow: none !important;
+
+  &:hover,
+  &:focus {
+    border-color: #026961;
+    box-shadow: none !important;
+  }
+}
+
+.promptCount {
+  position: absolute;
+  right: 12px;
+  bottom: 5px;
+  color: #b5b8bb;
+  font-size: 14px;
+  line-height: 22px;
+  pointer-events: none;
+}
+
+.fileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 16px;
+  margin-bottom: 20px;
+}
+
+.fileWayTabs {
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 8px;
+  background: #f7f8f9;
+}
+
+.fileWayTab {
+  height: 34px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.fileWayTabActive {
+  background: #fff;
+  color: #04252b;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.uploadPanel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 12px;
+}
+
+.templateBlock {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  width: 100%;
+}
+
+.templateRow {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  width: 100%;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.templateMainText {
+  color: #343a40;
+  font-weight: 500;
+}
+
+.templateTip {
+  color: #999ea4;
+}
+
+.levelUploadDesc {
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.downloadTemplate {
+  color: #026961;
+  cursor: pointer;
+}
+
+.uploadDragger {
+  width: 100%;
+
+  :global {
+    .ant-upload.ant-upload-drag {
+      width: 100%;
+    }
+
+    .ant-upload-drag {
+      border: 1px dashed #d2d6da;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .ant-upload-btn {
+      padding: 24px 16px !important;
+    }
+  }
+}
+
+.uploadIcon {
+  color: #026961;
+
+  svg {
+    font-size: 32px;
+  }
+}
+
+.uploadText {
+  margin-top: 8px;
+  color: #343a40;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.uploadActionText {
+  color: #026961;
+}
+
+.uploadTip {
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.levelPanel {
+  display: flex;
+  min-height: 452px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.levelSidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80px;
+  flex-shrink: 0;
+  padding: 16px 12px;
+  border-right: 1px solid #e5e7eb;
+}
+
+.levelList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.levelItemWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 56px;
+  height: 32px;
+}
+
+.levelItemWrapDeletable:hover .levelDeleteBtn {
+  display: flex;
+}
+
+.levelItemWrap:hover .levelItem:not(.levelItemActive) {
+  border-color: #026961;
+  background: #fff;
+  color: #026961;
+  font-weight: 600;
+}
+
+.levelItem {
+  width: 56px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #f7f8f9;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+
+  &:hover:not(.levelItemActive) {
+    border-color: #026961;
+    background: #fff;
+    color: #026961;
+    font-weight: 600;
+  }
+}
+
+.levelItemActive {
+  border-color: #026961;
+  background: #026961;
+  color: #fff;
+  font-weight: 600;
+
+  &:hover {
+    border-color: #026961;
+    background: #026961;
+    color: #fff;
+  }
+}
+
+.levelDeleteBtn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.levelDeleteIcon {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
+.addLevelBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
+  width: 56px;
+  border: 0;
+  background: transparent;
+  color: #026961;
+  font-family: 'PingFang SC', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:disabled {
+    color: #b5b8bb;
+    cursor: not-allowed;
+  }
+}
+
+.addLevelIcon {
+  font-size: 12px;
+  color: inherit;
+}
+
+.levelContent {
+  flex: 1;
+  min-width: 0;
+  padding: 20px;
+}
+
+.fileListBlock {
+  margin-top: 24px;
+}
+
+.fileListHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 16px;
+  margin-bottom: 12px;
+}
+
+.fileListTitle {
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.fileActions {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.selectedCount {
+  color: #999ea4;
+}
+
+.selectedNumber {
+  color: #004541;
+  font-weight: 600;
+}
+
+.linkAction {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #026961;
+  font-size: 12px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.dangerAction {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #b04465;
+  font-size: 12px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.fileList {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #fff;
+
+  &:hover {
+    background: #f7f8f9;
+  }
+}
+
+.fileItemUploading {
+  background: #f7f8f9;
+}
+
+.fileItemChecked {
+  background: #f7f8f9;
+}
+
+.fileInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.fileTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 16px;
+}
+
+.fileMain {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  min-width: 0;
+}
+
+.fileIcon {
+  color: #026961;
+
+  svg {
+    font-size: 30px;
+  }
+}
+
+.fileMeta {
+  min-width: 0;
+}
+
+.fileNameRow {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.fileName {
+  max-width: 280px;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 12px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.levelTag {
+  height: 20px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: #ddf4f2;
+  color: #048677;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.fileSub {
+  color: #b5b8bb;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.fileRight {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.uploadingPercent {
+  color: #026961;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.uploadFailed {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  color: #b04465;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.uploadSuccess {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  color: #026961;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.fileOperate {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+.progress {
+  margin-top: 4px;
+}
+
+.emptyList {
+  padding: 18px 0;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.footerBtn {
+  min-width: 76px;
+  border-radius: 8px;
+}
+
+.primaryBtn {
+  border-color: #004541;
+  background: #004541;
+
+  &:hover,
+  &:focus {
+    border-color: #026961;
+    background: #026961;
+  }
+}

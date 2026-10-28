@@ -1,0 +1,79 @@
+@import '@src/styles/var.less';
+
+.carbonInternationalHomePage {
+  display: flex;
+  flex: auto;
+  flex-flow: column;
+  padding-bottom: 40px;
+  overflow: auto;
+
+  .homepage_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 0 20px;
+
+    .homepage_title {
+      color: @text-color;
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+
+  .topSelect {
+    display: flex;
+    flex-flow: row wrap;
+
+    .topSelectItem {
+      display: flex;
+      flex-flow: row;
+      width: 25%;
+      min-width: 300px;
+      padding: 20px 20px 0 0;
+
+      :global(.ant-select) {
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  .pieChart {
+    flex: 1;
+    padding: 24px;
+
+    p {
+      margin-bottom: 30px;
+      color: @text-color;
+      font-size: 16px;
+    }
+  }
+
+  .chart_exhibition {
+    display: flex;
+    flex-flow: column;
+    width: 50%;
+    margin-left: 10px;
+    padding: 24px 24px 0;
+    background: #fff;
+
+    p {
+      flex: 0;
+      color: @text-color;
+      font-size: 16px;
+
+    }
+  }
+
+  .mainContentWrapper {
+    flex: 1;
+    overflow: hidden;
+  }
+}
+
+.chartWrapper {
+  display: flex;
+  flex: auto;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

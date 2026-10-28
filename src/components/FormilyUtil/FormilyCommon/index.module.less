@@ -1,0 +1,29 @@
+.formilyCommon {
+  :global(.ant-formily-item-feedback-layout-loose) {
+    margin-bottom: 20px;
+  }
+
+  :global(.ant-formily-item-control-content) {
+    :global(.ant-formily-item-feedback-layout-loose) {
+      margin-bottom: 0;
+    }
+  }
+
+  :global(.ant-form-text) {
+    background-color: #f7f8f9;
+    width: 100%;
+    padding: 0 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+
+    & > div {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-break: break-all;
+    }
+  }
+}

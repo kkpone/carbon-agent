@@ -1,0 +1,136 @@
+@import '@src/views/carbonFootprint/mixin.less';
+
+.technologySearchEmission {
+  position: relative;
+
+  .modalFactorFooter {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  :global {
+    .ant-table-pagination.ant-pagination {
+      margin: 0px;
+      // border-top: 1px solid #f0f0f0;
+      padding: 20px 0 0 0;
+      align-items: center;
+    }
+
+    .ant-table-body {
+      min-height: calc(100vh - 556px);
+    }
+
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+
+    .ant-table-cell {
+      vertical-align: top !important;
+
+      &.ant-table-cell-fix-right {
+        // 这里写你想覆盖的样式
+        vertical-align: middle !important;
+      }
+      &.ant-table-cell-fix-left {
+        // 这里写你想覆盖的样式
+        vertical-align: middle !important;
+      }
+    }
+
+    .ant-table-ping-left .ant-table-cell-fix-left-last::after,
+    .ant-table-ping-right .ant-table-cell-fix-right-first::after {
+      box-shadow: none !important;
+    }
+  }
+}
+
+.nameBox {
+  display: flex;
+  align-items: center;
+
+  .aiIcon {
+    margin-left: 8px;
+  }
+}
+
+.recommendReason {
+  margin-top: 10px;
+  width: 660px;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+  background: #f7f8f9;
+  display: flex;
+  padding: 2px 8px;
+  align-items: center;
+  gap: 7px;
+  overflow: hidden;
+  color: #04252b;
+  text-overflow: ellipsis;
+  font-family: 'PingFang SC';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+}
+
+.name {
+  max-width: 106px;
+}
+
+.used {
+  height: 20px;
+  margin-left: 4px;
+  padding: 0 4px;
+  color: #0cbf9f;
+  font-weight: 400;
+  font-size: 12px;
+
+  /* 辅助信息/Small-常规-CN */
+  font-family: 'PingFang SC';
+  font-style: normal;
+  line-height: 20px; /* 150% */
+  background: #e6fff6;
+  border-radius: 4px;
+}
+
+.ecoinventTips {
+  color: #9d9c9c;
+}
+
+.emptyText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+}
+
+.disabledBtn {
+  color: #d2d6da;
+  cursor: not-allowed;
+}
+
+.primaryColorFont:hover {
+  color: #08a28b;
+}
+
+.selectionSuggestion {
+  color: #6c757d;
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+
+  .aiIcon {
+    margin-top: 6px;
+  }
+
+  // .aiIcon {
+  //   margin-right: 4px;
+  // }
+}

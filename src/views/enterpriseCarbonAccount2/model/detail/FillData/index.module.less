@@ -1,0 +1,80 @@
+.fillData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 124px);
+  background-color: #f7f8f9;
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+
+    .header {
+      .title {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        align-self: stretch;
+        height: 56px;
+        padding: 16px 24px;
+        color: var(--text, #343a40);
+        font-weight: 500;
+        font-size: 16px;
+
+        /* Title 标题/Small-加粗-CN */
+        font-family: 'PingFang SC';
+        font-style: normal;
+        line-height: 24px; /* 150% */
+      }
+
+      .headerContext {
+        display: flex;
+        justify-content: space-between;
+        height: 32px;
+        padding: 0 24px;
+      }
+    }
+
+    .treeCollapseWrapper {
+      height: 100%;
+    }
+  }
+}
+
+.panelName {
+  color: var(--text, #343a40);
+  font-weight: 500;
+  font-size: 14px;
+
+  /* Body 内容/Medium-加粗-CN */
+  font-family: 'PingFang SC';
+  font-style: normal;
+  line-height: 22px; /* 157.143% */
+}
+
+.panelTotal {
+  margin: 0 4px 0 16px;
+  color: var(--text, #343a40);
+  font-weight: 500;
+  font-size: 14px;
+  font-family: 'HarmonyOS Sans SC';
+  font-style: normal;
+  line-height: 22px; /* 157.143% */
+}
+
+.panelUnit {
+  color: var(--text, #999ea4);
+  font-weight: 500;
+  font-size: 12px;
+
+  /* 辅助信息/Small-加粗-CN */
+  font-family: 'PingFang SC';
+  font-style: normal;
+  line-height: 18px; /* 150% */
+}
+
+.bold {
+  font-weight: bold;
+}

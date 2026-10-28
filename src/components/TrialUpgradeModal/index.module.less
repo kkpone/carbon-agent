@@ -1,0 +1,106 @@
+// 试用升级提示弹窗样式
+.trialUpgradeModal {
+  :global(.ant-modal-content) {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}
+
+.trialUpgradeModalContent {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.trialUpgradeModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .trialUpgradeModalTitle {
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #04252b;
+    margin: 0;
+  }
+
+  .trialUpgradeModalClose {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}
+
+.trialUpgradeModalBody {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .trialUpgradeModalIcon {
+    font-size: 20px;
+    color: #f3983e;
+    flex-shrink: 0;
+  }
+
+  .trialUpgradeModalText {
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #04252b;
+    margin: 0;
+  }
+}
+
+.trialUpgradeModalFooter {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  width: 100%;
+
+  .trialUpgradeModalCancelBtn {
+    height: 38px;
+    padding: 8px 16px;
+    border: 1px solid #d5d7da;
+    border-radius: 8px;
+    background: #ffffff;
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #04252b;
+
+    &:hover {
+      border-color: #d5d7da;
+      color: #04252b;
+    }
+  }
+
+  .trialUpgradeModalConfirmBtn {
+    height: 38px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: #004541;
+    border: none;
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #ffffff;
+
+    &:hover {
+      background: #004541;
+      color: #ffffff;
+      opacity: 0.9;
+    }
+  }
+}

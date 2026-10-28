@@ -1,0 +1,20 @@
+/** select & cascader 共用样式 */
+@import '@src/styles/var.less';
+
+.selectReadonly {
+  &&& :global(.ant-select-selector) {
+    border: none;
+    background-color: @readOnlyInputStyle;
+    color: @text-color;
+  }
+
+  :global(.ant-select-arrow) {
+    display: none;
+  }
+}
+
+.selectDisabled {
+  &&& :global(.ant-select-selector) {
+    color: @input-placeholder-color;
+  }
+}

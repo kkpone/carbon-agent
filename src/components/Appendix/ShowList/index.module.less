@@ -1,0 +1,89 @@
+.wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  justify-content: start;
+
+  .appendix {
+    display: flex;
+    padding: 8px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 1px solid #d9d9d9;
+    background: #fff;
+    // width: 170px;
+    height: 48px;
+    flex-grow: 1;
+
+    gap: 8px;
+
+    align-items: center;
+
+    .icon {
+      width: 22px;
+      height: 22px;
+      aspect-ratio: 1/1;
+      flex-shrink: 0;
+
+      img {
+        width: 22px;
+        height: 22px;
+      }
+
+      svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    .text {
+      flex-grow: 1;
+      color: #04252b;
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px; /* 160% */
+
+      .showName {
+        width: 100px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .fileSize {
+        color: #b5b8bb;
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 14px; /* 175% */
+      }
+    }
+
+    .close {
+      width: 12px;
+      height: 12px;
+      aspect-ratio: 1/1;
+      cursor: pointer;
+      flex-shrink: 0;
+
+      align-self: flex-start;
+    }
+  }
+}
+
+.right {
+  grid-template-columns: repeat(auto-fit, 203px); /* 固定宽度 */
+  justify-content: end; /* 或 flex-end */
+
+  .appendix {
+    background-color: #f7f8f9;
+    border: 1px solid #f7f8f9;
+  }
+}

@@ -1,0 +1,173 @@
+.globalFactorPreferenceModal {
+  :global {
+    .ant-modal-content {
+      display: flex;
+      flex-direction: column;
+      height: 680px;
+      max-height: calc(100vh - 80px);
+    }
+
+    .ant-modal-body {
+      flex: 1;
+      min-height: 0;
+      padding-top: 20px;
+      overflow-y: auto;
+    }
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.preferenceTable {
+  :global {
+    .ant-table {
+      border: 1px solid #ebedf0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ant-table-thead > tr > th {
+      color: #04252b;
+      font-weight: 600;
+      background: #f7f8f9;
+    }
+
+    .ant-table-cell {
+      vertical-align: middle;
+    }
+  }
+}
+
+.nameCell {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  min-width: 0;
+}
+
+.defaultTag {
+  flex-shrink: 0;
+  padding: 1px 8px;
+  color: #026961;
+  font-size: 12px;
+  line-height: 18px;
+  border: 1px solid #0cbf9f;
+  border-radius: 4px;
+  background: #f0fffb;
+}
+
+.ellipsisText {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.operationCell {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+
+  :global {
+    .ant-btn-link {
+      height: 24px;
+      padding: 0 4px;
+      color: #026961;
+    }
+
+    .ant-btn-link[disabled] {
+      color: #b8bdc3;
+    }
+  }
+}
+
+.dangerButton {
+  && {
+    color: #d54941;
+  }
+
+  &&[disabled] {
+    color: #b8bdc3;
+  }
+}
+
+.drawerContent {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 104px);
+}
+
+.drawerForm {
+  flex: 1;
+}
+
+.transfer {
+  width: 100%;
+
+  :global {
+    .ant-transfer-list {
+      flex: 1;
+      min-width: 0;
+      height: 260px;
+    }
+
+    .ant-transfer-list-header-title {
+      max-width: 210px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.transferItem {
+  display: block;
+  max-width: 210px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.drawerFooter {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 8px;
+  padding-top: 24px;
+}
+
+.detailModal {
+  :global {
+    .ant-modal-body {
+      height: 520px;
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+  }
+}
+
+.detailContent {
+  padding: 20px 0 8px;
+
+  :global {
+    .ant-descriptions-item-label {
+      width: 240px;
+      color: #6c757d;
+      font-weight: 500;
+      background: #f7f8f9;
+    }
+
+    .ant-descriptions-item-content {
+      color: #343a40;
+      font-weight: 500;
+    }
+  }
+}
+
+.detailText {
+  word-break: break-all;
+}

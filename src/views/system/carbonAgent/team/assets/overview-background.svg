@@ -1,0 +1,51 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1156" height="225" viewBox="0 0 1156 225" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Mask group">
+<mask id="mask0_0_136" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1156" height="225">
+<path id="Rectangle 34625123" d="M12 0.5H1144C1150.35 0.5 1155.5 5.64873 1155.5 12V213C1155.5 219.351 1150.35 224.5 1144 224.5H12C5.64873 224.5 0.5 219.351 0.5 213V12C0.5 5.64873 5.64873 0.5 12 0.5Z" fill="white" stroke="#E1F0EF"/>
+</mask>
+<g mask="url(#mask0_0_136)">
+<path id="Rectangle 34625124" d="M12 0.5H1144C1150.35 0.5 1155.5 5.64873 1155.5 12V213C1155.5 219.351 1150.35 224.5 1144 224.5H12C5.64873 224.5 0.5 219.351 0.5 213V12C0.5 5.64873 5.64873 0.5 12 0.5Z" fill="white" stroke="#E1F0EF"/>
+<g id="Ellipse 1784" filter="url(#filter0_f_0_136)">
+<use xlink:href="#stroke0_0_136" fill="#A4E8EF" fill-opacity="0.15"/>
+<mask id="stroke1_0_136" fill="white">
+<use xlink:href="#stroke0_0_136"/>
+</mask>
+<path d="M639.957 32.1782C639.957 161.876 342.077 267.017 -25.3771 267.017C-392.831 267.017 -690.711 161.876 -690.711 32.1782C-690.711 -97.5194 -392.831 -202.66 -25.3771 -202.66C342.077 -202.66 639.957 -97.5194 639.957 32.1782Z" stroke-width="2" stroke="#E1F0EF" mask="url(#stroke1_0_136)"/>
+</g>
+<g id="Ellipse 1786" filter="url(#filter1_f_0_136)">
+<use xlink:href="#stroke2_0_136" fill="#CCEECC" fill-opacity="0.15"/>
+<mask id="stroke3_0_136" fill="white">
+<use xlink:href="#stroke2_0_136"/>
+</mask>
+<path d="M1470.59 503.471C1470.59 754.125 1247.34 957.321 971.945 957.321C696.549 957.321 473.297 754.125 473.297 503.471C473.297 252.817 696.549 49.6211 971.945 49.6211C1247.34 49.6211 1470.59 252.817 1470.59 503.471Z" stroke-width="2" stroke="#E1F0EF" mask="url(#stroke3_0_136)"/>
+</g>
+<g id="Ellipse 1785" filter="url(#filter2_f_0_136)">
+<use xlink:href="#stroke4_0_136" fill="#A2DFD4" fill-opacity="0.1"/>
+<mask id="stroke5_0_136" fill="white">
+<use xlink:href="#stroke4_0_136"/>
+</mask>
+<path d="M1494.07 -30.3673C1494.07 71.9261 1195.98 154.851 828.264 154.851C460.551 154.851 162.461 71.9261 162.461 -30.3673C162.461 -132.661 460.551 -215.586 828.264 -215.586C1195.98 -215.586 1494.07 -132.661 1494.07 -30.3673Z" stroke-width="2" stroke="#E1F0EF" mask="url(#stroke5_0_136)"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_136" x="-890.711" y="-402.66" width="1730.67" height="869.677" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_0_136"/>
+</filter>
+<filter id="filter1_f_0_136" x="273.297" y="-150.379" width="1397.3" height="1307.7" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_0_136"/>
+</filter>
+<filter id="filter2_f_0_136" x="-37.5391" y="-415.586" width="1731.61" height="770.437" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_0_136"/>
+</filter>
+<path id="stroke0_0_136" d="M639.957 32.1782C639.957 161.876 342.077 267.017 -25.3771 267.017C-392.831 267.017 -690.711 161.876 -690.711 32.1782C-690.711 -97.5194 -392.831 -202.66 -25.3771 -202.66C342.077 -202.66 639.957 -97.5194 639.957 32.1782Z"/>
+<path id="stroke2_0_136" d="M1470.59 503.471C1470.59 754.125 1247.34 957.321 971.945 957.321C696.549 957.321 473.297 754.125 473.297 503.471C473.297 252.817 696.549 49.6211 971.945 49.6211C1247.34 49.6211 1470.59 252.817 1470.59 503.471Z"/>
+<path id="stroke4_0_136" d="M1494.07 -30.3673C1494.07 71.9261 1195.98 154.851 828.264 154.851C460.551 154.851 162.461 71.9261 162.461 -30.3673C162.461 -132.661 460.551 -215.586 828.264 -215.586C1195.98 -215.586 1494.07 -132.661 1494.07 -30.3673Z"/>
+</defs>
+</svg>

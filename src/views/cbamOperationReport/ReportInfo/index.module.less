@@ -1,0 +1,610 @@
+@text: #04252b;
+@brand: #026961;
+@border: #e5e7eb;
+
+.page {
+  box-sizing: border-box;
+  width: calc(100% + 32px);
+  min-height: 100%;
+  margin: -16px -16px 0;
+  padding-bottom: 71px;
+  color: @text;
+  background: #f7f8f9;
+  font-family: 'PingFang SC', sans-serif;
+}
+
+.header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 16px 40px;
+  background: #fff;
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  span {
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+}
+
+.breadcrumbBack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+
+  img {
+    width: 8.75px;
+    height: 5.25px;
+    transform: rotate(90deg);
+  }
+}
+
+.breadcrumbParent {
+  padding: 0;
+  color: #6c757d;
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    color: @text;
+  }
+}
+
+.breadcrumbDivider,
+.breadcrumbCurrent {
+  color: @text;
+}
+
+.content {
+  margin: 20px;
+}
+
+.completionBar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 76px;
+  padding: 12px 40px;
+  background: #fff7e8;
+  border-top: 1px solid #f0d4a6;
+  border-bottom: 1px solid #f0d4a6;
+}
+
+.completionBarCompleted {
+  background: #ecfaf7;
+  border-color: rgba(12, 191, 159, 0.3);
+}
+
+.completionProgress {
+  flex: 0 0 52px;
+  line-height: 0;
+
+  :global(.ant-progress-text) {
+    color: @text;
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+.completionCopy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 22px;
+
+  strong {
+    overflow: hidden;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  span {
+    overflow: hidden;
+    color: #6c757d;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.pendingCopy {
+  display: block;
+  max-width: 100%;
+  color: #6c757d;
+}
+
+.pendingTooltipContent {
+  display: block;
+  max-width: 448px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.pendingTooltip {
+  :global(.ant-tooltip-inner) {
+    color: #6c757d;
+    background: #fff7e8;
+    border: 1px solid #f0d4a6;
+  }
+
+  :global(.ant-tooltip-arrow::before) {
+    background: #fff7e8;
+  }
+}
+
+.completionFraction {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.configCard {
+  overflow: hidden;
+  background: #fff;
+  border-radius: 8px;
+
+  :global(.ant-tabs-nav) {
+    height: 54px;
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  :global(.ant-tabs-tab) {
+    padding: 16px 0 14px;
+  }
+
+  :global(.ant-tabs-tab-btn) {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+}
+
+.configBody {
+  display: grid;
+  grid-template-columns: 146px minmax(0, 1fr);
+}
+
+.sideNav {
+  min-height: 620px;
+  padding: 20px 12px;
+  border-right: 1px solid @border;
+
+  button {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    width: 122px;
+    height: 36px;
+    margin-bottom: 8px;
+    padding: 0 12px;
+    overflow: hidden;
+    color: #6c757d;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      color: @brand;
+      font-weight: 500;
+
+      .navPendingBadge {
+        background: @brand;
+      }
+    }
+  }
+}
+
+.navItemLabel {
+  min-width: 0;
+  overflow: hidden;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navPendingBadge {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  background: #d5d7da;
+  border-radius: 8px;
+}
+
+.activeNav {
+  color: @brand !important;
+  font-weight: 500;
+  background: #f7f8f9 !important;
+
+  .navPendingBadge,
+  &:hover .navPendingBadge {
+    background: @brand;
+  }
+}
+
+.sectionContent {
+  min-width: 0;
+  padding: 20px;
+
+  :global(.ant-picker),
+  :global(.ant-input),
+  :global(.ant-select-selector) {
+    width: 100%;
+    min-height: 38px;
+    border-radius: 8px !important;
+  }
+
+  :global(.ant-select-selector) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.section {
+  margin-bottom: 32px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin: 0 0 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+
+    &::before {
+      width: 3px;
+      height: 18px;
+      background: @brand;
+      border-radius: 2px;
+      content: '';
+    }
+  }
+}
+
+.sectionStack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .section {
+    margin-bottom: 0;
+  }
+}
+
+.qualityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+
+  :global(.ant-form-item) {
+    min-width: 0;
+    margin-bottom: 0;
+  }
+}
+
+.qualityFullField {
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.qualityTextArea:global(.ant-input) {
+  height: 120px;
+  min-height: 120px;
+  resize: vertical;
+}
+
+.evidenceBody {
+  padding: 20px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+}
+
+.formGridThree {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 20px;
+}
+
+.fieldLabelWithAction {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+
+  button {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    padding: 0;
+    color: #6c757d;
+    font-size: 14px;
+    line-height: 22px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      color: @brand;
+    }
+
+    &:disabled {
+      color: #b5b8bb;
+      cursor: not-allowed;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.factoryField {
+  :global(.ant-form-item-label > label) {
+    width: 100%;
+  }
+}
+
+.derivedInput:global(.ant-input-disabled) {
+  color: @text;
+  background: #f7f8f9;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.readOnlyInput:global(.ant-input) {
+  color: #6c757d;
+  background: #f7f8f9;
+  border-color: @border;
+  cursor: default;
+
+  &:hover,
+  &:focus {
+    border-color: @border;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: #b5b8bb;
+  }
+}
+
+.deviationField {
+  margin-bottom: 0;
+
+  textarea {
+    height: 120px !important;
+    min-height: 120px !important;
+    resize: vertical;
+  }
+}
+
+.sectionContent {
+  :global(.ant-select-disabled .ant-select-selector) {
+    background: #f7f8f9 !important;
+    border-color: transparent !important;
+  }
+}
+
+.factoryInfoDrawer {
+  :global(.ant-drawer-header) {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  :global(.ant-drawer-body) {
+    padding: 0 32px 24px;
+  }
+}
+
+.factoryInfoList {
+  border-top: 1px solid @border;
+}
+
+.factoryInfoRow {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  min-height: 46px;
+  padding: 12px 0;
+  font-size: 14px;
+  line-height: 22px;
+  border-bottom: 1px solid @border;
+
+  > span {
+    color: #6c757d;
+    font-weight: 500;
+  }
+
+  > div {
+    min-width: 0;
+    color: @text;
+    overflow-wrap: anywhere;
+  }
+}
+
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 16px 40px;
+  background: #fff;
+  border-top: 1px solid @border;
+  box-shadow: 0 -4px 16px rgb(4 37 43 / 6%);
+}
+
+.embeddedSpin {
+  height: 100%;
+  min-height: 0;
+
+  > :global(.ant-spin-container) {
+    height: 100%;
+    min-height: 0;
+  }
+}
+
+.embeddedScrollArea {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.embeddedPage {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding-bottom: 0;
+
+  .completionBar {
+    gap: 12px;
+    padding: 12px 20px;
+  }
+
+  .content {
+    margin: 16px;
+  }
+
+  .configBody {
+    display: block;
+  }
+
+  .sideNav {
+    display: flex;
+    gap: 8px;
+    min-height: 0;
+    padding: 12px 16px;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid @border;
+
+    button {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: 150px;
+      margin: 0;
+    }
+  }
+}
+
+.embeddedFooter {
+  position: static;
+  flex-shrink: 0;
+  right: auto;
+  left: auto;
+  padding: 12px 20px;
+}
+
+@container (max-width: 760px) {
+  .embeddedPage {
+    .sectionContent {
+      padding: 16px;
+    }
+
+    .formGrid,
+    .qualityGrid,
+    .formGridThree {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .content {
+    margin: 16px;
+  }
+
+  .formGrid,
+  .qualityGrid,
+  .formGridThree {
+    grid-template-columns: 1fr;
+  }
+
+  .configBody {
+    grid-template-columns: 1fr;
+  }
+
+  .sideNav {
+    display: flex;
+    min-height: auto;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid @border;
+
+    button {
+      flex: 0 0 122px;
+      margin: 0 8px 0 0;
+    }
+  }
+}

@@ -1,0 +1,106 @@
+@import url('@styles/var.less');
+
+.wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: column;
+  height: 100%;
+
+  .container {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    height: calc(100% - @GlobalFormActionsHeight);
+    margin-bottom: @GlobalFormActionsHeight;
+    overflow: hidden;
+
+    .stepWrapper {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 20px 16px;
+      background: @whiteBg;
+      border-bottom: 1px solid @lineGray;
+
+      .backBtn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .backIcon {
+          margin-right: 8px;
+        }
+
+        .backName {
+          color: #000;
+          font-weight: 400;
+          font-size: 14px;
+          font-family: 'PingFang SC';
+          font-style: normal;
+          line-height: 22px; /* 157.143% */
+        }
+      }
+
+      .step {
+        flex: 1;
+        padding: 0 10%;
+      }
+    }
+
+    .headerWrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 24px;
+      background: @whiteBg;
+      border-bottom: 1px solid @lineGray;
+
+      .commonHeaderWrapper {
+        flex: 1;
+      }
+
+      .headerRightBtn {
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+
+        .btnSpace {
+          display: flex;
+          justify-content: flex-end;
+          flex-wrap: wrap;
+        }
+      }
+
+      .flowChartBtn {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .flowChartIcon {
+          margin-right: 8px;
+        }
+
+        .flowButton {
+          color: var(--text-gray-8-primary, #343a40);
+          font-weight: 400;
+          font-size: 14px;
+          font-family: 'PingFang SC';
+          font-style: normal;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+}
+
+.modelCheck {
+  font-weight: bold;
+
+  .modelCheckTextError {
+    color: red;
+  }
+
+  .modelCheckTextRight {
+    color: green;
+  }
+}

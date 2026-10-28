@@ -1,0 +1,25 @@
+.factorBasic {
+  :global {
+    .ant-input-disabled,
+    .ant-select-disabled > .ant-select-selector,
+    .ant-radio-wrapper-disabled,
+    .ant-picker-disabled,
+    .ant-input-number-disabled,
+    .ant-picker-disabled > .ant-picker-input > input {
+      border: none;
+      color: #04252b !important;
+      background: #f7f8f9 !important;
+    }
+    .ant-radio-wrapper-disabled {
+      background: transparent;
+    }
+    .ant-select-disabled {
+      .ant-select-arrow {
+        display: none;
+      }
+      .ant-select-selection-item {
+        color: #04252b !important;
+      }
+    }
+  }
+}

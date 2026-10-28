@@ -1,0 +1,117 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0 30px 0;
+  .title {
+    color: #04252b;
+    font-feature-settings: 'ss01' on, 'cv01' on, 'cv11' on;
+    font-family: 'PingFang SC';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px; /* 140% */
+  }
+
+  .btns {
+    display: flex;
+    gap: 16px;
+  }
+}
+
+.analysis {
+  color: #04252b;
+  font-feature-settings: 'ss01' on, 'cv01' on, 'cv11' on;
+  font-family: 'PingFang SC';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+  margin: 26px 0;
+}
+
+.analysisContent {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  overflow: hidden;
+
+  .analysisHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 136px;
+
+    background: #f9fafb;
+
+    padding: 0 40px;
+
+    .analysisItemValueReduction {
+      color: #04252b;
+      font-family: 'PingFang SC';
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+
+  .analysisItemUnit {
+    display: flex;
+    height: 41px;
+    padding: 2px 8px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-top: 8px;
+
+    .analysisItemValue {
+      font-size: 32px;
+    }
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .analysisItemUnitDown {
+    background: #e6fff6;
+    color: #0cbf9f;
+    font-family: 'PingFang SC';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px; /* 56.25% */
+  }
+
+  .analysisItemUnitUp {
+    background: #fff2f0;
+    color: #ed5555;
+  }
+
+  .analysisContentItemTitle {
+    color: #04252b;
+    font-feature-settings: 'ss01' on, 'cv01' on, 'cv11' on;
+    font-family: 'PingFang SC';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px; /* 175% */
+    margin: 24px 0;
+    padding: 0 40px;
+  }
+
+  .topEmission {
+    display: flex;
+    gap: 40px;
+    padding: 0 40px;
+  }
+}
+
+.analysisWrapper {
+  // padding: 0 40px;
+  min-height: 400px;
+}

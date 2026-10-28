@@ -1,0 +1,33 @@
+@import '../../../../../styles/var.less';
+
+.ColumnChart {
+  .noData {
+    text-align: center;
+    color: @primary-color;
+  }
+  .noDataText {
+    color: #6c757d;
+  }
+}
+
+.chartTooltip {
+  display: flex;
+  min-width: 220px;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+  padding: 16px 8px;
+}
+
+.chartTooltipCircle {
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  background: #698cff;
+  border-radius: 50%;
+}
+
+.chartTooltipText {
+  flex: 1;
+  text-wrap: nowrap;
+}

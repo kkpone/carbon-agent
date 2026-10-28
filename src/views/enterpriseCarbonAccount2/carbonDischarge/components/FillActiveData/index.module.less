@@ -1,0 +1,181 @@
+@import '@Variable';
+
+.activityDataInput {
+  margin-right: 12px;
+}
+
+.overWrapper {
+  color: #fba93e;
+
+  .icon {
+    margin-left: 6px;
+  }
+}
+
+.tips {
+  color: #fff;
+  text-align: start;
+  background-color: #000;
+
+  .number {
+    color: #fba93e;
+  }
+}
+
+.emissionName {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    color: @green7;
+  }
+}
+
+.moreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.moreBtnIcon {
+  margin-left: 4px;
+}
+
+.submitterContainer {
+  display: flex;
+  align-items: center;
+}
+
+.submitter {
+  .body-m();
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    color: @green7;
+  }
+}
+
+.disabledSubmitter {
+  color: @gray6;
+  cursor: not-allowed;
+
+  &:hover {
+    cursor: not-allowed;
+    color: @gray6;
+  }
+}
+
+.submitterName {
+  margin-left: 8px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.submitterCount {
+  .caption-s();
+
+  margin-left: 8px;
+  padding: 2px 4px;
+  min-width: 28px;
+  text-align: center;
+  cursor: pointer;
+  background: @gray1;
+  border-radius: 100px;
+}
+
+.submitterDropdown {
+  width: 352px;
+  padding: 12px 16px 16px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.04),
+    0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+}
+
+.submitterDropdown {
+  .caption-s-b();
+
+  color: @gray8;
+}
+
+.submitterDropdownCount {
+  .caption-s();
+
+  margin-left: 4px;
+}
+
+.submitterList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.submitterItem {
+  .body-m();
+
+  margin: 8px 8px 0 0;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  height: 24px;
+  border-radius: 100px;
+  border: 1px solid var(--line-border-2, #ebedf0);
+  background: var(--Fill-white, #fff);
+}
+
+.submitterItemName {
+  max-width: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.submitterItemCloseIcon {
+  margin-left: 4px;
+
+  font-size: 12px;
+  color: @gray6;
+  cursor: pointer;
+}
+
+.uploadIcon {
+  height: 18px;
+}
+
+.redDot {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ed5555;
+  }
+}
+
+.operateMenu {
+  padding: 4px 0;
+  min-width: 80px;
+  :global {
+    .ant-dropdown-menu-item {
+      margin: 4px 0 0;
+      padding: 5px 12px;
+
+      &:nth-of-type(1) {
+        margin-top: 0;
+      }
+    }
+  }
+}

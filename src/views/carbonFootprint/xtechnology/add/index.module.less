@@ -1,0 +1,45 @@
+@import '@src/views/carbonFootprint/mixin.less';
+
+.carbonFootprintAdd {
+  margin-bottom: 60px;
+  padding: 0 6px;
+  position: relative;
+
+  .addBtn {
+    position: absolute;
+    right: 26px;
+    top: 16px;
+    z-index: 1;
+
+    .btn {
+      border-color: @primary-color;
+      color: @primary-color;
+    }
+  }
+
+  .uploadMain {
+    .uploadTitle {
+      color: @mainDark;
+      font-size: 14px;
+    }
+
+    .uploadDetail {
+      color: @thirdDark;
+      font-size: 12px;
+    }
+
+    .fileInfo {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .fileInfoActive {
+      background: @lightGray;
+    }
+
+  }
+
+}

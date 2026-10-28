@@ -1,0 +1,285 @@
+@import '../../../../../styles/var.less';
+
+.primaryColor {
+  color: @primary-color;
+}
+
+.homeSetting {
+  &Main {
+    display: flex;
+  }
+
+  &Form {
+    width: 492px;
+  }
+
+  &MobileWrapper {
+    position: relative;
+    width: 200px;
+    height: 433px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px 0 rgb(135 150 176 / 20%);
+
+    .mobile,
+    .bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .mobile {
+      z-index: 3;
+    }
+
+    .toy {
+      position: absolute;
+      top: 148px;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+    }
+  }
+
+  .uploadBackUrl.uploadBackUrl {
+    > span,
+    > div {
+      width: 100px;
+      height: 217px;
+    }
+  }
+
+  &&&& :global(.ant-upload) {
+    height: 100%;
+  }
+
+  .uploadOrnamentUrl.uploadOrnamentUrl {
+    > span,
+    > div {
+      width: 130px;
+      height: 104px;
+    }
+  }
+}
+
+.themesDetail {
+  && {
+    padding-right: 10px;
+    padding-bottom: 0;
+    padding-left: 0;
+    background: @backgroudGray;
+    border-bottom: @GlobaFormActionsHeight solid @read-only-bg;
+
+    :global(.ant-breadcrumb) {
+      margin-left: 0;
+    }
+  }
+
+  h3.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .main {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+
+    .bottom {
+      flex: 1 1 auto;
+    }
+  }
+
+  .top {
+    :global(.ant-form-item) {
+      margin-bottom: 0;
+    }
+  }
+
+  :global(.ant-card-body) {
+    padding: 20px 16px;
+  }
+
+  :global(.ant-card + .ant-card) {
+    margin-top: 10px;
+  }
+
+  .upload {
+    width: 195px;
+
+    .uploadEmptyContainer {
+      font-size: 12px;
+
+      :global(.anticon) {
+        transform: scale(0.8);
+      }
+    }
+
+    :global(.ant-upload-picture-card-wrapper),
+    :global(.ant-upload.ant-upload-select-picture-card) {
+      width: 100%;
+      height: 96px;
+      margin: 0;
+    }
+  }
+
+  .imgTip {
+    color: @thirdDark;
+    font-size: 12px;
+  }
+
+  .checkboxGroup {
+    padding-left: 85px;
+
+    label + label {
+      margin-top: 17px;
+    }
+  }
+}
+
+.shareContainer {
+  :global(.ant-modal) {
+    padding-bottom: 0;
+  }
+
+  :global(.ant-modal-body) {
+    margin-top: 30px;
+    padding: 16px;
+    background-color: @backgroudGray;
+    border-radius: 4px;
+  }
+
+  .shareMain {
+    font-size: 16px;
+    background: @whiteBg;
+  }
+
+  .header {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    .headerData {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      padding: 40px 30px 73px;
+      color: @white;
+      font-size: 19px;
+
+      img {
+        width: 70px;
+        height: 70px;
+        margin-right: 12px;
+        border-radius: 50%;
+      }
+    }
+
+    .thumbBg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+    }
+  }
+
+  .footer {
+    position: relative;
+    z-index: 3;
+    flex-flow: row;
+    margin-top: -10px;
+    padding: 40px 24px 0.1px;
+    background-color: @white;
+    border-radius: 8px;
+
+    .fs18 {
+      font-size: 18px;
+      line-height: 25px;
+    }
+
+    > div {
+      margin-bottom: 14px;
+    }
+
+    .tagWrapper {
+      max-width: 100%;
+
+      > div {
+        display: inline-block;
+      }
+    }
+
+    .tag {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: auto;
+      overflow: hidden;
+      line-height: 38px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .icon {
+      width: 22px;
+      margin-right: 10px;
+    }
+
+    .lowCarbonPropose {
+      margin-top: 23px;
+      line-height: 29px;
+    }
+  }
+
+  .code {
+    display: flex;
+    margin-top: 28px;
+    font-size: 14px;
+
+    .codeImg {
+      width: 70px;
+      height: 70px;
+      margin-right: 13px;
+      overflow: hidden;
+      background-color: black;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    :global(.ant-divider) {
+      margin: 0;
+    }
+  }
+
+  .codeText {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    padding: 6px 0 7px;
+
+    .lightText {
+      color: @text-color-secondary;
+    }
+  }
+
+  .closeIcon {
+    position: absolute;
+    top: calc(100% + 30px);
+    left: 50%;
+    padding: 5px 30px;
+    transform: translateX(-50%);
+  }
+}

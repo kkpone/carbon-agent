@@ -1,0 +1,168 @@
+.field {
+  min-width: 0;
+}
+
+.error {
+  color: #ff4d4f;
+}
+
+.required {
+  margin-right: 4px;
+  color: #ff4d4f;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+  margin-bottom: 8px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+
+  > :first-child {
+    flex-shrink: 0;
+  }
+}
+
+.value {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+  margin-left: auto;
+}
+
+.valueText {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.edit:global(.ant-btn) {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  margin-block: -1px;
+  padding: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #999ea4;
+
+  &:not(:disabled):hover {
+    background: #f7f8f9;
+    color: #026961;
+  }
+}
+
+.edit[disabled] .editIcon {
+  opacity: 0.4;
+}
+
+.icon,
+.editIcon,
+.stepUp {
+  display: block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.editIcon {
+  background-color: currentColor;
+  mask: url('./assets/edit.svg') center / contain no-repeat;
+}
+
+.stepUp {
+  transform: scaleY(-1);
+}
+
+.readOnly {
+  overflow-wrap: anywhere;
+}
+
+.popover {
+  max-width: calc(100vw - 24px);
+
+  :global(.ant-popover-inner) {
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px #0000000a, 0 4px 8px #00000014;
+  }
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 212px;
+  max-width: calc(100vw - 40px);
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+
+  > span {
+    font-weight: 500;
+  }
+}
+
+.editorRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .numeric {
+    flex: 1 1 140px;
+    width: 140px;
+  }
+
+  :global(.ant-btn) {
+    flex: none;
+    height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    font-weight: 400;
+    line-height: 22px;
+  }
+
+  .save:not(:disabled) {
+    color: #026961;
+  }
+
+  .cancel {
+    color: #6c757d;
+  }
+}
+
+.numeric {
+  min-width: 0;
+
+  &:global(.ant-input-number-focused) {
+    border-color: #026961;
+    box-shadow: 0 0 0 2px #0269611a;
+  }
+
+  :global(.ant-input-number-input) {
+    padding-left: 12px;
+    padding-right: 32px;
+  }
+
+  :global(.ant-input-number-handler-wrap),
+  &:hover :global(.ant-input-number-handler-wrap),
+  &:global(.ant-input-number-focused) :global(.ant-input-number-handler-wrap) {
+    width: 28px;
+    opacity: 1;
+  }
+
+  :global(.ant-input-number-handler-wrap .ant-input-number-handler) {
+    flex: 1;
+    height: 50%;
+    border-color: #d2d6da;
+  }
+}

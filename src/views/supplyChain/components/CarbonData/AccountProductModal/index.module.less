@@ -1,0 +1,73 @@
+.accountProductListModal {
+  :global {
+    .ant-modal-header {
+      border-bottom: none;
+    }
+
+    .ant-modal-body {
+      padding-top: 0;
+    }
+
+    .ant-table-pagination {
+      padding-bottom: 0 !important;
+    }
+  }
+}
+
+.emptyModal {
+  :global {
+    .ant-modal-body {
+      padding-bottom: 72px;
+    }
+  }
+}
+
+.customFooter {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 10;
+}
+
+.confirmButton {
+  margin-left: 12px;
+}
+
+.accountInfoContent {
+  max-height: 520px;
+  margin-top: 8px;
+  overflow-y: auto;
+  border-top: 1px solid #ebedf0;
+
+  && > div {
+    padding: 0;
+  }
+}
+
+.accountInfoHeader {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  background: #f7f8f9;
+  border-radius: 4px;
+}
+
+.headerInfoItem {
+  margin-right: 16px;
+}
+
+.caption {
+  color: #999ea4;
+}
+
+.searchContent {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.searchContentItem {
+  display: flex;
+  column-gap: 16px;
+}

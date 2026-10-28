@@ -1,0 +1,250 @@
+.carbonLabelModalMain {
+  display: flex;
+  justify-content: space-between;
+
+  .everyMain {
+    width: 210px;
+    height: 240px;
+    padding: 24px 0;
+    text-align: center;
+    border: 1px solid #ebedf0;
+
+    .title {
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .downLoadMain {
+      // margin-top: 16px;
+      color: #0cbf9f;
+      cursor: pointer;
+    }
+
+    .carbonImg {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .circular {
+        position: absolute;
+        top: 0;
+        width: 140px;
+        height: 140px;
+        overflow: hidden;
+        // font-size: 12px;
+      }
+
+      .circular path {
+        fill: none;
+      }
+
+      .circular svg {
+        display: block;
+        overflow: visible;
+      }
+
+      .circular svg text {
+        font-size: 5px;
+      }
+    }
+
+    .labelImgMainOffset {
+      .circular {
+        left: -8px;
+        // font-size: 10px;
+      }
+
+      .circular svg text {
+        font-size: 4px;
+      }
+
+      .labelImg {
+        position: absolute;
+        left: -8px;
+      }
+    }
+
+    .labelImgMainAccount {
+      .labelUnit {
+        top: 63px;
+      }
+
+      .labelNum {
+        top: 45px;
+      }
+    }
+  }
+}
+
+.qrCodeMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 140px;
+}
+
+.carbonLabelModalMain.embedded {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  background: #f7f8f9;
+  border-radius: 8px;
+
+  .everyMain {
+    width: auto;
+    height: auto;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+    }
+
+    .titleDownload {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: auto;
+      min-width: 0;
+      height: 22px;
+      padding: 0;
+      color: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+
+      img {
+        display: block;
+      }
+    }
+
+    .carbonImg {
+      width: 120px;
+      height: 120px;
+      .circular {
+        width: 120px;
+        height: 120px;
+      }
+      .labelNum {
+        top: 43px;
+        width: 120px;
+        font-size: 12px;
+        line-height: 14px;
+      }
+      .labelUnit {
+        top: 59px;
+        width: 120px;
+        font-size: 6px;
+        line-height: 7px;
+      }
+    }
+  }
+  .qrCodeMain {
+    box-sizing: border-box;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    padding: 5px;
+    background: #fff;
+    border-radius: 8px;
+  }
+}
+
+.labelNum {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  color: #07c160;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.labelUnit {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  color: #07c160;
+  font-weight: 400;
+  font-size: 11px;
+}
+
+.labelDownIcon {
+  width: 12px !important;
+  height: auto !important;
+}
+
+.carbonLabelModalMain.stampOnly {
+  display: block;
+  width: 90.909%;
+  height: 90.909%;
+  font-size: inherit;
+  .everyMain {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    font-size: inherit;
+    border: 0;
+    .carbonImg {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      font-size: inherit;
+      border-radius: 50%;
+      > img {
+        position: absolute;
+        top: -6%;
+        left: -6%;
+        width: 112%;
+        height: 112%;
+        max-width: none;
+      }
+      .circular {
+        width: 100%;
+        height: 100%;
+      }
+      .labelNum {
+        top: 36.44%;
+        width: 100%;
+        font-size: 0.909em;
+        line-height: 1.2;
+      }
+      .labelUnit {
+        top: 49.51%;
+        width: 100%;
+        font-size: 0.455em;
+        line-height: 1.2;
+      }
+    }
+  }
+}

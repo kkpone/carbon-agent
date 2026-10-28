@@ -1,0 +1,147 @@
+.processVisualizationDrawer {
+  .titleStyle {
+    font-weight: 600;
+  }
+
+  .btns {
+    width: 72px;
+  }
+
+  .outsArrSelect {
+    position: absolute;
+    top: 7px;
+    right: 50px;
+  }
+
+  .titleFlexBtnMain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .accountNameMain {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    padding-left: 16px;
+    background: #f7f8f9ff;
+    border-radius: 4px;
+  }
+
+  .titleMain {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+
+  .paddingMain {
+    padding: 16px;
+  }
+
+  .addProductMain {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    .addProductText {
+      display: inline-block;
+      margin-left: 5px;
+      color: #0cbf9f;
+      cursor: pointer;
+    }
+  }
+
+  .closeIcon {
+    cursor: pointer;
+  }
+
+  .titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title {
+    margin-bottom: 16px;
+    color: #343a40;
+    font-weight: 500;
+  }
+
+  .matchWayContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .fileContainer {
+    :global {
+      .ant-row {
+        flex-direction: column;
+      }
+
+      .ant-col-8 {
+        flex: 1;
+        max-width: 100%;
+      }
+
+      .ant-collapse-item {
+        border-bottom: none !important;
+        margin-bottom: 6px;
+        border-radius: 4px !important;
+
+        .ant-collapse-header {
+          padding-left: 16px !important;
+          display: flex;
+          align-items: center;
+          background-color: #f7f8f9 !important;
+        }
+      }
+
+      .ant-collapse-item-active {
+        border-bottom: none;
+        background-color: #f7f8f9;
+      }
+    }
+  }
+
+  .fileInfo {
+    margin-bottom: 8px;
+    color: rgb(153 158 164);
+    font-size: 12px;
+  }
+
+  .ant-select-disabled.ant-select:not(.ant-select-customize-input)
+    .ant-select-selector,
+  .ant-picker.ant-picker-disabled,
+  .ant-input-number-disabled,
+  .ant-input[disabled] {
+    color: #333;
+    background: #f7f8f9;
+    border: 0;
+  }
+
+  :global(.ant-collapse-content-box) {
+    // border-bottom: 1px dashed #d2d6da;
+    padding-left: 0;
+  }
+
+  :global(.ant-collapse-ghost > .ant-collapse-item) {
+    border-bottom: 1px dashed #d2d6da;
+  }
+
+  :global(.ant-collapse-ghost > .ant-collapse-item:last-child) {
+    border-bottom: none !important;
+  }
+
+  :global(.ant-collapse-header) {
+    padding-left: 0 !important;
+  }
+
+  :global(.ant-collapse-header-text) {
+    font-weight: 600;
+  }
+
+  :global(.ant-collapse-arrow) {
+    margin-right: 8px !important;
+  }
+}

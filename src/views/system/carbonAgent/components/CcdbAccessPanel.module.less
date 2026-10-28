@@ -1,0 +1,624 @@
+@brand: #006b5b;
+@brand-strong: #005548;
+@mint: #eefaf6;
+@line: #dce6e2;
+@text: #04252b;
+@muted: #6c757d;
+
+.panel {
+  font-family: inherit;
+  color: @text;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  padding: 0 0 28px;
+  container: ccdb-access / inline-size;
+}
+
+.header {
+  align-items: flex-start;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-right: 28px;
+}
+
+.headerText {
+  min-width: 0;
+}
+
+.title {
+  color: @text;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  margin: 0;
+}
+
+.subtitle {
+  color: @muted;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 6px 0 0;
+}
+
+.primaryButton,
+.secondaryButton,
+.textButton,
+.dangerButton {
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  gap: 7px;
+  justify-content: center;
+  min-height: 38px;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease,
+    opacity 160ms ease;
+}
+
+.primaryButton {
+  background: @brand;
+  border: 1px solid @brand;
+  color: #fff;
+  flex: 0 0 auto;
+  font-weight: 500;
+  padding: 0 16px;
+
+  &:hover:not(:disabled) {
+    background: @brand-strong;
+    border-color: @brand-strong;
+  }
+}
+
+.secondaryButton,
+.dangerButton {
+  background: #fff;
+  border: 1px solid #cedbd6;
+  color: @text;
+  padding: 0 14px;
+
+  &:hover:not(:disabled) {
+    border-color: @brand;
+    color: @brand;
+  }
+}
+
+.dangerButton {
+  color: #a63b37;
+
+  &:hover:not(:disabled) {
+    border-color: #a63b37;
+    color: #8b2421;
+  }
+}
+
+.textButton {
+  background: transparent;
+  border: 0;
+  color: @brand;
+  min-height: 32px;
+  padding: 0 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    color: @brand-strong;
+  }
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled,
+.textButton:disabled,
+.dangerButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.notice {
+  align-items: flex-start;
+  background: @mint;
+  border: 1px solid #cbeae0;
+  border-radius: 10px;
+  display: flex;
+  gap: 11px;
+  margin-bottom: 24px;
+  padding: 14px 16px;
+}
+
+.noticeIcon {
+  color: @brand;
+  flex: 0 0 auto;
+  font-size: 17px;
+  margin-top: 2px;
+}
+
+.notice strong,
+.notice p {
+  display: block;
+}
+
+.notice strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.notice p {
+  color: @muted;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 2px 0 0;
+}
+
+.list {
+  border: 1px solid @line;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.listHeader,
+.keyRow {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns:
+    minmax(126px, 1fr) minmax(164px, 1.05fr)
+    minmax(144px, 1fr) 96px 56px 138px 138px;
+  min-width: 980px;
+}
+
+.listHeader {
+  background: #f6f8f7;
+  color: #5f716b;
+  font-size: 14px;
+  min-height: 48px;
+  padding: 0 16px;
+}
+
+.keyRow {
+  background: #fff;
+  min-height: 82px;
+  padding: 14px 16px;
+
+  & + & {
+    border-top: 1px solid @line;
+  }
+}
+
+.keyName,
+.grantName {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.meta,
+.purpose,
+.timeText {
+  color: @muted;
+  font-size: 12px;
+  line-height: 1.55;
+  margin: 3px 0 0;
+}
+
+.keyId {
+  color: #24443e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.keyIdentity {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.twoLineText {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.textTooltip {
+  max-width: min(400px, calc(100vw - 32px));
+}
+
+.textTooltip :global(.ant-tooltip-inner) {
+  max-height: 50vh;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.keyIdCell {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  min-width: 0;
+}
+
+.copyIdButton {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: @brand;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 0 0 32px;
+  font-size: 14px;
+  height: 32px;
+  justify-content: center;
+
+  &:hover {
+    background: @mint;
+    color: @brand-strong;
+  }
+
+  &:focus-visible {
+    outline: 2px solid @brand;
+    outline-offset: 2px;
+  }
+}
+
+.maskedKey {
+  color: #24443e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.timeLabel {
+  display: none;
+  color: @muted;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.maskedKeyCell {
+  min-width: 0;
+}
+
+.keyRow .purpose {
+  color: #5f716b;
+  font-size: 14px;
+}
+
+.keyRow .timeText {
+  color: #5f716b;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.statusCell {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.statusText {
+  color: @muted;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 9px;
+}
+
+.empty,
+.loading {
+  align-items: center;
+  color: @muted;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 12px;
+  justify-content: center;
+  min-height: 240px;
+  padding: 36px;
+  text-align: center;
+}
+
+.emptyIcon {
+  background: @mint;
+  border-radius: 50%;
+  color: @brand;
+  display: grid;
+  font-size: 22px;
+  height: 52px;
+  place-items: center;
+  width: 52px;
+}
+
+.secretBox {
+  background: @mint;
+  border: 1px solid #cbeae0;
+  border-radius: 10px;
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.secretLabel {
+  color: @muted;
+  display: block;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.secretValue {
+  word-break: break-all;
+  color: @text;
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
+.secretHint {
+  color: @muted;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 16px 0;
+}
+
+.secretModal :global(.ant-modal-title) {
+  color: @text;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.secretActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.grantList {
+  border: 1px solid @line;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.grantRow {
+  align-items: center;
+  background: #fff;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 116px;
+  padding: 18px 22px;
+
+  & + & {
+    border-top: 1px solid @line;
+  }
+}
+
+.grantMetadata {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  border-top: 1px solid @line;
+  padding-top: 16px;
+  color: @muted;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.grantChannel,
+.grantTimes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: center;
+}
+
+.grantIdentity {
+  align-items: flex-start;
+  display: flex;
+  gap: 13px;
+  min-width: 0;
+}
+
+.grantActions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.grantIdentity > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.grantLogo {
+  align-items: center;
+  background: #f3f8f6;
+  border: 1px solid #e2ece8;
+  border-radius: 10px;
+  color: @brand;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 18px;
+  font-weight: 600;
+  height: 46px;
+  justify-content: center;
+  object-fit: contain;
+  padding: 7px;
+  width: 46px;
+}
+
+.grantDescription {
+  color: @muted;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 3px 0 0;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.tag {
+  background: @mint;
+  border-radius: 4px;
+  color: @brand;
+  font-size: 12px;
+  line-height: 24px;
+  padding: 0 8px;
+}
+
+.channel {
+  background: #f4f6f5;
+  border-radius: 5px;
+  color: #65736f;
+  display: inline-flex;
+  font-size: 12px;
+  line-height: 24px;
+  padding: 0 8px;
+}
+
+.revoked {
+  opacity: 0.64;
+}
+
+.footnote {
+  align-items: flex-start;
+  background: #f6f8f7;
+  border-radius: 8px;
+  color: @muted;
+  display: flex;
+  font-size: 13px;
+  gap: 9px;
+  line-height: 1.55;
+  margin-top: 20px;
+  padding: 12px 14px;
+}
+
+.compactAccessList() {
+  .grantRow {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .grantRow > * {
+    width: 100%;
+  }
+
+  .grantActions {
+    border-top: 1px solid @line;
+    padding-top: 8px;
+  }
+
+  .grantActions {
+    justify-content: flex-start;
+    order: 1;
+  }
+
+  .grantActions .textButton {
+    min-height: 44px;
+  }
+}
+
+// 小屏改为带字段标签的紧凑卡片；桌面保留七列，空间不足时仅表格滚动。
+@container ccdb-access (max-width: 600px) {
+  .listHeader {
+    display: none;
+  }
+
+  .keyRow {
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+
+    .keyIdentity,
+    .keyIdCell,
+    .maskedKeyCell {
+      grid-column: 1 / -1;
+    }
+
+    [data-label]::before {
+      color: @muted;
+      content: attr(data-label);
+      flex: 0 0 68px;
+      font-size: 12px;
+    }
+
+    .maskedKeyCell {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .timeLabel {
+      display: block;
+    }
+
+    .timeText {
+      white-space: normal;
+    }
+
+    .actions {
+      justify-content: flex-end;
+    }
+  }
+}
+
+// 依据内容区宽度降级，不靠扩大整个设置弹窗容纳表格。
+@container ccdb-access (max-width: 800px) {
+  .compactAccessList();
+}
+
+@media (max-width: 900px) {
+  .panel {
+    padding: 18px 16px 32px;
+  }
+
+  .header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+    padding-right: 0;
+  }
+
+  .primaryButton {
+    width: 100%;
+  }
+
+  .compactAccessList();
+}

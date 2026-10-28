@@ -1,0 +1,116 @@
+@import url('@styles/var.less');
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    .topTitle {
+      margin-bottom: 0;
+    }
+  }
+
+  .bottom {
+    height: 100%;
+    margin-top: 8px;
+    flex: 1 1 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    padding-right: 8px;
+
+    .card {
+      cursor: pointer;
+      display: flex;
+      flex-flow: column;
+      padding: 12px;
+      margin-bottom: 12px;
+      background-color: @whiteBg;
+      border-radius: 4px;
+      border: 1px solid @whiteBg;
+
+      &.active {
+        border: 1px solid @primary-color;
+
+        .cardMethodName {
+          color: @mainDark;
+        }
+
+        .cardProductName {
+          color: @primary-color;
+        }
+      }
+
+      .cardTitle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        width: 100%;
+
+        .cardProductName {
+          width: 98%;
+          font-weight: 500;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .tag {
+          flex: 0 0 auto;
+          font-size: 12px;
+          height: 24px;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3px 8px;
+        }
+
+        .tagToBeCalculated {
+          color: @secondDark;
+          background: @lightGray;
+        }
+
+        .tagInCalculation {
+          color: @warn;
+          background: rgba(248, 162, 49, 0.06);
+        }
+
+        .tagCompleted {
+          color: @primary-color;
+          background: @primary-colorbackground;
+        }
+      }
+
+      .cardMethodName {
+        font-size: 12px;
+        color: @thirdDark;
+        margin: 8px 2px;
+      }
+
+      .deleteIconBox {
+        display: flex;
+        justify-content: flex-end;
+
+        .deleteIcon {
+          width: 14px;
+          height: 14px;
+          color: @thirdDark;
+
+          &:hover {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
+}

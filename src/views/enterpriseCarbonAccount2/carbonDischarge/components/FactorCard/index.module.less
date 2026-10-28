@@ -1,0 +1,81 @@
+@import '../../../../../styles/var.less';
+
+.factorCard {
+  .riskIcon {
+    padding-right: 3px;
+    color: @dangerTextColor;
+  }
+
+  .input {
+    width: 96px;
+    margin: 10px 8px 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    &:active,
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .error {
+    color: @dangerTextColor;
+    border-color: @dangerTextColor;
+  }
+  .inputData {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100px;
+    min-width: 80px;
+    position: relative;
+    top: 2px;
+    border-bottom: 2px solid #ebedf0;
+    width: auto;
+    :global(.ant-input-number-input) {
+      transition: none;
+      position: relative;
+      top: 5px;
+      margin: 0 8px;
+      padding: 0;
+      font-size: 14px;
+    }
+  }
+  :global(.ant-input-number-focused) {
+    border-bottom: 2px solid #0cbf9f;
+    // box-shadow: 0px 0 0 2px rgba(12, 191, 159, 0.2);
+  }
+}
+
+.infoIcon {
+  margin-left: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.wrapper {
+  width: fit-content;
+  .tips {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+}
+
+.factorValue {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.factorSource {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,32 @@
+.carbonFootprintAddSource {
+  .sourceHr {
+    position: absolute;
+    width: calc(100% + 32px);
+    height: 10px;
+    background: #f7f8f9;
+    bottom: 0px;
+    left: -16px;
+  }
+  // .transportation {
+  //   position: relative;
+  //   height: 1px;
+  //   .transportationMain {
+  //     position: absolute;
+  //     width: 100%;
+  //     top: -85px;
+  //   }
+  // }
+  .showMust {
+    position: relative;
+
+    &:before {
+      display: inline-block;
+      margin-right: 4px;
+      color: #ff4d4f;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+      line-height: 1;
+      content: '*';
+    }
+  }
+}

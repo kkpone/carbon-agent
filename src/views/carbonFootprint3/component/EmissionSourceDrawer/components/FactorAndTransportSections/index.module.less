@@ -1,0 +1,63 @@
+.titleContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.transTitle {
+  margin-top: 20px;
+  font-weight: 500;
+  color: #343a40;
+
+  .title {
+    color: var(--text-gray-8-primary, #343a40);
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+  color: #6c757d;
+  font-weight: 400;
+}
+
+.fileContainer {
+  :global {
+    .ant-row {
+      flex-direction: column;
+    }
+
+    .ant-col-8 {
+      flex: 1;
+      max-width: 100%;
+    }
+  }
+}
+
+.collWrapper {
+  :global {
+    .ant-collapse-item {
+      border-bottom: none !important;
+      margin-bottom: 6px;
+      border-radius: 4px !important;
+
+      .ant-collapse-header {
+        padding-left: 16px !important;
+        display: flex;
+        align-items: center;
+        height: 46px !important;
+        background-color: #f7f8f9 !important;
+      }
+    }
+
+    .ant-collapse-item-active {
+      border-bottom: none;
+      background-color: #f7f8f9;
+    }
+  }
+}

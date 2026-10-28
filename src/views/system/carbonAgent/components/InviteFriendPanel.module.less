@@ -1,0 +1,713 @@
+@text-primary: #04252b;
+@text-secondary: #6c757d;
+@text-tertiary: #999ea4;
+@surface-muted: #f7f8f9;
+
+.invitePanelV2 {
+  gap: 32px;
+
+  .inviteV2Body {
+    gap: 24px;
+  }
+
+  .inviteV2Hero {
+    box-sizing: border-box;
+    height: 136px;
+    min-height: 136px;
+    padding: 20px 24px;
+    // background: radial-gradient(
+    //     ellipse 442px 158px at -17px 22px,
+    //     rgb(164 232 239 / 15%) 0,
+    //     rgb(164 232 239 / 0%) 72%
+    //   ),
+    //   radial-gradient(
+    //     ellipse 442px 125px at 550px -21px,
+    //     rgb(162 223 212 / 10%) 0,
+    //     rgb(162 223 212 / 0%) 72%
+    //   ),
+    //   radial-gradient(
+    //     ellipse 331px 307px at 646px 340px,
+    //     rgb(204 238 204 / 15%) 0,
+    //     rgb(204 238 204 / 0%) 72%
+    //   ),
+    //   #fff;
+    // border: 0;
+    // border-radius: 0;
+  }
+
+  .inviteV2HeroIllustration {
+    flex: 0 0 96px;
+    width: 96px;
+    height: 96px;
+    overflow: visible;
+
+    &::before {
+      position: absolute;
+      top: 76.62px;
+      left: 10.67px;
+      z-index: 0;
+      width: 74.13px;
+      height: 14.74px;
+      background: radial-gradient(
+        ellipse at center,
+        rgb(4 37 43 / 20%) 0%,
+        rgb(4 37 43 / 8%) 44%,
+        rgb(4 37 43 / 0%) 72%
+      );
+      border-radius: 50%;
+      content: '';
+    }
+
+    img {
+      position: relative;
+      z-index: 1;
+      object-fit: cover;
+    }
+  }
+
+  .inviteV2HeroContent {
+    flex: 0 1 614px;
+    gap: 12px;
+    max-width: 614px;
+
+    > span {
+      min-height: 28px;
+      padding: 0 12px;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    h3 {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      color: @text-primary;
+      white-space: nowrap;
+
+      strong {
+        margin-left: 0;
+        font-size: 38px;
+        line-height: 46px;
+      }
+
+      > span {
+        font-size: 28px;
+        line-height: 36px;
+      }
+    }
+  }
+
+  .inviteV2Stats {
+    gap: 24px;
+  }
+
+  .inviteV2StatCard {
+    gap: 12px;
+    min-height: 92px;
+
+    strong {
+      display: flex;
+      gap: 4px;
+      align-items: baseline;
+
+      b {
+        margin: 0;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 26px;
+      }
+
+      small {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    &:nth-child(2) strong b {
+      font-size: 22px;
+    }
+  }
+
+  .inviteV2Card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+  }
+
+  .inviteV2SectionHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    h3 {
+      margin: 0;
+      color: @text-primary;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    p {
+      margin: 0;
+      color: @text-tertiary;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+
+  .inviteV2RecordsHeader h3,
+  .inviteV2RulesCard > h3 {
+    margin: 0;
+    color: @text-primary;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .inviteV2ShareRow {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .inviteV2LinkField {
+    display: flex;
+    flex: 1 1 auto;
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    height: 48px;
+    padding: 12px;
+    overflow: hidden;
+    color: @text-primary;
+    background: rgb(12 191 159 / 6%);
+    border: 1px solid rgb(12 191 159 / 30%);
+    border-radius: 8px;
+
+    :global(.anticon) {
+      flex: 0 0 auto;
+      font-size: 16px;
+    }
+
+    span:last-child {
+      min-width: 0;
+      overflow: hidden;
+      font-size: 14px;
+      line-height: 22px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .inviteV2CopyButton {
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    min-width: 112px;
+    height: 48px;
+    padding: 8px 16px;
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 22px;
+    background: #004541;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: #026961;
+    }
+
+    &:disabled {
+      cursor: wait;
+      opacity: 0.65;
+    }
+
+    :global(.anticon) {
+      font-size: 16px;
+    }
+  }
+
+  .inviteV2ShareNote {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 0;
+    color: @text-secondary;
+    font-size: 14px;
+    line-height: 22px;
+
+    :global(.anticon) {
+      flex: 0 0 auto;
+      font-size: 16px;
+    }
+  }
+
+  .inviteV2Records {
+    gap: 16px;
+  }
+
+  .inviteV2RecordsHeader {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
+      color: @text-primary;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+
+  .inviteV2DesktopTable {
+    min-width: 0;
+    overflow: hidden;
+
+    table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      height: 48px;
+      padding: 0 20px;
+      color: @text-primary;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      text-align: left;
+      border-bottom: 0.5px solid #e5e7eb;
+    }
+
+    th {
+      font-weight: 500;
+      background: @surface-muted;
+    }
+
+    th:first-child,
+    td:first-child {
+      width: 50%;
+    }
+  }
+
+  .inviteV2Invitee {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    min-width: 0;
+
+    img {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+    }
+
+    span {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .inviteV2MobileList {
+    display: none;
+  }
+
+  .inviteV2RecordsState {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    min-height: 112px;
+    color: @text-tertiary;
+    font-size: 14px;
+    line-height: 22px;
+
+    button {
+      padding: 0;
+      color: #027a48;
+      font: inherit;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+  }
+
+  .inviteV2Pagination {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: flex-end;
+
+    button,
+    > span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      color: @text-tertiary;
+      font-size: 14px;
+      font-family: inherit;
+      line-height: 22px;
+      background: #fff;
+      border: 0;
+      border-radius: 4px;
+    }
+
+    button {
+      cursor: pointer;
+
+      &:hover:not(:disabled) {
+        color: @text-primary;
+        background: @surface-muted;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.45;
+      }
+
+      &.inviteV2PaginationButtonActive {
+        color: @text-primary;
+        background: @surface-muted;
+      }
+    }
+
+    :global(.anticon) {
+      font-size: 16px;
+    }
+  }
+
+  .inviteV2RulesCard {
+    gap: 12px;
+    margin-bottom: 0;
+
+    ol {
+      margin: 0;
+      padding-left: 21px;
+      color: @text-primary;
+      font-size: 14px;
+      line-height: 34px;
+    }
+  }
+
+  .inviteV2FinalNote {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    min-height: 36px;
+    margin: 0;
+    padding: 8px 12px;
+    color: @text-tertiary;
+    font-size: 14px;
+    line-height: 22px;
+    background: @surface-muted;
+    border-radius: 8px;
+
+    :global(.anticon) {
+      flex: 0 0 auto;
+      color: #b5b8bb;
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .invitePanelMobile.invitePanelV2 {
+    gap: 12px;
+    padding: 12px;
+
+    .inviteV2Body {
+      gap: 12px;
+    }
+
+    .inviteV2Hero {
+      position: relative;
+      display: block;
+      height: auto;
+      min-height: 103px;
+      padding: 12px;
+      overflow: hidden;
+      background: radial-gradient(
+          ellipse 442px 158px at -17px 22px,
+          rgb(164 232 239 / 15%) 0,
+          rgb(164 232 239 / 0%) 72%
+        ),
+        radial-gradient(
+          ellipse 442px 125px at 550px -21px,
+          rgb(162 223 212 / 10%) 0,
+          rgb(162 223 212 / 0%) 72%
+        ),
+        radial-gradient(
+          ellipse 331px 307px at 646px 340px,
+          rgb(204 238 204 / 15%) 0,
+          rgb(204 238 204 / 0%) 72%
+        ),
+        #fff;
+      border: 1px solid #e1f0ef;
+      border-radius: 12px;
+    }
+
+    .inviteV2HeroIllustration {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      z-index: 1;
+      flex-basis: 80px;
+      width: 80px;
+      height: 80px;
+      transform: translateY(-50%);
+
+      &::before {
+        top: 65px;
+        left: 9px;
+        width: 62px;
+        height: 13px;
+      }
+    }
+
+    .inviteV2HeroContent {
+      display: flex;
+      gap: 8px;
+      width: calc(100% - 92px);
+      max-width: none;
+
+      > span {
+        max-width: 100%;
+        min-height: 24px;
+        padding: 2px 6px;
+        font-size: 12px;
+        line-height: 20px;
+      }
+
+      h3 {
+        display: block;
+        width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+
+        span,
+        strong {
+          display: block;
+          font-size: 18px;
+          line-height: 26px;
+        }
+
+        strong {
+          margin-top: 4px;
+          font-size: 24px;
+          line-height: 32px;
+        }
+      }
+    }
+
+    .inviteV2Stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .inviteV2StatCard {
+      justify-content: flex-start;
+      gap: 8px;
+      min-height: 76px;
+      padding: 12px 8px;
+
+      > span {
+        font-size: 12px;
+        line-height: 20px;
+        overflow-wrap: anywhere;
+      }
+
+      strong {
+        min-width: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      strong,
+      strong b {
+        font-size: 24px;
+        line-height: 26px;
+      }
+
+      strong small {
+        font-size: 13px;
+        line-height: 20px;
+        overflow-wrap: anywhere;
+      }
+
+      &:nth-child(2) strong b {
+        font-size: 14px;
+        line-height: 26px;
+        white-space: nowrap;
+      }
+    }
+
+    .inviteV2Card {
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .inviteV2ShareRow {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .inviteV2LinkField {
+      width: 100%;
+      height: 48px;
+
+      :global(.anticon) {
+        font-size: 16px;
+      }
+
+      span:last-child {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }
+
+    .inviteV2CopyButton {
+      width: 100%;
+      height: 48px;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .inviteV2LinkPlaceholder {
+      min-height: 48px;
+      height: auto;
+
+      span:last-child {
+        font-size: 14px;
+        line-height: 22px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+    }
+
+    .inviteV2ShareNote {
+      align-items: flex-start;
+      font-size: 13px;
+      line-height: 21px;
+
+      :global(.anticon) {
+        margin-top: 3px;
+      }
+    }
+
+    .inviteV2SectionHeader p {
+      color: @text-secondary;
+      font-size: 13px;
+      line-height: 21px;
+    }
+
+    .inviteV2RecordsHeader {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .inviteV2Records {
+      padding-bottom: 12px;
+    }
+
+    .inviteV2DesktopTable {
+      display: none;
+    }
+
+    .inviteV2MobileList {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .inviteV2MobileRecord {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      min-height: 64px;
+      padding: 8px 0;
+      border-bottom: 1px solid #edeff1;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      > img {
+        flex: 0 0 32px;
+        width: 32px;
+        height: 32px;
+      }
+
+      > div {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+      }
+
+      strong,
+      span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      strong {
+        color: @text-primary;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      span {
+        color: @text-secondary;
+        font-size: 12px;
+        line-height: 19px;
+      }
+    }
+
+    .inviteV2RecordsState {
+      min-height: 96px;
+    }
+
+    .inviteV2Pagination {
+      justify-content: center;
+    }
+
+    .inviteV2RulesCard ol {
+      font-size: 14px;
+      line-height: 24px;
+
+      li + li {
+        margin-top: 8px;
+      }
+    }
+
+    .inviteV2FinalNote {
+      align-items: flex-start;
+      padding: 8px;
+
+      :global(.anticon) {
+        margin-top: 3px;
+      }
+    }
+  }
+}

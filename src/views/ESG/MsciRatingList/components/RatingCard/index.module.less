@@ -1,0 +1,281 @@
+.ratingCard {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #026961;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .leftSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 16px;
+    width: 218px;
+    flex-shrink: 0;
+
+    .companyName {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #04252b;
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+    }
+
+    .tagsWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .tag {
+        background: #f7f8f9;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #04252b;
+        width: fit-content;
+      }
+    }
+  }
+
+  .rightSection {
+    flex: 1;
+    background: rgba(247, 248, 249, 0.6);
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    .ratingContent {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .ratingHeader {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+
+        .ratingTitleWrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          // flex: 1;
+
+          .ratingTitleRow {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding-top: 12px;
+
+            .ratingTitleMain {
+              font-family: 'PingFang SC', sans-serif;
+              font-weight: 600;
+              font-size: 20px;
+              line-height: 22px;
+              color: #04252b;
+              letter-spacing: 4px;
+            }
+
+            .ratingTitleSub {
+              font-family: 'PingFang SC', sans-serif;
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 18px;
+              color: #999ea4;
+            }
+
+            .infoIcon {
+              color: #999ea4;
+              font-size: 14px;
+              cursor: pointer;
+              width: 14px;
+              height: 14px;
+
+              &:hover {
+                color: #008077;
+              }
+            }
+          }
+
+          .estimatedScore {
+            font-family: 'PingFang SC', sans-serif;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 22px;
+            color: #04252b;
+            letter-spacing: 1.4px;
+          }
+        }
+
+        .ratingCircleWrapper {
+          flex-shrink: 0;
+          flex: 1;
+
+          position: relative;
+
+          .ratingCircle {
+            width: 62px;
+            height: 62px;
+            border-radius: 31px;
+            background-color: #008077;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'PingFang SC', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 22px;
+            color: #fff;
+          }
+
+          .ratingInnerCircle {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            border-radius: 26px;
+            border: 1px solid #fff;
+            top: 5px;
+            left: 5px;
+          }
+        }
+
+        .ratingActions {
+          display: flex;
+          gap: 4px;
+          align-items: center;
+          flex-shrink: 0;
+          cursor: default;
+
+          .actionIcon {
+            color: #999ea4;
+            font-size: 16px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+              color: #008077;
+            }
+          }
+        }
+      }
+
+      .ratingScale {
+        display: flex;
+        border: 1px solid #ebedf0;
+        border-radius: 4px;
+        overflow: hidden;
+
+        .scaleItem {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 4px;
+          font-family: 'PingFang SC', sans-serif;
+          font-weight: 600;
+          font-size: 8px;
+          line-height: 12px;
+          color: #04252b;
+          border-right: 1px solid #ebedf0;
+          min-height: 24px;
+
+          &:last-child {
+            border-right: none;
+          }
+
+          &.scaleItemFirst {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+          }
+
+          &.scaleItemLast {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+          }
+
+          &.scaleItemActive {
+            background-color: #008077;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .scoreBreakdown {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+
+      .scoreItem {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+
+        .scoreLabelRow {
+          display: flex;
+          gap: 4px;
+          align-items: center;
+
+          .scoreLabel {
+            font-family: 'PingFang SC', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #6c757d;
+          }
+
+          .scorePercent {
+            font-family: 'PingFang SC', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #6c757d;
+          }
+        }
+
+        .scoreLabelRowEn {
+          flex-direction: column;
+        }
+
+        .scoreValue {
+          font-family: 'PingFang SC', sans-serif;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 22px;
+          color: #04252b;
+        }
+
+        .scoreValueEn {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

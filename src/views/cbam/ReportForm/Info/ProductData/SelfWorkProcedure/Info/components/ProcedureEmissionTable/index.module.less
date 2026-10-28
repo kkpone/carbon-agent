@@ -1,0 +1,32 @@
+@import url('@styles/var.less');
+
+.selectWithCNWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.emissionWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.calcWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 18px 0 6px;
+}
+
+.powerGroupWrapper {
+  margin-top: 10px;
+}
+
+.emissionWrapper {
+  :global {
+    .ant-radio-wrapper {
+      margin-right: 4px;
+    }
+  }
+}

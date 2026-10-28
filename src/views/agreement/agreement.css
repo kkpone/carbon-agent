@@ -1,0 +1,47 @@
+.agreement {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin-top: px2rem(80px);
+  margin-bottom: 40px;
+  overflow: auto;
+}
+
+.agreement::-webkit-scrollbar {
+  /* 滚动条整体样式 */
+  width: 0;
+
+  /* 高宽分别对应横竖滚动条的尺寸 */
+  height: 1px;
+}
+
+.agreement::-webkit-scrollbar-thumb {
+  background: #535353;
+
+  /* 滚动条里面小方块 */
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px #ccc;
+}
+
+.agreement::-webkit-scrollbar-track {
+  background: #ededed;
+  border-radius: 10px;
+
+  /* 滚动条里面轨道 */
+  box-shadow: inset 0 0 5px #ccc;
+}
+
+.agreement .contents {
+  width: px2rem(1000px);
+  height: auto;
+  color: #333;
+  font-weight: 400;
+  line-height: px2rem(22px);
+}
+
+.agreement_loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}

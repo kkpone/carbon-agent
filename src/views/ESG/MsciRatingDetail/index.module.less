@@ -1,0 +1,468 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 12px 40px;
+  border-bottom: 1px solid #ebedf0;
+  flex-shrink: 0;
+
+  .headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .backArea {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .backIcon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #04252b;
+        font-size: 16px;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #026961;
+        }
+      }
+
+      .breadcrumbText {
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #04252b;
+      }
+
+      .divider {
+        color: #d5d7da;
+        font-size: 16px;
+        line-height: 16px;
+      }
+
+      .companyName {
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #04252b;
+      }
+
+      .yearSelect {
+        width: 80px;
+        border-radius: 4px;
+        background: #f7f8f9;
+        :global(.ant-select-selector) {
+          border: none;
+          background: transparent;
+          padding: 0;
+          box-shadow: none;
+        }
+
+        :global(.ant-select-selection-item) {
+          padding: 0;
+          font-family: 'PingFang SC', sans-serif;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 22px;
+          color: #04252b;
+        }
+      }
+
+      .industryDisplay {
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #8a8f94;
+        border-radius: 4px;
+        background: #f7f8f9;
+        padding: 2px 8px;
+      }
+
+      .referFilesDisplay {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 0 8px;
+        height: 22px;
+        background: #ebf8f0;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #d8f1e2;
+        }
+
+        .referFilesIcon {
+          width: 16px;
+          height: 16px;
+          color: #026961;
+          font-size: 16px;
+        }
+
+        .referFilesCount {
+          font-family: 'PingFang SC', sans-serif;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 18px;
+          color: #026961;
+        }
+      }
+    }
+  }
+
+  .fileListPopover {
+    max-width: 300px;
+
+    .fileItem {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #ebedf0;
+      }
+
+      .fileName {
+        flex: 1;
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: #04252b;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .downloadIcon {
+        width: 16px;
+        height: 16px;
+        color: #026961;
+        font-size: 16px;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: color 0.2s;
+
+        &:hover {
+          color: #0cbf9f;
+        }
+      }
+    }
+  }
+
+  .headerRight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .tipText {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: #6c757d;
+    }
+
+    .reRateBtn {
+      color: #04252b;
+      padding: 0;
+      height: auto;
+    }
+
+    .aiRatingBtn {
+      background: #026961;
+      border-color: #026961;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+
+  .leftPanel {
+    width: 342px;
+    border-right: 1px solid #ebedf0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+  }
+
+  .rightPanel {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 24px;
+
+    .issueCard {
+      background: #fff;
+      border: 1px solid #ebedf0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .issueHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .issueTitle {
+        font-weight: 600;
+        color: #04252b;
+      }
+
+      .issueScore {
+        color: #6c757d;
+        font-size: 12px;
+      }
+    }
+
+    .sectionBlock {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed #ebedf0;
+    }
+
+    .sectionTitle {
+      font-weight: 600;
+      color: #04252b;
+      margin-bottom: 8px;
+    }
+
+    .sectionDesc {
+      color: #6c757d;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .subSection {
+      margin-top: 8px;
+      padding: 8px;
+      background: #f7f8f9;
+      border-radius: 6px;
+    }
+
+    .subSectionHeader {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      color: #04252b;
+      margin-bottom: 6px;
+    }
+
+    .dataItem {
+      padding: 8px 0;
+      border-top: 1px solid #ebedf0;
+
+      &:first-child {
+        border-top: none;
+      }
+    }
+
+    .dataItemHeader {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 500;
+      color: #04252b;
+      margin-bottom: 4px;
+    }
+
+    .dataItemContent {
+      color: #444;
+      font-size: 12px;
+      line-height: 18px;
+      white-space: pre-wrap;
+    }
+
+    .dataItemSuggestion {
+      margin-top: 4px;
+      color: #026961;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .emptyState {
+      color: #999;
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .pillarBlock {
+      margin-bottom: 16px;
+    }
+
+    .pillarHeader {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 4px;
+      border-left: 4px solid transparent;
+      background: #f7f8f9;
+      margin-bottom: 8px;
+    }
+
+    .pillarName {
+      font-weight: 600;
+      color: #04252b;
+      font-size: 14px;
+    }
+
+    .pillarScore,
+    .pillarPercent {
+      font-weight: 600;
+      color: #04252b;
+      font-size: 14px;
+    }
+
+    .pillarDeduction {
+      font-weight: 600;
+      color: #04252b;
+      font-size: 14px;
+    }
+
+    .refreshIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      margin-left: auto;
+
+      img {
+        width: 16px;
+        height: 16px;
+        display: block;
+      }
+
+      &:hover:not(.refreshIconDisabled) {
+        opacity: 0.8;
+      }
+
+      &.refreshIconRotating {
+        animation: rotate 1s linear infinite;
+      }
+
+      &.refreshIconDisabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .pillarProgressBar {
+      display: flex;
+      gap: 2px;
+      height: 16px;
+      width: 185px;
+    }
+
+    .pillarProgressSegment {
+      flex: 1;
+      height: 100%;
+      background: #fff;
+      border: 1px solid #ebedf0;
+    }
+  }
+}
+
+.fileItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  // &:hover {
+  //   background-color: #f5f5f5;
+  // }
+
+  .fileName {
+    flex: 1;
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: #04252b;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .downloadIcon {
+    width: 16px;
+    height: 16px;
+    color: #026961;
+    font-size: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #0cbf9f;
+    }
+  }
+}
+
+.addAccountBtn {
+  height: 38px;
+  padding-right: 12px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #026961;
+  cursor: pointer;
+}
+
+.addAccountBtnPrefix {
+  position: relative;
+  width: 52px;
+}
+
+.addAccountBtnAiIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -10px;
+  margin-top: -5px;
+}

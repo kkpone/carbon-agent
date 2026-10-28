@@ -1,0 +1,107 @@
+@import '@src/styles/var.less';
+
+@supplierFooterHeight: 62px;
+@supplierFooterGap: 16px;
+
+.supplier {
+  &&& {
+    padding: 16px 40px 120px;
+  }
+}
+
+.scrollableTabMode {
+  &&& {
+    height: 100%;
+    min-height: 0;
+    padding-bottom: (@supplierFooterHeight + @supplierFooterGap);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .title,
+  .supplierTab {
+    flex: 0 0 auto;
+  }
+
+  .supplierTab {
+    margin-bottom: 12px;
+  }
+}
+
+.scrollableTabContent {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  padding-right: 4px;
+  padding-bottom: @supplierFooterGap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  scroll-padding-bottom: (@supplierFooterHeight + @supplierFooterGap);
+}
+
+.enterpriseCarbonTabContent {
+  padding-right: 0;
+}
+
+.title {
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+}
+
+.supplierTab {
+  margin-top: 16px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.opeBtn {
+  position: absolute;
+  right: 0;
+  top: 6px;
+  padding: 6px 12px;
+  display: flex;
+  column-gap: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  color: #04252b;
+  &:hover {
+    color: #026961;
+    background: #f7f8f9;
+  }
+}
+
+.tab {
+  :global {
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.footer {
+  padding: 0 40px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: @supplierFooterHeight;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  column-gap: 16px;
+  z-index: 10;
+  background: #fff;
+  box-shadow: 0px -4px 8px 0px rgba(0, 0, 0, 0.04);
+  :global {
+    .ant-btn-default,
+    .ant-btn-primary {
+      min-width: 76px;
+    }
+  }
+}

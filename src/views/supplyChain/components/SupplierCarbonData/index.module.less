@@ -1,0 +1,147 @@
+@import '@src/styles/var.less';
+
+.supplierCarbonData {
+  && {
+    padding: 16px 40px 120px;
+  }
+
+  :global {
+    .ant-tabs-nav-wrap {
+      padding: 0 16px;
+    }
+
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.header {
+  margin-bottom: 32px;
+  color: #04252b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+}
+
+.infoBlock {
+  margin-bottom: 32px;
+}
+
+// .secondaryTitle {
+//   margin-bottom: 24px;
+//   color: #04252b;
+//   font-size: 16px;
+//   font-weight: 500;
+//   line-height: 24px; /* 150% */
+// }
+
+.basicInfoGrid {
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.commonInput {
+  margin-top: 8px;
+}
+
+//---old
+.supplierCarbonDataContent {
+  padding: 16px;
+}
+
+.carbonDataInfo {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: #f7f8f9;
+  border-radius: 4px;
+}
+
+.carbonDataInfoItem {
+  margin-right: 24px;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.companyIcon {
+  margin-right: 16px;
+  font-size: 32px;
+}
+
+.secondaryTitle {
+  margin: 16px 0;
+  color: #343a40;
+  font-weight: 500;
+}
+
+.caption {
+  color: #999ea4;
+}
+
+.productInfo {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.productInfoItem {
+  flex: 1;
+}
+
+.reportFileItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 450px;
+  margin-top: 8px;
+  padding: 4px 12px;
+  background: #f7f8f9;
+  border-radius: 4px;
+}
+
+.reportFileName {
+  width: 376px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.noReport {
+  margin-top: 8px;
+}
+
+.reportBtn {
+  margin-right: 8px;
+  cursor: pointer;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.statusTag {
+  display: inline-block;
+  padding: 2px 6px;
+  color: #6c757d;
+  font-size: 12px;
+  background: #f7f8f9;
+  border: 1px solid #d2d6da;
+  border-radius: 4px;
+}
+
+.approvedStatusTag {
+  color: #0cbf9f;
+  background: #e6fff6;
+  border-color: #aaf2db;
+}
+
+.disApprovedStatusTag {
+  color: #ed5555;
+  background: #fff2f0;
+  border-color: #ffdad6;
+}

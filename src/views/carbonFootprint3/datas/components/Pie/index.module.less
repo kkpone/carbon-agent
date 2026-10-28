@@ -1,0 +1,31 @@
+@import '../../../../../styles/var.less';
+.pie {
+  font-size: 12px;
+
+  :global(.innerContent) {
+    font-size: 10px;
+    width: 100%;
+  }
+  .total {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .tip {
+    color: @text-color-secondary;
+    margin-top: 4px;
+  }
+
+  .noData {
+    color: @primary-color;
+    text-align: center;
+  }
+}
+
+.PieChart {
+  text-align: center;
+
+  .noDataText {
+    color: #6c757d;
+  }
+}

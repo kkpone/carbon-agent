@@ -1,0 +1,38 @@
+@import url('@styles/var.less');
+
+.infoWrapper {
+  .factoryInfoWrapper {
+    padding: 24px;
+    margin-bottom: 36px;
+    background-color: @lightGreyBg;
+
+    :global {
+      .ant-descriptions-item-label {
+        font-weight: 500;
+      }
+
+      .ant-descriptions-item-content {
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    .showText {
+      width: 95%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .aHeader {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    .expandBtn {
+      display: flex;
+      gap: 6px;
+    }
+  }
+}

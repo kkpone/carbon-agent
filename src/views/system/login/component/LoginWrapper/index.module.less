@@ -1,0 +1,94 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 476px;
+  padding: 48px;
+  background: var(--fill-white, #fff);
+  border-radius: 12px;
+
+  :global(.ant-formily-item-help-enter-active) {
+    height: 32px;
+    line-height: 32px;
+  }
+
+  :global(input:-webkit-autofill) {
+    background-color: white !important; /* 设置为你需要的背景色 */
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* 清除默认样式 */
+    -webkit-text-fill-color: black !important; /* 恢复文字颜色 */
+  }
+
+  :global(.ant-formily-item-error-help) {
+    font-size: 12px;
+  }
+
+  :global(.Mui-focused .MuiOutlinedInput-notchedOutline) {
+    border-width: 1px !important;
+    border-color: rgba(0, 0, 0, 0.87) !important;
+  }
+
+  .languageButton {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: var(--Neutral-Text-text-1, #04252b);
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    background: var(--fill-white, #fff);
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      background: #f7f8f9;
+      border-color: #d1d5db;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #31ddb8;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.loginPage {
+  box-sizing: border-box;
+  width: 866px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 12px;
+
+  :global(.Mui-focused .MuiOutlinedInput-notchedOutline) {
+    border-color: #004541 !important;
+  }
+}
+
+.agentLoginModal {
+  width: 836px;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 12px;
+
+  .languageButton {
+    top: 48px;
+    right: 48px;
+    z-index: 1;
+  }
+
+  :global(.Mui-focused .MuiOutlinedInput-notchedOutline) {
+    border-color: #004541 !important;
+  }
+}

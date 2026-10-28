@@ -1,0 +1,141 @@
+.assistant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 40px;
+  color: #fff;
+  // background: var(--brand-green-7-normal, #0CBF9F);
+  border-radius: 100px 4px 4px 100px;
+  cursor: pointer;
+
+  img {
+    margin-right: 4px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 592px;
+
+  .header {
+    display: flex;
+    flex-grow: 0;
+    align-items: center;
+    justify-content: flex-start;
+    width: 352px;
+    padding: 16px 0;
+  
+    .text {
+      color: var(--text-gray-8-primary, #343A40);
+      font-weight: 500;
+      font-size: 14px;
+  
+      /* Body 内容/@body-m-b */
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 22px; /* 157.143% */
+    }
+  
+    .reset {
+      color: var(--text-gray-5-disabled, #B5B8BB);
+      font-weight: 400;
+      font-size: 12px;
+  
+      /* Caption 辅助信息/@caption-s */
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 18px; /* 150% */
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    flex-grow: 0;
+    flex-shrink: 1;
+    overflow: auto;
+    // background-color: red;
+
+    .msgWrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 454px;
+      
+      .box {
+        display: flex;
+        align-items: center;
+        // padding: 6px 6px;
+        justify-content: center;
+        width: 64px;
+        height: 48px;
+        margin: 8px 0 0;
+        background: var(--fill-white, #FFF);
+        background: linear-gradient(180deg, rgb(7 214 219 / 7%) 0%, rgb(7 214 219 / 4%) 100%);
+        border-radius: 16px 16px 16px 4px;
+      
+        .loading {
+          width: 32px;
+          height: 32px;
+        }
+      }
+      
+    }
+  }
+
+  .footer {
+    flex-grow: 1;
+    flex-shrink: 0;
+    // height: 86px;
+    padding: 12px 0 4px;
+
+    .inputWrapper {
+      display: flex;
+      gap: 4px;
+      align-items: flex-start;
+      align-self: stretch;
+      justify-content: center;
+      padding: 8px;
+      background: var(--Fill-white, #FFF);
+      border: 1px solid var(--line-border-2, #EBEDF0);
+      border-radius: 8px;
+      box-shadow: 0 0 8px 0 rgb(0 0 0 / 4%);
+
+      .textarea {
+        border: none;
+      }
+
+      .submit {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        margin-left: 6px;
+        padding: 0 10px;
+        background: #E1E4E4;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .canSubmit {
+        background-color: #0CBF9F;
+      }
+    }
+
+    .tip {
+      width: 100%;
+      color: var(--text-gray-5-disabled, #B5B8BB);
+      font-weight: 400;
+      font-size: 11px;
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 18px; /* 163.636% */
+      text-align: center;
+    }
+  }
+}
+

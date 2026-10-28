@@ -1,0 +1,475 @@
+@import '@src/styles/var.less';
+
+.textEllips {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  transition: all 0.4s;
+}
+
+.wrapper {
+  &&& {
+    padding: 0;
+  }
+
+  .name {
+    color: @primary-color;
+  }
+
+  .saasHomeImg {
+    display: block;
+    width: 100%;
+  }
+
+  .commBox {
+    position: relative;
+    padding: 16px;
+    border-bottom: 10px solid #f7f8f9;
+
+    .title {
+      padding-top: 17px;
+    }
+
+    .liability {
+      text-align: center;
+      color: #b5b8bbff;
+      font-weight: 400;
+      font-size: 14px;
+    }
+    .chart {
+      width: 100%;
+      height: 500px;
+      margin-top: 20px;
+    }
+  }
+  .mainBox {
+    display: flex;
+    min-height: 100%;
+
+    .leftBox {
+      border-right: 12px solid #f7f8f9;
+      min-width: 800px;
+      width: 80%;
+      .standingUse {
+        // height: 116px;
+        position: relative;
+        box-sizing: border-box;
+        // min-width: 936px;
+        border-bottom: 12px solid #f7f8f9;
+        padding: 16px;
+
+        .innerBox {
+          overflow: hidden;
+          border: 1px solid transparent;
+        }
+
+        .useBox::-webkit-scrollbar {
+          display: none;
+        }
+
+        .useBox {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          width: 100%;
+          .addUse {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            opacity: 1;
+            border: 1px solid #ebedf0ff;
+            background: #ffffffff;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .addIcon {
+              color: #b5b8bbff;
+            }
+          }
+          .useWord {
+            color: #6c757dff;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: 'PingFang SC';
+          }
+          .useItem {
+            display: flex;
+            align-items: center;
+            width: 20%;
+            margin: 24px 0 0 0;
+            padding: 4px 8px;
+            font-weight: 400;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 4px;
+              margin-right: 8px;
+            }
+
+            .name {
+              color: #343a40ff;
+              font-size: 14px;
+              font-weight: 400;
+              font-family: 'PingFang SC';
+            }
+            .modelName {
+              color: #999ea4ff;
+              font-size: 12px;
+              padding-top: 1px;
+              font-weight: 400;
+            }
+            .disableName {
+              color: #999ea4;
+              font-size: 14px;
+              font-weight: 400;
+              font-family: 'PingFang SC';
+            }
+            .diabledModelName {
+              color: #999ea4;
+              font-size: 12px;
+              padding-top: 1px;
+              font-weight: 400;
+            }
+          }
+
+          .useItem:hover {
+            background: #f7f8f9;
+
+            .name {
+              color: #0cbf9f;
+            }
+          }
+        }
+      }
+    }
+
+    .rightBox {
+      min-width: 292px;
+      max-width: 20%;
+      padding: 16px 26px 16px 16px;
+      .lastNewBox {
+        padding-bottom: 16px;
+        border-bottom: 1px solid #f7f8f9;
+        margin-bottom: 15px;
+        cursor: pointer;
+        .imgBox {
+          width: 100%;
+          min-width: 260px;
+          height: 110px;
+          margin: 16px auto;
+          .newImg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      .newsCont {
+        color: #999ea4ff;
+        font-size: 12px;
+        font-weight: 400;
+        word-break: break-all;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        cursor: pointer;
+      }
+      .NewsItem {
+        margin-bottom: 16px;
+      }
+      .newsTitle {
+        color: #343a40ff;
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 4px;
+        .textEllips();
+        cursor: pointer;
+      }
+      .more {
+        color: #0cbf9fff;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'PingFang SC';
+        text-align: center;
+        margin-top: 15px;
+        cursor: pointer;
+      }
+      .newsCont:hover,
+      .newsTitle:hover {
+        color: #0cbf9f;
+        transition: all 0.4s;
+      }
+    }
+  }
+
+  .echartBox {
+    min-height: 600px;
+    padding-top: 0;
+    // height: 100%;
+    border: 0;
+    .ant-select-selector {
+      width: 112px;
+    }
+    :global(.ant-tabs-nav) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .title {
+    color: #343a40;
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+// 资讯列表
+.informationListBox {
+  padding-top: 20px;
+  padding-bottom: 50px;
+  overflow-y: auto;
+  height: calc(100vh - 135px);
+
+  :global(.ant-radio-group) {
+    margin-bottom: 4px;
+  }
+}
+
+// 底部分页
+.pageBarFix {
+  position: fixed;
+  right: 10px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+  margin-top: 70px;
+  padding-right: 16px;
+  background: #fff;
+  border-top: 1px solid #f7f8f9;
+  transition: all 0.2s;
+}
+
+.pageBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-right: 32px;
+  background: #fff;
+  transition: all 0.2s;
+}
+// 产品动态
+.productListBox {
+  padding-bottom: 50px;
+
+  .productListItem {
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f7f8f9;
+
+    .timeBox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 80px;
+      height: 80px;
+      margin-right: 20px;
+      padding: 10px 0;
+      background: #f7f8f9;
+      border-radius: 4px;
+
+      .day {
+        color: #0cbf9f;
+        font-weight: 500;
+        font-size: 24px;
+      }
+
+      .year {
+        color: #343a40;
+        font-weight: 400;
+        font-size: 14px;
+      }
+    }
+
+    .infoBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px 0;
+      .tit:extend(.textEllips) {
+        margin-bottom: 10px;
+        color: #343a40;
+        font-weight: 500;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .desc:extend(.textEllips) {
+        color: #999ea4;
+        font-weight: 400;
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .productListItem:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .productListItem:hover {
+    .tit {
+      color: #0cbf9f;
+    }
+  }
+}
+// 底部分页
+.pageBarFix {
+  position: fixed;
+  right: 10px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+  margin-top: 70px;
+  padding-right: 16px;
+  background: #fff;
+  border-top: 1px solid #f7f8f9;
+  transition: all 0.2s;
+}
+
+.articleDetailBox {
+  position: relative;
+  padding: 30px 14px 50px;
+
+  .topBox {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ebedf0;
+
+    .tit {
+      margin-bottom: 20px;
+      color: #343a40;
+      font-weight: 500;
+      font-size: 26px;
+    }
+
+    .infoBox {
+      display: flex;
+      color: #343a40;
+      font-weight: 400;
+      font-size: 14px;
+
+      .source {
+        padding-right: 50px;
+      }
+    }
+  }
+
+  .contentBox {
+    position: relative;
+    min-height: calc(100vh - 345px);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+
+    p {
+      margin: 0;
+    }
+
+    img {
+      display: block;
+      width: 800px;
+      margin: 0 auto;
+    }
+  }
+
+  .liability {
+    // text-indent: 32px;
+    color: #6c757d;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+// 资讯列表
+.informationListBox {
+  padding-top: 20px;
+  padding-bottom: 50px;
+
+  :global(.ant-radio-group) {
+    margin-bottom: 4px;
+  }
+
+  .infomationItem {
+    display: flex;
+    padding: 16px 0;
+    border-bottom: 1px solid #f7f8f9;
+
+    .poster {
+      width: 200px;
+      height: 112px;
+      margin-right: 20px;
+      border-radius: 4px;
+    }
+
+    .infoBox {
+      padding: 10px 0;
+      .tit:extend(.textEllips) {
+        margin-bottom: 10px;
+        color: #343a40;
+        font-weight: 500;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      .desc:extend(.textEllips) {
+        margin-bottom: 22px;
+        color: #999ea4;
+        font-weight: 400;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .bottomBox {
+        display: flex;
+        color: #343a40;
+        font-weight: 400;
+        font-size: 12px;
+        cursor: pointer;
+
+        .sorce {
+          padding-right: 50px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .infomationItem:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .infomationItem:hover {
+    .tit {
+      color: #0cbf9f;
+    }
+  }
+}
+
+.pageWrapper {
+  display: flex;
+  justify-content: flex-end;
+}

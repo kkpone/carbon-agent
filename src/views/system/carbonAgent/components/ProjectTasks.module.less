@@ -1,0 +1,600 @@
+@text-primary: #04252b;
+@text-secondary: #6c757d;
+@text-tertiary: #999ea4;
+@surface-muted: #f7f8f9;
+@brand-dark: #004541;
+
+.projectTasksPage {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  overflow: auto;
+  box-sizing: border-box;
+  background: #fff;
+  color: @text-primary;
+  padding: 32px 40px 40px;
+}
+
+.projectTasksPage *,
+.projectTasksPage *::before,
+.projectTasksPage *::after {
+  box-sizing: border-box;
+}
+
+.projectTasksHeader {
+  width: 100%;
+  min-width: 0;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 0 24px;
+  background: #fff;
+}
+
+.projectTasksHeader h1 {
+  margin: 0;
+  color: @text-primary;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.projectTasksHeader > button {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 24px;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.projectTasksHeader > button:hover,
+.projectTasksHeader > button:focus-visible {
+  background: @surface-muted;
+  outline: none;
+}
+
+.projectTasksHeader > button img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.projectTasksToolbar {
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.projectTaskFilters {
+  width: auto;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 8px;
+  margin: 0;
+  background: @surface-muted;
+  padding: 2px;
+}
+
+.projectTaskFilters button {
+  min-width: 0;
+  height: 34px;
+  border: 0;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  color: @text-secondary;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 6px 16px;
+  white-space: nowrap;
+}
+
+.projectTaskFilters button:hover,
+.projectTaskFilters button:focus-visible {
+  background: #f1f3f4;
+  color: @text-primary;
+  outline: none;
+}
+
+.projectTaskFilters .projectTaskFilterActive {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  color: @text-primary;
+}
+
+.projectTaskFilters strong {
+  color: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.projectTaskCreateButton {
+  height: 38px;
+  border: 0;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: @brand-dark;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.projectTaskCreateButton:hover,
+.projectTaskCreateButton:focus-visible {
+  background: #026961;
+  outline: none;
+}
+
+.projectTaskCreateButton > span {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 16px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.projectTaskCreateButton img {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.projectTaskTableWrap {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.projectTaskTable {
+  width: 100%;
+  min-width: 1140px;
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.projectTaskColumnTask {
+  width: 280px;
+}
+
+.projectTaskColumnObject {
+  width: 300px;
+}
+
+.projectTaskColumnAssignee {
+  width: 120px;
+}
+
+.projectTaskColumnDueTime {
+  width: 280px;
+}
+
+.projectTaskColumnStatus {
+  width: 160px;
+}
+
+.projectTaskTable th {
+  height: 48px;
+  background: @surface-muted;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  padding: 0 20px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.projectTaskTable td {
+  height: 70px;
+  max-width: 0;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fff;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 12px 20px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskTable tbody tr {
+  transition: background-color 0.16s ease;
+}
+
+.projectTaskTable tbody tr:hover td,
+.projectTaskTable tbody .projectTaskRowHighlighted td {
+  background: #f8fbfa;
+}
+
+.projectTaskPrimaryCell {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.projectTaskPrimaryCell strong,
+.projectTaskPrimaryCell span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskPrimaryCell strong {
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.projectTaskPrimaryCell span {
+  color: @text-tertiary;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.projectTaskDueTime {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.projectTaskDueTime > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskDueTime > em {
+  height: 22px;
+  border: 1px solid #cb3430;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #cb3430;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 20px;
+  padding: 0 8px;
+}
+
+.projectTaskStatus {
+  height: 28px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef1f2;
+  color: @text-primary;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 22px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.projectTaskStatustodo {
+  background: #eef1f2;
+}
+
+.projectTaskStatusdoing {
+  background: #fceedf;
+}
+
+.projectTaskStatusdone {
+  background: #ddf4f2;
+}
+
+.projectTaskTable td.projectTaskTableState {
+  height: 360px;
+  color: @text-tertiary;
+  text-align: center;
+}
+
+.projectTaskTableState span {
+  display: block;
+}
+
+.projectTaskTableState button {
+  border: 0;
+  margin-top: 8px;
+  background: transparent;
+  color: #026961;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.projectTaskPagination {
+  min-height: 32px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 4px;
+  border: 0;
+  margin-top: 24px;
+  color: @text-primary;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 0;
+}
+
+.projectTaskPagination > span,
+.projectTaskPagination > button {
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  border: 0;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: @text-primary;
+  font: inherit;
+  padding: 0;
+}
+
+.projectTaskPagination > span {
+  background: @surface-muted;
+}
+
+.projectTaskPagination > button {
+  cursor: pointer;
+}
+
+.projectTaskPagination > button:hover:not(:disabled),
+.projectTaskPagination > button:focus-visible:not(:disabled) {
+  background: @surface-muted;
+  outline: none;
+}
+
+.projectTaskPagination > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.projectTaskPagination img {
+  width: 10px;
+  height: 6px;
+  display: block;
+}
+
+.projectTaskPaginationPrevious img {
+  transform: rotate(90deg);
+}
+
+.projectTaskPaginationNext img {
+  transform: rotate(-90deg);
+}
+
+@media (max-width: 900px) {
+  .projectTasksPage {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectTasksPage {
+    background: @surface-muted;
+    padding: 12px 12px calc(24px + env(safe-area-inset-bottom));
+    overscroll-behavior: contain;
+  }
+
+  .projectTasksHeader {
+    display: none;
+  }
+
+  .projectTasksToolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .projectTaskFilters {
+    width: 100%;
+    max-width: none;
+    height: 40px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .projectTaskFilters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .projectTaskFilters button {
+    height: 36px;
+    flex: 1 0 auto;
+    gap: 5px;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 7px 12px;
+  }
+
+  .projectTaskCreateButton {
+    width: 100%;
+    height: 42px;
+    align-self: stretch;
+  }
+
+  .projectTaskTableWrap {
+    overflow: visible;
+  }
+
+  .projectTaskTable {
+    width: 100%;
+    min-width: 0;
+    display: block;
+  }
+
+  .projectTaskTable colgroup,
+  .projectTaskTable thead {
+    display: none;
+  }
+
+  .projectTaskTable tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .projectTaskTable tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+    border: 1px solid #eceeef;
+    border-radius: 12px;
+    background: #fff;
+    padding: 14px;
+  }
+
+  .projectTaskTable tbody tr:hover td,
+  .projectTaskTable tbody .projectTaskRowHighlighted td {
+    background: transparent;
+  }
+
+  .projectTaskTable td {
+    width: auto;
+    height: auto;
+    max-width: none;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 0;
+    white-space: normal;
+  }
+
+  .projectTaskTable td::before {
+    content: attr(data-label);
+    color: @text-tertiary;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .projectTaskTable td:first-child,
+  .projectTaskTable td:nth-child(2) {
+    grid-column: 1 / -1;
+  }
+
+  .projectTaskTable td:first-child::before {
+    display: none;
+  }
+
+  .projectTaskPrimaryCell {
+    width: 100%;
+  }
+
+  .projectTaskTable td:first-child .projectTaskPrimaryCell strong {
+    color: @text-primary;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  .projectTaskTable td:nth-child(2) .projectTaskPrimaryCell {
+    border-radius: 8px;
+    background: @surface-muted;
+    padding: 8px 10px;
+  }
+
+  .projectTaskTable td:nth-child(2) .projectTaskPrimaryCell strong,
+  .projectTaskTable td:nth-child(2) .projectTaskPrimaryCell span {
+    white-space: normal;
+  }
+
+  .projectTaskDueTime {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .projectTaskStatus {
+    height: 24px;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 2px 8px;
+  }
+
+  .projectTaskStateRow {
+    min-height: 240px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .projectTaskTable td.projectTaskTableState {
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    color: @text-tertiary;
+  }
+
+  .projectTaskTable td.projectTaskTableState::before {
+    display: none;
+  }
+
+  .projectTaskPagination {
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+  }
+}

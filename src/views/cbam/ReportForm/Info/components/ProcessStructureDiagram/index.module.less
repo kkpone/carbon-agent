@@ -1,0 +1,95 @@
+/* stylelint-disable-next-line at-rule-no-unknown */
+@backgroundMain: #f7f8f9;
+
+.graphBoxMain {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  .graphBox {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    & > canvas {
+      background: @backgroundMain;
+      background-image: linear-gradient(@backgroundMain 13px, transparent 0),
+        linear-gradient(90deg, rgb(235 236 237) 2px, transparent 0);
+      background-size: 15px 15px, 15px 15px;
+    }
+  }
+
+  .graphZoom {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: flex;
+    align-items: center;
+
+    .graphZoomNum {
+      width: 70px;
+      height: 32px;
+      color: #6c757d;
+      line-height: 32px;
+      text-align: center;
+      background-color: #fff;
+      border: 1px solid #ebedf0;
+    }
+
+    .graphZoomNumPercent {
+      position: absolute;
+      right: 40px;
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      background-color: #fff;
+    }
+
+    .graphZoomBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: none;
+    }
+  }
+
+  .graphFixedSet {
+    position: fixed;
+    right: 160px;
+    bottom: 16px;
+    display: flex;
+    align-items: center;
+
+    .changeTypMain {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px;
+      background: #fff;
+      border: 0.5px solid #ebedf0;
+      border-radius: 4px;
+
+      .typeBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px 6px;
+        color: #999ea4;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:last-child {
+          margin-left: 8px;
+        }
+      }
+
+      .typeBtnActive {
+        color: #6c757d;
+        background: @backgroundMain;
+      }
+    }
+  }
+}

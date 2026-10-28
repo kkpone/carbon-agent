@@ -1,0 +1,205 @@
+.AccountInfoResultContainer {
+  width: 100%;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  background: #f7f8f9;
+}
+
+.hideOverviewPanelContainer {
+  height: calc(100vh - 148px);
+}
+
+.resultContent {
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 16px 16px 24px;
+}
+
+.summaryCard {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.summaryTop {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.productContent {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  min-width: 0;
+  height: 80px;
+  column-gap: 16px;
+
+  :global(.ant-image),
+  :global(.ant-image-img) {
+    flex-shrink: 0;
+    border-radius: 4px;
+  }
+
+  :global(.ant-image-img) {
+    object-fit: cover;
+    background: #f7f8f9;
+  }
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  min-width: 0;
+}
+
+.productName {
+  max-width: 100%;
+  overflow: hidden;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.lifeCycleTag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  max-width: 100%;
+  height: 24px;
+  padding: 2px 8px;
+  color: #04252b;
+  font-size: 12px;
+  line-height: 22px;
+  background: #ddf4f2;
+  border-radius: 20px;
+}
+
+.halfLifeCycleTag {
+  background: #e8f6ff;
+}
+
+.customLifeCycleTag {
+  background: #e5e5fb;
+}
+
+.emissionContent {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  height: 80px;
+  padding: 12px 16px;
+  background: rgba(232, 244, 229, 0.3);
+  border: 1px solid #e8f4e5;
+  border-radius: 8px;
+}
+
+.emissionLabel {
+  color: #343a40;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.emissionValue {
+  max-width: 100%;
+  overflow: hidden;
+  color: #026961;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 30px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.emissionIcon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  margin-left: 16px;
+}
+
+.accountInfoContent {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.accountInfo {
+  min-width: 0;
+}
+
+.accountInfoLabel {
+  margin-bottom: 4px;
+  overflow: hidden;
+  color: #999ea4;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.accountInfoValue {
+  overflow: hidden;
+  color: #04252b;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.resultBody {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .summaryTop {
+    flex-direction: column;
+  }
+
+  .productContent,
+  .emissionContent {
+    width: 100%;
+  }
+
+  .accountInfoContent {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1600px) {
+  .resultContent {
+    max-width: min(1440px, calc(100% - 48px));
+  }
+}
+
+@media (min-width: 1920px) {
+  .resultContent {
+    max-width: min(1560px, calc(100% - 64px));
+  }
+}
+
+@media (min-width: 2560px) {
+  .resultContent {
+    max-width: min(1760px, calc(100% - 96px));
+  }
+}
+
+.fullResultRight {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  padding: 0;
+}

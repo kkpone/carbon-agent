@@ -1,0 +1,48 @@
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 0 40px 24px;
+}
+
+.pillarItem {
+  background: #f7f8f9;
+  border-left: 4px solid;
+  border-radius: 4px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.pillarTitle {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  color: #343a40;
+}
+
+.issueItem {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  padding-right: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.issueName {
+  font-family: 'PingFang SC', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #343a40;
+}

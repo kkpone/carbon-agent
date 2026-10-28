@@ -1,0 +1,369 @@
+@import '@Variable';
+
+.taskItem {
+  margin-bottom: 16px;
+  padding: 16px;
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+
+  border-radius: 8px;
+  border: 1px solid #ebedf0;
+  background: var(--Fill-white, #fff);
+  transition: all 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.taskItem:hover {
+  border-radius: 8px;
+  border: 1px solid var(--Brand-brand-2, #026961);
+  background: var(--Fill-white, #fff);
+
+  /* 卡片hover投影 */
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04), 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+
+  .footerActions {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.taskItemHover {
+  border-radius: 8px;
+  border: 1px solid var(--Brand-brand-2, #026961);
+  background: var(--Fill-white, #fff);
+
+  /* 卡片hover投影 */
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04), 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+
+  // .footerActions {
+  //   opacity: 1;
+  //   visibility: visible;
+  // }
+}
+
+.taskItemDisabled {
+  background: #f7f8f9 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+
+  .statusTag {
+    opacity: 0.6;
+  }
+
+  .emissionName,
+  .username,
+  .time,
+  .orgName,
+  .ghg {
+    color: #999ea4 !important;
+  }
+
+  .emissionSourceLabel,
+  .parmaName,
+  .initiator,
+  .submitter,
+  .updateTime {
+    color: #b5b8bb !important;
+  }
+
+  .avatar {
+    filter: grayscale(100%);
+    opacity: 0.6;
+  }
+}
+
+.taskItemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // margin-bottom: 24px;
+}
+
+.taskItemHeaderBlock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusTag {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  // height: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  border-radius: 4px;
+}
+
+.beFilledStatusTag {
+  background: #fff1e6;
+  color: #ff9d00;
+}
+
+.filledStatusTag {
+  background: #f6ffed;
+  color: #52c41a;
+}
+
+.approvalStatusTag {
+  background: #fff1e6;
+  color: #ff9d00;
+}
+
+.emissionName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #04252b;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.facility {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  color: #6c757d;
+  border-radius: 4px;
+  background: #f0f2f5;
+}
+
+.auditRecord {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: #343a40;
+  cursor: pointer;
+
+  // &:hover {
+  //   color: #52c41a;
+  // }
+}
+
+// .paramContent {
+//   margin-bottom: 24px;
+// }
+
+.paramList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.paramItem {
+  flex: 0 0 calc(25% - 12px);
+  min-width: 150px;
+}
+
+.parmaName {
+  font-size: 12px;
+  color: #999ea4;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activeDataInput {
+  width: 100%;
+
+  :global {
+    .ant-input-group-addon {
+      padding: 0;
+      border-radius: 0 8px 8px 0;
+      background-color: #f7f8f9;
+      border: 1px solid #d9d9d9;
+      border-left: none;
+    }
+    .ant-input {
+      border-radius: 8px 0 0 8px;
+      height: 40px;
+    }
+  }
+}
+
+.unitAddon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  height: 38px;
+  color: #343a40;
+  font-size: 14px;
+}
+
+.taskItemFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footerInfo {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 32px;
+}
+
+.attachmentWrapper {
+  cursor: pointer;
+}
+
+.uploadBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #026961;
+  font-size: 14px;
+
+  &:hover {
+    color: #004541;
+  }
+
+  :global {
+    .anticon {
+      font-size: 18px;
+    }
+  }
+}
+
+.attachmentName {
+  font-size: 14px;
+  color: #343a40;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.attachmentNameText {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attachmentCount {
+  color: #999ea4;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.orgInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #343a40;
+}
+
+.orgName {
+  font-weight: 500;
+}
+
+.period {
+  color: #026961;
+}
+
+.ghgInfo {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.modifyRecord {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #6c757d;
+  background: #f7f8f9;
+  padding: 2px 8px;
+  border-radius: 4px;
+
+  .oldVal {
+    color: #ff4d4f;
+    margin-left: 8px;
+  }
+
+  .newVal {
+    color: #52c41a;
+    margin-left: 8px;
+  }
+}
+
+.rejectReason {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #6c757d;
+  flex: 1;
+  justify-content: flex-start;
+  padding-right: 24px;
+
+  .reasonText {
+    color: #ff4d4f;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.footerActions {
+  margin-left: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.submitBtn {
+  border-radius: 8px;
+  border: 1px solid var(--Brand-brand-2, #026961);
+  color: var(--Brand-brand-2, #026961);
+  height: 38px;
+  padding: 0 24px;
+  font-size: 14px;
+
+  &:hover {
+    background: var(--Brand-brand-2, #026961);
+    color: #fff;
+    border-color: var(--Brand-brand-2, #026961);
+  }
+}
+
+.rejectBtn {
+  border-radius: 8px;
+  border: 1px solid #ff4d4f;
+  color: #ff4d4f;
+  height: 38px;
+  padding: 0 24px;
+  font-size: 14px;
+  margin-right: 12px;
+
+  &:hover {
+    background: #ff4d4f;
+    color: #fff;
+    border-color: #ff4d4f;
+  }
+}
+
+.approveBtn {
+  border-radius: 8px;
+  border: 1px solid var(--Brand-brand-2, #026961);
+  color: var(--Brand-brand-2, #026961);
+  height: 38px;
+  padding: 0 24px;
+  font-size: 14px;
+
+  &:hover {
+    background: var(--Brand-brand-2, #026961);
+    color: #fff;
+    border-color: var(--Brand-brand-2, #026961);
+  }
+}

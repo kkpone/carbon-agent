@@ -1,0 +1,146 @@
+.projectConversationHeader {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex: 0 0 auto;
+  padding: 0 24px 16px;
+}
+
+.projectConversationHeaderMain {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.projectConversationHeader nav {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999ea4;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.projectConversationHeader nav button {
+  max-width: min(280px, 36vw);
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: #526166;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectConversationHeader nav button:hover,
+.projectConversationHeader nav button:focus-visible {
+  color: #026961;
+  outline: none;
+}
+
+.projectConversationHeader nav strong {
+  min-width: 0;
+  max-width: min(440px, 48vw);
+  overflow: hidden;
+  color: #04252b;
+  font-size: 16px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectConversationHeaderMain small {
+  overflow: hidden;
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectConversationHeaderActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  margin-right: 40px;
+  margin-top: 6px;
+}
+
+.projectConversationHeaderActions button {
+  height: 36px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #fff;
+  color: #04252b;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 0 12px;
+}
+
+.projectConversationHeaderActions button:hover:not(:disabled),
+.projectConversationHeaderActions button:focus-visible:not(:disabled) {
+  border-color: rgb(12 191 159 / 34%);
+  background: #f6fffc;
+  box-shadow: 0 6px 16px rgb(4 37 43 / 8%);
+  outline: none;
+}
+
+.projectConversationHeaderActions button:disabled {
+  color: #999ea4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 760px) {
+  .projectConversationHeader {
+    min-height: 36px;
+    align-items: center;
+    padding: 12px 16px 0;
+  }
+
+  .projectConversationHeader nav {
+    gap: 6px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .projectConversationHeader nav button {
+    max-width: 28vw;
+  }
+
+  .projectConversationHeader nav strong {
+    max-width: 38vw;
+    font-size: 14px;
+  }
+
+  .projectConversationHeaderMain small {
+    display: none;
+  }
+
+  .projectConversationHeaderActions button {
+    width: 36px;
+    height: 34px;
+    padding: 0;
+  }
+
+  .projectConversationHeaderActionLabel {
+    display: none;
+  }
+
+  .projectConversationHeaderActions {
+    margin-right: 16px;
+  }
+}

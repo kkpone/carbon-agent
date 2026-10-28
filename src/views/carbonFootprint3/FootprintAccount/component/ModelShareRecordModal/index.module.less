@@ -1,0 +1,173 @@
+.modelShareRecordModal {
+  :global {
+    .ant-modal-content {
+      padding: 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .ant-modal-body {
+      padding: 0;
+    }
+
+    .ant-modal {
+      width: 1020px !important;
+      max-width: 1020px;
+    }
+
+    .ant-modal-close {
+      display: none;
+    }
+
+    .ant-table-wrapper .ant-table {
+      color: #04252b;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ant-table-container {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ant-table-thead > tr > th {
+      height: 48px;
+      padding: 13px 20px;
+      color: #04252b;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 22px;
+      background: #f7f8f9;
+      border-bottom: 1px solid #e5e7eb;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .ant-table-tbody > tr > td {
+      height: 48px;
+      padding: 13px 20px;
+      font-size: 14px;
+      line-height: 22px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .ant-table-tbody > tr:last-child > td {
+      border-bottom: none;
+    }
+
+    .ant-empty {
+      margin: 48px 0;
+    }
+  }
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 32px 0;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: #04252b;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.closeBtn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 16px;
+  color: #999ea4;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    color: #04252b;
+    background: #f7f8f9;
+  }
+}
+
+.body {
+  padding: 24px 32px 32px;
+}
+
+.tableWrap {
+  width: 100%;
+  overflow: hidden;
+
+  :global {
+    .ant-table {
+      width: 100%;
+    }
+
+    .ant-table-content,
+    .ant-table-body {
+      overflow-x: hidden !important;
+    }
+
+    .ant-table-body {
+      overflow-y: hidden !important;
+    }
+  }
+}
+
+.tableWrapScrollable {
+  :global {
+    .ant-table-body {
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+    }
+  }
+}
+
+/** 状态标签样式，与建模记录弹框保持一致 */
+.statusTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 2px 8px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  border-radius: 20px;
+}
+
+.statusPendingFill {
+  background: #f7f8f9;
+}
+
+.statusPendingReview {
+  background: #fceedf;
+}
+
+.statusDone {
+  background: #ddf4f2;
+}
+
+.statusRejected {
+  background: #fee5e3;
+}

@@ -1,0 +1,195 @@
+.supplierDataModal {
+  :global {
+    .ant-modal-content {
+      overflow: hidden;
+      padding: 0 !important;
+      background: #fff !important;
+      border-radius: 12px;
+    }
+
+    .ant-modal-body {
+      padding: 0;
+    }
+  }
+}
+
+.supplierDataModalMain {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.modalContent {
+  flex: 1;
+  padding: 32px;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.modalTitle {
+  color: #04252b;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.closeIcon {
+  color: #6c757d;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.formItem {
+  min-width: 208px;
+}
+
+.multiSelect {
+  max-width: 726px;
+  max-height: 64px;
+  overflow-y: auto;
+}
+
+.supplierDataTable {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  :global {
+    .ant-table {
+      color: #04252b;
+      font-size: 14px;
+    }
+
+    .ant-table-thead > tr > th {
+      height: 48px;
+      padding: 13px 20px;
+      color: #04252b;
+      font-weight: 500;
+      line-height: 22px;
+      background: #f7f8f9;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .ant-table-tbody > tr > td {
+      height: 48px;
+      padding: 13px 20px;
+      color: #04252b;
+      line-height: 22px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .ant-table-tbody > tr:last-child > td {
+      border-bottom: none;
+    }
+  }
+}
+
+.supplierDataModalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+  padding: 12px 32px;
+  background: #fff;
+  box-shadow: 0 -4px 4px rgb(0 0 0 / 4%);
+}
+
+.paginationInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.paginationTotal {
+  color: #004541;
+  font-weight: 600;
+}
+
+.footerActions {
+  display: flex;
+  gap: 16px;
+}
+
+.supplierDataModalBtn {
+  width: 76px;
+  height: 38px;
+  border-color: #d2d6da;
+  border-radius: 8px;
+}
+
+.supplierDataModalConfirmBtn {
+  height: 38px;
+  padding: 0 16px;
+  border-color: #004541;
+  border-radius: 8px;
+  background: #004541;
+
+  &:hover,
+  &:focus {
+    border-color: #004541;
+    background: #004541;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
+    color: rgba(0, 0, 0, 0.25);
+    border-color: #d9d9d9;
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+.operateBtn {
+  padding: 0;
+}
+
+.dataInfoModal {
+  :global {
+    .ant-modal-header {
+      height: 52px;
+      padding: 20px 24px 8px;
+      border-bottom: none;
+    }
+
+    .ant-modal-body {
+      height: 556px;
+      overflow-y: auto;
+    }
+
+    .ant-modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 72px;
+      padding: 0 24px;
+      border-top: none;
+    }
+
+    /** 引用的是供应商碳数据组件，强制覆盖组件内部的一些间距样式 */
+    .ant-tabs-tabpane {
+      height: calc(100% - 46px) !important;
+      overflow-y: auto;
+    }
+
+    .ant-tabs-nav {
+      padding-left: 0 !important;
+    }
+
+    .padding-0-16 {
+      padding: 0 !important;
+    }
+
+    .padding-l-16 {
+      padding-left: 0 !important;
+    }
+  }
+}

@@ -1,0 +1,158 @@
+.AIProcessMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
+  z-index: 100;
+}
+
+.AIProcess {
+  min-width: 178px;
+  position: absolute;
+  left: 50%;
+  bottom: 13%;
+  transform: translateX(-50%);
+  height: 48px;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  padding: 0 24px;
+  border-radius: 30px;
+  border: 1px solid #026961;
+  background: #fff;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.AIProcessIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.AIProcessText {
+  color: #026961;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px; /* 140% */
+}
+
+.AIProcessText::after {
+  content: '.';
+  animation: dots 1.5s infinite step-end;
+}
+
+@keyframes dots {
+  0% {
+    content: '.';
+  }
+  33.33% {
+    content: '..';
+  }
+  66.66% {
+    content: '...';
+  }
+}
+
+.fillData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f8f9;
+
+  .headerOperate {
+    position: fixed;
+    right: 40px;
+    top: 16px;
+    display: flex;
+    column-gap: 12px;
+    display: flex;
+    :global {
+      .ant-btn {
+        height: 32px;
+        border-radius: 8px;
+      }
+      .ant-btn-icon-only {
+        width: 32px;
+      }
+    }
+  }
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      .title {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+        align-self: stretch;
+        height: 16px;
+        color: var(--text, #343a40);
+        font-weight: 500;
+        font-size: 16px;
+
+        /* Title 标题/Small-加粗-CN */
+        font-family: 'PingFang SC';
+        font-style: normal;
+        line-height: 24px; /* 150% */
+      }
+
+      .headerContext {
+        display: flex;
+        justify-content: space-between;
+        height: 32px;
+        padding: 0 24px;
+      }
+    }
+
+    .treeCollapseWrapper {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+    }
+  }
+}
+
+.panelName {
+  color: var(--text, #343a40);
+  font-size: 14px;
+
+  /* Body 内容/Medium-加粗-CN */
+  font-family: 'PingFang SC';
+  font-style: normal;
+  line-height: 22px; /* 157.143% */
+}
+
+.panelTotal {
+  margin: 0 4px 0 16px;
+  color: var(--text, #343a40);
+  font-size: 14px;
+  font-family: 'HarmonyOS Sans SC';
+  font-style: normal;
+  line-height: 22px; /* 157.143% */
+}
+
+.panelUnit {
+  color: var(--text, #999ea4);
+  font-weight: 500;
+  font-size: 12px;
+
+  /* 辅助信息/Small-加粗-CN */
+  font-family: 'PingFang SC';
+  font-style: normal;
+  line-height: 18px; /* 150% */
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.commuteBtn {
+  font-weight: 500;
+}

@@ -1,0 +1,67 @@
+@import "../carbon-index.less";
+
+.problem-feedback {
+  display: flex;
+  flex: auto;
+  padding: 20px;
+  overflow: hidden;
+
+  form {
+    width: 100%;
+  }
+
+  .ant-upload-list-item {
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 2px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .ant-upload-list-text-container,
+  .ant-upload-list-picture-container {
+    float: left;
+    width: 42%;
+  }
+
+  .ant-upload-list-text .ant-upload-span,
+  .ant-upload-list-picture .ant-upload-span {
+    padding: 0 10px 0 20px;
+  }
+
+  .ant-upload-list-text-container,
+  .ant-upload-list-picture-container:nth-child(odd) {
+    margin-right: 60px;
+  }
+
+  .ant-upload.ant-upload-drag p.ant-upload-drag-icon {
+    margin-bottom: 13px;
+  }
+
+  .subbtn {
+    float: right;
+    margin: 20px 0;
+  }
+
+  .tip-title {
+    margin-bottom: 20px;
+    color: @text-color;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .upload-title {
+    margin: 20px 0;
+    color: @text-color;
+    font-weight: 500;
+    font-size: 16px;
+
+    .ant-btn-primary {
+      background: @primary-color  !important;
+      border-color: @primary-color  !important;
+    }
+  }
+}

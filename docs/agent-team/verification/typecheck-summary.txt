@@ -1,0 +1,6 @@
+2026-10-22 live integration follow-up
+Current TypeScript diagnostics: 709
+HEAD read-only compiler-host baseline diagnostics: 709
+New diagnostic signatures: 0
+No diagnostics in carbonAgent/team or NewChatHero.
+No npm run build performed.

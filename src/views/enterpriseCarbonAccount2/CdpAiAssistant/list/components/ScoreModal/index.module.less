@@ -1,0 +1,159 @@
+@import '@Variable';
+
+.modalTitle {
+  .title-s-b();
+}
+
+.upload {
+  :global {
+    .ant-upload-btn {
+      padding: 26px 0 !important;
+    }
+  }
+}
+
+.uploadText {
+  .body-m-b();
+
+  margin: 8px 0 4px;
+}
+
+.uploadClickText {
+  color: @green7;
+}
+
+.uploadTip {
+  .caption-s();
+}
+
+.uploadFile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  margin-top: 8px;
+  padding: 0 8px;
+  background: @gray1;
+  border-radius: 4px;
+}
+
+.uploadFileLeft {
+  display: flex;
+  align-items: center;
+}
+
+.fileName {
+  .body-m();
+
+  max-width: 740px;
+  margin: 0 8px;
+  overflow: hidden;
+  color: @gray7;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.uploadingIcon {
+  color: @green7;
+}
+
+.fileDeleteIcon {
+  width: 16px;
+  height: 16px;
+  color: @gray7;
+  cursor: pointer;
+}
+
+.fileRank {
+  margin-top: 20px;
+}
+
+.fileRankText {
+  .body-m();
+
+  display: flex;
+  align-items: center;
+  color: @gray7;
+
+  .red {
+    margin-right: 2px;
+    color: @red6;
+  }
+}
+
+.fileRankTip {
+  .caption-s();
+
+  margin-left: 4px;
+  column-gap: @gray5;
+}
+
+.fileRankSelect {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.errorIcon,
+.errorFileName {
+  color: @red6;
+}
+
+.formCommon {
+  margin: 24px 0;
+}
+
+.tour {
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    color: var(--Neutral-Text-text-1, #04252b);
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 157.143% */
+    margin-bottom: 8px;
+  }
+
+  .steps {
+    display: flex;
+    gap: 8px;
+
+    .step {
+      flex-grow: 1;
+      color: var(--Neutral-Text-text-1, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 85.714% */
+
+      a {
+        color: #179def;
+        text-decoration: underline;
+      }
+
+      .img {
+        display: flex;
+        height: 138px;
+        // padding: 8px 16px;
+        align-items: center;
+        // gap: 8px;
+        align-self: stretch;
+        border-radius: 8px;
+        border: 1px solid var(--neutral-color-border-1, #d5d7da);
+        background: var(--White, #fff);
+        overflow: hidden;
+        margin-top: 6px;
+
+        img {
+          // width: 272px;
+          height: 138px;
+        }
+      }
+    }
+  }
+}

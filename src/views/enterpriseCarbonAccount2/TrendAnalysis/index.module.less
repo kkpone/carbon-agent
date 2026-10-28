@@ -1,0 +1,39 @@
+@import '@Variable';
+
+.trendAnalysis {
+  height: 100%;
+
+  && {
+    padding: 0 10px 0 0;
+    background: #f7f8f9;
+  }
+}
+
+.title {
+  .title-s-b();
+
+  margin-bottom: 16px;
+}
+
+.trendAnalysisHeader {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #fff;
+}
+
+.select {
+  && {
+    width: 208px;
+  }
+}
+
+.orgSelectDropdown {
+  :global {
+    .ant-cascader-menu-item-content {
+      max-width: 180px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}

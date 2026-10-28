@@ -1,0 +1,224 @@
+@import '@Variable';
+
+.confirmModal {
+  :global {
+    .ant-modal-body {
+      padding: 24px;
+    }
+    .ant-modal-confirm-paragraph {
+      row-gap: 24px;
+    }
+
+    .ant-modal-confirm-btns {
+      margin-top: 24px;
+    }
+  }
+}
+
+.confirmModalTitle {
+  .title-s-b();
+}
+
+.confirmModalContent {
+  .body-m();
+
+  color: @gray7;
+}
+
+.confirmModalWarnText {
+  color: @orange6;
+}
+
+.confirmModalBtn {
+  border-color: @orange6 !important;
+  background: @orange6 !important;
+}
+
+.computationInfo {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.backBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.backIcon {
+  color: #333333;
+  svg {
+    font-size: 16px;
+  }
+}
+
+.orgName {
+  max-width: 240px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.statusTag {
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  height: 20px;
+  font-size: 12px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.fillingStatusTag {
+  background: #e8f6ff;
+}
+
+.beFilledStatusTag {
+  color: #bb6f44;
+  background: #fceedf;
+}
+
+.completedStatusTag {
+  color: #fff;
+  background: @green7;
+}
+
+.periodName {
+  color: #6c757d;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.split {
+  width: 1px;
+  height: 10px;
+  background: #d2d6da;
+}
+
+.ghgTypeSelect {
+  &&& {
+    :global {
+      .ant-select-selector {
+        padding-left: 0;
+      }
+      .ant-select-selection-item {
+        font-size: 12px;
+        color: #026961;
+      }
+    }
+  }
+}
+
+.ghgTypeSelectArrow {
+  color: #026961;
+}
+
+.fillPercent {
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.fillCount,
+.totalCount {
+  font-size: 12px;
+}
+
+.totalCount {
+  color: #b5b8bb;
+}
+
+.progress {
+  width: 284px;
+  height: 8px;
+  background: #ebedf0;
+  border-radius: 100px;
+}
+
+.fillProgress {
+  width: 0;
+  height: 100%;
+  background: #08a28b;
+  border-radius: 100px;
+}
+
+.accounting {
+  height: 100vh;
+}
+
+.accountingEmbeddedRoot {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+
+  .accounting {
+    min-height: 0;
+    height: auto;
+    flex: 1 1 auto;
+  }
+
+  .header {
+    padding: 0 16px;
+  }
+
+  .accountingContent {
+    height: calc(100% - 64px);
+  }
+
+  .accountingResultDrawerRoot {
+    &:global {
+      .ant-drawer-content-wrapper {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.accountingEmbeddedRootAgentPreview {
+  .accountingContent {
+    height: 100%;
+  }
+}
+
+.header {
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  z-index: 50000;
+  border-bottom: 1px solid #f5f5f5;
+  background: #fff;
+}
+
+.accountingContent {
+  height: calc(100% - 124px);
+}
+
+.accountingResultDrawerRoot {
+  &:global {
+    .ant-drawer-content-wrapper {
+      margin-bottom: 60px;
+      box-shadow: none;
+    }
+  }
+}
+
+.accountingResultDrawer {
+  &:global {
+    .ant-drawer-body {
+      padding: 0;
+      background-color: #f7f8f9;
+    }
+  }
+}

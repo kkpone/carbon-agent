@@ -1,0 +1,62 @@
+.floatingHeader {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  z-index: 9;
+
+  .floatingHeaderIcon {
+    width: 42px;
+    height: 42px;
+    z-index: 9;
+    position: relative;
+    left: 0;
+  }
+  .floatingHeaderTitle {
+    display: none;
+    height: 32px;
+    width: 100px;
+    padding: 2px 10px 2px 25px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 100px;
+    background: #fff;
+    box-shadow: 0px 2px 6px 0px rgba(2, 105, 97, 0.1);
+    color: #000;
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 157.143% */
+    position: relative;
+    z-index: 1;
+  }
+  cursor: pointer;
+}
+
+.floatingHeader:hover {
+  width: 130px;
+  .floatingHeaderIcon {
+    left: 20px;
+  }
+  .floatingHeaderTitle {
+    display: flex;
+  }
+}
+
+.floating {
+  :global {
+    .ant-modal-wrap {
+      z-index: 2000;
+    }
+  }
+}
+
+.wrapper {
+  z-index: 2000 !important;
+}

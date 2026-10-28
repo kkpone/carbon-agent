@@ -1,0 +1,69 @@
+.formilySystemBoundaryRadioMain {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 12px;
+
+  .radioSystem {
+    position: relative;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #d2d6da;
+    cursor: pointer;
+    overflow: hidden;
+    :global(.ant-checkbox-wrapper) {
+      margin-left: 0;
+      color: #b5b8bb;
+      font-weight: 400;
+      font-size: 12px;
+    }
+
+    .radioSystemTitle {
+      color: #6c757d;
+      line-height: 22px;
+    }
+
+    .radioSystemDetails {
+      margin-top: 4px;
+      color: #999ea4;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .checkIcon {
+      position: absolute;
+      right: -1px;
+      bottom: -2px;
+      svg {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .radioSystemActive {
+    border-color: #048677;
+
+    .radioSystemTitle,
+    .radioSystemDetails {
+      color: #048677;
+    }
+
+    .radioSystemTitle {
+      font-weight: 500;
+    }
+  }
+}
+
+.formilySystemBoundaryRadioMainHover {
+  .radioSystem {
+    &:hover {
+      background: #f0fbf9ff;
+      border: 1px solid #0cbf9fff;
+
+      .radioSystemTitle,
+      .radioSystemDetails {
+        color: #048677;
+      }
+    }
+  }
+}

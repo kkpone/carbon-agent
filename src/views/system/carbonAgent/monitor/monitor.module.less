@@ -1,0 +1,212 @@
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.heading strong {
+  overflow-wrap: anywhere;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.card {
+  padding: 0;
+  margin: 24px 0;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.7;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.card h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.card p {
+  margin: 8px 0;
+}
+.muted {
+  color: #596b60;
+  font-size: 14px;
+}
+.materialList {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+.materialList li {
+  margin: 24px 0;
+  padding-left: 4px;
+}
+.materialList li::marker {
+  color: #00a88e;
+}
+.materialTitle {
+  display: block;
+}
+.adviceGroup {
+  margin: 24px 0;
+}
+.card > .heading {
+  margin-bottom: 16px;
+}
+.callout {
+  margin: 24px 0;
+  padding: 16px 20px;
+  background: #f3faf8;
+  border-radius: 4px;
+}
+.examples {
+  margin: 12px 0 0;
+  padding-left: 24px;
+}
+.examples li {
+  margin: 10px 0;
+}
+.businessGaps {
+  margin: 20px 0;
+  background: #f3faf8;
+  padding: 4px 20px;
+  border-radius: 4px;
+}
+.gapGroup {
+  padding: 20px 0;
+  border-bottom: 1px solid #dbeae5;
+}
+.gapGroup:last-child {
+  border-bottom: 0;
+}
+.gapGroup h4 {
+  color: #00584f;
+}
+.missingFields {
+  color: #526c63;
+}
+.receivedList {
+  list-style: none;
+  padding: 0;
+}
+.receivedList li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e7eeeb;
+}
+.progressDetails {
+  margin: 24px 0;
+  padding: 12px 0;
+  border-top: 1px solid #e7eeeb;
+}
+.progressDetails summary {
+  cursor: pointer;
+  padding: 8px 0;
+}
+.fileQueue {
+  margin: 24px 0;
+  border: 1px solid #dbe8e3;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+.fileQueue header {
+  padding: 16px 20px;
+  background: #f3faf8;
+}
+.fileQueue p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+.fileRows {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.fileRows li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid #edf1ef;
+}
+.fileRows li > :global(.anticon) {
+  color: #008473;
+  font-size: 24px;
+}
+.fileInfo {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.fileInfo small {
+  display: block;
+  color: #657a71;
+  margin-top: 4px;
+}
+.queueActions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  border-top: 1px solid #edf1ef;
+}
+.fileQueue > .muted {
+  padding: 8px 20px;
+}
+.upload {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 16px;
+  border: 1px solid #b8c7bd;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  overflow: hidden;
+}
+.upload input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  cursor: pointer;
+}
+.upload:focus-within {
+  outline: 2px solid #168550;
+  outline-offset: 2px;
+}
+.upload[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@media (max-width: 640px) {
+  .card {
+    padding: 0;
+    font-size: 16px;
+  }
+  .callout,
+  .businessGaps {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .fileRows li {
+    padding: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .queueActions :global(.ant-btn) {
+    min-height: 44px;
+  }
+  .actions :global(.ant-btn),
+  .upload {
+    min-height: 44px;
+  }
+}

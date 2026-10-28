@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="62" height="6" viewBox="0 0 62 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mask group">
+<mask id="mask0_0_174" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="62" height="6">
+<path id="Rectangle 34625072" d="M0 0H60L62 3L60 6H0L2 3L0 0Z" fill="url(#paint0_linear_0_174)"/>
+</mask>
+<g mask="url(#mask0_0_174)">
+<path id="Union" d="M-1 6H-2L2 0H3L-1 6ZM3 6H2L6 0H7L3 6ZM7 6H6L10 0H11L7 6ZM11 6H10L14 0H15L11 6ZM15 6H14L18 0H19L15 6ZM19 6H18L22 0H23L19 6ZM23 6H22L26 0H27L23 6ZM27 6H26L30 0H31L27 6ZM31 6H30L34 0H35L31 6ZM35 6H34L38 0H39L35 6ZM39 6H38L42 0H43L39 6ZM43 6H42L46 0H47L43 6ZM47 6H46L50 0H51L47 6ZM51 6H50L54 0H55L51 6ZM55 6H54L58 0H59L55 6ZM59 6H58L62 0H63L59 6Z" fill="white" fill-opacity="0.22"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_174" x1="0" y1="3" x2="62" y2="3" gradientUnits="userSpaceOnUse">
+<stop stop-color="#41E1C5"/>
+<stop offset="1" stop-color="#0CBF9F"/>
+</linearGradient>
+</defs>
+</svg>

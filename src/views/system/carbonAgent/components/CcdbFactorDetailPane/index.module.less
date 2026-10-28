@@ -1,0 +1,81 @@
+aside.pane {
+  gap: 16px;
+  padding: 24px 24px 16px;
+  border-left: 0;
+  background: #fff;
+  font-size: 14px;
+  line-height: 22px;
+
+  h2.name {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .value {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    padding: 16px;
+  }
+
+  h3.sectionTitle {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+}
+
+.pane .title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.pane .scroll {
+  background: #fff;
+  padding: 0 0 16px;
+
+  > section {
+    box-shadow: none;
+  }
+}
+
+.pane .shareButton {
+  width: auto;
+  flex-basis: auto;
+  gap: 8px;
+  padding: 0 12px;
+
+  span {
+    color: inherit;
+    font-size: 14px;
+  }
+}
+
+.pane.mobile {
+  padding: 0;
+
+  .header {
+    height: 60px;
+    flex-basis: 60px;
+    padding: 10px 16px;
+  }
+
+  .actions {
+    gap: 8px;
+  }
+
+  .shareButton {
+    width: 32px;
+    flex-basis: 32px;
+    padding: 0;
+
+    span:last-child {
+      display: none;
+    }
+  }
+
+  .scroll {
+    padding: 0 12px calc(24px + env(safe-area-inset-bottom));
+  }
+}

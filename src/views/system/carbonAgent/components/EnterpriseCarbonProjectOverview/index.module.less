@@ -1,0 +1,893 @@
+@import '@Variable';
+
+.content {
+  min-width: 1108px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.summaryCard {
+  min-height: 110px;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  overflow: hidden;
+  background: #fff;
+  padding: 20px;
+}
+
+.summaryTitle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.summaryMainIcon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  display: block;
+  margin-right: 4px;
+}
+
+.summaryTitle strong {
+  font-weight: 500;
+}
+
+.summaryTitle span {
+  color: @gray7;
+}
+
+.summaryContent {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.totalEmission {
+  min-width: 0;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.totalEmission > strong {
+  min-width: 0;
+  max-width: 100%;
+  flex: 0 1 auto;
+  overflow: hidden;
+  color: @gray8;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 32px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trend {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  color: @gray6;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.trendValue {
+  color: @gray6;
+}
+
+.trendUp {
+  color: @red6;
+}
+
+.trendDown {
+  color: #026961;
+}
+
+.trendIcon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.trendIconDown {
+  transform: rotate(180deg);
+}
+
+.scopeList {
+  min-width: 0;
+  display: grid;
+  flex: 0 1 648px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.scopeItem {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 2px auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  color: @gray8;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.scopeItem strong {
+  overflow: hidden;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scopeBar {
+  width: 2px;
+  height: 16px;
+  display: block;
+}
+
+.periodOverviewCard {
+  min-width: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  padding: 0 20px;
+}
+
+.periodOverviewCard .summaryCard {
+  border-radius: 0;
+  background: transparent;
+  padding: 20px 0;
+}
+
+.periodSwitcher {
+  width: 100%;
+  min-height: 94px;
+  border-bottom: 1px solid @gray3;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.tableGroupTitle {
+  .body-m-b();
+
+  flex: 0 0 auto;
+  padding: 0 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.periodOptions {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.periodButton {
+  min-width: 60px;
+  min-height: 54px;
+  border: 0;
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: transparent;
+  color: @gray8;
+  cursor: pointer;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+
+.periodButtonName {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.periodStatus {
+  color: @gray6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.periodButton:hover:not(:disabled):not(.periodActive),
+.periodButton:focus-visible:not(:disabled):not(.periodActive) {
+  background: @gray1;
+}
+
+.periodActive {
+  border-radius: 8px;
+  background: #026961;
+  color: #fff;
+}
+
+.periodActive .periodStatus {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.periodButton:disabled {
+  cursor: not-allowed;
+}
+
+.tableGroups {
+  min-height: 160px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tableGroup {
+  min-width: 0;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tableGroup:only-child {
+  height: 100%;
+  flex: 1 1 auto;
+}
+
+.tableGroup:only-child .tableCard {
+  flex: 1 1 auto;
+}
+
+.tableCard {
+  min-height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  padding: 0 20px 20px;
+}
+
+.tableCard :global(.ant-table) {
+  color: @gray8;
+  font-size: 14px;
+}
+
+.tableCard :global(.ant-table-container),
+.tableCard :global(.ant-table-content),
+.tableCard :global(table) {
+  border: 0 !important;
+}
+
+.tableCard :global(.ant-table-thead > tr > th) {
+  height: 38px;
+  border-bottom: 0;
+  background: #fff;
+  color: @gray6;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 16px 8px 0;
+}
+
+.tableCard :global(.ant-table-tbody > tr > td) {
+  height: 64px;
+  border-bottom: 1px solid @gray3;
+  background: #fff;
+  padding: 10px 8px;
+}
+
+.tableCard :global(.ant-table-tbody > tr:hover > td),
+.tableCard :global(.ant-table-cell-fix-left) {
+  background: #fff !important;
+}
+
+.tableCard :global(.ant-table-cell-fix-left-last::after) {
+  box-shadow: none !important;
+}
+
+.orgTableCell {
+  padding-left: 0 !important;
+}
+
+.orgCell {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.orgIcon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orgIcon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.enterpriseOrgIcon {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+}
+
+.orgInfo {
+  min-width: 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.orgName {
+  overflow: hidden;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progressInfo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.progressTrack {
+  width: 88px;
+  height: 6px;
+  position: relative;
+  border-radius: 60px;
+  overflow: hidden;
+}
+
+.progressTrack > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.progressValue {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.progressValue img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.progressLabel {
+  color: @gray6;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.statusTag {
+  max-width: 100%;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: #f3f3f3;
+  color: #04252b;
+  line-height: 22px;
+  padding: 3px 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.statusComplete {
+  background: #ddf4f2;
+  color: #04252b;
+}
+
+.statusFilling {
+  background: #edf2ff;
+  color: #3361d7;
+}
+
+.statusPending {
+  background: #fff4e8;
+  color: #b86b1f;
+}
+
+.summaryStatus,
+.emissionCell {
+  font-family: 'HarmonyOS Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 500;
+}
+
+.mobilePage {
+  background: #f7f8f9;
+}
+
+.mobileHeader {
+  display: none;
+}
+
+.mobileBody {
+  overscroll-behavior: contain;
+  padding: 0;
+}
+
+.mobileContent {
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  background: #f7f8f9;
+}
+
+.mobilePeriodSwitcher {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  overflow-x: auto;
+  background: #fff;
+  padding: 16px;
+  scrollbar-width: none;
+}
+
+.mobilePeriodSwitcher::-webkit-scrollbar {
+  display: none;
+}
+
+.mobilePeriodButton {
+  min-width: 72px;
+  min-height: 58px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: inline-flex;
+  flex: 1 0 72px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  background: #f7f8f9;
+  color: @gray8;
+  cursor: pointer;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.mobilePeriodButton > span {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.mobilePeriodButton > small {
+  color: @gray6;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.mobilePeriodButton:disabled {
+  color: @gray8;
+  cursor: not-allowed;
+}
+
+.mobilePeriodButton:disabled > small {
+  color: @gray5;
+}
+
+.mobilePeriodButton:not(:disabled):focus-visible {
+  outline: 2px solid rgba(2, 105, 97, 0.2);
+  outline-offset: 2px;
+}
+
+.mobilePeriodActive {
+  border-color: #026961;
+  background: #fff;
+  color: #026961;
+}
+
+.mobilePeriodActive > small,
+.mobilePeriodActive:disabled > small {
+  color: #04252b;
+}
+
+.mobileOverviewMain {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.mobileOverviewMain .summaryCard {
+  min-height: 226px;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 16px;
+}
+
+.mobileOverviewMain .summaryContent {
+  width: 100%;
+  align-items: stretch;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileOverviewMain .totalEmission {
+  width: 100%;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid @gray3;
+  padding-bottom: 16px;
+}
+
+.mobileOverviewMain .scopeList {
+  width: 100%;
+  flex: none;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mobileOverviewMain .scopeItem {
+  grid-template-columns: 2px minmax(0, 1fr);
+  grid-template-rows: 22px 24px;
+  column-gap: 8px;
+  row-gap: 8px;
+}
+
+.mobileOverviewMain .scopeItem strong {
+  grid-column: 1 / -1;
+}
+
+.mobileTableGroups {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobileTableGroup {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobileTableGroupTitle {
+  color: @gray8;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.mobileOrganizationCard {
+  min-width: 0;
+  border: 1px solid #e3e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(30, 47, 62, 0.05);
+}
+
+.mobileRootHeader {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #eaf7f5;
+  color: #04252b;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 14px 12px;
+  text-align: left;
+}
+
+.mobileRootHeader:focus-visible,
+.mobileOrganizationToggle:focus-visible {
+  outline: 2px solid rgba(2, 105, 97, 0.24);
+  outline-offset: -2px;
+}
+
+.mobileRootName {
+  min-width: 0;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobileRootName img {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  display: block;
+}
+
+.mobileRootName strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 26px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileRootActions {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobileRootStatus {
+  max-width: 112px;
+  min-height: 28px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background: #fff;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 2px 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileExpandIcon {
+  width: 10px;
+  height: 6px;
+  flex: 0 0 10px;
+  display: block;
+  transition: transform 0.16s ease;
+}
+
+.mobileExpandIconOpen {
+  transform: rotate(180deg);
+}
+
+.mobileEmissionDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 8px;
+  background: #f7f8f9;
+  padding: 12px;
+}
+
+.mobileRootEmissionDetails {
+  gap: 12px;
+  border-radius: 0;
+  background: #fff;
+  padding: 12px 16px;
+}
+
+.mobileEmissionTotal {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px dashed #b5b8bb;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  padding-bottom: 12px;
+}
+
+.mobileEmissionTotal > span,
+.mobileEmissionTotal > strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileEmissionTotal > strong,
+.mobileEmissionScopes strong {
+  color: @gray8;
+  font-family: 'HarmonyOS Sans SC', 'PingFang SC', sans-serif;
+  font-weight: 500;
+}
+
+.mobileEmissionScopes {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mobileEmissionScopes > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.mobileRootEmissionDetails .mobileEmissionScopes > div {
+  gap: 4px;
+}
+
+.mobileEmissionScopes span {
+  color: @gray6;
+}
+
+.mobileEmissionScopes span,
+.mobileEmissionScopes strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileOrganizationDivider {
+  height: 8px;
+  background: #f7f8f9;
+}
+
+.mobileOrganizationRows {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  padding: 8px 12px 12px;
+}
+
+.mobileOrganizationRow {
+  min-width: 0;
+  border-bottom: 1px solid @gray3;
+  background: #fff;
+}
+
+.mobileOrganizationRowOpen {
+  border-bottom: 0;
+}
+
+.mobileOrganizationRowContent {
+  min-height: 64px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+
+.mobileOrganizationToggle {
+  width: 100%;
+  min-width: 0;
+  height: 24px;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: transparent;
+  color: @gray8;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+.mobileOrganizationName {
+  min-width: 0;
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobileOrganizationName img {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  display: block;
+}
+
+.mobileOrganizationName strong {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileOrganizationActions {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 3px;
+}
+
+.mobileSuccessIcon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  display: block;
+}
+
+.mobileProgress {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: @gray7;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.mobileProgressTrack {
+  min-width: 0;
+  height: 6px;
+  position: relative;
+  flex: 1 1 auto;
+  border-radius: 60px;
+  overflow: hidden;
+}
+
+.mobileProgressTrack > img,
+.mobileProgressValue img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.mobileProgressValue {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}

@@ -1,0 +1,84 @@
+.businessAccountTingMainDiv {
+  height: calc(100% - 60px) !important;
+  background: #f7f8f9;
+  padding-bottom: 12px;
+}
+
+.stepBox {
+  width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.stepsClass {
+  :global(.ant-steps-item-icon) {
+    width: 24px;
+    height: 24px;
+    line-height: 20px;
+  }
+  :global(.ant-steps-item-container) {
+    display: flex;
+    align-items: center;
+  }
+  :global(.ant-steps-item-active .ant-steps-item-title) {
+    color: #0cbf9f;
+  }
+  :global(.ant-steps-icon) {
+    font-size: 12px;
+  }
+}
+
+.quickListScope {
+  :global(.anticon) {
+    color: #0cbf9f;
+  }
+  :global(.ant-select-selection-item) {
+    color: #0cbf9f;
+  }
+}
+
+.stepBoxBack {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  left: 16px;
+  cursor: pointer;
+}
+
+.stepBoxGoResut {
+  position: absolute;
+  right: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.selectScopeBorder {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background: #d2d6da;
+  margin-left: 16px;
+}
+
+.importAndOutMain {
+  cursor: pointer;
+
+  &:hover {
+    color: #0cbf9f;
+  }
+}
+
+:global(.ant-modal-body) {
+  // overflow: hidden;
+}
+
+.textButton {
+  margin-right: 10px;
+  color: #0cbf9f;
+  cursor: pointer;
+}

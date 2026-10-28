@@ -1,0 +1,41 @@
+.mapBtnContent {
+  margin-bottom: 16px;
+  line-height: 22px; /* 157.143% */
+}
+
+.mapBtn {
+  color: #026961;
+  cursor: pointer;
+}
+
+.header {
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  row-gap: 8px;
+  @media (min-width: 768px) {
+    :global {
+      .ant-select {
+        width: 230px;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    :global {
+      .ant-select {
+        width: 100%;
+        input[type='search'] {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.mapContainer {
+  height: 400px !important;
+  @media (max-width: 768px) {
+    height: 240px !important;
+  }
+}

@@ -1,0 +1,109 @@
+@import './mixin.less';
+
+.mg_top6 {
+  margin-top: 10px;
+}
+
+.productManagementDropdown {
+  :global {
+    .ant-dropdown-menu-item {
+      padding: 7px 30px;
+      text-align: center;
+    }
+  }
+}
+
+.carbonFootprint.carbonFootprint {
+  position: relative;
+  width: 100%;
+  overflow-x: initial;
+  overflow-y: auto;
+
+  .sourceHr {
+    position: absolute;
+    width: calc(100% + 32px);
+    height: 10px;
+    background: #f7f8f9;
+    top: 0px;
+    left: -16px;
+  }
+
+  .customBtn {
+    width: 40px;
+    height: 32px;
+  }
+
+  .main {
+    position: relative;
+    padding: 0 0px;
+
+    &_table {
+      margin-top: 6px;
+    }
+
+    .mainHeader {
+      .setBtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .btn {
+          width: 70px;
+        }
+      }
+    }
+
+    .carbonFootprintSearch {
+      margin-top: 16px;
+    }
+  }
+
+  :global(.ant-checkbox-disabled + span) {
+    color: @text-color;
+  }
+  :global(.ant-radio-disabled + span) {
+    color: @text-color;
+  }
+  :global(.ant-input-affix-wrapper-disabled) {
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+
+  :global(.ant-table-thead .ant-dropdown-trigger) {
+    padding: 0;
+  }
+  :global(.ant-table-thead .ant-dropdown-trigger:hover) {
+    background: transparent;
+  }
+  :global(.ant-modal-body) {
+    padding: 4px 24px 20px 24px;
+  }
+
+  :global(.ant-modal-footer) {
+    padding: 0 24px 20px 24px;
+  }
+
+  :global(.ant-picker.ant-picker-disabled) {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border-color: #fff;
+    cursor: not-allowed;
+  }
+
+  :global(.ant-picker-input > input[disabled]) {
+    color: @text-color;
+  }
+
+  :global(.ant-select-disabled.ant-select:not(.ant-select-customize-input)
+      .ant-select-selector) {
+    background-color: @readOnlyInputStyle;
+    border: none;
+    color: @text-color;
+  }
+
+  :global(.ant-input[disabled]) {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+}

@@ -1,0 +1,447 @@
+@import '@src/styles/var.less';
+
+.userListModelClass {
+  .ant-modal-header {
+    border-bottom: none;
+  }
+
+  .ant-modal-footer {
+    border-top: none;
+  }
+
+  .downloadTemplate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    margin-bottom: 16px;
+    padding: 0 20px;
+    background: @backgroudGray;
+    border: 1px dashed @border-color-base;
+    border-radius: 5px;
+  }
+
+  .uploadFileMain {
+    padding: 20px;
+    background: @backgroudGray;
+    border: 1px dashed @border-color-base;
+    border-radius: 5px;
+
+    .fileMain {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 120px;
+      margin-top: 20px;
+      background: @whiteBg;
+
+      .fileTitle {
+        margin-bottom: 10px;
+        color: @text-color;
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      .fileName {
+        color: @text-color-secondary;
+      }
+
+      .ant-upload-drag {
+        min-width: 300px;
+        background: @whiteBg;
+        border: none;
+      }
+    }
+  }
+
+  .conversionRecordTitle {
+    padding: 15px 20px;
+    background: @backgroudGray;
+    border-radius: 4px;
+  }
+}
+
+.carbonAccount.carbonAccount {
+  position: relative;
+  margin-bottom: 60px;
+  overflow-x: revert;
+
+  .color_0CBF9F {
+    color: @primary-color;
+  }
+
+  .cursorPoin {
+    cursor: pointer;
+  }
+
+  .mr10 {
+    margin-right: 10px;
+  }
+
+  .mt10 {
+    margin-top: 10px;
+  }
+
+  .mt20 {
+    margin-top: 20px;
+  }
+
+  .mr20 {
+    margin-right: 20px;
+  }
+
+  .mb10 {
+    margin-bottom: 10px;
+  }
+
+  .mb7 {
+    margin-bottom: 10px;
+  }
+
+  .mb20 {
+    margin-bottom: 20px;
+  }
+
+  .hr {
+    width: calc(100% - 40px);
+    height: 1px;
+    background: #ebedf0;
+  }
+
+  .footerbtn {
+    position: fixed;
+    bottom: 0;
+    left: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 230px);
+    height: 52px;
+    background: @whiteBg;
+  }
+
+  .columsUserStatus {
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 15px;
+  }
+
+  .home {
+    background-image: linear-gradient(0deg, #f7f8f9 0%, #fff 0%, #fafffe 100%);
+
+    .noOrderHome {
+      width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+
+      .noOrderHomeTitle {
+        color: @text-color;
+        font-weight: 400;
+        font-size: 26px;
+      }
+
+      .noOrderHomeTitleDetail {
+        margin-top: 15px;
+        color: @text-color-secondary;
+      }
+    }
+
+    .homeTitle {
+      position: relative;
+      background: url('https://carbonstop-saas.oss-cn-beijing.aliyuncs.com/saas-product/Enterprise_Carbon_Accounting-bg.svg');
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+
+      .homeTitleMain {
+        display: flex;
+        justify-content: space-between;
+        width: 1000px;
+        min-height: 400px;
+        margin: 0 auto;
+        padding: 30px 0 0;
+      }
+
+      .homeTitleText {
+        color: @text-color;
+        font-weight: 500;
+        font-size: 38px;
+      }
+
+      .homeTitleTextDetail {
+        width: 420px;
+        margin-top: 20px;
+        font-size: 14px;
+        line-height: 28px;
+      }
+
+      .homeTitleIllustration {
+        margin-left: 50px;
+
+        img {
+          width: 520px;
+          height: auto;
+        }
+      }
+    }
+
+    .homeTab {
+      text-align: center;
+
+      .tabTitle {
+        color: @text-color;
+        font-weight: 400;
+        font-size: 26px;
+      }
+
+      .tabMain {
+        width: 1000px;
+        margin: 40px auto 0;
+      }
+
+      .ant-tabs-nav-wrap {
+        justify-content: center;
+      }
+
+      .ant-tabs-tab {
+        margin: 0 50px;
+      }
+    }
+  }
+
+  .homeFooter {
+    text-align: center;
+    background: transparent;
+  }
+
+  .main {
+    position: relative;
+    padding: 10px;
+
+    .search {
+      position: relative;
+    }
+
+    .setButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+
+  .findUser {
+    padding: 10px;
+
+    .findTitle {
+      color: @text-color;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .findTable {
+      height: 50px;
+      padding-left: 20px;
+      line-height: 50px;
+      border: 1px solid #ebedf0;
+    }
+
+    .findTableLabel {
+      background: #f7f9fa;
+      border-right: none;
+    }
+
+    .findTableNotopBorder {
+      border-top: none;
+    }
+
+    .findTableNorightBorder {
+      border-right: none;
+    }
+  }
+
+  .sceneManagement {
+    max-width: 1280px;
+    margin: 20px auto;
+
+    .formTitle {
+      color: @text-color;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .formCustomLabel {
+      &::before {
+        display: inline-block;
+        margin-right: 4px;
+        color: #ff4d4f;
+        font-size: 14px;
+        line-height: 1;
+        content: '*';
+      }
+    }
+  }
+
+  .activeDataRecordingDeatil {
+    width: 400px;
+    margin: 0 auto;
+
+    .title {
+      margin-top: 20px;
+      color: @text-color;
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
+}
+
+/* 邀请码 */
+.invite-code-box {
+  height: 214px;
+
+  .tip {
+    margin: 8px 0 18px;
+    color: @text-color-2;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .input-code {
+    display: inline-block;
+    max-width: 800px;
+    height: 60px;
+    margin-bottom: 15px;
+    padding: 0 48px;
+    color: @primary-color;
+    font-size: 20px;
+    line-height: 60px;
+    letter-spacing: 20px;
+    white-space: nowrap;
+    word-break: keep-all;
+    background: @backgroudGray;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+
+  .input-active {
+    border: 1px solid @primary-color;
+    caret-color: @text-color;
+  }
+
+  .input-active:focus-visible {
+    border: 1px solid @primary-color;
+    outline: none;
+  }
+}
+
+/* banner */
+.banner-set-box {
+  height: calc(100vh - 545px);
+
+  .add {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.banner {
+  flex: none !important;
+  height: calc(100vh - 130px);
+
+  .col {
+    position: relative;
+    display: grid;
+    grid-column-gap: 30px;
+    grid-template-areas:
+      'a1 a1'
+      'a2 a2'
+      'a3 a4'
+      'a5 a5';
+    grid-template-columns: 1fr 1fr;
+    width: 830px;
+    margin: 0 auto;
+
+    .row1 {
+      grid-area: a1;
+    }
+
+    .row2 {
+      grid-area: a2;
+    }
+
+    .row3 {
+      grid-area: a3;
+
+      .ant-form-item-control-input {
+        width: 400px;
+      }
+
+      .ant-input-number {
+        width: 400px;
+      }
+    }
+
+    .row4 {
+      grid-area: a4;
+
+      .ant-input-number {
+        width: 400px;
+      }
+    }
+
+    .row5 {
+      grid-area: a5;
+    }
+
+    .tip-word {
+      position: absolute;
+      top: -28px;
+      left: 70px;
+      color: @text-color-secondary;
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+
+  .Editor {
+    width: 830px;
+    height: 240px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    .public-DraftEditorPlaceholder-root {
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .bf-container {
+      display: flex;
+      flex-flow: column;
+
+      .bf-content {
+        flex: auto;
+        overflow: hidden;
+
+        .DraftEditor-root {
+          height: 100%;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
+
+.org-setting {
+  .flex {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+}
+
+.account-footer {
+  position: relative;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background: #f7f8f9;
+}

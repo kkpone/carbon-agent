@@ -1,0 +1,88 @@
+.resizable-image-wrapper {
+  display: block;
+  line-height: 0;
+  margin: 0 auto;
+  position: relative;
+  user-select: none;
+  width: fit-content;
+  max-width: 100%;
+
+  &.selected {
+    .resizable-image-container {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+  }
+
+  &.resizing {
+    .resizable-image {
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+}
+
+.resizable-image-container {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+  transition: outline 0.15s ease;
+}
+
+.resizable-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  user-select: none;
+  -webkit-user-drag: none;
+  object-fit: contain;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  .resizable-image-wrapper.selected & {
+    opacity: 1;
+  }
+}
+
+.resize-handle-bottom-right {
+  right: -10px;
+  bottom: -10px;
+  cursor: nwse-resize; /* 右下角：从西北到东南 */
+}
+
+.resize-handle-bottom-left {
+  left: -10px;
+  bottom: -10px;
+  cursor: nesw-resize; /* 左下角：从东北到西南 */
+}
+
+.resize-handle-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #3b82f6;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+/* 调整大小时显示提示 */
+.resizable-image-wrapper.resizing {
+  .resize-handle-dot {
+    background-color: #2563eb;
+    transform: scale(1.2);
+  }
+}

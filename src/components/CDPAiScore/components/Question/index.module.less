@@ -1,0 +1,192 @@
+.question {
+  display: flex;
+  padding: 8px 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  // box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.06);
+
+  .header {
+    width: 100%;
+    height: 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .expand {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      cursor: pointer;
+      width: 60px;
+
+      .expandIcon {
+        transform: rotate(0deg);
+        transition: transform 0.3s ease-in-out;
+        &.active {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    .finish {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .infos {
+      display: flex;
+      flex-grow: 0.1;
+      width: 300px;
+      justify-content: space-around;
+      align-items: center;
+      color: #000;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 18px; /* 128.571% */
+      // gap: 8px;
+      gap: 0px;
+
+      .info {
+        flex-shrink: 1;
+        flex-grow: 1;
+        width: 75px;
+      }
+
+      .title {
+        text-align: center;
+        font-size: 12px;
+        font-family: 'PingFang SC';
+      }
+
+      .bold {
+        font-weight: 500;
+        text-align: center;
+      }
+    }
+
+    .score {
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    margin-top: 8px;
+    width: 100%;
+    border-top: 1px solid #e5e7eb;
+
+    .title {
+      color: #343a40;
+      leading-trim: both;
+      text-edge: cap;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 14px; /* 116.667% */
+      display: flex;
+      height: 14px;
+      flex-direction: column;
+      justify-content: center;
+      align-self: stretch;
+      margin: 8px 0;
+    }
+
+    .description {
+      color: #343a40;
+      leading-trim: both;
+      text-edge: cap;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px; /* 133.333% */
+    }
+
+    .target {
+      color: #343a40;
+      leading-trim: both;
+      text-edge: cap;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px; /* 133.333% */
+      display: flex;
+      padding: 8px;
+      // justify-content: center;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+      border-radius: 8px;
+      background: rgba(2, 105, 97, 0.1);
+      text-align: start;
+    }
+
+    .operation {
+      margin-top: 8px;
+      height: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .replace {
+        display: flex;
+        height: 28px;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        border-radius: 8px;
+        background: #026961;
+        color: #fff;
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+        cursor: pointer;
+      }
+
+      .right {
+        display: flex;
+        gap: 8px;
+
+        .item {
+          display: flex;
+          width: 28px;
+          height: 28px;
+          padding: 2px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 8px;
+          border: 1px solid #d9d9d9;
+          background: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.question:hover {
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.06);
+}
+
+.open {
+  border-radius: 8px;
+  border: 1px solid #026961;
+  background: #fff;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.06);
+  padding: 8px 10px;
+}

@@ -1,0 +1,257 @@
+.progressBoard {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 106px;
+  margin: 16px 0 0;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+/* 仅两块：左=填报+倒计时，右=审批+催批 */
+.progressSegment {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 40px;
+}
+
+.progressBlock {
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.progressHit {
+  flex-shrink: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.progressLabel {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+/* Figma：填报为深灰文案 */
+.progressLabelFill {
+  color: #4a5568;
+}
+
+.progressLabelApprove {
+  color: #0cbf9f;
+}
+
+.progressTrack {
+  width: 284px;
+
+  :global {
+    .ant-progress {
+      line-height: 1;
+    }
+
+    .ant-progress-inner {
+      background: #ebedf0;
+      border-radius: 999px;
+    }
+  }
+}
+
+.progressCount {
+  flex-shrink: 0;
+  min-width: 56px;
+  color: #04252b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.timerBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  background: #eceff1;
+  border-radius: 4px;
+}
+
+.timerBadgeIcon {
+  font-size: 16px;
+  color: #5c6b76;
+}
+
+.remindButton {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 12px;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+
+  :global {
+    svg {
+      font-size: 16px;
+    }
+  }
+}
+
+.reportBtn {
+  background: #ddf4f2;
+  &:hover {
+    background: #048677;
+    color: #fff;
+  }
+}
+
+.approvalBtn {
+  background: #fceedf;
+  &:hover {
+    background: #c08157;
+    color: #fff;
+  }
+}
+
+.listModal {
+  :global {
+    .ant-modal-content {
+      padding: 28px 32px 24px;
+      border-radius: 28px;
+    }
+
+    .ant-modal-header {
+      margin-bottom: 22px;
+      padding-right: 64px;
+    }
+
+    .ant-modal-title {
+      color: #0d2b33;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 32px;
+    }
+
+    .ant-modal-close {
+      top: 24px;
+      right: 24px;
+    }
+
+    .ant-modal-close-x {
+      width: 28px;
+      height: 28px;
+      color: #7b858e;
+      font-size: 28px;
+    }
+  }
+}
+
+.modalTitleBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-right: 72px;
+}
+
+.modalTitleText {
+  color: #0d2b33;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.listTable {
+  :global {
+    .ant-table {
+      border: 1px solid #dbe2e8;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .ant-table-thead > tr > th {
+      height: 64px;
+      color: #0d2b33;
+      font-size: 16px;
+      font-weight: 700;
+      background: #f5f7f9;
+    }
+
+    .ant-table-tbody > tr > td {
+      height: 72px;
+      color: #33404a;
+      font-size: 16px;
+      background: #fff;
+    }
+  }
+}
+
+.nodeTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  color: #33404a;
+  font-size: 14px;
+  line-height: 22px;
+  background: #f6f8fa;
+  border-radius: 10px;
+}
+
+.modalFooter {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modalTotal {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@media (max-width: 1200px) {
+  .progressBoard {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .progressSegment {
+    flex: none;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .modalTitleBlock {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  flex: auto;
+
+  .searchForm {
+    flex: 0 0;
+  }
+
+  .table,
+  :global(.ant-spin-nested-loading) {
+    flex: auto;
+  }
+}

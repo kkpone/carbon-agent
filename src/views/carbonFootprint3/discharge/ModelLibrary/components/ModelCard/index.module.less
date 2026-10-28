@@ -1,0 +1,180 @@
+/* 对齐 Figma：模型卡片 node 3562:18935（产品碳足迹-开发） */
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #ebedf0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    border-color: #026961;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    .modelName {
+      color: #026961;
+    }
+  }
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f8f9;
+  border-radius: 4px;
+
+  .modelIcon {
+    font-size: 36px;
+    color: #0cbf9f;
+  }
+}
+
+.infoArea {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nameRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.modelName {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #04252b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 14px;
+  color: #999ea4;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #026961;
+  }
+}
+
+.sourceTag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: 0 8px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #04252b;
+
+  &.system {
+    background: #ddf4f2;
+  }
+
+  &.custom {
+    background: #fceedf;
+  }
+}
+
+.timeRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #6c757d;
+}
+
+.timeIcon {
+  font-size: 16px;
+}
+
+.divider {
+  flex-shrink: 0;
+  width: 100%;
+  height: 0;
+  margin: 0;
+  border: none;
+  border-top: 1px solid #ebedf0;
+}
+
+.cardBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 12px;
+  min-width: 0;
+}
+
+.detailCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detailLabel {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #999ea4;
+}
+
+.detailValue {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #04252b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detailValueMuted {
+  color: #343a40;
+}

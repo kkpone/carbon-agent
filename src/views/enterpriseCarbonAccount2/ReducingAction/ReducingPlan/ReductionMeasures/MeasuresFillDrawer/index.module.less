@@ -1,0 +1,160 @@
+@import '@Variable';
+
+.drawer {
+  :global {
+    .ant-drawer-body {
+      padding: 0;
+    }
+  }
+}
+
+.drawerFooter {
+  display: flex;
+  justify-content: center;
+  column-gap: 12px;
+}
+
+.content {
+  display: flex;
+  height: 100%;
+}
+
+.measuresPlan {
+  padding: 0 24px 24px;
+  width: 320px;
+  height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid #ebedf0;
+}
+
+.measuresPlanTitle {
+  .title-s-b();
+
+  margin: 16px 0;
+}
+
+.baseFormItem {
+  margin-bottom: 0;
+  :global {
+    .ant-formily-item-label-content > span {
+      display: flex;
+      align-items: flex-start;
+      height: 20px;
+    }
+  }
+}
+
+.baseFormLabel {
+  .body-m();
+
+  display: inline-block;
+  max-width: 252px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: @gray7;
+}
+
+.numberPicker {
+  width: 100%;
+}
+
+.measuresInfo {
+  padding: 0 24px 24px;
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  background: #f7f8f9;
+}
+
+.measuresInfoTitle {
+  .title-s-b();
+
+  margin: 20px 0;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.infoSecondaryTitle {
+  .body-m-b();
+
+  position: relative;
+  padding-left: 10px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 2px;
+    height: 16px;
+    background: @green7;
+  }
+}
+
+.basicInfoItem {
+  margin-top: 8px;
+  display: flex;
+  column-gap: 40px;
+}
+
+.basicInfoLabel {
+  .caption-s();
+
+  min-width: 72px;
+}
+
+.basicInfoValue {
+  .caption-s();
+
+  color: @gray8;
+}
+
+.typeTag {
+  .caption-s-b();
+
+  padding: 0 6px;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  background: @green7;
+  border-radius: 4px;
+}
+
+.paramInfoItem {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+}
+
+.scopeInfoItem {
+  margin-top: 12px;
+}
+
+.scopeInfo {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.scopeName {
+  .caption-s-b();
+
+  color: @gray8;
+}
+
+.reductionUnit {
+  .caption-s();
+}
+
+.reductionFormula {
+  .caption-s();
+
+  margin-top: 4px;
+}

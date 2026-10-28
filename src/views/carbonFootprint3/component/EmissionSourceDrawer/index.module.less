@@ -1,0 +1,325 @@
+.closeIcon {
+  cursor: pointer;
+}
+
+.checkModelMain {
+  position: fixed;
+  top: 0;
+  padding: 16px;
+  right: 728px;
+  width: 300px;
+  height: 100%;
+  background: #f7f8f9;
+
+  .checkTitle {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin-bottom: 16px;
+
+    .checkModelIcon {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+  }
+
+  .checkModelText {
+    color: #6c757d;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+
+  .checkModelPage {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    .pageText {
+      font-size: 12px;
+      color: #999ea4;
+      margin-right: 16px;
+    }
+  }
+}
+
+.btns {
+  padding: 0 22px;
+}
+
+.titleContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin-bottom: 8px;
+  color: #6c757d;
+  font-weight: 400;
+}
+
+.matchWayContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.fileInfo {
+  margin-bottom: 8px;
+  color: rgb(153 158 164);
+  font-size: 12px;
+}
+
+.referenceModelEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 190px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #ebedf0;
+  border-radius: 8px;
+}
+
+.referenceModelTip {
+  margin-top: 12px;
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.referenceModelEmptyIcon {
+  width: 64px;
+  height: auto;
+  margin-bottom: 6px;
+}
+
+.referenceModelEmptyText {
+  color: #c2c7cc;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.referenceModelSelectBtn {
+  height: 24px;
+  padding: 0;
+  margin-top: 12px;
+  color: @colorPrimary;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.referenceModelCardBorder {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-top: 2px solid #026961;
+  border-radius: 12px;
+}
+
+.referenceModelCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.referenceModelCardHeader {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.referenceModelDetailTrigger {
+  display: flex;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: calc(100% - 120px);
+  align-items: center;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.referenceModelName {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.referenceModelDetailIcon {
+  flex-shrink: 0;
+  margin-left: 10px;
+  color: #999ea4;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.referenceModelData {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  padding: 12px;
+  overflow: hidden;
+  background: #f7f8f9;
+  border-radius: 8px;
+}
+
+.referenceModelDataItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.referenceModelDataValue {
+  max-width: 170px;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.referenceModelDataLabel {
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.referenceModelChangeBtn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+  height: 22px;
+  padding: 0;
+  margin-left: auto;
+  color: #026961;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.referenceModelChangeIcon {
+  font-size: 16px;
+}
+
+.referenceModelRate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.referenceModelRateTitle {
+  display: flex;
+  align-items: center;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.referenceModelRateRequired {
+  color: #b04465;
+}
+
+.referenceModelRateBody {
+  width: 344px;
+}
+
+.referenceModelRateContent {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.referenceModelRateInput {
+  position: relative;
+  top: 2px;
+  width: 80px;
+  overflow: hidden;
+  margin: 0 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border: none;
+  border-bottom: 2px solid #ebedf0;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+
+  :global(.ant-input-number-input) {
+    position: relative;
+    margin: 0 8px;
+    padding: 0;
+    font-size: 14px;
+    transition: none;
+  }
+}
+
+.referenceModelRateInputError {
+  border-bottom-color: @dangerTextColor;
+}
+
+:global(.ant-input-number-focused).referenceModelRateInput {
+  border-bottom-color: @colorPrimary;
+}
+
+.referenceModelRateUnit,
+.referenceModelRateEqual {
+  flex-shrink: 0;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.referenceModelRateEqual,
+.referenceModelRateValue {
+  margin: 0 5px;
+  font-weight: 500;
+}
+
+.referenceModelRateValue {
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.referenceModelRateTipInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.referenceModelRateTipText {
+  color: var(--text-gray-5-disabled, #b5b8bb);
+  font-family: 'PingFang SC';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.referenceModelRateErrorText {
+  margin-top: 3px;
+  color: @dangerTextColor;
+  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}

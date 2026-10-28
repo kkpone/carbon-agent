@@ -1,0 +1,95 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1f0eb;
+  background: linear-gradient(
+      135deg,
+      rgba(12, 191, 159, 0.06) 0%,
+      rgba(164, 232, 239, 0.08) 100%
+    ),
+    #fff;
+  transition: box-shadow 0.2s;
+}
+
+.card[data-has-details='true'] {
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 8px 0 rgba(12, 191, 159, 0.15);
+  }
+}
+
+.left {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #04252b;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.aiIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* 固定展示 3 行：3行 × 18px 行高 + 2个间距 × 2px = 58px，超出裁切 */
+.itemList {
+  margin-top: 4px;
+  height: 58px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* 每条评价独立一行，超出显示 ... */
+.itemRow {
+  font-size: 12px;
+  color: #5a6472;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.loadButton {
+  flex-shrink: 0;
+  height: 20px;
+  margin-left: 8px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.arrow {
+  flex-shrink: 0;
+  margin-left: 8px;
+  margin-top: 2px;
+  color: #0cbf9f;
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+}

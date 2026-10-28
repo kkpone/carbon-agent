@@ -1,0 +1,239 @@
+.panel {
+  width: 100%;
+}
+
+.tip {
+  margin-top: 12px;
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 190px;
+  margin: 16px 0;
+  border: 1px solid #ebedf0;
+  border-radius: 8px;
+}
+
+.emptyIcon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 6px;
+  object-fit: contain;
+}
+
+.emptyText {
+  color: #c2c7cc;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.selectButton {
+  height: 24px;
+  margin-top: 12px;
+  padding: 0;
+  color: #0cbf9f;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.cardBorder {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0;
+  padding: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-top: 3px solid #2dccaa;
+  border-radius: 12px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardHeader {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.accountName {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: #04252b;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.detailTrigger {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.detailTrigger:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid rgb(12 191 159 / 28%);
+  outline-offset: 2px;
+}
+
+.detailIcon {
+  color: #999ea4;
+  font-size: 20px;
+}
+
+.dataGrid {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  padding: 12px;
+  overflow: hidden;
+  background: #f7f8f9;
+  border-radius: 8px;
+}
+
+.dataItem {
+  display: flex;
+  flex: 0 1 170px;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  min-width: 0;
+}
+
+.dataValue {
+  max-width: 170px;
+  overflow: hidden;
+  color: #04252b;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dataLabel {
+  color: #999ea4;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.changeButton {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  align-items: center;
+  height: 22px;
+  margin-left: auto;
+  padding: 0;
+  color: #0cbf9f;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.changeIcon {
+  font-size: 16px;
+}
+
+.ratePanel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rateTitle {
+  display: flex;
+  align-items: center;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.rateInfoIcon {
+  margin-left: 4px;
+}
+
+.required {
+  color: #b04465;
+}
+
+.rateBody {
+  width: 344px;
+}
+
+.rateRow {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+
+.rateInput {
+  position: relative;
+  top: 2px;
+  width: 80px;
+  margin: 0 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border: 0;
+  border-bottom: 2px solid #ebedf0;
+  border-radius: 0;
+  box-shadow: none;
+
+  :global(.ant-input-number-input) {
+    position: relative;
+    margin: 0 8px;
+    padding: 0;
+    font-size: 14px;
+  }
+}
+
+.rateInput:global(.ant-input-number-focused) {
+  border-bottom-color: #0cbf9f;
+  box-shadow: none;
+}
+
+.rateUnit,
+.rateEqual,
+.rateValue {
+  flex: 0 0 auto;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.rateEqual,
+.rateValue {
+  margin: 0 5px;
+  font-weight: 500;
+}
+
+.rateHint {
+  color: #b5b8bb;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.error {
+  margin-top: 3px;
+  color: #b04465;
+}

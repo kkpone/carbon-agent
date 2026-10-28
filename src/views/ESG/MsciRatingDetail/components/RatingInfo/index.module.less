@@ -1,0 +1,219 @@
+.ratingInfo {
+  padding: 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ratingCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ratingHeaderWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+}
+
+.ratingHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .ratingTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .ratingTitleMain {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 22px;
+      color: #04252b;
+      letter-spacing: 4px;
+    }
+
+    .ratingTitleSub {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #999ea4;
+    }
+
+    .infoIcon {
+      color: #999ea4;
+      font-size: 14px;
+      cursor: pointer;
+      width: 14px;
+      height: 14px;
+
+      &:hover {
+        color: #008077;
+      }
+    }
+  }
+
+  .estimatedScore {
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 22px;
+    color: #04252b;
+    letter-spacing: 1.4px;
+  }
+}
+
+.ratingCircleWrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  .ratingCircle {
+    width: 62px;
+    height: 62px;
+    border-radius: 31px;
+    background-color: #008077;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #fff;
+  }
+
+  .ratingInnerCircle {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    border-radius: 26px;
+    border: 1px solid #fff;
+    top: 5px;
+    left: 5px;
+  }
+}
+
+.ratingScale {
+  display: flex;
+  border: 1px solid #ebedf0;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .scaleItem {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    font-family: 'PingFang SC', sans-serif;
+    font-weight: 600;
+    font-size: 8px;
+    line-height: 12px;
+    color: #04252b;
+    border-right: 1px solid #ebedf0;
+    min-height: 12px;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    &.scaleItemActive {
+      background-color: #008077;
+      color: #fff;
+    }
+  }
+}
+
+.wakisScore {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  .wakisScoreHeader {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .wakisScoreTitle {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      color: #04252b;
+    }
+
+    .wakisScoreSub {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 18px;
+      color: #999ea4;
+    }
+
+    .wakisScoreValue {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #04252b;
+      margin-left: auto;
+    }
+  }
+}
+
+.scoreBreakdown {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  .scoreItem {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    flex: 1;
+
+    .scoreLabelRow {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      .scoreLabel {
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        color: #6c757d;
+      }
+
+      .scorePercent {
+        font-family: 'PingFang SC', sans-serif;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        color: #6c757d;
+      }
+    }
+
+    .scoreLabelRowEn {
+      flex-direction: column;
+    }
+
+    .scoreValue {
+      font-family: 'PingFang SC', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      color: #04252b;
+    }
+
+    .scoreValueEn {
+      text-align: center;
+    }
+  }
+}

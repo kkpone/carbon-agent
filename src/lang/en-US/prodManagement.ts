@@ -1,0 +1,22 @@
+export default {
+  newOperations: 'Add operational data',
+  operationalIndicators: 'Operational indicators',
+  operationalDataNotAvailable: 'Operational data cannot be empty',
+  operationalIndicatorsAreNotApplicable:
+    'Operational indicators cannot be empty',
+  pleaseAddOperations: 'Please add operational data',
+  year: 'Year',
+  pleaseSelectIndicators: 'Please select the indicator unit',
+  indicatorUnit: 'Indicator unit',
+  pleaseEnterIndicators: 'Please enter the indicator name',
+  indicatorName: 'Indicator Name',
+  curre: '{val1} Operational indicators',
+  reset: 'Reset',
+  query: 'Search',
+  operationalData: 'Operational data',
+  productionAndOperationManagement: 'Production and operation management',
+  confirmDeletionOfShipment: 'Confirm deletion of operational indicators:',
+  operation: 'Action',
+  operationalData2: 'What is the operational data for?',
+  confirmDeletion: 'Confirm deletion',
+};

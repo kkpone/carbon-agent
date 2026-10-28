@@ -1,0 +1,53 @@
+.ant-modal-content,
+.ant-modal-header {
+  border-radius: 6px;
+}
+.layout {
+  display: flex;
+  flex-direction: column;
+  /* height: calc(100vh - 62.99px); */
+}
+.layout--side-bar {
+  flex-direction: row;
+}
+.layout--weak {
+  filter: invert(80%);
+}
+.layout__route {
+  position: relative;
+  background: #fff;
+  padding: 14px 20px;
+  min-height: calc(100vh - 95px);
+}
+.layout__route-enter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+}
+.layout__route-enter-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+}
+.layout__route-exit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+}
+.layout__route-exit-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+}

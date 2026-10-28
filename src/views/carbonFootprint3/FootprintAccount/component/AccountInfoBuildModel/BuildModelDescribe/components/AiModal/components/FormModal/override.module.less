@@ -1,0 +1,47 @@
+.input {
+  border: none;
+}
+
+:global(.ant-table-cell-row-hover) {
+  .input {
+    border: 1px solid #d5d7da;
+  }
+}
+
+.main {
+  :global {
+    .ant-input-number-outlined {
+      border-color: #fff;
+    }
+
+    .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+      border: 1px solid #fff;
+    }
+    .ant-select .ant-select-arrow {
+      display: none;
+    }
+
+    .ant-input-number-group-wrapper-outlined .ant-input-number-group-addon {
+      background-color: #fff;
+      border: 1px solid #fff;
+    }
+
+    .ant-table-cell-row-hover {
+      .ant-input-number-outlined {
+        border-color: #d5d7da;
+      }
+      .ant-select-outlined:not(.ant-select-customize-input)
+        .ant-select-selector {
+        border: 1px solid #d5d7da;
+      }
+      .ant-select .ant-select-arrow {
+        display: flex;
+      }
+
+      .ant-input-number-group-wrapper-outlined .ant-input-number-group-addon {
+        background-color: #fff;
+        border: 1px solid #d5d7da;
+      }
+    }
+  }
+}

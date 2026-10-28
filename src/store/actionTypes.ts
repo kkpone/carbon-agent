@@ -1,0 +1,51 @@
+export const CLEAR = 'CLEAR';
+export const ADD_DOMESTIC_REPORT = 'ADD_DOMESTIC_REPORT';
+export const ADD_FUEL_DATA = 'ADD_FUEL_DATA';
+export const ADD_CARBONS_JSON = 'ADD_CARBONS_JSON';
+export const ADD_LIFECYCLE_INFO = 'ADD_LIFECYCLE_INFO';
+/**
+ * ADD_CARBON_PRODUCT:产品碳足迹生命周期阶段数据
+ * ADD_CARBON_UNITLIST：添加排放因子单位list数据
+ * ADD_LIFECYCLE_INFO:产品生命周期依赖性数据
+ * ADD_CREW_FUNCTION:测定方法标准
+ * ADD_CARBONS_JSON：碳排放管理机组类型数据
+ * ADD_CHECK_REPORT:查看报送信息年份和报告名称
+ * ADD_OR_ID:点击选择后的碳排放报告组织id
+ */
+export const CHANGE_ORGANIZATION = 'CHANGE_ORGANIZATION';
+export const REPORT_SUBJECT = 'REPORT_SUBJECT';
+export const REPORT_INITIAL = 'REPORT_INITIAL';
+export const REPORT_INITIALVALUE = 'REPORT_INITIALVALUE';
+export const REPORT_NAME_OPTION = 'REPORT_NAME_OPTION';
+
+/*
+ *
+ * */
+
+/**
+ * 登录、用户信息
+ */
+export const SET_COMPANY_USER_INFO = 'SET_COMPANY_USER_INFO';
+export const UPDATE_INFO = 'UPDATE_INFO';
+export const UPDATE_USER = 'UPDATE_USER';
+export const DROP_COMPANY_ID = 'DROP_COMPANY_ID';
+
+/**
+ * 全局通知 cache ，保证同一时间只有一个消息
+ */
+export const CACHE_GLOBAL_MESSAGE = 'CACHE_GLOBAL_MESSAGE';
+export const DROP_SHOWED_MESSAGE = 'DROP_SHOWED_MESSAGE';
+
+/** 消息通知 */
+export const UPDATE_MESSAGE_COUNT = 'UPDATE_MESSAGE_COUNT';
+export const UPDATE_SCROLL_NOTICES = 'UPDATE_SCROLL_NOTICES';
+export const UPDATE_MODAL_NOTICES = 'UPDATE_MODAL_NOTICES';
+export const DROP_SHOWED_MODAL_NOTICE = 'DROP_SHOWED_MODAL_NOTICE';
+export const DROP_SHOWED_SCROLL_NOTICE = 'DROP_SHOWED_SCROLL_NOTICE';
+
+/**
+ * 存储carbonData中Echert 的Option
+ *
+ * **/
+export const SAVEECARBONECHERTOPTION = 'SAVE_ECARBON_ECHERT_OPTION';
+export const GET_CARBON_ECHERT_OPTION = ' GET_CARBON_ECHERT_OPTION';

@@ -1,0 +1,295 @@
+@import '@Variable';
+
+.overview {
+  width: 100%;
+  height: 100%;
+}
+
+.loadingContainer {
+  width: 100%;
+  height: 100%;
+
+  :global {
+    .ant-spin {
+      max-height: none !important;
+    }
+
+    .ant-spin-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+}
+
+.overviewHeader {
+  padding: 16px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.overviewHeaderTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.overviewDetails {
+  margin-top: 16px;
+  display: flex;
+  column-gap: 32px;
+}
+
+.overviewDetailsItem {
+  flex: 1;
+}
+
+.targetYearContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.targetYearValue {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  color: @gray8;
+}
+
+.targetYearLabel {
+  .caption-s-b();
+
+  margin-top: 4px;
+  color: @gray8;
+}
+
+.targetProcess {
+  margin-top: 16px;
+}
+
+.targetProcessValue {
+  .caption-s();
+
+  color: @green7;
+}
+
+.targetProcessValueSpan {
+  margin-left: 4px;
+  font-size: 12px;
+}
+.overviewHeaderSplit {
+  width: 1px;
+  height: 94px;
+  border-right: 1px dashed #d2d6da;
+}
+
+.progressBar {
+  margin-top: 4px;
+  position: relative;
+  flex: 1;
+  height: 8px;
+  background: #f7f8f9;
+}
+
+.progressBarBody {
+  position: absolute;
+  max-width: 100%;
+  height: 100%;
+  background: #0cbf9f;
+}
+
+.overviewEmission {
+  margin-top: 8px;
+  padding: 0 16px;
+  min-height: 48px;
+  border-left: 2px solid #FBA93E;
+}
+
+.overviewEmissionPredict {
+  border-left-color: #3491FA
+}
+
+.overviewEmissionTitle {
+  .body-m-b();
+}
+
+.overviewEmissionDetails {
+  margin-top: 4px;
+  display: flex;
+  column-gap: 24px;
+}
+
+.overviewEmissionDetailsItem {
+  display: flex;
+  align-items: center;
+}
+
+.emissionDetailsLabel {
+  .caption-s();
+}
+
+.emissionDetailsValue {
+  margin-left: 4px;
+  font-size: 14px;
+color: @gray8;
+font-weight: 400;
+line-height: 22px;
+}
+
+.overviewEmissionTip {
+  .caption-s();
+  margin-top: 12px;
+}
+
+.overviewContent {
+  flex: 1;
+  margin-top: 12px;
+}
+
+.warnText {
+  .caption-s-b();
+
+  margin-left: 4px;
+  color: #fba93e;
+}
+
+.completed {
+  height: 100%;
+  padding: 16px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.emptyImg {
+  width: 128px;
+}
+
+.completedContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.completeDesc {
+  color: #6c757d;
+}
+
+.completeBlock {
+  display: flex;
+  margin-top: 16px;
+}
+
+.completeItem {
+  width: 312px;
+  margin-right: 12px;
+  padding: 24px;
+  background-color: #f7f8f9;
+  border-radius: 4px;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.completeItemLabel {
+  color: #343a40;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.completeItemDesc {
+  margin-top: 4px;
+  color: #6c757d;
+  line-height: 22px;
+}
+
+.completedText {
+  color: #0cbf9f;
+}
+
+.completeOperate {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+  margin-top: 24px;
+}
+
+.completeTag {
+  color: #0cbf9f;
+  background: #e6fff6;
+  border-color: #aaf2db;
+}
+
+.title {
+  color: #343a40;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.emission {
+  display: flex;
+  flex-direction: column;
+  height: 408px;
+  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 4px;
+
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+}
+
+.scopeEmission {
+  height: 422px;
+}
+
+.emissionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.emissionTitle {
+  display: flex;
+  align-items: center;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.scopeEmissionTitle {
+  padding: 0 16px 16px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.emissionDesc {
+  margin-left: 4px;
+  color: #b5b8bb;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.emissionContent {
+  flex: 1;
+}
+
+.scopeEmissionContent {
+  float: left;
+  width: calc(50% - 6px);
+  height: 100%;
+  margin-right: 12px;
+
+  &:nth-last-of-type(1) {
+    margin-right: 0;
+  }
+}
+
+.scopeEmissionChart,
+.scopeEmissionInfo {
+  height: calc(100% - 38px);
+}

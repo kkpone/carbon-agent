@@ -1,0 +1,74 @@
+@import '@src/styles/var.less';
+@import '@src/views/carbonFootprint/mixin.less';
+.carbonFootprint.carbonFootprint {
+  position: relative;
+  width: 100%;
+  overflow-x: initial;
+  .customBtn {
+    width: 40px;
+    height: 32px;
+  }
+  .main {
+    position: relative;
+    padding: 0 0px;
+
+    .mainHeader {
+      .setBtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .btn {
+          width: 70px;
+        }
+      }
+    }
+
+    .carbonFootprintSearch {
+      margin-top: 16px;
+    }
+  }
+}
+.customTag {
+  padding: 6px 8px;
+  border: none;
+  border-radius: 15px;
+}
+
+.customTag-orange {
+  color: @warn;
+  font-size: 14px;
+  text-align: center;
+  background: @TagOrangeGround;
+  border-radius: 15px;
+}
+
+.customTag-blue {
+  color: @info;
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  background: @TagBlurGround;
+  border-radius: 15px;
+}
+
+.customTag-cyan {
+  color: @primary-color;
+  font-size: 14px;
+  font-size: 14px;
+  text-align: center;
+  background: @Tagground;
+}
+
+.customTag-red {
+  color: @danger;
+  font-size: 14px;
+  text-align: center;
+  background: @TagRedGround;
+}
+
+.customTag-undefined {
+  color: @text-color-2;
+  font-size: 14px;
+  text-align: center;
+}

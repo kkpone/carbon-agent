@@ -1,0 +1,125 @@
+@import '@Variable';
+
+.model {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 24px 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.04);
+  &:hover {
+    box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 56px;
+  min-height: 20px;
+  padding: 0 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: @gray6;
+  font-size: 12px;
+  border-radius: 0px 8px;
+  background: linear-gradient(90deg, #ccfff6 0%, rgba(255, 255, 255, 0) 100%);
+}
+.modelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modelNameContent {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.modelIcon {
+  color: @green7;
+  font-size: 16px;
+}
+
+.modelName {
+  .body-l-b();
+
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modelDesc {
+  .caption-s();
+
+  margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modelEmission {
+  margin: 16px 0;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  background: #f7f8f9;
+  border-radius: 8px;
+}
+
+.modelEmissionItem {
+  flex: 1;
+}
+
+.emission {
+  margin-top: 4px;
+  color: @gray8;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.modelEmissionSplit {
+  margin: 0 16px;
+  width: 1px;
+  height: 32px;
+  background: #ebedf0;
+}
+
+.modelOperate {
+  display: flex;
+  column-gap: 12px;
+}
+
+.useBtn {
+  flex: 1;
+  &&&:hover {
+    background: @green7;
+    color: #fff;
+  }
+}
+
+.emptyModel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 16px;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.04);
+  &:hover {
+    box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.emptyModelDesc {
+  .body-m();
+  color: @gray7;
+}

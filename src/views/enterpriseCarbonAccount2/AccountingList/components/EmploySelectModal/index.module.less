@@ -1,0 +1,83 @@
+@import '@Variable';
+
+.employSelectModal {
+  :global {
+    .ant-modal-body {
+      padding: 0 24px;
+    }
+    .ant-modal-footer {
+      border-top: none;
+    }
+    .ant-modal-header {
+      border-bottom: none;
+    }
+  }
+}
+
+.searchInput {
+  margin-bottom: 12px;
+}
+
+.modalContent {
+  display: flex;
+  height: 436px;
+  border-radius: 4px;
+  border: 1px solid #ebedf0;
+}
+
+.employContent {
+  flex: 1;
+  height: 100%;
+  padding: 16px;
+  overflow: auto;
+
+  &:nth-of-type(1) {
+    border-right: 1px solid #ebedf0;
+  }
+}
+
+.employItem,
+.employCheckedItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.employCheckedItem {
+  justify-content: space-between;
+}
+
+.employCheckbox {
+  margin-right: 8px;
+}
+
+.employName {
+  .body-m();
+}
+
+.employInfo {
+  .caption-s();
+
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.employInfoSplit {
+  margin: 0 8px;
+  width: 1px;
+  height: 16px;
+  background: #ebedf0;
+}
+
+.tip {
+  .caption-s();
+
+  margin-bottom: 10px;
+}
+
+.employCloseIcon {
+  cursor: pointer;
+  color: #999ea4;
+  font-size: 12px;
+}

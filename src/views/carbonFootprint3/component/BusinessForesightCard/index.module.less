@@ -1,0 +1,161 @@
+.container {
+  position: relative;
+  padding: 16px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #fff;
+  margin-top: 0;
+  container-type: inline-size;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.aiPrefix {
+  flex-shrink: 0;
+  color: #04252b;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.title {
+  min-width: 0;
+  overflow: hidden;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actionBtn {
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid #d9e4e2;
+  border-radius: 8px;
+  background: #fff;
+  color: #026961;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(2, 105, 97, 0.06) !important;
+    border-color: #026961 !important;
+    color: #026961 !important;
+  }
+}
+
+.actionBtnPrimary {
+  height: 28px;
+  padding: 0 12px;
+  border: 1px solid #026961;
+  border-radius: 8px;
+  background: #026961;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background: #004245 !important;
+    border-color: #004245 !important;
+    color: #fff !important;
+  }
+}
+
+.topicList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  min-height: 40px;
+}
+
+.topicRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+  min-height: 172px;
+  padding: 16px;
+  border-radius: 12px;
+}
+
+.topicHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  color: #04252b;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.topicIcon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.topicTitle {
+  flex: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.topicContent {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: #04252b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: justify;
+}
+
+.standardRow {
+  background: #e8f6ff;
+}
+
+.scopeRow {
+  background: #e8f4e5;
+}
+
+.riskRow {
+  background: #e5e5fb;
+  border: 1px solid #e5e7eb;
+}
+
+@container (max-width: 920px) {
+  .topicList {
+    grid-template-columns: 1fr;
+  }
+}

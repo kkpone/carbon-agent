@@ -1,0 +1,157 @@
+@import '@src/styles/var.less';
+
+@text-black: rgba(51, 51, 51, 1);
+@text-14: 14px;
+@text-16: 16px;
+@text-20: 20px;
+@fontweight500: 500;
+@fontweight400: 400;
+@bg-green: #f5fdf9;
+@text-orange: rgba(238, 158, 37, 1);
+@text-gray: rgba(181, 181, 181, 1);
+@text-blue: rgba(28, 148, 237, 1);
+@margin-top20: 20px;
+
+.pro_list {
+  background: @whiteBg;
+  // height: 120px;
+  padding: 20px 24px;
+  box-sizing: border-box;
+  font-size: @text-14;
+
+  .pro_title {
+    font-size: @text-20;
+    color: @text-black;
+
+    font-weight: @fontweight500;
+    margin-bottom: 20px;
+  }
+
+  .text-14 {
+    font-size: @text-14;
+  }
+
+  .text-green {
+    color: @primary-color;
+  }
+
+  .margin-right30 {
+    margin-right: 30px;
+  }
+
+  .text-orange {
+    color: @text-orange;
+  }
+
+  .text-error {
+    color: @dangerTextColor;
+  }
+
+  .text-blue {
+    color: @text-blue;
+  }
+
+  .ant-table-cell {
+    font-size: @text-14;
+  }
+
+  .input-serach {
+    width: 380px !important;
+    height: 34px;
+    border-radius: 4px;
+    line-height: inherit !important;
+  }
+
+  .ant-input {
+    font-size: @text-14  !important;
+  }
+
+  .bg-green {
+    background: @primary-color;
+  }
+
+  .text-gray {
+    color: rgba(187, 187, 187, 1);
+  }
+}
+
+.margin-top20 {
+  margin-top: @margin-top20;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-flow: column;
+  flex: auto;
+  height: 100%;
+  background-color: #fff;
+}
+
+.cur-po {
+  cursor: pointer;
+}
+
+.prd_header {
+  width: 100%;
+}
+
+.flex-sub {
+  display: inline-block;
+}
+
+.flex-two {
+  text-align: right;
+}
+
+.select_list {
+  width: 160px;
+
+  .ant-select-selection-search input {
+    font-size: 14px;
+  }
+}
+
+.ant-select-item {
+  font-size: 14px;
+}
+
+.copy_content {
+  .ant-modal-content {
+    width: 420px;
+    height: 225px;
+    border-radius: 6px;
+    padding: 24px;
+    box-sizing: border-box;
+
+    .ant-modal-header {
+      padding: 0;
+    }
+
+    .ant-modal-body {
+      padding: 0;
+    }
+
+    .copy_title {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    .ant-modal-footer {
+      padding: 0;
+      margin-top: 24px;
+
+      .ant-btn {
+        width: 80px;
+        height: 34px;
+        font-size: 14px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.comparisonModel {
+  top: 7%;
+  height: 85%;
+  padding: 0;
+}

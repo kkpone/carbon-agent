@@ -1,0 +1,233 @@
+@import '@Variable';
+
+.reducingTarget {
+  width: 100%;
+  height: 100%;
+
+  :global {
+    .ant-form-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.targetBaseYearContent {
+  padding: 16px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.targetBaseYearHeader {
+  display: flex;
+  align-items: center;
+}
+
+.contentTitle {
+  .body-m-b();
+}
+
+.baseYearDropdown {
+  padding: 0 !important;
+  background: #fff !important;
+}
+
+.baseYear {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.baseYearVal {
+  .body-l-b();
+
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.dropdownIcon {
+  transform: rotate(90deg);
+  font-size: 24px;
+  color: @gray7;
+}
+
+.targetBaseYearScope {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 32px;
+}
+
+.scopeItem {
+  min-height: 70px;
+  display: flex;
+  background: #f7f8f9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scopeItemLeft {
+  .caption-s-b();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 100%;
+  padding: 0 4px;
+  color: #fff;
+  height: 108px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.scopeItemRight {
+  flex: 1;
+  display: flex;
+  column-gap: 16px;
+  padding: 0 24px;
+  align-items: center;
+}
+
+.scopeEmission {
+  font-size: 16px;
+  font-weight: 500;
+  color: @gray8;
+  line-height: 24px;
+}
+
+.targetStageContent {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.addTargetBtn {
+  .body-m-b();
+
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  color: @green7;
+  cursor: pointer;
+}
+
+.targetStageItem {
+  margin-top: 8px;
+  padding: 4px;
+  padding-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  background: #f7f8f9;
+}
+
+.targetStageItemLeft {
+  display: flex;
+  align-items: center;
+  column-gap: 32px;
+}
+
+.targetStageIndex {
+  .caption-s();
+
+  width: 48px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 4px;
+  row-gap: 4px;
+}
+
+.targetStageYear {
+  min-width: 112px;
+}
+
+.targetStageDesc {
+  .caption-s();
+}
+
+.targetStageValue {
+  .body-m-b();
+
+  margin-top: 4px;
+}
+
+.targetStageSplit {
+  width: 1px;
+  height: 40px;
+  border-right: 1px dashed #d2d6da;
+}
+
+.targetStageScope {
+  min-width: 152px;
+}
+
+.avgValue {
+  .caption-s();
+
+  margin-left: 8px;
+}
+
+.classifyCount {
+  .caption-s();
+
+  color: @green7;
+  cursor: pointer;
+}
+
+.classifyContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 8px;
+  column-gap: 8px;
+}
+
+.classifyItem {
+  padding: 4px 0;
+  min-width: 144px;
+}
+
+.classifyName {
+  .caption-s();
+}
+
+.classifyValue {
+  .caption-s-b();
+
+  margin: 4px 0;
+  color: @gray8;
+}
+
+.targetStageOperate {
+  display: flex;
+  column-gap: 16px;
+}
+
+.targetStageBtn {
+  .body-m();
+
+  color: @gray6;
+  cursor: pointer;
+}
+
+.chartContent {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.chartContentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chartContainer {
+  height: 300px;
+}

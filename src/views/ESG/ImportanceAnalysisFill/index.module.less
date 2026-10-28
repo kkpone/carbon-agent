@@ -1,0 +1,268 @@
+.importanceAnalysisFill {
+  && {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.header {
+  padding: 0 40px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ebedf0;
+  background: var(--Fill-white, #fff);
+}
+
+.headerTitle {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+.langBtn {
+  height: 46px;
+  width: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  &:hover {
+    background: #f7f8f9;
+  }
+}
+
+.langIcon {
+  svg {
+    font-size: 40px;
+  }
+}
+
+.content {
+  padding: 24px 0;
+  flex: 1;
+  background: #f7f8f9;
+  overflow-y: auto;
+}
+
+.questionnaire {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  background: #fff;
+  backdrop-filter: blur(50px);
+}
+
+.questionnaireHeader {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.questionnaireTitle {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+  text-align: center;
+}
+
+.questionnaireDescription {
+  color: var(--Neutral-Text-text-2, #6c757d);
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+  text-align: center;
+}
+
+.questionnaireContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+
+.questionnaireItem {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.questionnaireItemTitle {
+  color: var(--neutral-color-text-1, #04252b);
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+}
+
+.questionnaireRow {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.topicGroup {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.topicGroupItem {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.ETopicGroupItem {
+  .topicGroupName {
+    border-left: 4px solid #3ab86e;
+    background: rgba(58, 184, 110, 0.1);
+  }
+}
+
+.STopicGroupItem {
+  .topicGroupName {
+    border-left: 4px solid #f0d56c;
+    background: rgba(240, 213, 108, 0.2);
+  }
+}
+
+.GTopicGroupItem {
+  .topicGroupName {
+    border-left: 4px solid #6e9fda;
+    background: rgba(110, 159, 218, 0.15);
+  }
+}
+
+.topicGroupName {
+  padding: 0 16px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  color: #04252b;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+  border-radius: 4px;
+}
+
+.topicItem {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  padding: 24px;
+  border-radius: 8px;
+  background: rgba(247, 248, 249, 0.6);
+}
+
+.topicInfoItem {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.topicTitle {
+  color: var(--neutral-color-text-1, #04252b);
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+}
+
+.scoreContent {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.score {
+  color: var(--Brand-brand-2, #026961);
+  font-family: 'PingFang SC';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+}
+
+.importanceTab {
+  display: flex;
+}
+
+.importanceTabItem {
+  padding: 0 16px;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d5d7da;
+  border-right-width: 0;
+  cursor: pointer;
+  color: #6c757d;
+
+  &:nth-of-type(1) {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  &:nth-last-of-type(1) {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-right-width: 1px;
+  }
+  &:hover {
+    color: #026961;
+  }
+}
+
+.enImportanceTabItem {
+  padding: 0 8px;
+}
+
+.currentImportanceTabItem {
+  font-weight: 500;
+  color: #fff !important;
+  background: var(--Brand-brand-2, #026961);
+
+  /* 滑块投影 */
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.otherQuestionContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.footer {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitBtn {
+  width: 320px;
+}
+
+.submittedContent {
+  margin: 0 auto;
+  width: 1000px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 40px;
+  background: #fff;
+  backdrop-filter: blur(50px);
+}
+
+.submittedIcon {
+  svg {
+    font-size: 56px;
+  }
+}
+
+.submittedText {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px; /* 144.444% */
+}

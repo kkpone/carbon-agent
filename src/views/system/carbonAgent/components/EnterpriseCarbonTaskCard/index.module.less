@@ -1,0 +1,625 @@
+.taskCardHeader,
+.taskTitleGroup,
+.taskActions,
+.attachmentLink {
+  display: flex;
+  align-items: center;
+}
+
+.taskCard {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #ebedf0;
+  border-radius: 8px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.taskCard:hover,
+.taskCard:focus-within {
+  border-color: #026961;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 4%), 0 4px 16px rgb(0 0 0 / 8%);
+}
+
+.taskCardHeader {
+  gap: 40px;
+  justify-content: space-between;
+  min-height: 26px;
+}
+
+.taskTitleGroup {
+  flex: 1 1 auto;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.statusTag,
+.categoryTag,
+.taskTypeTag {
+  flex: 0 0 auto;
+  overflow: hidden;
+  color: #343a40;
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.statusTag {
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  line-height: 20px;
+  background: #f3f3f3;
+  border-radius: 10px;
+}
+
+.status-pendingApproval {
+  background: #fff3d6;
+}
+
+.status-pendingReport {
+  background: #f3f3f3;
+}
+
+.status-rejected {
+  background: #ffe3e1;
+}
+
+.status-completed {
+  background: #dff6f0;
+}
+
+.emissionSourceName {
+  min-width: 0;
+  overflow: hidden;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.categoryTag {
+  height: 18px;
+  padding: 0 8px;
+  font-size: 11px;
+  line-height: 18px;
+  background: #f7f8f9;
+  border-radius: 4px;
+}
+
+.taskTypeTag {
+  max-width: 132px;
+  height: 22px;
+  padding: 0 6px;
+  font-size: 11px;
+  line-height: 22px;
+  background: #ddf4f2;
+  border-radius: 4px;
+}
+
+.taskActions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.taskCard:hover .taskActions,
+.taskCard:focus-within .taskActions {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.taskActions .actionButton {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 22px;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-color 160ms ease;
+}
+
+.taskActions .action-approve,
+.taskActions .action-submit {
+  color: #004541;
+  background: transparent;
+}
+
+.taskActions .action-reject {
+  color: #f3983e;
+  background: transparent;
+}
+
+.taskActions .action-delete {
+  color: #cb3430;
+  background: transparent;
+}
+
+.taskActions .action-approve:hover:not(:disabled),
+.taskActions .action-approve:focus-visible:not(:disabled),
+.taskActions .action-submit:hover:not(:disabled),
+.taskActions .action-submit:focus-visible:not(:disabled) {
+  color: #004541;
+  background: #f7f8f9;
+}
+
+.taskActions .action-reject:hover:not(:disabled),
+.taskActions .action-reject:focus-visible:not(:disabled) {
+  color: #f3983e;
+  background: #f7f8f9;
+}
+
+.taskActions .action-delete:hover:not(:disabled),
+.taskActions .action-delete:focus-visible:not(:disabled) {
+  color: #cb3430;
+  background: #f7f8f9;
+}
+
+.taskActions .actionButton:disabled {
+  cursor: not-allowed;
+}
+
+.taskDetails {
+  display: grid;
+  grid-template-columns: minmax(220px, 266px) repeat(5, minmax(100px, 1fr));
+  gap: clamp(16px, 2.5vw, 48px);
+  align-items: end;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.taskDetailsAccountingFactor {
+  grid-template-columns: minmax(420px, 2fr) repeat(5, minmax(110px, 1fr));
+  gap: clamp(12px, 1.5vw, 24px);
+  align-items: center;
+}
+
+.activityField,
+.infoField,
+.productFootprintField {
+  min-width: 0;
+}
+
+.productFootprintField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.productFootprintLabel {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  max-width: 100%;
+  margin-bottom: 8px;
+}
+
+.productFootprintLabel .fieldLabel {
+  margin-bottom: 0;
+}
+
+.productFootprintDetailButton {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  color: #999ea4;
+  font-size: 16px;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.productFootprintDetailButton:hover,
+.productFootprintDetailButton:focus-visible {
+  color: #026961;
+  background: rgb(2 105 97 / 8%);
+}
+
+.productFootprintDetailButton:focus-visible {
+  outline: 2px solid rgb(2 105 97 / 24%);
+  outline-offset: 2px;
+}
+
+.productFootprintDetailButton img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0);
+  opacity: 0.38;
+  transition: opacity 160ms ease;
+}
+
+.productFootprintDetailButton:hover img,
+.productFootprintDetailButton:focus-visible img {
+  opacity: 0.64;
+}
+
+.fieldLabel {
+  display: block;
+  margin-bottom: 8px;
+  overflow: hidden;
+  color: #999ea4;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.activityField .fieldLabel {
+  margin-bottom: 4px;
+}
+
+.infoField strong {
+  display: block;
+  overflow: hidden;
+  color: #04252b;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.productFootprintValue {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  color: #04252b;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+.productFootprintValue span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.productFootprintActions {
+  display: flex;
+  align-items: center;
+  min-height: 22px;
+}
+
+.productFootprintSelectButton {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  height: 22px;
+  padding: 0;
+  color: #026961;
+  font-size: 14px;
+  line-height: 22px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.productFootprintSelectButton img {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+}
+
+.productFootprintSelectButton:focus-visible {
+  outline: 2px solid rgb(2 105 97 / 24%);
+  outline-offset: 2px;
+}
+
+.productFootprintSelectButton:disabled {
+  color: #999ea4;
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.activityInput {
+  width: 100%;
+  max-width: 266px;
+
+  :global {
+    .ant-input-number,
+    .ant-input-number-group-wrapper {
+      width: 100%;
+    }
+
+    .ant-input-number,
+    .ant-input-number-group-addon {
+      height: 38px;
+      border-color: #e5e7eb;
+    }
+
+    .ant-input-number {
+      border-radius: 8px 0 0 8px;
+      box-shadow: none;
+    }
+
+    .ant-input-number-input {
+      height: 36px;
+      padding: 7px 12px;
+      color: #343a40;
+      font-size: 14px;
+    }
+
+    .ant-input-number-group-addon {
+      padding: 7px 12px;
+      color: #343a40;
+      font-size: 14px;
+      background: #f7f8f9;
+      border-radius: 0 8px 8px 0;
+    }
+  }
+}
+
+.taskCardFooter {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 22px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.taskCardFooter > div {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.rejectReason {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  color: #343a40;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.rejectReason span:first-child {
+  flex: 0 0 auto;
+}
+
+.rejectReason span:last-child {
+  min-width: 0;
+  overflow: visible;
+  color: #cb3430;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.attachmentLink {
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  color: #026961;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.attachmentLink :global(.anticon) {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.attachmentLink span {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.attachmentLink em {
+  flex: 0 0 auto;
+  color: #6c757d;
+  font-style: normal;
+}
+
+@media (max-width: 1100px) {
+  .taskDetails {
+    grid-template-columns: minmax(220px, 1.5fr) repeat(2, minmax(120px, 1fr));
+    gap: 24px;
+  }
+
+  .taskDetailsAccountingFactor {
+    grid-template-columns: minmax(260px, 1.5fr) repeat(2, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .taskCard {
+    gap: 16px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .taskCard:hover,
+  .taskCard:focus-within {
+    box-shadow: none;
+  }
+
+  .taskCardHeader {
+    display: contents;
+  }
+
+  .taskTitleGroup {
+    order: 1;
+    display: grid;
+    grid-template-columns: auto minmax(56px, 1fr) minmax(64px, 80px) minmax(
+        64px,
+        92px
+      );
+    width: 100%;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ebedf0;
+  }
+
+  .emissionSourceName {
+    color: #04252b;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .categoryTag {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 20px;
+    overflow: hidden;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .taskTypeTag {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 20px;
+    overflow: hidden;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .taskActions {
+    order: 5;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-top: 4px;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .taskCard:hover .taskActions,
+  .taskCard:focus-within .taskActions {
+    display: grid;
+  }
+
+  .taskActions .actionButton {
+    width: 100%;
+    min-width: 0;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+  }
+
+  .taskActions .actionButton > span:not(:global(.anticon)) {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .taskActions .action-approve,
+  .taskActions .action-submit {
+    color: #026961;
+    background: rgb(12 191 159 / 10%);
+    border-color: rgb(12 191 159 / 20%);
+  }
+
+  .taskActions .action-reject {
+    background: #fff8f2;
+    border-color: #fde5c8;
+  }
+
+  .taskActions .action-delete {
+    background: #fff5f5;
+    border-color: #fdd;
+  }
+
+  .taskDetails {
+    order: 2;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    align-items: start;
+  }
+
+  .activityField {
+    grid-column: 1 / -1;
+  }
+
+  .productFootprintField {
+    grid-column: 1 / -1;
+  }
+
+  .productFootprintValue {
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    white-space: normal;
+  }
+
+  .productFootprintActions {
+    order: 3;
+  }
+
+  .activityInput {
+    max-width: none;
+  }
+
+  .fieldLabel {
+    margin-bottom: 8px;
+  }
+
+  .activityField .fieldLabel {
+    margin-bottom: 4px;
+  }
+
+  .taskCardFooter {
+    order: 3;
+    padding-top: 12px;
+    border-top: 1px solid #ebedf0;
+  }
+
+  .rejectReason {
+    order: 4;
+    padding-top: 12px;
+    border-top: 1px solid #ebedf0;
+  }
+}

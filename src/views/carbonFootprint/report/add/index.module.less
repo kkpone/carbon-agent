@@ -1,0 +1,92 @@
+@import '@src/views/carbonFootprint/mixin.less';
+
+.carbonFootprintAdd {
+  margin-bottom: 60px;
+  padding: 0 6px;
+  position: relative;
+
+  // 所有的二级标题样式
+  .titleFont {
+    font-weight: 600;
+  }
+  .customattrBtn {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  // 自定义属性的主要内容
+  .customattrMain {
+  }
+
+  :global(.ant-input[disabled]) {
+    color: @text-color;
+    background-color: @readOnlyInputStyle;
+    border: none;
+  }
+
+  :global(.ant-select-disabled.ant-select:not(.ant-select-customize-input)
+      .ant-select-selector) {
+    background-color: @readOnlyInputStyle;
+    border: none;
+    color: @text-color;
+  }
+
+  :global(.ant-modal-body) {
+    padding: 4px 24px 20px 24px;
+  }
+
+  :global(.ant-modal-footer) {
+    padding: 0 24px 20px 24px;
+  }
+
+  .uploadTitle {
+    color: @mainDark;
+    font-size: 14px;
+  }
+
+  .showMust {
+    position: relative;
+
+    &:before {
+      display: inline-block;
+      margin-right: 4px;
+      color: #ff4d4f;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+      line-height: 1;
+      content: '*';
+    }
+  }
+
+  .addBtn {
+    .btn {
+      border-color: @primary-color;
+      color: @primary-color;
+    }
+  }
+
+  .uploadMain {
+    .uploadTitle {
+      color: @mainDark;
+      font-size: 14px;
+    }
+
+    .uploadDetail {
+      color: @thirdDark;
+      font-size: 12px;
+    }
+
+    .fileInfo {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .fileInfoActive {
+      background: @lightGray;
+    }
+  }
+}

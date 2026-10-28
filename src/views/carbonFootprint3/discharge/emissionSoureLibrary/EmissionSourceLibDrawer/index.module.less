@@ -1,0 +1,81 @@
+.closeIcon {
+  cursor: pointer;
+}
+
+.btns {
+  padding: 0 22px;
+}
+
+.titleContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrapper {
+  :global {
+    .ant-collapse-item {
+      border-bottom: none !important;
+      margin-bottom: 6px;
+      border-radius: 4px !important;
+
+      .ant-collapse-header {
+        padding-left: 16px !important;
+      }
+    }
+
+    .ant-collapse-item-active {
+      border-bottom: none;
+      background-color: #f7f8f9;
+    }
+  }
+}
+
+.transTitle {
+  margin-top: 20px;
+  font-weight: 500;
+  color: #343a40;
+
+  .title {
+    color: var(--text-gray-8-primary, #343a40);
+
+    /* Body 内容/@body-m-b */
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 157.143% */
+  }
+}
+
+.title {
+  margin-bottom: 8px;
+  color: #6c757d;
+  font-weight: 400;
+}
+
+.matchWayContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.fileContainer {
+  :global {
+    .ant-row {
+      flex-direction: column;
+    }
+
+    .ant-col-8 {
+      flex: 1;
+      max-width: 100%;
+    }
+  }
+}
+
+.fileInfo {
+  margin-bottom: 8px;
+  color: rgb(153 158 164);
+  font-size: 12px;
+}

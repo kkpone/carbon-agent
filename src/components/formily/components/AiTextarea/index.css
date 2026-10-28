@@ -1,0 +1,36 @@
+.ql-editor {
+  background: var(--Fill-white, #FFF);
+  border: 1px solid var(--line-border-2, #EBEDF0);
+  border-radius: 4px;  
+  resize: vertical; 
+}
+
+.ql-editor:hover {
+  border: 1px solid var(--brand-green-7-normal, #0CBF9F);
+}
+
+.ql-editor.ql-container--focused {
+  background: var(--Fill-white, #FFF);
+  border: 1px solid var(--brand-green-7-normal, #0CBF9F);
+  border-radius: 4px;
+}
+
+.ql-container {
+  margin: 10px;
+}
+
+.ql-tooltip-arrow {
+  display: none !important;
+}
+
+.ql-toolbar {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  height: 32px;
+  padding: 2px;
+  background: var(--Fill-white, #FFF);
+  border: 1px solid var(--line-border-2, #EBEDF0);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px 0 rgb(12 191 159 / 24%);
+}

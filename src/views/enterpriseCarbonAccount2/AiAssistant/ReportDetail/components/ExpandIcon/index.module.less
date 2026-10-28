@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid var(--line-border-2, #EBEDF0);
+  border-radius: 100px;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.expand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.fold {
+  transform: rotate(0deg);
+}

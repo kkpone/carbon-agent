@@ -1,0 +1,66 @@
+@import url('@styles/var.less');
+
+.datePicker {
+  :global(.ant-picker-range-wrapper.ant-picker-date-range-wrapper) {
+    min-width: auto !important;
+    margin-left: 5px;
+  }
+}
+
+.gridWrapper {
+  :global {
+    .ant-formily-item-feedback-layout-loose {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+.wrapper {
+  height: 100%;
+  margin: 12px 120px;
+  padding: 16px 0 24px;
+  overflow: hidden;
+  background-color: @whiteBg;
+
+  .container {
+    height: 100%;
+    padding: 0 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .reportTip {
+      color: @primary-color;
+
+      :global {
+        .ant-formily-item-asterisk {
+          color: @primary-color;
+        }
+      }
+    }
+
+    .expandBtn {
+      margin-bottom: 8px;
+    }
+
+    :global {
+      .ant-btn-link {
+        color: #1890ff;
+      }
+    }
+  }
+}
+
+.basicStreamTip {
+  font-size: 12px;
+  margin-left: 2px;
+  position: relative;
+  top: -4px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.title {
+  margin-top: 16px;
+}

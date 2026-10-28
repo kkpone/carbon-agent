@@ -1,0 +1,121 @@
+@import '@Variable';
+
+.formulaInput {
+  display: flex;
+}
+
+.unitText {
+  padding: 0 12px;
+  height: calc(100% - 2px);
+  display: flex;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+  border-left: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  font-size: 12px;
+  background: #f7f8f9;
+}
+
+.select {
+  flex: 1;
+}
+
+.noRadiusSelect {
+  :global {
+    .ant-select-selector {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.dropdownContent {
+  padding: 4px;
+}
+
+.dropdownBlock {
+  margin-bottom: 8px;
+}
+
+.dropdownTitle {
+  .body-m();
+
+  margin-bottom: 4px;
+  color: @gray6;
+}
+
+.operatorContent {
+  display: flex;
+  column-gap: 4px;
+}
+
+/* 运算符号与下拉链式常数块共用样式 */
+.operatorLike() {
+  .body-m-b();
+
+  box-sizing: border-box;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #ebedf0;
+  background: #f7f8f9;
+  cursor: pointer;
+}
+
+.operator {
+  .operatorLike();
+
+  width: 64px;
+}
+
+.constantPanelInputWrap {
+  margin-top: 0;
+
+  /* 与公式区内 Tag、运算符按钮等高（32px） */
+  :global(.ant-input) {
+    height: 32px;
+    min-height: 32px;
+    padding: 4px 11px;
+    line-height: 22px;
+    box-sizing: border-box;
+  }
+}
+
+.constantChipRow {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 4px;
+  row-gap: 4px;
+  margin-bottom: 8px;
+}
+
+.constantChip {
+  .operatorLike();
+
+  min-width: 64px;
+  max-width: 200px;
+  padding: 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.param {
+  margin-top: 4px;
+  padding: 0 8px;
+  height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #343a40;
+  font-size: 14px;
+  &:hover {
+    background: #f7f8f9;
+  }
+}

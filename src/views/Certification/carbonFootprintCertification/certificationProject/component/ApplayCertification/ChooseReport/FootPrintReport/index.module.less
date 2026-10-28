@@ -1,0 +1,60 @@
+.footPrintReport {
+  .dac {
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 8px;
+    }
+  }
+
+  :global {
+    .ant-table-cell.ant-table-selection-column.ant-table-cell-fix-left {
+      order: -1;
+    }
+
+    .ant-table.ant-table-empty {
+      .ant-table-tbody > tr > td {
+        border-bottom: none;
+      }
+    }
+
+    .ant-table-expanded-row {
+      .ant-table-cell {
+        background: #f7f8f9;
+      }
+      .ant-table {
+        .ant-table-cell {
+          padding: 10px 16px;
+        }
+      }
+      .ant-table-thead {
+        .ant-table-cell {
+          padding: 9px 16px !important;
+        }
+      }
+    }
+
+    .ant-table-tbody > tr > td {
+      border-bottom: 1px solid #ebedf0;
+    }
+
+    .ant-pagination {
+      position: absolute;
+      bottom: -88px;
+      border-top: none !important;
+    }
+
+    .ant-form-inline .ant-form-item {
+      margin-right: 12px;
+      padding-right: 0 !important;
+    }
+  }
+
+  .tableWrap {
+    margin-top: 6px;
+  }
+
+  .actionBtn {
+    padding: 0;
+  }
+}

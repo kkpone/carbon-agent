@@ -1,0 +1,68 @@
+.formItem {
+  margin: 0;
+}
+
+.textInput {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  color: #04252b;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  outline: none;
+  padding: 8px 12px;
+}
+
+.textInput:hover,
+.textInput:focus {
+  border-color: #026961;
+  box-shadow: 0 0 0 2px rgba(2, 105, 97, 0.1);
+}
+
+.textInput:disabled {
+  cursor: not-allowed;
+  background: #f7f8f9;
+}
+
+.textareaFormItem,
+.textareaFormItem :global(.ant-form-item-row),
+.textareaFormItem :global(.ant-form-item-control),
+.textareaFormItem :global(.ant-form-item-control-input),
+.textareaFormItem :global(.ant-form-item-control-input-content) {
+  height: 100%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.datePicker {
+  width: 100%;
+  height: 38px;
+  border-color: #e5e7eb;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.datePicker:hover,
+.datePicker:global(.ant-picker-focused) {
+  border-color: #026961;
+  box-shadow: 0 0 0 2px rgba(2, 105, 97, 0.1);
+}
+
+@media (max-width: 768px) {
+  .fieldGrid {
+    grid-template-columns: 1fr;
+  }
+}

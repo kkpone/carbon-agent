@@ -1,0 +1,369 @@
+/** css 全局变量、antd 覆盖样式 */
+@import '@src/styles/var.less';
+
+/** 通用样式方法混入 */
+@import '@src/styles/mixin.less';
+
+@font-face {
+  font-family: Poppins;
+  src: url('./Poppins-Regular.otf');
+}
+
+.ant-btn-variant-outlined:disabled {
+  background: #fafbfb;
+}
+
+.ant-table-filter-trigger {
+  &&& {
+    margin: 0;
+  }
+}
+
+.ant-modal-footer {
+  .ant-btn {
+    min-width: 76px;
+  }
+}
+
+.ant-dropdown .ant-dropdown-menu {
+  border-radius: 8px;
+}
+
+* {
+  font-family: 'PingFang SC', PingFangSC-Regular, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* 解除页面高度限制 */
+.autoHeight {
+  &&& {
+    flex: 0 0 auto;
+    min-height: 100%;
+    overflow: initial;
+  }
+}
+
+/**
+ * 全局表单样式
+ */
+// .ant-modal .ant-modal-header {
+//   margin-bottom: 40px;
+// }
+
+/**
+ * modal footer 按钮间距  
+ */
+.ant-modal .ant-modal-footer > .ant-btn + .ant-btn {
+  margin-inline-start: 16px;
+}
+
+.border-bottom-global-actions {
+  border-bottom: @GlobaFormActionsHeight solid @read-only-bg;
+}
+
+.ant-table-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ant-table-content {
+  border-radius: 8px;
+}
+
+/* 解除页面高度限制 */
+.autoHeight {
+  &&& {
+    flex: 0 0 auto;
+    min-height: 100%;
+    overflow: initial;
+  }
+}
+
+.border-bottom-global-actions {
+  border-bottom: @GlobaFormActionsHeight solid #f7f8f9;
+}
+
+.layout {
+  &__loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.align {
+  &--between {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &--left {
+    display: flex;
+  }
+
+  &--right {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &--around {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.vertical {
+  &--top {
+    display: flex;
+  }
+
+  &-middle {
+    display: flex;
+    align-items: center;
+  }
+
+  &-bottom {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.intor-box {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.ant-breadcrumb {
+  ol {
+    padding-left: 0;
+  }
+
+  .ant-breadcrumb-link {
+    display: inline-block;
+  }
+}
+
+.ant-radio-button-wrapper {
+  height: 36px;
+  padding: 0 20px;
+  line-height: 36px;
+}
+
+.ant-table .ant-table-expanded-row-fixed {
+  margin: -16px -21px;
+}
+
+.ant-select .ant-select-clear {
+  width: 14px;
+  height: 14px;
+}
+
+body {
+  /* change table header BG */
+
+  // 处理mac横向滑动触摸板导致返回的上一页问题
+  overscroll-behavior-x: none;
+
+  .ant-table-thead > tr > th {
+    background-color: @backgroudGray;
+  }
+
+  .ant-form-item-label > label {
+    color: @text-color;
+  }
+  .ant-modal {
+    // 因子选择等弹窗使用分离表头；固定表头需要高于表体固定列（Antd z-index: 2）。
+    .ant-table-header {
+      position: relative;
+      z-index: 3;
+      isolation: isolate;
+    }
+
+    .ant-table-thead > tr > th.ant-table-cell-fix-left,
+    .ant-table-thead > tr > th.ant-table-cell-fix-right {
+      z-index: 4;
+      background-color: @backgroudGray;
+      // Safari 横向滚动时为 sticky 表头建立独立绘制层，避免中间列覆盖。
+      transform: translateZ(0);
+    }
+
+    .ant-modal-close {
+      top: 32px;
+      right: 32px;
+    }
+
+    .ant-modal-footer {
+      margin-top: 32px;
+    }
+  }
+
+  .ant-modal-content {
+    overflow: hidden;
+    .ant-drawer .ant-drawer-body {
+      padding: 32px 40px;
+    }
+
+    .ant-modal {
+      .ant-modal-content {
+        border-radius: 6px;
+        padding: 32px;
+      }
+
+      .ant-modal-close {
+        top: 32px;
+        right: 32px;
+      }
+
+      .ant-modal-footer {
+        margin-top: 32px;
+      }
+    }
+
+    // fix modal border-radius
+    .ant-modal-content {
+      border-radius: 6px;
+      padding: 32px;
+    }
+
+    .ant-modal-header {
+      margin-bottom: 32px;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+
+    /* 修改全局 Select 样式 */
+    .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+      color: @primary-color;
+      background-color: transparent;
+    }
+
+    /* 新的UI设计中对话框的按钮边距都变大了 */
+    .ant-modal-content {
+      .ant-modal-footer {
+        .ant-btn {
+          padding: 4px 20px;
+        }
+      }
+    }
+
+    /* 修改全局情况下 配置表格底部固定定位后的设置 */
+    .commonTableUserPagePosition {
+      margin-bottom: 45px;
+
+      .ant-pagination {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 60px;
+        margin: 0;
+        padding-right: 20px;
+        background: #fff;
+      }
+    }
+  }
+
+  .ant-pagination {
+    border-top: none !important;
+  }
+
+  /** 富文本表格样式 */
+  .richText {
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    table {
+      margin-bottom: 10px;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    th {
+      padding: 5px;
+    }
+  }
+
+  .flex-j-b {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .flex-j-c {
+    display: flex;
+    justify-content: center;
+  }
+
+  .flex-a-c {
+    display: flex;
+    align-items: center;
+  }
+
+  .flex-a-s {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .flex-a-e {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .flex-d-c {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-only {
+    display: flex;
+  }
+  // formily样式
+  .ant-formily-item-label-content {
+    font-weight: 400;
+    // color: #6c757dff;
+    font-size: 14px;
+  }
+
+  .index_formilyCommon__kXn4W .ant-form-text > div,
+  .index_formilyCommon__kXn4W .ant-form-text {
+    color: #343a40ff;
+    font-weight: 400;
+    font-size: 14px;
+    white-space: inherit !important;
+  }
+
+  .index_formilyCommon__kXn4W .ant-form-text {
+    color: #343a40ff;
+    font-weight: 400;
+    white-space: inherit !important;
+    border-radius: 4px;
+  }
+
+  .ant-form-text {
+    color: #343a40ff;
+    font-weight: 400 !important;
+    font-size: 14px;
+  }
+
+  // .ant-formily-item-control {
+  //   border-radius: 4px;
+  //   overflow: hidden;
+  // }
+
+  // body > #webpack-dev-server-client-overlay {
+  //   // This worked for me the container element might have changed so add change accordingly
+  //   display: none;
+  // }
+}

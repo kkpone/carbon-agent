@@ -1,0 +1,188 @@
+.card {
+  position: relative;
+  box-sizing: border-box;
+  height: 134px;
+  overflow: hidden;
+  border: 1px solid #EBEDF0;
+  border-radius: 8px;
+
+  .name {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 48px;
+    padding:0 16px;
+    overflow: hidden;
+    color: var(--text, #FFF);
+    font-size: 14px;
+
+    /* Body 内容/Medium-加粗-CN */
+    font-family: "PingFang SC";
+    font-style: normal;
+    line-height: 40px; /* 157.143% */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-image: url('./titleBg.png');
+    background-size: cover;
+  }
+
+  .nameText {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .detailsImg {
+    position: relative;
+    top: -1px;
+    width: 16px;
+    cursor: pointer;
+  }
+
+  .box {
+    position: relative;
+    top: -8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 94px;
+    padding: 24px 16px;
+    background-color: #FFF;
+    border-radius: 8px;
+
+    .description {
+      /* stylelint-disable-next-line value-no-vendor-prefix */
+      display: -webkit-box;
+      overflow: hidden;
+      color: var(--text, #999EA4);
+      font-weight: 400;
+      font-size: 12px;
+
+      /* 辅助信息/Small-常规-CN */
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 18px; /* 150% */
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    
+    }
+
+    .useCount {
+      color: var(--text, #B5B8BB);
+      font-weight: 400;
+      font-size: 12px;
+
+      /* 辅助信息/Small-常规-CN */
+      font-family: "PingFang SC";
+      font-style: normal;
+      line-height: 18px; /* 150% */
+    }
+  }
+
+  .hoverBox {
+    position: absolute;
+    bottom: -50px;
+    width: 100%;
+    height: 32px;
+    padding-left: 16px;
+    transition: bottom 0.3s ease;
+
+    .preview {
+      margin-right: 12px;
+    }
+  }
+}
+
+.card:nth-child(5n) {
+  margin-right: 0;
+}
+
+.card:hover {
+  border: 1px solid var(--brand-brand-7, #AAF2DB);
+
+  .checkedIcon {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    width: 24px;
+    height: 20px;
+    background-image: url('../../check.svg');
+    background-repeat: no-repeat;
+    background-size: 24px 20px;
+    opacity: 0.5;
+  }
+
+  .hoverBox {
+    bottom: 17px;
+  }
+}
+
+.unUsed:hover {
+  border: 1px solid var(--brand-brand-7, #0CBF9F);
+
+  .checkedIcon {
+    opacity: 1;
+  }
+}
+
+.checked, .checked:hover {
+  border: 1px solid var(--brand-brand-7, #0CBF9F);
+
+  .name {
+    font-weight: 500;
+  }
+
+  .checkedIcon {
+    position: absolute;
+    right: -1px;
+    bottom: -1px;
+    width: 24px;
+    height: 20px;
+    background-image: url('../../check.svg');
+    background-repeat: no-repeat;
+    background-size: 24px 20px;
+    opacity: 1;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 16px;
+
+  .left {
+    color: #6C757D;
+    font-size: 12px;
+
+    .title {
+      margin-right: 6px;
+      color: #999EA4;
+    }
+
+    .description {
+      width: 800px;
+      margin-top: 4px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-break: break-all;
+    }
+  }
+
+}
+
+.table {
+  height: 600px;
+  padding-bottom: 30px;
+}
+
+.hide {
+  display: none;
+}

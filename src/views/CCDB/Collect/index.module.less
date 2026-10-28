@@ -1,0 +1,51 @@
+.wrapper {
+  padding: 0 !important;
+  background: #f2f4f7 !important;
+
+  .content {
+    width: 1048px;
+    margin: 0 auto;
+    background-image: url('./background.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    padding-top: 16px;
+
+    .header {
+      width: 100%;
+      height: 32px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 6px;
+      align-items: center;
+      margin: 0 0 8px 0;
+
+      .back {
+        cursor: pointer;
+      }
+    }
+
+    .searchInput {
+      margin-bottom: 16px;
+    }
+
+    .tableTitle {
+      overflow: hidden;
+      color: var(--text-gray-8-primary, #343a40);
+      text-overflow: ellipsis;
+
+      /* Body 内容/@body-m-b */
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px; /* 157.143% */
+      margin-bottom: 8px;
+    }
+  }
+}
+.filterCards {
+  display: flex;
+  justify-content: flex-start;
+  gap: 24px;
+  margin-bottom: 16px;
+}

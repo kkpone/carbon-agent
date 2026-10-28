@@ -1,0 +1,193 @@
+@import '@src/styles/var.less';
+@import '@Variable';
+@mainContentWidth: 1024px;
+
+.Organization {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding-top: @headerHeight;
+  background: @gray1;
+
+  :global(.layout__header__inner) {
+    width: @mainContentWidth;
+    margin: 0 auto;
+
+    :global(.logo) {
+      padding-left: 0;
+    }
+  }
+
+  :global(.layout__header--fix) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  }
+}
+
+.createTrialOrgContent {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  height: calc(100% - @headerHeight);
+  background: @gray1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.organizationHeader {
+  width: 100%;
+  background: #fff;
+}
+
+.organizationHeaderContent {
+  display: flex;
+  align-items: center;
+  width: @mainContentWidth;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.headerTitle {
+  .body-m-b();
+}
+
+.organizationContent {
+  width: @mainContentWidth;
+  height: calc(100% - 50px);
+  margin: 0 auto;
+}
+
+main.main {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+
+  .account {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 40px;
+    padding: 18px 30px;
+    background-color: #f7f8f9;
+    border-radius: 4px;
+
+    .accountMsg {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      margin-left: 10px;
+
+      .nickName {
+        color: @text-color-2;
+      }
+
+      .phone {
+        font-weight: bold;
+      }
+
+      .userSettings {
+        margin-left: 20px;
+        color: @text-color-2;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .organizations {
+    flex: 1 1 auto;
+    margin-top: 40px;
+    overflow: auto;
+
+    .title {
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 4%);
+}
+
+.avatar {
+  margin-right: 16px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userNickName {
+  .title-s-b();
+
+  max-width: 700px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.userName {
+  color: @gray6;
+  .caption-s();
+}
+
+.userSetting {
+  display: flex;
+  align-items: center;
+}
+
+.userSettingItem {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    color: @green7;
+    background: @gray1;
+
+    .userSettingText {
+      .body-m-b();
+
+      color: @green7;
+    }
+  }
+}
+
+.userLogoutItem {
+  &:hover {
+    color: @red6;
+
+    .userSettingText {
+      color: @red6;
+    }
+  }
+}
+
+.userSettingText {
+  margin-left: 4px;
+  .body-m();
+}
+
+.userSettingSplit {
+  width: 1px;
+  height: 12px;
+  margin: 0 16px;
+  background: #d2d6da;
+}
+
+.userSettingIcon {
+  font-size: 16px;
+}

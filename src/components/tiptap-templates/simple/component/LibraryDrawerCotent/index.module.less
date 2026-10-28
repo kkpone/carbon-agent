@@ -1,0 +1,88 @@
+.tabLabel {
+  font-size: 18px;
+}
+.libraryDrawerContent {
+  padding: 32px 40px;
+  height: 100%;
+  width: 570px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-grow: 0;
+
+    margin-bottom: 32px;
+
+    .title {
+      color: var(--, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px; /* 133.333% */
+    }
+
+    .headerRight {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow: hidden;
+
+      .close {
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .imageList {
+    .imageHeader {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      .searchInput {
+        width: 200px;
+      }
+    }
+
+    .imageGrid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+      max-height: calc(100vh - 400px);
+      overflow-y: auto;
+      // padding-right: 8px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #d9d9d9;
+        border-radius: 3px;
+
+        &:hover {
+          background: #bfbfbf;
+        }
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f0f0f0;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .fileList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+    max-height: calc(100vh - 400px);
+    overflow-y: auto;
+  }
+}

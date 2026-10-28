@@ -1,0 +1,167 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.run": "onSave",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "fileheader.configObj": {
+    "createFileTime": true,
+    "language": {
+      "languagetest": {
+        "head": "/$$",
+        "middle": " $ @",
+        "end": " $/",
+        "functionSymbol": {
+          "head": "/** ",
+          "middle": " * @",
+          "end": " */"
+        },
+        "functionParams": "js"
+      }
+    },
+    "autoAdd": true,
+    "autoAddLine": 2000,
+    "autoAlready": true,
+    "annotationStr": {
+      "head": "/*",
+      "middle": " * @",
+      "end": " */",
+      "use": false
+    },
+    "headInsertLine": {
+      "php": 2,
+      "javascript": 2,
+      "sh": 2
+    },
+    "beforeAnnotation": {
+      "文件后缀": "该文件后缀的头部注释之前添加某些内容"
+    },
+    "afterAnnotation": {
+      "文件后缀": "该文件后缀的头部注释之后添加某些内容"
+    },
+    "specialOptions": {
+      "特殊字段": "自定义比如LastEditTime/LastEditors"
+    },
+    "switch": {
+      "newlineAddAnnotation": true
+    },
+    "supportAutoLanguage": [],
+    "prohibitAutoAdd": [
+      "json",
+      "html"
+    ],
+    "folderBlacklist": [
+      "node_modules",
+      "文件夹禁止自动添加头部注释"
+    ],
+    "prohibitItemAutoAdd": [
+      "项目的全称, 整个项目禁止自动添加头部注释, 可以使用快捷键添加"
+    ],
+    "moveCursor": true,
+    "dateFormat": "YYYY-MM-DD HH:mm:ss",
+    "atSymbol": [
+      "@",
+      "@"
+    ],
+    "atSymbolObj": {
+      "文件后缀": [
+        "头部注释@符号",
+        "函数注释@符号"
+      ]
+    },
+    "colon": [
+      ": ",
+      ": "
+    ],
+    "colonObj": {
+      "文件后缀": [
+        "头部注释冒号",
+        "函数注释冒号"
+      ]
+    },
+    "filePathColon": "路径分隔符替换",
+    "showErrorMessage": false,
+    "writeLog": false,
+    "wideSame": false,
+    "wideNum": 13,
+    "functionWideNum": 0,
+    "CheckFileChange": false,
+    "createHeader": false,
+    "useWorker": false,
+    "designAddHead": false,
+    "headDesignName": "random",
+    "headDesign": false,
+    "cursorModeInternalAll": {},
+    "openFunctionParamsCheck": true,
+    "functionParamsShape": [
+      "{",
+      "}"
+    ],
+    "functionBlankSpaceAll": {},
+    "functionTypeSymbol": "*",
+    "typeParamOrder": "type param",
+    "customHasHeadEnd": {},
+    "throttleTime": 60000,
+    "functionParamAddStr": "",
+    "NoMatchParams": "no show param"
+  },
+  "fileheader.customMade": {
+    "@description": "",
+    "Author": "git config user.name && git config user.email", // 同时获取用户名与邮箱
+    "Date": "Do not edit", // 文件创建时间(不变)
+    // 文件最后编辑者
+    "LastEditors": "git config user.name && git config user.email",
+    "LastEditTime": "Do not edit"
+  },
+  "todo-tree.tree.scanMode": "workspace only",
+  "cSpell.words": [
+    "ahooksjs",
+    "antv",
+    "Cascader",
+    "CCDB",
+    "Ccloud",
+    "Formily",
+    "Hocuspocus",
+    "iconfont",
+    "Sider"
+  ],
+  "vscode-i18n-linter.importI18nPath": "import I18N from '@src/lang/I18N';",
+  "vscode-i18n-linter.langPrefix": "./src/lang/zh-CN/"
+}

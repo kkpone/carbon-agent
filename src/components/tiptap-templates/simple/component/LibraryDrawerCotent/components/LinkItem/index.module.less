@@ -1,0 +1,66 @@
+.linkItem {
+  display: flex;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+
+  .linkItemContent {
+    .linkItemContentName {
+      color: #04252b;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px; /* 133.333% */
+    }
+
+    .linkItemContentUrl {
+      color: #04252b;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 14px; /* 140% */
+      border-left: 2px solid #d9d9d9;
+      padding-left: 8px;
+      margin: 6px 0;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 380px;
+    }
+
+    .linkItemContentInfo {
+      display: flex;
+      color: #b5b8bb;
+      font-family: 'PingFang SC';
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 14px; /* 140% */
+      gap: 8px;
+
+      .linkItemContentInfoItem {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .linkItemOperate {
+    cursor: pointer;
+    opacity: 0;
+  }
+}
+
+.linkItem:hover {
+  background: #fafafa;
+
+  .linkItemOperate {
+    opacity: 1;
+  }
+}

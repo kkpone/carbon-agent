@@ -1,0 +1,65 @@
+.wrapper {
+  width: 380px;
+
+  .title {
+    color: var(--Neutral-Text-text-1, #04252b);
+    font-family: 'PingFang SC';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40px; /* 125% */
+    margin: 0 0 32px;
+  }
+
+  .subTitle {
+    margin: 8px 0 20px;
+    color: var(--text-gray-6-placeholder, #999ea4);
+    font-weight: 400;
+    font-size: 14px;
+
+    /* Body 内容/@body-m */
+    font-family: 'PingFang SC';
+    font-style: normal;
+    line-height: 22px; /* 157.143% */
+  }
+
+  :global(.ant-tabs-top .ant-tabs-nav::before) {
+    border: none;
+  }
+
+  :global(.ant-tabs-tab) {
+    font-size: 16px;
+  }
+
+  .backToLogin {
+    width: fit-content;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    color: var(--Neutral-Text-text-1, #04252b);
+    font-family: 'PingFang SC';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 157.143% */
+    text-align: start;
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    margin-bottom: 24px;
+
+    &:hover {
+      color: var(--Brand-brand-2, #026961);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #31ddb8;
+      outline-offset: 4px;
+      border-radius: 2px;
+    }
+
+    .label {
+      margin-left: 8px;
+    }
+  }
+}

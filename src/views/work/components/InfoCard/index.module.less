@@ -1,0 +1,92 @@
+.card {
+  display: flex;
+  padding-bottom: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  flex: 1 0 0;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  background: #fff;
+  justify-content: space-between;
+
+  .img {
+    // height: 156px;
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .info {
+    padding: 0 24px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    .tags {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      .tag {
+        text-wrap-mode: nowrap;
+        display: flex;
+        padding: 2px 12px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 100px;
+        background: #0cbf9f;
+        color: #fff;
+        // font-family: 'SourceHanSansCN';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 166.667% */
+      }
+    }
+
+    .titleLink {
+      width: 100%;
+      .title {
+        color: var(--Neutral-Text-text-1, #04252b);
+        text-align: justify;
+        font-family: 'PingFang SC';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px; /* 137.5% */
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+        cursor: pointer;
+      }
+
+      .title:hover {
+        color: #004541;
+      }
+    }
+  }
+
+  .link {
+    padding: 0 24px;
+    color: var(--button, #004541);
+    text-align: justify;
+    // font-family: 'SourceHanSansCN';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 350;
+    line-height: 22px; /* 157.143% */
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.card:hover {
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.04),
+    0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+}

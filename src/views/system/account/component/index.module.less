@@ -1,0 +1,216 @@
+.enterpriseWrapper {
+  width: 220px;
+
+  .enterpriseExpand {
+    display: flex;
+    padding: 4px 8px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+
+    .expandIcon {
+      cursor: pointer;
+    }
+  }
+
+  .enterpriseItems {
+    display: flex;
+    height: 250px;
+    overflow-y: auto;
+    padding-bottom: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex-shrink: 0;
+    align-self: stretch;
+
+    .enterpriseItem {
+      display: flex;
+      height: 32px;
+      padding: 0px 16px;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      align-self: stretch;
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #b5b8bb;
+
+      .enterpriseItemInner {
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    .enterpriseItem:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+  }
+
+  .enterpriseFooter {
+    display: flex;
+    height: 32px;
+    padding: 0px 16px;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    color: #b5b8bb;
+  }
+
+  .enterpriseFooter:hover {
+    color: #fff;
+  }
+}
+
+.drawerWrapper {
+  width: 100%;
+  height: calc(100vh - 148px);
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  // gap: 10px;
+  gap: 24px;
+
+  .drawerItem {
+    cursor: pointer;
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    width: 228px;
+    height: 120px;
+
+    .companyName {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--neutral-color-text-1, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 22px; /* 157.143% */
+
+      .shortCompanyName {
+        width: 130px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-wrap: nowrap;
+      }
+
+      .innerCompanyName {
+        width: 200px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-wrap: nowrap;
+      }
+
+      .lastTime {
+        color: var(--neutral-color-text-3, #999ea4);
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 166.667% */
+      }
+    }
+
+    .companyNum {
+      color: var(--neutral-color-text-3, #999ea4);
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+    }
+    .companyTag {
+      display: flex;
+      padding: 4px 8px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100px;
+      background: #f0f6f6;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .activatedTag {
+      // background: linear-gradient(103deg, #0cbf9f 0%, #2dccaa 100%);
+      color: #026961;
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 166.667% */
+    }
+
+    .trialTag {
+      // background: linear-gradient(103deg, #3491fa 0%, #5eafff 100%);
+      color: var(--neutral-color-text-1, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 166.667% */
+    }
+
+    .expiredTag {
+      color: var(--neutral-color-text-1, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 166.667% */
+    }
+
+    .disabledTag {
+      color: var(--neutral-color-text-1, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 166.667% */
+    }
+  }
+
+  .drawerItem:hover {
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.04),
+      0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+  }
+
+  .add {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .btn {
+      color: var(--neutral-color-text-1, #04252b);
+      font-family: 'PingFang SC';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px; /* 157.143% */
+    }
+  }
+}

@@ -1,0 +1,162 @@
+@import '@Variable';
+
+div:has(.accountingSetting) {
+  flex: none;
+}
+
+.accountingSetting {
+  display: block;
+}
+
+.accountingSettingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  .body-l-b();
+}
+
+.accountWay {
+  margin: 16px 0 24px;
+}
+
+.requiredMark {
+  margin-right: 4px;
+
+  color: @red6;
+}
+
+.label {
+  margin-bottom: 8px;
+  .body-m();
+
+  color: @gray7;
+}
+
+.accountWayContent {
+  display: grid;
+  grid-template-columns: 376px 376px;
+  column-gap: 32px;
+}
+
+.accountWayCard {
+  padding: 16px 24px;
+  border-radius: 4px;
+  border: 1px solid var(--line-border-2, #ebedf0);
+  cursor: pointer;
+
+  &:hover {
+    border-color: @green7;
+  }
+}
+
+.selectedAccountWayCard {
+  border-color: @green7 !important;
+}
+
+.usingAccountWayCard {
+  .accountWayName {
+    color: @green7;
+  }
+}
+
+.disabledAccountWayCard {
+  cursor: not-allowed;
+
+  &:hover {
+    border-color: #ebedf0;
+  }
+}
+
+.accountWayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.accountWayName {
+  .body-m-b();
+}
+
+.usingTip {
+  .caption-s-b();
+
+  color: @green7;
+}
+
+.accountWayDesc {
+  margin-top: 12px;
+
+  .caption-s();
+}
+
+.accountTimeContent {
+  display: flex;
+
+  column-gap: 12px;
+}
+
+.yearSelect {
+  width: 112px;
+
+  :global {
+    .ant-select-selector {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.monthSelect {
+  width: 136px;
+
+  :global {
+    .ant-select-selector {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: none !important;
+    }
+  }
+}
+
+.accountBottom {
+  margin-top: 72px;
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ebedf0;
+}
+
+.submitBtn {
+  margin-right: 16px;
+}
+
+.submitTip {
+  .caption-s();
+
+  color: @gray7;
+}
+
+.changeAccountWayTitle {
+  .title-s-b();
+}
+
+.changeAccountWayTip {
+  .body-m();
+
+  margin-top: 8px;
+  color: @gray7;
+}
+
+.warnTip {
+  color: @red6;
+}
+
+.financialYearDescription {
+  .body-m();
+
+  margin-top: 8px;
+  color: @gray6;
+}

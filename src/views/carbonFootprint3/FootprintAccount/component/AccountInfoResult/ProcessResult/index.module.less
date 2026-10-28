@@ -1,0 +1,337 @@
+.carbonFootprintResultContainer {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  overflow: visible;
+  container-type: inline-size;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin-right: 8px;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.importAndOutMain {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 8px 16px;
+  color: #04252b;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  background: #fff;
+  border-color: #d5d7da;
+  border-radius: 8px;
+  box-shadow: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #026961 !important;
+    border-color: #026961 !important;
+    background: #f4fbfa !important;
+  }
+}
+
+.exportIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.restResultBtn {
+  &:hover {
+    color: #0cbf9f;
+  }
+}
+
+.accountInfoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #fff;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.productName {
+  margin-right: 8px;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.accountTime {
+  padding: 3px 8px;
+  color: #6c757d;
+  font-size: 12px;
+  background: #fff;
+  background: #fafafaff;
+  border: 1px solid #e1e4e4ff;
+  border-radius: 2px;
+}
+
+.accountDetails {
+  display: flex;
+  align-items: center;
+  color: #6c757d;
+}
+
+.split {
+  width: 1px;
+  height: 12px;
+  margin: 0 16px;
+  background: #7ce6c8;
+}
+
+.chartContainer {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.chartBlockLeft {
+  display: flex;
+  flex-direction: column;
+  width: 386px;
+  min-width: 0;
+  height: 388px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.chartBlockRight {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 388px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.chartHeader {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.chartTitle {
+  margin-right: 24px;
+  min-width: 0;
+  overflow: hidden;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chart {
+  flex: 1;
+  min-height: 0;
+  margin-top: 16px;
+}
+
+.chartTooltip {
+  display: flex;
+  align-items: center;
+  padding: 16px 8px;
+}
+
+.chartTooltipCircle {
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  background: #698cff;
+  border-radius: 50%;
+}
+
+.chartTooltipText {
+  flex: 1;
+}
+
+.accountName {
+  display: inline-block;
+  max-width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyText {
+  margin-top: 6px 0 0 6px;
+  color: #6c757d;
+}
+
+.totalStageItem {
+  display: flex;
+  align-items: center;
+  height: 80px;
+  margin-top: 16px;
+  padding: 16px;
+  background: #f0f9ffff;
+  border-radius: 4px;
+}
+
+.totalStageItemImage {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+}
+
+.totalStageItemInfo {
+  color: #343a40;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.totalStageValueContent {
+  display: flex;
+}
+
+.totalStageName {
+  max-width: 170px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.totalStageValue {
+  max-width: 120px;
+  margin-right: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@container (max-width: 920px) {
+  .chartContainer {
+    flex-direction: column;
+  }
+
+  .chartBlockLeft,
+  .chartBlockRight {
+    width: 100%;
+  }
+}
+
+.stageItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 40px;
+  margin-top: 16px;
+  padding: 0 8px;
+}
+
+.stageItemLeft {
+  display: flex;
+  align-items: center;
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.stageItemImage {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.stageItemRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .values {
+    display: flex;
+  }
+  // justify-content: space-between;
+}
+
+.stageValueText {
+  max-width: 126px;
+  overflow: hidden;
+  color: #343a40;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.stageUnitText {
+  margin-left: 8px;
+  color: #999ea4;
+  font-size: 12px;
+}
+
+.tableControl {
+  display: flex;
+  align-items: center;
+
+  :global(.ant-radio-group) {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    padding: 2px;
+    background: #fafbfc;
+    border-radius: 8px;
+  }
+
+  :global(.ant-radio-button-wrapper) {
+    height: 34px;
+    padding: 0 16px;
+    color: #6c757d;
+    font-size: 14px;
+    line-height: 34px;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  :global(.ant-radio-button-wrapper-checked) {
+    color: #04252b;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.tableControlMain {
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+}

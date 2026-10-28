@@ -1,0 +1,76 @@
+.answer {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+
+  .answerContent {
+    width: calc(100% - 40px);
+
+    .btns {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      opacity: 0;
+
+      .insert {
+        display: flex;
+        height: 28px;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        border-radius: 8px;
+        border: 1px solid #d9d9d9;
+        background: #fff;
+        color: #6c757d;
+        font-family: 'PingFang SC';
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px; /* 150% */
+        cursor: pointer;
+      }
+
+      // .insert:hover {
+      //   border-radius: 8px;
+      //   background: #026961;
+      //   border: 1px solid #026961;
+      //   color: #fff;
+      // }
+
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .operation {
+          cursor: pointer;
+          display: flex;
+          width: 28px;
+          height: 28px;
+          padding: 2px;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: 8px;
+          border: 1px solid #d9d9d9;
+          background: #fff;
+        }
+      }
+    }
+
+    .btns:hover {
+      .insert {
+        color: #026961;
+      }
+      color: #026961;
+    }
+  }
+}
+
+.answerContent:hover {
+  .btns {
+    opacity: 1 !important;
+  }
+}

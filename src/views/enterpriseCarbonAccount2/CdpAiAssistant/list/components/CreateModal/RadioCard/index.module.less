@@ -1,0 +1,41 @@
+.wrapper {
+  display: flex;
+
+  .card {
+    display: flex;
+    width: 144px;
+    padding: 12px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+    border-radius: 4px;
+    border: 1px solid var(--line-border-2, #EBEDF0);
+    background: var(--Fill-white, #FFF);
+    color: var(--text-gray-8-primary, #343A40);
+
+    /* Body 内容/@body-m */
+    font-family: "PingFang SC";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px; /* 157.143% */
+
+    margin-right: 16px;
+    cursor: pointer;
+  }
+
+  .checked {
+    border-radius: 4px;
+    border: 1px solid var(--brand-green-7-normal, #0CBF9F);
+    background: var(--brand-green-1-light, #E6FFF6);
+    position: relative;
+
+    .checkSvg {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+    }
+  }
+}

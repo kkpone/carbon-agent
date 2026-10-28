@@ -1,0 +1,35 @@
+export default {
+  title: '產品碳足跡',
+  description:
+    '輸入您想要核算的產品，我們將為您生成符合ISO14067/PAS2050標準的產品碳足跡核算模型',
+  placeholder: '請輸入您想核算的產品數量及名稱，如：一臺筆記本電腦',
+  aiAgent: 'AI Agent',
+  uploadFile: '上傳附件',
+  uploadImage: '上傳圖片',
+  /** @deprecated 官網已拆分為 productUploadFileTip / referUploadFileTip */
+  uploadFileTip: '最多上傳1張圖片，單張不超過20MB',
+  productUploadFileTip: '最多上傳1張圖片，單張不超過20MB',
+  referUploadFileTip: '最多5個附件，單個不超過20MB',
+  attachmentNoImage: '附件不支持圖片，請上傳 PDF、Word、Excel 等文檔',
+  scopeFull: '全生命週期',
+  scopeHalf: '半生命週期',
+  factorPreferencePlaceholder: '因子偏好',
+  imageOnlySupported: '僅支持上傳圖片文件',
+  uploading: '上傳中…',
+  uploadFailed: '上傳失敗',
+  removeFile: '移除文件',
+  altFile: '文件',
+  altUpload: '上傳',
+  altSend: '發送',
+  waitForUploadComplete: '請等待文件上傳完成',
+  removeFailedFilesRetry: '請移除上傳失敗的文件後重試',
+  maxFilesExceeded:
+    '最多隻能上傳 {val1} 個文件，當前已有 {val2} 個，還可以上傳 {val3} 個',
+  fileSizeExceeded: '文件大小超過 20MB',
+  uploadFailedWithName: '{val1} 上傳失敗：{val2}',
+  quickSuggestions: {
+    suggestion1: '一瓶500ml礦泉水',
+    suggestion2: '一盒100抽紙巾',
+    suggestion3: '一件純棉T恤衫',
+  },
+};

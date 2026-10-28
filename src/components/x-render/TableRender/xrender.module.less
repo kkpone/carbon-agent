@@ -1,0 +1,48 @@
+/** xrender 样式修正 */
+// @import url('@/styles/var.less');
+
+.search {
+  && {
+    margin-bottom: 0;
+    padding: 0;
+
+    :global(.fr-field-object .fr-field) {
+      margin-bottom: 16px;
+    }
+
+    :global(.search-btn) {
+      flex: 0;
+    }
+
+    :global(:where(.css-dev-only-do-not-override-5cjbhk).ant-btn-primary) {
+      color: @primary-color;
+      background-color: @whiteBg;
+      border: 1px solid @primary-color;
+    }
+
+    :global(.field-block) {
+      display: none;
+    }
+
+    :global(.fr-item-wrapper button.mr) {
+      margin-right: 20px;
+    }
+
+    /* antd select 样式修正 */
+    :global(.ant-select) {
+      width: 100%;
+    }
+  }
+}
+
+div.table {
+  padding: 0;
+
+  :global(.tr-table-top-nohead) {
+    height: 0;
+  }
+
+  th::before {
+    display: none;
+  }
+}

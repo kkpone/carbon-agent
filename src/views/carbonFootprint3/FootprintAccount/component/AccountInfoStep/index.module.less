@@ -1,0 +1,290 @@
+@import '@src/styles/var.less';
+
+.stepBox {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  min-width: 0;
+  height: 64px;
+  margin: 0;
+  padding: 0 20px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+
+  .stepMainGroup {
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+    gap: 24px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .stepBoxBack {
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 280px;
+    color: #343a40;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+
+    .stepBoxImg {
+      // width: 40px;
+      height: 40px;
+    }
+
+    .stepBoxText {
+      margin-left: 10px;
+    }
+  }
+
+  .stepBoxBackText {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .stepNavDivider {
+    flex-shrink: 0;
+    width: 1px;
+    height: 16px;
+    background: #b5b8bb;
+  }
+
+  .stepExpireTime {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    color: #343a40;
+    font-size: 14px;
+    line-height: 22px;
+    white-space: nowrap;
+  }
+
+  .stepBoxGoResutMain {
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .stepBoxGoResut {
+    flex: 0 0 auto;
+    min-width: 0;
+
+    :global(.ant-btn) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 220px;
+      height: 32px;
+      padding: 4px 12px;
+      overflow: hidden;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 22px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      box-shadow: none;
+
+      > span {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    :global(.ant-btn-primary) {
+      background: #004245;
+      border-color: #004245;
+
+      &:hover,
+      &:focus {
+        background: #026961;
+        border-color: #026961;
+      }
+    }
+  }
+
+  &.stepBoxAccountToolbar {
+    .stepsClass {
+      transform: none;
+    }
+  }
+
+  &.agentPreviewToolbar {
+    display: grid;
+    grid-template-columns:
+      minmax(88px, 1fr)
+      minmax(180px, 320px)
+      minmax(88px, 1fr);
+    column-gap: 8px;
+    box-sizing: border-box;
+    padding: 0 12px;
+
+    .stepsClass {
+      grid-column: 2;
+      width: 100%;
+      transform: none;
+    }
+
+    .stepBoxGoResutMain {
+      position: static;
+      grid-column: 3;
+      justify-self: end;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .stepBoxGoResut {
+      min-width: 0;
+      margin-right: 0;
+
+      :global(.ant-btn) {
+        max-width: 100%;
+        padding-inline: 12px;
+      }
+    }
+  }
+}
+
+.stepsClass {
+  flex: 0 1 390px;
+  min-width: 260px;
+  max-width: 390px;
+  margin: 0;
+  overflow: hidden;
+
+  :global {
+    .ant-steps-item {
+      min-width: 0;
+      white-space: nowrap;
+    }
+
+    .ant-steps-item-container {
+      min-width: 0;
+    }
+
+    .ant-steps-item-content {
+      min-width: 0;
+    }
+
+    .ant-steps-item-title {
+      min-width: 0;
+      max-width: min(168px, 100%);
+      color: #04252b;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 20px;
+      vertical-align: top;
+    }
+
+    .ant-steps-item-process {
+      .ant-steps-item-icon {
+        background: #026961;
+        border-color: #026961;
+      }
+
+      .ant-steps-icon,
+      .ant-steps-item-title {
+        color: #026961;
+        font-weight: 500;
+      }
+
+      .ant-steps-icon {
+        color: #fff;
+      }
+    }
+
+    .ant-steps-item-active {
+      .ant-steps-item-title {
+        color: #026961;
+        font-weight: 500;
+      }
+    }
+
+    .ant-steps-item-finish {
+      .ant-steps-item-icon {
+        background: #fff;
+        border-color: #026961;
+      }
+
+      .ant-steps-icon {
+        color: #026961;
+      }
+
+      .ant-steps-item-title {
+        color: #04252b;
+      }
+    }
+
+    .ant-steps-item-wait {
+      .ant-steps-item-icon {
+        background: #fff;
+        border-color: #b5b8bb;
+      }
+
+      .ant-steps-icon,
+      .ant-steps-item-title {
+        color: #b5b8bb;
+      }
+    }
+
+    .ant-steps-item-disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+.stepTitle {
+  display: inline-block;
+  max-width: 168px;
+  overflow: hidden;
+  color: inherit;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.stepsClass {
+  :global(.ant-steps-item-process),
+  :global(.ant-steps-item-active) {
+    .stepTitle {
+      color: #026961 !important;
+      font-weight: 500;
+    }
+  }
+}
+
+.aiAgentDivider {
+  width: 1px;
+  height: 16px;
+  margin-right: 12px;
+  margin-left: 12px;
+  background: #b5b8bb;
+}
+
+.aiAgentSlot {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}

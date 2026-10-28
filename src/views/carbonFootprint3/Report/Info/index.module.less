@@ -1,0 +1,128 @@
+@import '@src/styles/var.less';
+
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: @GlobaFormActionsHeight + 32px;
+
+  &&& {
+    padding: 0 10px 0 0;
+  }
+
+  main {
+    flex: 1 0 auto;
+    background-color: @backgroudGray;
+
+    .card {
+      position: relative;
+      padding: 16px 16px 0;
+      background-color: @whiteBg;
+      h4 {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      & + .card {
+        margin-top: 10px;
+      }
+
+      .reportAccountList {
+        position: absolute;
+        top: 130px;
+        right: 16px;
+      }
+    }
+
+    .textPrimary {
+      margin-left: 16px;
+      color: @primary-color;
+      cursor: pointer;
+    }
+
+    .activityData {
+      margin: 17px 0 8px;
+    }
+
+    .emissions {
+      margin: 13px 0 8px;
+    }
+
+    .lifeCycleHeaderGrid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: 12px 0 8px;
+      column-gap: 20px;
+      row-gap: 8px;
+
+      .lifeCycleHeader {
+        display: flex;
+        grid-column: span 2 / auto;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .lifeCycleTitle {
+        display: flex;
+        align-items: center;
+        color: @textColor2;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .lifeCycleTipIcon {
+        margin-left: 6px;
+        color: #999ea4;
+        cursor: pointer;
+      }
+
+      .lifeCycleToggle {
+        display: inline-flex;
+        gap: 4px;
+        align-items: center;
+        padding: 0;
+        color: @primary-color;
+      }
+    }
+  }
+}
+
+.modal1 {
+  :global(.ant-modal-body) {
+    padding-top: 2px;
+    padding-bottom: 0;
+  }
+
+  :global(.ant-modal-footer) {
+    display: flex;
+    justify-content: center;
+  }
+
+  .radios {
+    margin-bottom: 16px;
+  }
+}
+
+.optionNodeType {
+  padding: 2px 4px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.optionNodeTypeQuick {
+  color: #3491fa;
+  background: #f0f9ff;
+}
+
+.optionNodeTypeProcess {
+  color: #0cbf9f;
+  background: #e6fff6;
+}

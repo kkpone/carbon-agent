@@ -1,0 +1,241 @@
+.wrapper {
+  padding: 0 !important;
+  background: #f7f8f9 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .content {
+    width: 758px;
+    margin: 0 auto;
+    padding: 68px 0;
+
+    .header {
+      color: #000;
+      font-family: 'PingFang SC';
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 48px; /* 120% */
+      margin-bottom: 38px;
+    }
+
+    .body {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+
+      .history {
+        width: 100%;
+        .historyTitle {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 16px;
+
+          .bold {
+            color: #000;
+            font-family: 'PingFang SC';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 18px; /* 128.571% */
+          }
+
+          .more {
+            color: #b5b8bb;
+            font-family: 'PingFang SC';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 18px; /* 128.571% */
+            cursor: pointer;
+          }
+        }
+
+        .empty {
+          width: 100%;
+          height: 255px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          color: #6c757d;
+          font-family: 'PingFang SC';
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px; /* 166.667% */
+
+          svg {
+            width: 120px;
+            height: 80px;
+          }
+        }
+
+        .cardWrapper {
+          width: 100%;
+          height: 255px;
+          display: flex;
+          justify-content: flex-start;
+          gap: 16px;
+        }
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        .footerTitle {
+          color: #000;
+          font-family: 'PingFang SC';
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 48px; /* 150% */
+        }
+
+        .subTitle {
+          color: #999ea4;
+          font-family: 'PingFang SC';
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 22px; /* 157.143% */
+        }
+
+        .gray {
+          color: #6c757d;
+        }
+
+        .inputWrapper {
+          display: flex;
+          width: 758px;
+          gap: 32px;
+          padding: 12px 16px;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: 12px;
+          border: 1px solid #026961;
+          background: #fff;
+          box-shadow: 0px 4px 20px 0px rgba(4, 89, 78, 0.1);
+
+          .input {
+            color: #04252b;
+            font-family: 'PingFang SC';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 22px; /* 157.143% */
+
+            .CascaderWrapper {
+              display: inline-flex;
+              height: 24px;
+              padding: 2px 8px;
+              justify-content: center;
+              align-items: center;
+              border-radius: 8px;
+              background: rgba(4, 134, 119, 0.1);
+              margin: 0 4px;
+              color: #04252b;
+              font-family: 'PingFang SC';
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px; /* 128.571% */
+              cursor: pointer;
+              width: fit-content;
+              :global(.ant-input) {
+                display: inline-flex;
+                border: none;
+                background: transparent;
+                color: #04252b;
+                font-family: 'PingFang SC';
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 18px; /* 128.571% */
+                cursor: pointer;
+                box-shadow: none !important;
+              }
+            }
+
+            .userContentWrapper {
+              display: flex;
+              margin: 0 0 0 0;
+              background-color: #fff;
+              padding: 2px 0;
+              height: fit-content;
+
+              :global(.ant-input) {
+                padding-left: 0;
+              }
+            }
+
+            .selectWrapper {
+              display: inline-flex;
+              height: 24px;
+              padding: 2px 0;
+              justify-content: center;
+              align-items: center;
+              border-radius: 8px;
+              background: rgba(4, 134, 119, 0.1);
+              margin: 0 4px;
+              color: #04252b;
+              font-family: 'PingFang SC';
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 18px; /* 128.571% */
+              cursor: pointer;
+              margin-top: 4px;
+
+              .uploadBtn {
+                padding: 0 12px;
+                color: #999ea4;
+              }
+            }
+
+            .indicatorSelectWrapper {
+              margin-top: 8px;
+            }
+          }
+
+          .bottom {
+            width: 100%;
+
+            .appendixWrapper {
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+
+              .appendixBtns {
+                display: flex;
+                gap: 16px;
+              }
+
+              .send {
+                display: flex;
+                width: 32px;
+                height: 32px;
+                padding: 4px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 8px;
+                background: rgba(2, 105, 97, 0.5);
+                cursor: not-allowed;
+              }
+              .enable {
+                background: #026961;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

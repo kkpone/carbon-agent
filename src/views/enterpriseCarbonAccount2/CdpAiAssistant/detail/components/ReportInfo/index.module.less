@@ -1,0 +1,155 @@
+.wrapper {
+  width: 328px;
+  flex-shrink: 0;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: width 0.2s ease-in-out; /* 添加过渡效果 */
+
+  .innerWrapper {
+    width: 308px;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    padding: 16px;
+
+    background: var(--Fill-white, #FFF);
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.04);
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      align-self: stretch;
+      width: 276px;
+      height: 32px;
+
+      .right {
+        display: flex;
+        gap: 12px;
+
+        .item {
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+          border: 1px solid var(--line-border-2, #EBEDF0);
+          background: var(--Fill-white, #FFF);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .btnWrapper {
+      width: 308px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+      padding: 16px;
+
+      position: absolute;
+      left: 0;
+      bottom: 0;
+
+      .btn {
+        width: 272px;
+        display: flex;
+        height: 32px;
+        padding: 0px 12px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        align-self: stretch;
+        border-radius: 4px;
+        background: var(--brand-green-7-normal, #0CBF9F);   
+        color: var(--Text-white, #FFF);
+
+        /* Body 内容/@body-m-b */
+        font-family: "PingFang SC";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 32px; /* 157.143% */
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+  }
+
+  @keyframes shrinkRight {
+    0% {
+      right: 0; /* 起始宽度为原始宽度 */
+    }
+    100% {
+      right: -308px; /* 结束宽度为 0 */
+    }
+  }
+
+  .collapsedInner {
+    animation: shrinkRight 0.2s linear forwards; /* 动画持续时间 0.2 秒 */
+  }
+
+
+  .collapseButton {
+    width: 20px;
+    height: 64px;
+    // background-color: red;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 64px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      width: 40px;
+      height: 128px;
+    }
+  }
+  
+}
+
+.collapsedWrapper {
+  width: 20px;
+}
+
+.confirmTip {
+  width: 178px;
+  .title {
+    color: var(--text-gray-8-primary, #343A40);
+
+    /* Body 内容/@body-m-b */
+    font-family: "PingFang SC";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px; /* 157.143% */
+  }
+
+  .content {
+    color: var(--text-gray-7-secondary, #6C757D);
+
+    /* Caption 辅助信息/@caption-s */
+    font-family: "PingFang SC";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+  }
+}
+
+.contentTitle {
+  color: var(--text-gray-8-primary, #343A40);
+
+  /* Body 内容/@body-m-b */
+  font-family: "PingFang SC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+}

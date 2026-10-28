@@ -1,0 +1,109 @@
+.FoorprintAccountingAddShareModal {
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+
+  .ant-modal-body {
+    height: 100%;
+    padding: 0;
+  }
+
+  .ant-modal-content {
+    height: 100vh;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .accountShareMain {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+
+    .shareLogo {
+      position: absolute;
+      top: 32px;
+      left: 24px;
+      img {
+        width: 186px;
+        height: auto;
+      }
+    }
+
+    .shareLeft {
+      width: 450px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .shareLoginExpire {
+        text-align: center;
+
+        .expireMain {
+          margin-bottom: 16px;
+          img {
+            width: 64px;
+            height: auto;
+          }
+        }
+
+        .expireMainText {
+          color: #999ea4;
+        }
+      }
+
+      .shareLoginMain {
+        width: 300px;
+        text-align: center;
+
+        .avatar {
+          margin-bottom: 16px;
+
+          img {
+            width: 72px;
+            height: auto;
+          }
+        }
+
+        .avatarName {
+          font-size: 16px;
+          font-weight: 500;
+          margin-bottom: 8px;
+        }
+
+        .avatarDesc {
+          color: #999ea4;
+        }
+
+        .passwordMain {
+          margin-top: 40px;
+
+          .ant-input-lg {
+            padding: 10px 24px;
+          }
+        }
+
+        .shareButton {
+          margin-top: 24px;
+          width: 300px;
+          height: 56px;
+          border-radius: 10px;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .shareRight {
+      width: calc(100% - 450px);
+      height: 100%;
+      background-image: url('https://carbonstop-saas.oss-cn-beijing.aliyuncs.com/carbonFootprint/shareLogin.png');
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+    }
+  }
+}
