@@ -710,6 +710,139 @@
   background: rgba(0, 69, 65, 0.6);
 }
 
+.projectTaskDrawerFeishuSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #d4efe4;
+  border-radius: 12px;
+  background: #f4fbf8;
+  padding: 16px;
+}
+
+.projectTaskDrawerFeishuSection > h3 {
+  margin: 0;
+  color: @text-primary;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.projectTaskDrawerFeishuCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #e1ece8;
+  border-radius: 10px;
+  background: #fff;
+  padding: 12px 14px;
+}
+
+.projectTaskDrawerFeishuFileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.projectTaskDrawerFeishuFileHeader strong {
+  min-width: 0;
+  overflow: hidden;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskDrawerFeishuBadge {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #fff7e6;
+  color: #d46b08;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  padding: 2px 10px;
+}
+
+.projectTaskDrawerFeishuBadgeAdopted {
+  background: #eafbf2;
+  color: #027667;
+}
+
+.projectTaskDrawerFeishuMetaGrid {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 6px 10px;
+  align-items: center;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.projectTaskDrawerFeishuMetaGrid span {
+  color: @text-secondary;
+}
+
+.projectTaskDrawerFeishuMetaGrid div {
+  overflow: hidden;
+  border-radius: 6px;
+  background: @surface-muted;
+  color: @text-primary;
+  padding: 4px 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.projectTaskDrawerFeishuActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.projectTaskDrawerFeishuActionGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.projectTaskDrawerFeishuGhostBtn,
+.projectTaskDrawerFeishuPrimaryBtn {
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 4px 12px;
+}
+
+.projectTaskDrawerFeishuGhostBtn {
+  border: 1px solid #d5d7da;
+  background: #fff;
+  color: @text-primary;
+}
+
+.projectTaskDrawerFeishuGhostBtn:hover:not(:disabled) {
+  border-color: #026961;
+  color: #026961;
+}
+
+.projectTaskDrawerFeishuPrimaryBtn {
+  border: 0;
+  background: #004541;
+  color: #fff;
+  font-weight: 500;
+}
+
+.projectTaskDrawerFeishuPrimaryBtn:hover:not(:disabled) {
+  background: #026961;
+}
+
 @media (max-width: 760px) {
   .projectTaskDrawer {
     width: 100%;

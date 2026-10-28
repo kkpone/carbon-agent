@@ -16,6 +16,7 @@ import {
 } from './accountingPurpose';
 import { getAgentBrowserId } from './acquisition';
 import { isCbamHistoryTool, mergeCbamHistoryTools } from './cbamHistoryTools';
+import { mergeProjectFilesWithFeishuFiles } from './feishuCollectionStore';
 import type {
   AccountBindStatus,
   AgentHomeSkill,
@@ -4586,7 +4587,19 @@ export const fetchAgentProjectFiles = (
     method: 'GET',
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/files`,
-  }).then(response => response.data.data || []);
+  })
+    .then(response =>
+      mergeProjectFilesWithFeishuFiles(projectId, response.data.data || []),
+    )
+    .catch(error => {
+      const localFiles = mergeProjectFilesWithFeishuFiles(projectId, []);
+
+      if (localFiles.length) {
+        return localFiles;
+      }
+
+      throw error;
+    });
 
 export const fetchAgentProjectMembers = (
   projectId: number | string,
@@ -4853,6 +4866,16 @@ export const fetchAgentProjectFileDownloadUrl = async (
   assetId: number | string,
   signal?: AbortSignal,
 ): Promise<AgentProjectFile> => {
+  const syncedMatch = mergeProjectFilesWithFeishuFiles(projectId, []).find(
+    item =>
+      String(item.assetId) === String(assetId) ||
+      String(item.fileId) === String(assetId),
+  );
+
+  if (syncedMatch?.downloadUrl) {
+    return syncedMatch;
+  }
+
   const response = await request<AgentProjectFileResponse>({
     method: 'GET',
     signal,

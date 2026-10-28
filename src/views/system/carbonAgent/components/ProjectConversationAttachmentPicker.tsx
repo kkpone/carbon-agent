@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import Icon from './Icon';
 import style from './ProjectConversationAttachmentPicker.module.less';
 import { icons } from '../constants';
+import { FEISHU_COLLECTION_CHANGE_EVENT } from '../feishuCollectionStore';
 import { type AgentProjectFile, fetchAgentProjectFiles } from '../service';
 
 type ProjectConversationAttachmentPickerProps = {
@@ -48,6 +49,20 @@ const ProjectConversationAttachmentPicker = ({
     setLoadError(false);
     setLoading(false);
   }, [projectId]);
+
+  useEffect(() => {
+    const handleFeishuChange = () => {
+      setRetryKey(value => value + 1);
+    };
+
+    window.addEventListener(FEISHU_COLLECTION_CHANGE_EVENT, handleFeishuChange);
+    return () => {
+      window.removeEventListener(
+        FEISHU_COLLECTION_CHANGE_EVENT,
+        handleFeishuChange,
+      );
+    };
+  }, []);
 
   useEffect(() => {
     if (!open || view !== 'files') {
@@ -153,6 +168,11 @@ const ProjectConversationAttachmentPicker = ({
                   >
                     <img src={projectFolderIcon} alt='' aria-hidden='true' />
                     <span>{file.fileName}</span>
+                    {String(file.fileId).startsWith('feishu_') ? (
+                      <em className={style.projectAttachmentFeishuBadge}>
+                        {I18N.carbonAgent.feishuCollectSyncedBadge}
+                      </em>
+                    ) : null}
                   </button>
                 </li>
               ))}

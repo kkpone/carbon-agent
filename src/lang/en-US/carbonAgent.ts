@@ -515,6 +515,131 @@ export default {
   projectInviteAcceptFailed:
     'Failed to accept the project invitation. Please try again later.',
   projectSettings: 'Project settings',
+  feishuCollect: 'Feishu collection',
+  feishuCollectConnected: 'Feishu collection · Active',
+  feishuCollectPaused: 'Feishu collection · Paused',
+  feishuCollectTitle: 'Feishu Data Collection',
+  feishuCollectTabCreate: 'Create New Group',
+  feishuCollectTabBind: 'Bind Existing Group',
+  feishuCollectCurrentProject: 'Current project: {val1}',
+  feishuCollectConfirmPrompt:
+    'Confirm creating a Feishu project collection group? Once confirmed, Feishu will automatically create the project group and pull in the CarbonAgent bot and designated business staff. Business staff can then invite external clients to send project materials, which Agent will capture into Project Files as project context.',
+  feishuCollectGroupName: 'Group name',
+  feishuCollectDefaultGroupSuffix: ' - Collection Group',
+  feishuCollectGroupOwner: 'Feishu group owner',
+  feishuCollectOwnerDefault: 'Project owner',
+  feishuCollectAutoJoinLabel:
+    'Auto-joined members (Agent Bot & Business Staff)',
+  feishuCollectBotTag: 'Agent Bot',
+  feishuCollectBotName: 'CarbonAgent Collection Bot',
+  feishuCollectStaffTag: 'Business Staff',
+  feishuCollectDefaultTask: 'Default collection task',
+  feishuCollectTaskUnspecified: 'Not specified yet, receive files first',
+  feishuCollectFirstAuthHint:
+    'First-time setup requires linking the project owner Feishu identity',
+  feishuCollectCreateAndBind: 'Confirm & Create Group',
+  feishuCollectBindConfirm: 'Confirm & Bind Group',
+  feishuCollectFooterHint:
+    'Invite external clients after group preparation finishes',
+  feishuCollectSelectExistingGroup:
+    'Select an external group with the bot added',
+  feishuCollectExistingGroupOption1: '{val1} - Client Collaboration Group',
+  feishuCollectExistingGroupOption2: '{val1} - Supplier Data Collection Group',
+  feishuCollectBindRuleHint:
+    'Only unbound external groups where the bot is a member and you have management permission are shown',
+  feishuCollectStepCreateTitle:
+    'Create external project group and add CarbonAgent bot & business staff',
+  feishuCollectStepCreateDesc:
+    'Host account initiates group creation and pulls in CarbonAgent bot and defined business staff',
+  feishuCollectStepTransferTitle:
+    'Transfer group owner to project consultant and clean up helper account',
+  feishuCollectStepTransferDesc:
+    'Explicitly transfer ownership, verify bot collection capability, and prepare client invite entry',
+  feishuCollectStepReadyTitle:
+    'Enable automatic group file collection and project context sync',
+  feishuCollectStepReadyDesc:
+    'Project files sent by clients in the group will sync to Project Files for use as project context',
+  feishuCollectCreatingTitle:
+    'Creating and preparing Feishu collection group…',
+  feishuCollectCreatedSuccess:
+    'Feishu project collection group created with bot and business staff joined',
+  feishuCollectStatusActive: 'Collecting',
+  feishuCollectStatusPaused: 'Paused',
+  feishuCollectCollectionSwitch: 'Auto-collect group files into Project Files',
+  feishuCollectCollectionPausedBanner:
+    'Automatic collection is paused. New files sent in the Feishu group will not sync to Project Files.',
+  feishuCollectMembersSection: 'Group Members & External Clients',
+  feishuCollectInviteCustomer: 'Invite External Client',
+  feishuCollectCopyGroupLink: 'Copy Group Invite Link',
+  feishuCollectGroupLinkCopied:
+    'Feishu group invite link copied. Share it to invite external clients.',
+  feishuCollectCustomerNamePlaceholder:
+    'Enter external client name or company, e.g. Manager Wang (Kunshan Plant)',
+  feishuCollectAddCustomerBtn: 'Add to Group',
+  feishuCollectCustomerAdded:
+    'Business staff added external client “{val1}” to the Feishu group',
+  feishuCollectCustomerTag: 'External Client',
+  feishuCollectOwnerTag: 'Owner · Business Staff',
+  feishuCollectSimSectionTitle:
+    'Feishu Group File Simulator (Client sends file → Agent saves to Project Files & Context)',
+  feishuCollectSimSenderLabel: 'Sending client',
+  feishuCollectSimNotePlaceholder:
+    'Additional note (e.g. August electricity bill and activity data for Kunshan Plant)',
+  feishuCollectSimPreset1Name: 'Aug_Electricity_Ledger_Kunshan_Plant.xlsx',
+  feishuCollectSimPreset1Note:
+    'August electricity settlement bill and activity data for Kunshan Plant',
+  feishuCollectSimPreset1Summary:
+    'Collected from Feishu group (Kunshan Plant Aug electricity activity data: 142,600 kWh total with peak/valley breakdown)',
+  feishuCollectSimPreset2Name: 'Natural_Gas_And_Steam_Vouchers_Q3.xlsx',
+  feishuCollectSimPreset2Note:
+    'Supplementary Q3 boiler natural gas and purchased steam monthly summary',
+  feishuCollectSimPreset2Summary:
+    'Collected from Feishu group (Q3 stationary combustion natural gas 38,200 Nm³ and purchased steam 640 t)',
+  feishuCollectSimPreset3Name: 'Primary_Materials_BOM_List_2026.xlsx',
+  feishuCollectSimPreset3Note:
+    'Verified raw material procurement weights and supplier list',
+  feishuCollectSimPreset3Summary:
+    'Collected from Feishu group (2026 raw & auxiliary material BOM with weights and origins for 12 main items)',
+  feishuCollectSimSendPresetBtn: 'Simulate Client Sending File in Group',
+  feishuCollectSimUploadLocalBtn: 'Upload Local File as Client Message',
+  feishuCollectSimReceivedToast:
+    'CarbonAgent captured “{val1}” from Feishu group into Project Files for project context',
+  feishuCollectChatHistoryTitle: 'Feishu Group Collection Feed',
+  feishuCollectChatSystemCreated:
+    'System created Feishu project group “{val1}” and pulled in CarbonAgent bot and business staff ({val2}).',
+  feishuCollectChatBotWelcome:
+    'Hello! I am the CarbonAgent Collection Bot. Project attachments and notes sent in this group are automatically organized into Project Files as project context for review and analysis.',
+  feishuCollectChatSystemCustomerJoined:
+    '{val1} invited external client “{val2}” to the group chat.',
+  feishuCollectChatCustomerSentFile: 'Sent project file “{val1}”',
+  feishuCollectChatBotAckFile:
+    'Received “{val1}” and automatically saved it to Project Files and Project Context{val2}.',
+  feishuCollectChatBotAckTaskSuffix: ' (Linked task: {val1})',
+  feishuCollectSyncedFilesTitle: 'Synced to Project Files & Context ({val1})',
+  feishuCollectUseAsContext: 'Ask with Context',
+  feishuCollectSyncedBadge: 'Feishu Synced',
+  feishuCollectContextBannerTitle:
+    'Feishu Group Materials Ready in Project Context',
+  feishuCollectContextBannerDesc:
+    '“{val1}” has synced {val2} client files to Project Files. Click a file to attach it as conversation context or open the collection workbench.',
+  feishuCollectOpenWorkbench: 'Manage Feishu Collection',
+  feishuCollectContextPromptTemplate:
+    'Based on the project file “{val2}” ({val3}) uploaded by the client in the Feishu group ({val1}), please summarize the key activity data, check for missing items, and suggest the next accounting steps.',
+  feishuCollectTaskSectionTitle: 'Feishu Pending Materials',
+  feishuCollectTaskPendingBadge: 'Pending review',
+  feishuCollectTaskAdoptedBadge: 'Draft adopted',
+  feishuCollectTaskSourceLabel: 'Source',
+  feishuCollectTaskNoteLabel: 'Supplementary note',
+  feishuCollectTaskViewOriginal: 'View original file',
+  feishuCollectTaskRequestMore: 'Request more info',
+  feishuCollectTaskRequestMoreToast:
+    'Sent supplementary data reminder to Feishu group',
+  feishuCollectTaskAdoptConfirm: 'Adopt into reply',
+  feishuCollectTaskAdoptSuccess:
+    'Adopted Feishu group file into task attachments and reply',
+  feishuCollectTaskReplyTemplate:
+    '[Feishu Group Material Verified] Source group: {val1}; Client file: “{val2}”; Note: {val3}.',
+  feishuCollectDefaultCustomer1: 'Manager Wang (External Client)',
   projectDataOverview: 'Data overview',
   projectOverviewNoCalculation:
     'This project has no linked calculation to view yet',

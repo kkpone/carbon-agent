@@ -14,6 +14,12 @@ import { createPortal } from 'react-dom';
 import Icon from './Icon';
 import style from './ProjectTaskDetailDrawer.module.less';
 import {
+  FEISHU_COLLECTION_CHANGE_EVENT,
+  type FeishuCollectedCandidate,
+  getProjectFeishuGroupState,
+  markFeishuCandidateAdopted,
+} from '../feishuCollectionStore';
+import {
   type AgentProjectFile,
   type AgentProjectMember,
   type AgentProjectTaskDetail,
@@ -124,6 +130,9 @@ const ProjectTaskDetailDrawer = ({
   const [uploadError, setUploadError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [feishuCandidates, setFeishuCandidates] = useState<
+    FeishuCollectedCandidate[]
+  >([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const taskIdentity = `${projectId}:${taskId}`;
   const activeTaskIdentityRef = useRef(taskIdentity);
@@ -234,6 +243,35 @@ const ProjectTaskDetailDrawer = ({
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [onCancel, open, submitting, uploading]);
+
+  useEffect(() => {
+    if (!open || !projectId) {
+      setFeishuCandidates([]);
+      return undefined;
+    }
+
+    const syncFeishuCandidates = () => {
+      const groupState = getProjectFeishuGroupState(projectId);
+      const allCandidates = groupState?.candidates || [];
+      const matched = allCandidates.filter(
+        item => !item.taskId || String(item.taskId) === String(taskId),
+      );
+      setFeishuCandidates(matched);
+    };
+
+    syncFeishuCandidates();
+    window.addEventListener(
+      FEISHU_COLLECTION_CHANGE_EVENT,
+      syncFeishuCandidates,
+    );
+
+    return () => {
+      window.removeEventListener(
+        FEISHU_COLLECTION_CHANGE_EVENT,
+        syncFeishuCandidates,
+      );
+    };
+  }, [open, projectId, taskId]);
 
   const statusOptions = useMemo(
     () => [
@@ -361,6 +399,34 @@ const ProjectTaskDetailDrawer = ({
   if (!open || !taskId) {
     return null;
   }
+
+  const handleAdoptFeishuCandidate = (candidate: FeishuCollectedCandidate) => {
+    setAttachments(currentAttachments => {
+      const nextFiles = new Map(
+        currentAttachments.map(file => [getProjectFileKey(file), file]),
+      );
+      nextFiles.set(getProjectFileKey(candidate.file), candidate.file);
+      return Array.from(nextFiles.values());
+    });
+
+    const summaryLine = I18N.template(
+      I18N.carbonAgent.feishuCollectTaskReplyTemplate,
+      {
+        val1: candidate.groupName,
+        val2: candidate.file.fileName,
+        val3: candidate.note,
+      },
+    );
+    setReplyContent(currentReply => {
+      const nextText = currentReply.trim()
+        ? `${currentReply.trim()}\n${summaryLine}`
+        : summaryLine;
+      return nextText.slice(0, TASK_REPLY_MAX_LENGTH);
+    });
+
+    markFeishuCandidateAdopted(projectId, candidate.id);
+    antdMessage.success(I18N.carbonAgent.feishuCollectTaskAdoptSuccess);
+  };
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(event.currentTarget.files || []);
@@ -762,6 +828,84 @@ const ProjectTaskDetailDrawer = ({
                   </div>
                 </div>
               </div>
+
+              {feishuCandidates.length ? (
+                <section className={style.projectTaskDrawerFeishuSection}>
+                  <h3>{I18N.carbonAgent.feishuCollectTaskSectionTitle}</h3>
+                  {feishuCandidates.map(candidate => (
+                    <div
+                      key={candidate.id}
+                      className={style.projectTaskDrawerFeishuCard}
+                    >
+                      <div className={style.projectTaskDrawerFeishuFileHeader}>
+                        <strong title={candidate.file.fileName}>
+                          {candidate.file.fileName}
+                        </strong>
+                        <span
+                          className={
+                            candidate.adopted
+                              ? `${style.projectTaskDrawerFeishuBadge} ${style.projectTaskDrawerFeishuBadgeAdopted}`
+                              : style.projectTaskDrawerFeishuBadge
+                          }
+                        >
+                          {candidate.adopted
+                            ? I18N.carbonAgent.feishuCollectTaskAdoptedBadge
+                            : I18N.carbonAgent.feishuCollectTaskPendingBadge}
+                        </span>
+                      </div>
+                      <div className={style.projectTaskDrawerFeishuMetaGrid}>
+                        <span>
+                          {I18N.carbonAgent.feishuCollectTaskSourceLabel}
+                        </span>
+                        <div title={candidate.groupName}>
+                          {candidate.groupName} · {candidate.senderName}
+                        </div>
+                        <span>
+                          {I18N.carbonAgent.feishuCollectTaskNoteLabel}
+                        </span>
+                        <div title={candidate.note}>{candidate.note}</div>
+                      </div>
+                      <div className={style.projectTaskDrawerFeishuActions}>
+                        <button
+                          className={style.projectTaskDrawerFeishuGhostBtn}
+                          type='button'
+                          onClick={() =>
+                            handleAttachmentDownload(candidate.file)
+                          }
+                        >
+                          {I18N.carbonAgent.feishuCollectTaskViewOriginal}
+                        </button>
+                        <div
+                          className={style.projectTaskDrawerFeishuActionGroup}
+                        >
+                          <button
+                            className={style.projectTaskDrawerFeishuGhostBtn}
+                            type='button'
+                            onClick={() =>
+                              antdMessage.info(
+                                I18N.carbonAgent
+                                  .feishuCollectTaskRequestMoreToast,
+                              )
+                            }
+                          >
+                            {I18N.carbonAgent.feishuCollectTaskRequestMore}
+                          </button>
+                          <button
+                            className={style.projectTaskDrawerFeishuPrimaryBtn}
+                            type='button'
+                            disabled={submitting}
+                            onClick={() =>
+                              handleAdoptFeishuCandidate(candidate)
+                            }
+                          >
+                            {I18N.carbonAgent.feishuCollectTaskAdoptConfirm}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </section>
+              ) : null}
 
               <div className={style.projectTaskDrawerField}>
                 <label htmlFor='carbon-agent-task-detail-files'>

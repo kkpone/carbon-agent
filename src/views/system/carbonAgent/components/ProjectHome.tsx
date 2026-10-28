@@ -1,5 +1,6 @@
 import projectArrowIcon from '@src/assets/images/carbonAgent/icons/project-home-arrow.svg';
 import projectDownloadIcon from '@src/assets/images/carbonAgent/icons/project-home-download.svg';
+import projectFeishuIcon from '@src/assets/images/carbonAgent/icons/project-home-feishu.svg';
 import projectInviteIcon from '@src/assets/images/carbonAgent/icons/project-home-invite.svg';
 import projectOverviewIcon from '@src/assets/images/carbonAgent/icons/project-home-overview.svg';
 import projectSettingsIcon from '@src/assets/images/carbonAgent/icons/project-home-settings.svg';
@@ -8,6 +9,7 @@ import projectMemberAvatar from '@src/assets/images/carbonAgent/icons/project-me
 import projectMemberClose from '@src/assets/images/carbonAgent/icons/project-member-close.svg';
 import projectMemberLink from '@src/assets/images/carbonAgent/icons/project-member-link.svg';
 import I18N, { serviceLangMap } from '@src/lang/I18N';
+import { copyToClipboard } from '@src/utils/clipboard';
 import {
   ConfigProvider,
   Modal,
@@ -16,7 +18,6 @@ import {
   message as antdMessage,
 } from 'antd';
 import classNames from 'classnames';
-import copy from 'copy-to-clipboard';
 import saveAs from 'file-saver';
 import {
   type ChangeEvent,
@@ -34,6 +35,12 @@ import type {
   AgentEnterpriseBusinessCapabilities,
   AgentProject,
 } from '../constants';
+import {
+  FEISHU_COLLECTION_CHANGE_EVENT,
+  type ProjectFeishuGroupState,
+  getProjectFeishuGroupState,
+  mergeProjectFilesWithFeishuFiles,
+} from '../feishuCollectionStore';
 import style from '../index.module.less';
 import {
   hasEnterpriseBusinessCapability,
@@ -42,6 +49,7 @@ import {
 import { fetchEnterpriseCarbonProjectTodos } from './EnterpriseCarbonProjectTasks/service';
 import { ENTERPRISE_CARBON_TASK_STATUS_LABELS } from './EnterpriseCarbonProjectTasks/status';
 import type { EnterpriseCarbonProjectTodo } from './EnterpriseCarbonProjectTasks/type';
+import ProjectFeishuCollectionDialog from './ProjectFeishuCollectionDialog';
 import mobileStyle from './ProjectHome.mobile.module.less';
 import {
   type AgentProjectFile,
@@ -100,6 +108,10 @@ type ProjectHomeProps = {
   onOpenOverview: () => void;
   onOpenSettings: () => void;
   onOpenTasks: (taskId?: string) => void;
+  onProjectFileContextSelect?: (
+    file: AgentProjectFile,
+    promptText?: string,
+  ) => void;
   onSuggestionSelect: (suggestion: AgentProjectSuggestion) => Promise<void>;
   onTaskConversationStart: (taskId: string) => void;
   projectId: string;
@@ -240,6 +252,7 @@ const ProjectHome = ({
   onOpenOverview,
   onOpenSettings,
   onOpenTasks,
+  onProjectFileContextSelect,
   onSuggestionSelect,
   onTaskConversationStart,
   projectId,
@@ -277,6 +290,11 @@ const ProjectHome = ({
   const [fileUploading, setFileUploading] = useState(false);
   const [downloadingFileKey, setDownloadingFileKey] = useState<string>();
   const [retryKey, setRetryKey] = useState(0);
+  const [feishuDialogOpen, setFeishuDialogOpen] = useState(false);
+  const [feishuGroupState, setFeishuGroupState] =
+    useState<ProjectFeishuGroupState | null>(() =>
+      getProjectFeishuGroupState(projectId),
+    );
   const fileInputRef = useRef<HTMLInputElement>(null);
   const componentMountedRef = useRef(true);
   const projectMemberPanelRef = useRef<HTMLDivElement>(null);
@@ -366,6 +384,25 @@ const ProjectHome = ({
     setSuggestionSubmittingId('');
     suggestionRequestIdRef.current += 1;
     suggestionSubmittingIdRef.current = '';
+    setFeishuDialogOpen(false);
+    setFeishuGroupState(getProjectFeishuGroupState(projectId));
+  }, [projectId]);
+
+  useEffect(() => {
+    const syncFeishuState = () => {
+      setFeishuGroupState(getProjectFeishuGroupState(projectId));
+      setFiles(currentFiles =>
+        mergeProjectFilesWithFeishuFiles(projectId, currentFiles),
+      );
+    };
+
+    window.addEventListener(FEISHU_COLLECTION_CHANGE_EVENT, syncFeishuState);
+    return () => {
+      window.removeEventListener(
+        FEISHU_COLLECTION_CHANGE_EVENT,
+        syncFeishuState,
+      );
+    };
   }, [projectId]);
 
   useEffect(() => {
@@ -740,22 +777,19 @@ const ProjectHome = ({
     setInviteLinkCreating(true);
 
     try {
-      const inviteLink = await createAgentProjectInviteLink(inviteProjectId);
+      const inviteUrlPromise = createAgentProjectInviteLink(
+        inviteProjectId,
+      ).then(inviteLink =>
+        new URL(inviteLink.inviteUrl, window.location.origin).toString(),
+      );
+
+      await copyToClipboard(inviteUrlPromise);
 
       if (
         projectIdRef.current !== inviteProjectId ||
         inviteRequestIdRef.current !== requestId
       ) {
         return;
-      }
-
-      const absoluteInviteUrl = new URL(
-        inviteLink.inviteUrl,
-        window.location.origin,
-      ).toString();
-
-      if (!copy(absoluteInviteUrl)) {
-        throw new Error(I18N.carbonAgent.projectInviteLinkCopyFailed);
       }
 
       memberPopoverDismissedRef.current = true;
@@ -790,6 +824,70 @@ const ProjectHome = ({
     }
 
     onOpenSettings();
+  };
+
+  const handleOpenFeishuDialog = () => {
+    if (canAccessProjectMembers && !members.length && !membersLoading) {
+      loadProjectMembers();
+    }
+
+    setFeishuDialogOpen(true);
+  };
+
+  const feishuButtonLabel = useMemo(() => {
+    if (!feishuGroupState) {
+      return I18N.carbonAgent.feishuCollect;
+    }
+
+    return feishuGroupState.collectingEnabled
+      ? I18N.carbonAgent.feishuCollectConnected
+      : I18N.carbonAgent.feishuCollectPaused;
+  }, [feishuGroupState]);
+
+  const feishuTaskOptions = useMemo(
+    () =>
+      tasks.map(task => ({
+        taskId: String(task.taskId),
+        taskTitle: 'sourceName' in task ? task.sourceName : task.taskTitle,
+      })),
+    [tasks],
+  );
+
+  const handleUseProjectFileAsContext = (
+    file: AgentProjectFile,
+    groupName?: string,
+    summary?: string,
+  ) => {
+    if (!onProjectFileContextSelect) {
+      return;
+    }
+
+    const matchedCandidate = feishuGroupState?.candidates.find(
+      item =>
+        String(item.file.assetId || item.file.fileId) ===
+        String(file.assetId || file.fileId),
+    );
+    const resolvedGroupName =
+      groupName ||
+      matchedCandidate?.groupName ||
+      feishuGroupState?.groupName ||
+      file.uploaderCompanyName ||
+      projectName;
+    const resolvedSummary =
+      summary ||
+      matchedCandidate?.note ||
+      matchedCandidate?.summary ||
+      file.fileName;
+    const promptText = I18N.template(
+      I18N.carbonAgent.feishuCollectContextPromptTemplate,
+      {
+        val1: resolvedGroupName,
+        val2: file.fileName,
+        val3: resolvedSummary,
+      },
+    );
+
+    onProjectFileContextSelect(file, promptText);
   };
 
   const handleProjectFileChange = async (
@@ -1171,6 +1269,33 @@ const ProjectHome = ({
               </button>
             </Popover>
           ) : null}
+          <button
+            className={classNames({
+              [style.projectHomeFeishuActiveButton]: Boolean(feishuGroupState),
+            })}
+            type='button'
+            onClick={handleOpenFeishuDialog}
+          >
+            <img
+              src={projectFeishuIcon}
+              alt=''
+              aria-hidden='true'
+              width={16}
+              height={16}
+            />
+            <span>
+              {feishuButtonLabel}
+            </span>
+            {feishuGroupState ? (
+              <i
+                aria-hidden='true'
+                className={classNames(style.projectHomeFeishuStatusDot, {
+                  [style.projectHomeFeishuStatusDotPaused]:
+                    !feishuGroupState.collectingEnabled,
+                })}
+              />
+            ) : null}
+          </button>
           {canManageProject ? (
             <button type='button' onClick={handleOpenSettings}>
               <img
@@ -1256,6 +1381,45 @@ const ProjectHome = ({
             >
               {composer}
             </div>
+            {feishuGroupState ? (
+              <div className={style.projectHomeFeishuContextBanner}>
+                <div className={style.projectHomeFeishuContextBannerInfo}>
+                  <strong>
+                    {I18N.carbonAgent.feishuCollectContextBannerTitle}
+                  </strong>
+                  <span>
+                    {I18N.template(
+                      I18N.carbonAgent.feishuCollectContextBannerDesc,
+                      {
+                        val1: feishuGroupState.groupName,
+                        val2: feishuGroupState.files.length,
+                      },
+                    )}
+                  </span>
+                </div>
+                <div className={style.projectHomeFeishuContextBannerActions}>
+                  {feishuGroupState.files[0] && onProjectFileContextSelect ? (
+                    <button
+                      className={style.projectHomeFeishuContextBannerBtn}
+                      type='button'
+                      onClick={() =>
+                        handleUseProjectFileAsContext(feishuGroupState.files[0])
+                      }
+                    >
+                      {I18N.carbonAgent.feishuCollectUseAsContext}：
+                      {feishuGroupState.files[0].fileName}
+                    </button>
+                  ) : null}
+                  <button
+                    className={style.projectHomeFeishuContextBannerBtn}
+                    type='button'
+                    onClick={handleOpenFeishuDialog}
+                  >
+                    {I18N.carbonAgent.feishuCollectOpenWorkbench}
+                  </button>
+                </div>
+              </div>
+            ) : null}
           </div>
 
           <div
@@ -1440,13 +1604,23 @@ const ProjectHome = ({
                     {files.map(file => {
                       const fileKey = getProjectFileKey(file);
                       const fileDownloading = downloadingFileKey === fileKey;
+                      const isFeishuSynced = String(file.fileId).startsWith(
+                        'feishu_',
+                      );
 
                       return (
                         <li key={fileKey}>
                           <div>
-                            <strong title={file.fileName}>
-                              {file.fileName}
-                            </strong>
+                            <div className={style.projectHomeFileTitleRow}>
+                              <strong title={file.fileName}>
+                                {file.fileName}
+                              </strong>
+                              {isFeishuSynced ? (
+                                <em className={style.projectHomeFileFeishuTag}>
+                                  {I18N.carbonAgent.feishuCollectSyncedBadge}
+                                </em>
+                              ) : null}
+                            </div>
                             <span>
                               {getFileMeta(
                                 file,
@@ -1455,25 +1629,39 @@ const ProjectHome = ({
                               )}
                             </span>
                           </div>
-                          <button
-                            type='button'
-                            disabled={Boolean(downloadingFileKey)}
-                            aria-busy={fileDownloading}
-                            aria-label={`${file.fileName} ${
-                              fileDownloading
-                                ? I18N.carbonAgent.projectFileDownloading
-                                : I18N.carbonAgent.download
-                            }`}
-                            onClick={() => handleProjectFileDownload(file)}
-                          >
-                            <img
-                              src={projectDownloadIcon}
-                              alt=''
-                              aria-hidden='true'
-                              width={14}
-                              height={13}
-                            />
-                          </button>
+                          <div className={style.projectHomeFileItemActions}>
+                            {onProjectFileContextSelect ? (
+                              <button
+                                className={style.projectHomeFileContextBtn}
+                                type='button'
+                                onClick={() =>
+                                  handleUseProjectFileAsContext(file)
+                                }
+                              >
+                                {I18N.carbonAgent.feishuCollectUseAsContext}
+                              </button>
+                            ) : null}
+                            <button
+                              className={style.projectHomeFileDownloadBtn}
+                              type='button'
+                              disabled={Boolean(downloadingFileKey)}
+                              aria-busy={fileDownloading}
+                              aria-label={`${file.fileName} ${
+                                fileDownloading
+                                  ? I18N.carbonAgent.projectFileDownloading
+                                  : I18N.carbonAgent.download
+                              }`}
+                              onClick={() => handleProjectFileDownload(file)}
+                            >
+                              <img
+                                src={projectDownloadIcon}
+                                alt=''
+                                aria-hidden='true'
+                                width={14}
+                                height={13}
+                              />
+                            </button>
+                          </div>
                         </li>
                       );
                     })}
@@ -1549,6 +1737,33 @@ const ProjectHome = ({
           setRetryKey(value => value + 1);
           antdMessage.success(I18N.carbonAgent.projectTaskSubmitSuccess);
         }}
+      />
+      <ProjectFeishuCollectionDialog
+        open={feishuDialogOpen}
+        projectId={projectId}
+        projectMembers={members}
+        projectName={projectName}
+        tasks={feishuTaskOptions}
+        onCancel={() => setFeishuDialogOpen(false)}
+        onGroupStateChange={nextState => {
+          setFeishuGroupState(nextState);
+          setFiles(currentFiles =>
+            mergeProjectFilesWithFeishuFiles(projectId, currentFiles),
+          );
+        }}
+        onFileSyncedToProject={syncedFile => {
+          const syncedKey = getProjectFileKey(syncedFile);
+          setFiles(currentFiles => [
+            syncedFile,
+            ...currentFiles.filter(
+              currentFile => getProjectFileKey(currentFile) !== syncedKey,
+            ),
+          ]);
+          setFilesError(false);
+        }}
+        onUseFileAsContext={(file, groupName, summary) =>
+          handleUseProjectFileAsContext(file, groupName, summary)
+        }
       />
     </section>
   );

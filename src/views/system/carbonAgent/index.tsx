@@ -7700,6 +7700,60 @@ const CarbonAgent = () => {
     ]);
   };
 
+  const handleProjectFileContextSelect = (
+    file: AgentProjectFile,
+    promptText?: string,
+  ) => {
+    if (!requireLogin('file_upload') || conversationReadonly) {
+      return;
+    }
+
+    if (submitting) {
+      antdMessage.info(I18N.carbonAgent.sendingCannotUpload);
+      return;
+    }
+
+    setComposerAttachments(currentAttachments => {
+      const alreadyAdded = currentAttachments.some(
+        attachment =>
+          attachment.fileId === file.fileId ||
+          getNormalizedAttachmentName(attachment.name) ===
+            getNormalizedAttachmentName(file.fileName),
+      );
+
+      if (
+        alreadyAdded ||
+        currentAttachments.length >= MAX_COMPOSER_ATTACHMENTS
+      ) {
+        return currentAttachments;
+      }
+
+      return [
+        ...currentAttachments,
+        {
+          assetId: file.assetId,
+          fileId: file.fileId,
+          id: `project_asset_${file.assetId}`,
+          name: file.fileName,
+          projectId: file.projectId,
+          size: file.fileSize || 0,
+          status: 'done' as const,
+          type: file.fileType || '',
+        },
+      ];
+    });
+
+    if (promptText) {
+      setMessage(promptText);
+    }
+
+    antdMessage.success(
+      I18N.template(I18N.carbonAgent.projectFileAddedToConversation, {
+        val1: file.fileName,
+      }),
+    );
+  };
+
   const clearFileDropActive = () => {
     fileDragDepthRef.current = 0;
     setFileDropActive(false);
@@ -11617,6 +11671,7 @@ const CarbonAgent = () => {
               onOpenTasks={taskId =>
                 handleProjectTasksOpen(activeProjectId, taskId)
               }
+              onProjectFileContextSelect={handleProjectFileContextSelect}
               onSuggestionSelect={suggestion =>
                 handleProjectSuggestionSelect(activeProjectId, suggestion)
               }
