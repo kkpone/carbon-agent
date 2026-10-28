@@ -18,6 +18,19 @@ import { LocaleProvider } from './components/LocaleProvider';
 import { SubscriptionServiceModalProvider } from './components/SubscriptionServiceModal';
 import store from './store';
 
+if (typeof window !== 'undefined' && window.location.search.startsWith('?/')) {
+  const decoded = window.location.search
+    .slice(1)
+    .split('&')
+    .map(segment => segment.replace(/~and~/g, '&'))
+    .join('?');
+  window.history.replaceState(
+    null,
+    '',
+    `${window.location.pathname.replace(/\/$/, '')}${decoded}${window.location.hash}`,
+  );
+}
+
 if (process.env.NODE_ENV !== 'development') {
   // eslint-disable-next-line no-underscore-dangle
   (
