@@ -1383,45 +1383,6 @@ const ProjectHome = ({
             >
               {composer}
             </div>
-            {feishuGroupState ? (
-              <div className={style.projectHomeFeishuContextBanner}>
-                <div className={style.projectHomeFeishuContextBannerInfo}>
-                  <strong>
-                    {I18N.carbonAgent.feishuCollectContextBannerTitle}
-                  </strong>
-                  <span>
-                    {I18N.template(
-                      I18N.carbonAgent.feishuCollectContextBannerDesc,
-                      {
-                        val1: feishuGroupState.groupName,
-                        val2: feishuGroupState.files.length,
-                      },
-                    )}
-                  </span>
-                </div>
-                <div className={style.projectHomeFeishuContextBannerActions}>
-                  {feishuGroupState.files[0] && onProjectFileContextSelect ? (
-                    <button
-                      className={style.projectHomeFeishuContextBannerBtn}
-                      type='button'
-                      onClick={() =>
-                        handleUseProjectFileAsContext(feishuGroupState.files[0])
-                      }
-                    >
-                      {I18N.carbonAgent.feishuCollectUseAsContext}：
-                      {feishuGroupState.files[0].fileName}
-                    </button>
-                  ) : null}
-                  <button
-                    className={style.projectHomeFeishuContextBannerBtn}
-                    type='button'
-                    onClick={handleOpenFeishuDialog}
-                  >
-                    {I18N.carbonAgent.feishuCollectOpenWorkbench}
-                  </button>
-                </div>
-              </div>
-            ) : null}
           </div>
 
           <div
@@ -1773,19 +1734,6 @@ const ProjectHome = ({
             mergeProjectFilesWithFeishuFiles(projectId, currentFiles),
           );
         }}
-        onFileSyncedToProject={syncedFile => {
-          const syncedKey = getProjectFileKey(syncedFile);
-          setFiles(currentFiles => [
-            syncedFile,
-            ...currentFiles.filter(
-              currentFile => getProjectFileKey(currentFile) !== syncedKey,
-            ),
-          ]);
-          setFilesError(false);
-        }}
-        onUseFileAsContext={(file, groupName, summary) =>
-          handleUseProjectFileAsContext(file, groupName, summary)
-        }
       />
     </section>
   );

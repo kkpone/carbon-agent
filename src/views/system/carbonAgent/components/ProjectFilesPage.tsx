@@ -656,19 +656,6 @@ const ProjectFilesPage = ({
             mergeProjectFilesWithFeishuFiles(projectId, currentFiles),
           );
         }}
-        onFileSyncedToProject={syncedFile => {
-          const syncedKey = getProjectFileKey(syncedFile);
-          setFiles(currentFiles => [
-            syncedFile,
-            ...currentFiles.filter(
-              currentFile => getProjectFileKey(currentFile) !== syncedKey,
-            ),
-          ]);
-          setLoadError(false);
-        }}
-        onUseFileAsContext={(file, groupName, summary) =>
-          handleUseAsContext(file, groupName, summary)
-        }
       />
     </section>
   );

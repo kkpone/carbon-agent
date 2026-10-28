@@ -654,6 +654,32 @@ export default {
   projectFileSourceUploaded: 'Uploaded',
   projectFileSourceFeishu: 'Feishu Group Collection',
   projectFileSearchPlaceholder: 'Search file name, submitter, or note…',
+  feishuOpenGroupChatBtn: 'Open Feishu Group (Standalone Simulator)',
+  feishuBoundSummaryHint:
+    'This project is bound to a Feishu collection group. Business staff can invite external clients into the group, and files sent by clients are automatically captured by CarbonAgent into Project Files and Project Context.',
+  feishuStandaloneNavMessages: 'Messages',
+  feishuStandaloneNavDocs: 'Docs',
+  feishuStandaloneNavContacts: 'Contacts',
+  feishuStandaloneNavWorkbench: 'Workbench',
+  feishuStandaloneGroupListTitle: 'Feishu Project Collection Groups',
+  feishuStandaloneEmptyGroups:
+    'No Feishu collection groups found. Please create one via “Feishu collection” on the CarbonAgent project page first.',
+  feishuStandaloneBackToAgent: 'Back to CarbonAgent Project',
+  feishuStandaloneGroupSubTitle:
+    'External Group · {val1} members · Bound Project: {val2}',
+  feishuStandaloneInviteExternalBtn: 'Invite External Client',
+  feishuStandaloneSendQuickFileLabel: 'Quick-send sample client file:',
+  feishuStandaloneUploadFileBtn: 'Send Local File',
+  feishuStandaloneInputPlaceholder:
+    'Enter supplementary note or @CarbonAgent question (e.g. Kunshan Plant Aug bill / @CarbonAgent what is missing?)…',
+  feishuStandaloneSendBtn: 'Send',
+  feishuStandaloneRoleSwitchLabel: 'Current sender:',
+  feishuStandaloneBotQaReplyMissing:
+    'Checked authorized group file “{val1}”: key activity data has been extracted. If multiple plants or monthly breakdowns apply, please add plant and month notes for final consultant review.',
+  feishuStandaloneBotQaReplyGeneral:
+    'Got your question! Please send Excel/PDF/image vouchers directly in this group and add plant or month notes within 2 minutes. I will automatically sync them to CarbonAgent Project Files and Project Context.',
+  feishuStandaloneRightPanelTitle: 'Group Members & Collection Status',
+  feishuStandaloneRightPanelSyncedTitle: 'Synced to CarbonAgent Project Files',
   projectDataOverview: 'Data overview',
   projectOverviewNoCalculation:
     'This project has no linked calculation to view yet',

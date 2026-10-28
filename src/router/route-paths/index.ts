@@ -38,6 +38,7 @@ export enum RouteMaps {
   'carbonAgentDeviceAuthorize' = '/oauth/device',
   'carbonAgentSsoCallback' = '/agent/sso/callback',
   'carbonAgentProjectInvite' = '/agent/project/invite/:inviteCode',
+  'carbonAgentFeishuSimulator' = '/agent/feishu/group-simulator',
   'carbonAgentShare' = '/share/agent/:shareId',
   'carbonAgentFactor' = '/factors/:factorId',
   /** 工作台 */

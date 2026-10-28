@@ -488,6 +488,16 @@ const routes: Routes[] = [
     },
   },
   {
+    path: RouteMaps.carbonAgentFeishuSimulator,
+    auth: false,
+    component: lazy(
+      () => import('../views/system/carbonAgent/FeishuGroupSimulatorPage'),
+    ),
+    meta: {
+      title: 'Feishu Group Data Collection Simulator',
+    },
+  },
+  {
     path: RouteMaps.carbonAgentShare,
     auth: false,
     component: lazy(() => import('../views/system/carbonAgent')),

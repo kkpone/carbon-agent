@@ -1,0 +1,714 @@
+@feishu-blue: #3370ff;
+@feishu-blue-hover: #245bdb;
+@feishu-green: #027667;
+@text-primary: #1f2329;
+@text-secondary: #646a73;
+@text-muted: #8f959e;
+@border-color: #dee0e3;
+
+.appShell {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 68px 280px minmax(0, 1fr) 310px;
+  overflow: hidden;
+  background: #f5f6f7;
+  color: @text-primary;
+  font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+}
+
+.appShell *,
+.appShell *::before,
+.appShell *::after {
+  box-sizing: border-box;
+}
+
+.leftRail {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #eff1f4;
+  border-right: 1px solid @border-color;
+  padding: 18px 8px;
+}
+
+.railTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.feishuBrandLogo {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00d6b9 0%, #3370ff 100%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(51, 112, 255, 0.22);
+}
+
+.railNavItem {
+  width: 52px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: @text-secondary;
+  font-size: 11px;
+  line-height: 16px;
+  padding: 8px 4px;
+}
+
+.railNavItemActive {
+  background: #e1eaff;
+  color: @feishu-blue;
+  font-weight: 600;
+}
+
+.railNavDot {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background: currentColor;
+  opacity: 0.22;
+}
+
+.chatListPane {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-right: 1px solid @border-color;
+  overflow: hidden;
+}
+
+.chatListHeader {
+  height: 60px;
+  flex: 0 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f1f3;
+  padding: 0 16px;
+}
+
+.chatListHeader h2 {
+  margin: 0;
+  color: @text-primary;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.chatListBody {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chatGroupItem {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  padding: 10px 12px;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.chatGroupItem:hover {
+  background: #f5f7fa;
+}
+
+.chatGroupItemActive {
+  background: #ebf2ff;
+  border-color: #c2d7ff;
+}
+
+.groupAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  flex: 0 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e1eaff;
+  color: @feishu-blue;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.chatGroupMeta {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.chatGroupMeta strong {
+  overflow: hidden;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chatGroupMeta span {
+  overflow: hidden;
+  color: @text-muted;
+  font-size: 12px;
+  line-height: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mainChatPane {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #f5f6f7;
+  overflow: hidden;
+}
+
+.mainChatHeader {
+  height: 64px;
+  flex: 0 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #fff;
+  border-bottom: 1px solid @border-color;
+  padding: 0 20px;
+}
+
+.mainChatTitleGroup {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mainChatTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mainChatTitleRow h1 {
+  margin: 0;
+  color: @text-primary;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.externalTag {
+  border-radius: 4px;
+  background: #fff2e8;
+  color: #fa541c;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  padding: 1px 6px;
+}
+
+.mainChatTitleGroup span {
+  color: @text-secondary;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.backAgentBtn {
+  height: 34px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #fff;
+  color: @text-primary;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+
+.backAgentBtn:hover {
+  border-color: @feishu-blue;
+  color: @feishu-blue;
+}
+
+.messageStream {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.systemNotice {
+  align-self: center;
+  max-width: 82%;
+  border-radius: 999px;
+  background: rgba(31, 35, 41, 0.06);
+  color: @text-secondary;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 4px 14px;
+  text-align: center;
+}
+
+.msgRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.msgAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex: 0 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dbe6ff;
+  color: @feishu-blue;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.msgAvatarBot {
+  background: #dff7ec;
+  color: @feishu-green;
+}
+
+.msgContentCol {
+  max-width: min(560px, 78%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.msgSenderLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.msgSenderLine strong {
+  color: @text-secondary;
+  font-weight: 500;
+}
+
+.botBadge {
+  border-radius: 4px;
+  background: #eafbf2;
+  color: @feishu-green;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  padding: 1px 6px;
+}
+
+.msgSenderLine time {
+  color: @text-muted;
+  font-size: 11px;
+}
+
+.msgBubble {
+  border-radius: 0 12px 12px 12px;
+  background: #fff;
+  border: 1px solid #e8eaed;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 1px 2px rgba(31, 35, 41, 0.04);
+}
+
+.msgBubbleBot {
+  background: #ecf9f3;
+  border-color: #cdeee0;
+}
+
+.fileAttachmentCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fafbfc;
+  padding: 10px 12px;
+}
+
+.excelBadge {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex: 0 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #107c41;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.fileAttachmentMeta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fileAttachmentMeta strong {
+  overflow: hidden;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fileAttachmentMeta span {
+  color: @text-muted;
+  font-size: 12px;
+}
+
+.msgText {
+  margin: 0;
+  color: @text-primary;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: pre-wrap;
+}
+
+.msgSubNote {
+  margin: 0;
+  border-radius: 6px;
+  background: rgba(51, 112, 255, 0.07);
+  color: #245bdb;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 6px 10px;
+}
+
+.composerArea {
+  background: #fff;
+  border-top: 1px solid @border-color;
+  padding: 12px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.composerTopToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.senderSwitchRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: @text-secondary;
+}
+
+.senderSelect {
+  min-width: 210px;
+}
+
+.quickFilesRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quickFilesLabel {
+  color: @text-secondary;
+  font-size: 12px;
+}
+
+.quickFileChip {
+  height: 28px;
+  border: 1px solid #d0d7de;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: @text-primary;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  padding: 4px 10px;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.quickFileChip:hover {
+  border-color: @feishu-blue;
+  background: #ebf2ff;
+  color: @feishu-blue;
+}
+
+.uploadFileBtn {
+  height: 28px;
+  border: 1px solid #b7d0ff;
+  border-radius: 999px;
+  background: #ebf2ff;
+  color: @feishu-blue;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+}
+
+.uploadFileBtn:hover {
+  background: #dbe8ff;
+}
+
+.composerInputRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.composerInput {
+  flex: 1 1 auto;
+  height: 40px;
+  border: 1px solid @border-color;
+  border-radius: 8px;
+  background: #f9fafb;
+  color: @text-primary;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+  padding: 8px 12px;
+}
+
+.composerInput:focus {
+  border-color: @feishu-blue;
+  background: #fff;
+}
+
+.sendBtn {
+  height: 40px;
+  border: 0;
+  border-radius: 8px;
+  background: @feishu-blue;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 20px;
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: @feishu-blue-hover;
+}
+
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rightSidePanel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #fff;
+  border-left: 1px solid @border-color;
+  overflow-y: auto;
+  padding: 18px 16px;
+}
+
+.sideBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid #f0f1f3;
+  padding-bottom: 16px;
+}
+
+.sideBlock h3 {
+  margin: 0;
+  color: @text-primary;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.inviteBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 10px;
+  background: #f5f7fa;
+  padding: 10px;
+}
+
+.inviteBox input {
+  width: 100%;
+  height: 34px;
+  border: 1px solid @border-color;
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+  padding: 4px 10px;
+}
+
+.inviteBtn {
+  height: 32px;
+  border: 0;
+  border-radius: 6px;
+  background: @feishu-blue;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.inviteBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.memberList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.memberItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-radius: 6px;
+  padding: 6px 8px;
+  background: #f9fafb;
+  font-size: 13px;
+}
+
+.memberItem span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.memberRoleTag {
+  flex: 0 0 auto;
+  border-radius: 4px;
+  background: #eef1f5;
+  color: @text-secondary;
+  font-size: 11px;
+  padding: 1px 6px;
+}
+
+.memberRoleTagBot {
+  background: #eafbf2;
+  color: @feishu-green;
+}
+
+.memberRoleTagCustomer {
+  background: #ebf2ff;
+  color: @feishu-blue;
+}
+
+.syncedFilesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.syncedFileCard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid #d4efe4;
+  border-radius: 8px;
+  background: #f4fbf8;
+  padding: 8px 10px;
+}
+
+.syncedFileCard strong {
+  overflow: hidden;
+  color: @text-primary;
+  font-size: 13px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.syncedFileCard span {
+  color: @text-secondary;
+  font-size: 11px;
+}
+
+.emptyWrap {
+  grid-column: 2 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px;
+  color: @text-secondary;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+
+  .leftRail,
+  .chatListPane,
+  .rightSidePanel {
+    display: none;
+  }
+}
+

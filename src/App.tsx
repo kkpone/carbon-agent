@@ -51,6 +51,7 @@ const AGENT_SHARE_ALLOWED_PATHS: string[] = [
   RouteMaps.carbonAgentOAuthAuthorize,
   RouteMaps.carbonAgentDeviceAuthorize,
   RouteMaps.carbonAgentSsoCallback,
+  RouteMaps.carbonAgentFeishuSimulator,
   RouteMapsCorbonFootprint3.carbonFootprint3FootprintAccountShareLogin,
   RouteMapsCorbonFootprint3.carbonFootprint3FootprintAccountShare,
   RouteMaps.enterpriseCarbonAccountingcarbonDischargeShare,

@@ -2,35 +2,25 @@ import projectDialogCloseIcon from '@src/assets/images/carbonAgent/icons/project
 import projectMemberLink from '@src/assets/images/carbonAgent/icons/project-member-link.svg';
 import projectSelectChevronIcon from '@src/assets/images/carbonAgent/icons/project-select-chevron.svg';
 import I18N from '@src/lang/I18N';
+import { withCurrentLocalePrefix } from '@src/router/localePath';
+import { RouteMaps } from '@src/router/route-paths';
 import { copyToClipboard } from '@src/utils/clipboard';
 import { Select, Switch, message as antdMessage } from 'antd';
 import classNames from 'classnames';
-import {
-  type ChangeEvent,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import Icon from './Icon';
 import style from './ProjectFeishuCollectionDialog.module.less';
 import {
-  type ProjectFeishuGroupState,
-  addExternalCustomerToFeishuGroup,
-  createProjectFeishuGroup,
   type FeishuGroupMemberRole,
+  type ProjectFeishuGroupState,
+  createProjectFeishuGroup,
   getProjectFeishuGroupState,
-  receiveCustomerFileInFeishuGroup,
   toggleProjectFeishuCollection,
   updateProjectFeishuDefaultTask,
 } from '../feishuCollectionStore';
-import {
-  type AgentProjectFile,
-  type AgentProjectMember,
-  uploadAgentProjectFile,
-} from '../service';
+import type { AgentProjectMember } from '../service';
 
 export type FeishuTaskOption = {
   taskId: string;
@@ -44,13 +34,7 @@ type ProjectFeishuCollectionDialogProps = {
   projectName: string;
   tasks: FeishuTaskOption[];
   onCancel: () => void;
-  onFileSyncedToProject: (file: AgentProjectFile) => void;
   onGroupStateChange: (state: ProjectFeishuGroupState | null) => void;
-  onUseFileAsContext?: (
-    file: AgentProjectFile,
-    groupName: string,
-    summary: string,
-  ) => void;
 };
 
 type SetupTab = 'bind' | 'create';
@@ -80,9 +64,7 @@ const ProjectFeishuCollectionDialog = ({
   projectName,
   tasks,
   onCancel,
-  onFileSyncedToProject,
   onGroupStateChange,
-  onUseFileAsContext,
 }: ProjectFeishuCollectionDialogProps) => {
   const [groupState, setGroupState] = useState<ProjectFeishuGroupState | null>(
     () => getProjectFeishuGroupState(projectId),
@@ -94,11 +76,6 @@ const ProjectFeishuCollectionDialog = ({
   const [defaultTaskId, setDefaultTaskId] = useState(UNSPECIFIED_TASK_VALUE);
   const [creating, setCreating] = useState(false);
   const [creatingStep, setCreatingStep] = useState(0);
-  const [customerInput, setCustomerInput] = useState('');
-  const [selectedSender, setSelectedSender] = useState('');
-  const [customNote, setCustomNote] = useState('');
-  const [simUploading, setSimUploading] = useState(false);
-  const localFileInputRef = useRef<HTMLInputElement>(null);
 
   const defaultGroupName = useMemo(
     () => `${projectName}${I18N.carbonAgent.feishuCollectDefaultGroupSuffix}`,
@@ -161,33 +138,6 @@ const ProjectFeishuCollectionDialog = ({
     [tasks],
   );
 
-  const presetTemplates = useMemo(
-    () => [
-      {
-        fileName: I18N.carbonAgent.feishuCollectSimPreset1Name,
-        fileSize: 18432,
-        id: 'preset_1',
-        note: I18N.carbonAgent.feishuCollectSimPreset1Note,
-        summary: I18N.carbonAgent.feishuCollectSimPreset1Summary,
-      },
-      {
-        fileName: I18N.carbonAgent.feishuCollectSimPreset2Name,
-        fileSize: 24576,
-        id: 'preset_2',
-        note: I18N.carbonAgent.feishuCollectSimPreset2Note,
-        summary: I18N.carbonAgent.feishuCollectSimPreset2Summary,
-      },
-      {
-        fileName: I18N.carbonAgent.feishuCollectSimPreset3Name,
-        fileSize: 31744,
-        id: 'preset_3',
-        note: I18N.carbonAgent.feishuCollectSimPreset3Note,
-        summary: I18N.carbonAgent.feishuCollectSimPreset3Summary,
-      },
-    ],
-    [],
-  );
-
   useEffect(() => {
     if (!open) {
       return;
@@ -198,7 +148,9 @@ const ProjectFeishuCollectionDialog = ({
     setCreating(false);
     setCreatingStep(0);
     setGroupName(current?.groupName || defaultGroupName);
-    setSelectedExistingGroup(existingGroupOptions[0]?.value || defaultGroupName);
+    setSelectedExistingGroup(
+      existingGroupOptions[0]?.value || defaultGroupName,
+    );
 
     const defaultOwner =
       projectMembers.find(member => member.currentUser) ||
@@ -216,27 +168,14 @@ const ProjectFeishuCollectionDialog = ({
     } else {
       setDefaultTaskId(UNSPECIFIED_TASK_VALUE);
     }
-  }, [defaultGroupName, existingGroupOptions, open, projectId, projectMembers, tasks]);
-
-  const customerMembers = useMemo(
-    () =>
-      (groupState?.members || []).filter(member => member.role === 'customer'),
-    [groupState?.members],
-  );
-
-  useEffect(() => {
-    if (!customerMembers.length) {
-      setSelectedSender(I18N.carbonAgent.feishuCollectDefaultCustomer1);
-      return;
-    }
-
-    if (
-      !selectedSender ||
-      !customerMembers.some(member => member.name === selectedSender)
-    ) {
-      setSelectedSender(customerMembers[0].name);
-    }
-  }, [customerMembers, selectedSender]);
+  }, [
+    defaultGroupName,
+    existingGroupOptions,
+    open,
+    projectId,
+    projectMembers,
+    tasks,
+  ]);
 
   useEffect(() => {
     if (!open) {
@@ -244,7 +183,7 @@ const ProjectFeishuCollectionDialog = ({
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && !creating && !simUploading) {
+      if (event.key === 'Escape' && !creating) {
         onCancel();
       }
     };
@@ -253,7 +192,7 @@ const ProjectFeishuCollectionDialog = ({
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [creating, onCancel, open, simUploading]);
+  }, [creating, onCancel, open]);
 
   if (!open) {
     return null;
@@ -342,12 +281,22 @@ const ProjectFeishuCollectionDialog = ({
     }
   };
 
+  const getSimulatorUrl = () => {
+    const targetPath = withCurrentLocalePrefix(
+      RouteMaps.carbonAgentFeishuSimulator,
+    );
+    const url = new URL(targetPath, window.location.origin);
+    url.searchParams.set('projectId', projectId);
+    url.searchParams.set('projectName', projectName);
+    return url.toString();
+  };
+
   const handleCopyGroupInviteLink = () => {
     if (!groupState) {
       return;
     }
 
-    copyToClipboard(groupState.inviteUrl)
+    copyToClipboard(getSimulatorUrl())
       .then(() => {
         antdMessage.success(I18N.carbonAgent.feishuCollectGroupLinkCopied);
       })
@@ -356,123 +305,8 @@ const ProjectFeishuCollectionDialog = ({
       });
   };
 
-  const handleAddExternalCustomer = () => {
-    const trimmed = customerInput.trim();
-
-    if (!trimmed || !groupState) {
-      return;
-    }
-
-    const nextState = addExternalCustomerToFeishuGroup(
-      projectId,
-      trimmed,
-      groupState.ownerName,
-    );
-
-    if (nextState) {
-      setGroupState(nextState);
-      onGroupStateChange(nextState);
-      setCustomerInput('');
-      setSelectedSender(trimmed);
-      antdMessage.success(
-        I18N.template(I18N.carbonAgent.feishuCollectCustomerAdded, {
-          val1: trimmed,
-        }),
-      );
-    }
-  };
-
-  const handleSendPresetMaterial = (preset: {
-    fileName: string;
-    fileSize: number;
-    note: string;
-    summary: string;
-  }) => {
-    if (!groupState || simUploading) {
-      return;
-    }
-
-    const noteText = customNote.trim() || preset.note;
-    const sender =
-      selectedSender || I18N.carbonAgent.feishuCollectDefaultCustomer1;
-    const result = receiveCustomerFileInFeishuGroup({
-      fileName: preset.fileName,
-      fileSize: preset.fileSize,
-      note: noteText,
-      projectId,
-      senderName: sender,
-      summary: preset.summary,
-    });
-
-    if (result) {
-      setGroupState(result.state);
-      onGroupStateChange(result.state);
-      setCustomNote('');
-
-      if (result.state.collectingEnabled) {
-        onFileSyncedToProject(result.file);
-        antdMessage.success(
-          I18N.template(I18N.carbonAgent.feishuCollectSimReceivedToast, {
-            val1: result.file.fileName,
-          }),
-        );
-      }
-    }
-  };
-
-  const handleLocalCustomerFileChange = async (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = event.currentTarget.files?.[0];
-
-    if (localFileInputRef.current) {
-      localFileInputRef.current.value = '';
-    }
-
-    if (!file || !groupState || simUploading) {
-      return;
-    }
-
-    setSimUploading(true);
-    let uploadedProjectFile: AgentProjectFile | undefined;
-
-    try {
-      uploadedProjectFile = await uploadAgentProjectFile(projectId, file);
-    } catch {
-      // Fallback to local prototype file storage if the backend API is unreachable.
-    }
-
-    const noteText =
-      customNote.trim() || I18N.carbonAgent.feishuCollectSimPreset1Note;
-    const sender =
-      selectedSender || I18N.carbonAgent.feishuCollectDefaultCustomer1;
-    const result = receiveCustomerFileInFeishuGroup({
-      fileName: file.name,
-      fileSize: file.size,
-      fileType: file.type,
-      note: noteText,
-      projectId,
-      senderName: sender,
-      summary: noteText,
-      uploadedProjectFile,
-    });
-
-    setSimUploading(false);
-
-    if (result) {
-      setGroupState(result.state);
-      onGroupStateChange(result.state);
-      setCustomNote('');
-
-      if (result.state.collectingEnabled) {
-        onFileSyncedToProject(result.file);
-        antdMessage.success(
-          I18N.template(I18N.carbonAgent.feishuCollectSimReceivedToast, {
-            val1: result.file.fileName,
-          }),
-        );
-      }
-    }
+  const handleOpenStandaloneFeishu = () => {
+    window.open(getSimulatorUrl(), '_blank', 'noopener,noreferrer');
   };
 
   const suffixChevron = <Icon src={projectSelectChevronIcon} />;
@@ -483,13 +317,11 @@ const ProjectFeishuCollectionDialog = ({
         className={style.scrim}
         type='button'
         aria-label={I18N.carbonAgent.closeDialog}
-        disabled={creating || simUploading}
+        disabled={creating}
         onClick={onCancel}
       />
       <div
-        className={classNames(style.dialog, {
-          [style.dialogWide]: Boolean(groupState),
-        })}
+        className={style.dialog}
         role='dialog'
         aria-modal='true'
         aria-label={I18N.carbonAgent.feishuCollectTitle}
@@ -514,7 +346,7 @@ const ProjectFeishuCollectionDialog = ({
             className={style.closeBtn}
             type='button'
             aria-label={I18N.carbonAgent.closeDialog}
-            disabled={creating || simUploading}
+            disabled={creating}
             onClick={onCancel}
           >
             <Icon src={projectDialogCloseIcon} />
@@ -745,29 +577,87 @@ const ProjectFeishuCollectionDialog = ({
             </footer>
           </>
         ) : (
-          <div className={style.body}>
-            <div className={style.workbenchTopBar}>
-              <div className={style.workbenchTopMeta}>
-                <strong>{groupState.groupName}</strong>
-                <span>
-                  {I18N.template(I18N.carbonAgent.feishuCollectCurrentProject, {
-                    val1: projectName,
-                  })}{' '}
-                  · {I18N.carbonAgent.feishuCollectGroupOwner}：
-                  {groupState.ownerName}
-                </span>
-              </div>
-              <div className={style.workbenchTopControls}>
-                <div className={style.switchLabel}>
-                  <span>{I18N.carbonAgent.feishuCollectCollectionSwitch}</span>
-                  <Switch
-                    checked={groupState.collectingEnabled}
-                    size='small'
-                    onChange={handleToggleCollecting}
-                  />
+          <>
+            <div className={style.body}>
+              <div className={style.workbenchTopBar}>
+                <div className={style.workbenchTopMeta}>
+                  <strong>{groupState.groupName}</strong>
+                  <span>
+                    {I18N.template(
+                      I18N.carbonAgent.feishuCollectCurrentProject,
+                      {
+                        val1: projectName,
+                      },
+                    )}{' '}
+                    · {I18N.carbonAgent.feishuCollectGroupOwner}：
+                    {groupState.ownerName}
+                  </span>
                 </div>
+                <div className={style.workbenchTopControls}>
+                  <div className={style.switchLabel}>
+                    <span>
+                      {I18N.carbonAgent.feishuCollectCollectionSwitch}
+                    </span>
+                    <Switch
+                      checked={groupState.collectingEnabled}
+                      size='small'
+                      onChange={handleToggleCollecting}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className={style.confirmPromptBox}>
+                {I18N.carbonAgent.feishuBoundSummaryHint}
+              </div>
+
+              {!groupState.collectingEnabled ? (
+                <div className={style.pausedAlert} role='status'>
+                  {I18N.carbonAgent.feishuCollectCollectionPausedBanner}
+                </div>
+              ) : null}
+
+              <div className={style.field}>
+                <label htmlFor='feishu-workbench-default-task'>
+                  {I18N.carbonAgent.feishuCollectDefaultTask}
+                </label>
+                <Select
+                  id='feishu-workbench-default-task'
+                  className={style.select}
+                  options={taskOptions}
+                  suffixIcon={suffixChevron}
+                  value={groupState.defaultTaskId || UNSPECIFIED_TASK_VALUE}
+                  onChange={handleDefaultTaskChange}
+                />
+              </div>
+
+              <div className={style.field}>
+                <span className={style.fieldLabel}>
+                  {I18N.carbonAgent.feishuCollectMembersSection}
+                </span>
+                <div className={style.autoJoinList}>
+                  {groupState.members.map(member => (
+                    <span
+                      key={member.id}
+                      className={classNames(style.memberChip, {
+                        [style.memberChipBot]: member.role === 'bot',
+                        [style.memberChipCustomer]: member.role === 'customer',
+                      })}
+                    >
+                      <span>{member.name}</span>
+                      <span className={style.memberRoleBadge}>
+                        {getFeishuMemberRoleBadgeText(member.role)}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <footer className={style.footer}>
+              <div className={style.footerActions}>
                 <button
-                  className={style.secondaryBtn}
+                  className={style.cancelBtn}
                   type='button'
                   onClick={handleCopyGroupInviteLink}
                 >
@@ -777,230 +667,20 @@ const ProjectFeishuCollectionDialog = ({
                     aria-hidden='true'
                     width={14}
                     height={14}
+                    style={{ marginRight: 6, verticalAlign: 'text-bottom' }}
                   />
-                  <span>{I18N.carbonAgent.feishuCollectCopyGroupLink}</span>
+                  {I18N.carbonAgent.feishuCollectCopyGroupLink}
                 </button>
-              </div>
-            </div>
-
-            {!groupState.collectingEnabled ? (
-              <div className={style.pausedAlert} role='status'>
-                {I18N.carbonAgent.feishuCollectCollectionPausedBanner}
-              </div>
-            ) : null}
-
-            <div className={style.field}>
-              <label htmlFor='feishu-workbench-default-task'>
-                {I18N.carbonAgent.feishuCollectDefaultTask}
-              </label>
-              <Select
-                id='feishu-workbench-default-task'
-                className={style.select}
-                options={taskOptions}
-                suffixIcon={suffixChevron}
-                value={groupState.defaultTaskId || UNSPECIFIED_TASK_VALUE}
-                onChange={handleDefaultTaskChange}
-              />
-            </div>
-
-            <section className={style.sectionCard}>
-              <div className={style.sectionHeader}>
-                <h3>{I18N.carbonAgent.feishuCollectMembersSection}</h3>
-              </div>
-              <div className={style.autoJoinList}>
-                {groupState.members.map(member => (
-                  <span
-                    key={member.id}
-                    className={classNames(style.memberChip, {
-                      [style.memberChipBot]: member.role === 'bot',
-                      [style.memberChipCustomer]: member.role === 'customer',
-                    })}
-                  >
-                    <span>{member.name}</span>
-                    <span className={style.memberRoleBadge}>
-                      {getFeishuMemberRoleBadgeText(member.role)}
-                    </span>
-                  </span>
-                ))}
-              </div>
-              <div className={style.inviteCustomerRow}>
-                <input
-                  className={style.textInput}
-                  value={customerInput}
-                  placeholder={
-                    I18N.carbonAgent.feishuCollectCustomerNamePlaceholder
-                  }
-                  onChange={event =>
-                    setCustomerInput(event.currentTarget.value)
-                  }
-                  onKeyDown={event => {
-                    if (event.key === 'Enter') {
-                      event.preventDefault();
-                      handleAddExternalCustomer();
-                    }
-                  }}
-                />
                 <button
-                  className={style.primarySmallBtn}
+                  className={style.confirmBtn}
                   type='button'
-                  disabled={!customerInput.trim()}
-                  onClick={handleAddExternalCustomer}
+                  onClick={handleOpenStandaloneFeishu}
                 >
-                  {I18N.carbonAgent.feishuCollectAddCustomerBtn}
+                  {I18N.carbonAgent.feishuOpenGroupChatBtn}
                 </button>
               </div>
-            </section>
-
-            <div className={style.workbenchGrid}>
-              <section className={style.sectionCard}>
-                <div className={style.sectionHeader}>
-                  <h3>{I18N.carbonAgent.feishuCollectSimSectionTitle}</h3>
-                </div>
-                <div className={style.field}>
-                  <label htmlFor='feishu-sim-sender'>
-                    {I18N.carbonAgent.feishuCollectSimSenderLabel}
-                  </label>
-                  <Select
-                    id='feishu-sim-sender'
-                    className={style.select}
-                    options={customerMembers.map(member => ({
-                      label: member.name,
-                      value: member.name,
-                    }))}
-                    suffixIcon={suffixChevron}
-                    value={selectedSender}
-                    onChange={setSelectedSender}
-                  />
-                </div>
-                <div className={style.field}>
-                  <input
-                    className={style.textInput}
-                    value={customNote}
-                    placeholder={
-                      I18N.carbonAgent.feishuCollectSimNotePlaceholder
-                    }
-                    onChange={event => setCustomNote(event.currentTarget.value)}
-                  />
-                </div>
-                <div className={style.presetButtons}>
-                  {presetTemplates.map(preset => (
-                    <button
-                      key={preset.id}
-                      className={style.presetCard}
-                      type='button'
-                      disabled={simUploading}
-                      onClick={() => handleSendPresetMaterial(preset)}
-                    >
-                      <div className={style.presetCardInfo}>
-                        <strong title={preset.fileName}>
-                          {preset.fileName}
-                        </strong>
-                        <span title={preset.note}>{preset.note}</span>
-                      </div>
-                      <span className={style.presetCardAction}>
-                        {I18N.carbonAgent.feishuCollectSimSendPresetBtn}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-                <input
-                  ref={localFileInputRef}
-                  type='file'
-                  hidden
-                  onChange={handleLocalCustomerFileChange}
-                />
-                <button
-                  className={style.secondaryBtn}
-                  type='button'
-                  disabled={simUploading}
-                  onClick={() => localFileInputRef.current?.click()}
-                >
-                  {I18N.carbonAgent.feishuCollectSimUploadLocalBtn}
-                </button>
-              </section>
-
-              <section className={style.sectionCard}>
-                <div className={style.sectionHeader}>
-                  <h3>{I18N.carbonAgent.feishuCollectChatHistoryTitle}</h3>
-                </div>
-                <div className={style.chatFeed}>
-                  {groupState.messages.map(msg => (
-                    <div
-                      key={msg.id}
-                      className={classNames(style.chatMessage, {
-                        [style.chatMessageBot]: msg.type === 'bot',
-                        [style.chatMessageSystem]: msg.type === 'system',
-                      })}
-                    >
-                      <div className={style.chatMessageHeader}>
-                        <strong>{msg.senderName}</strong>
-                        <time>{msg.createdAt}</time>
-                      </div>
-                      <p>{msg.content}</p>
-                      {msg.note ? <small>{msg.note}</small> : null}
-                    </div>
-                  ))}
-                </div>
-
-                {groupState.files.length ? (
-                  <>
-                    <div className={style.sectionHeader}>
-                      <h3>
-                        {I18N.template(
-                          I18N.carbonAgent.feishuCollectSyncedFilesTitle,
-                          { val1: groupState.files.length },
-                        )}
-                      </h3>
-                    </div>
-                    <ul className={style.syncedFileList}>
-                      {groupState.files.map(file => {
-                        const matchedCandidate = groupState.candidates.find(
-                          item =>
-                            String(item.file.assetId || item.file.fileId) ===
-                            String(file.assetId || file.fileId),
-                        );
-
-                        return (
-                          <li
-                            key={String(file.assetId || file.fileId)}
-                            className={style.syncedFileItem}
-                          >
-                            <div className={style.syncedFileMeta}>
-                              <strong title={file.fileName}>
-                                {file.fileName}
-                              </strong>
-                              <span>
-                                {matchedCandidate?.note ||
-                                  file.uploaderUserName}
-                              </span>
-                            </div>
-                            {onUseFileAsContext ? (
-                              <button
-                                className={style.primarySmallBtn}
-                                type='button'
-                                onClick={() => {
-                                  onUseFileAsContext(
-                                    file,
-                                    groupState.groupName,
-                                    matchedCandidate?.note ||
-                                      matchedCandidate?.summary ||
-                                      file.fileName,
-                                  );
-                                  onCancel();
-                                }}
-                              >
-                                {I18N.carbonAgent.feishuCollectUseAsContext}
-                              </button>
-                            ) : null}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </>
-                ) : null}
-              </section>
-            </div>
-          </div>
+            </footer>
+          </>
         )}
       </div>
     </div>,

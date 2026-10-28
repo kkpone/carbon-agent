@@ -138,6 +138,118 @@ export const saveProjectFeishuGroupState = (
   return state;
 };
 
+export const getAllProjectFeishuGroups = (): ProjectFeishuGroupState[] => {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  const groups: ProjectFeishuGroupState[] = [];
+
+  try {
+    for (let index = 0; index < window.localStorage.length; index += 1) {
+      const key = window.localStorage.key(index);
+
+      if (key && key.startsWith(STORAGE_KEY_PREFIX)) {
+        const projectId = key.slice(STORAGE_KEY_PREFIX.length);
+        const state = getProjectFeishuGroupState(projectId);
+
+        if (state) {
+          groups.push(state);
+        }
+      }
+    }
+  } catch {
+    return groups;
+  }
+
+  return groups.sort((left, right) =>
+    right.createdAt.localeCompare(left.createdAt),
+  );
+};
+
+export const sendTextMessageInFeishuGroup = (params: {
+  content: string;
+  projectId: number | string;
+  senderName: string;
+  senderRole: FeishuGroupMemberRole;
+}): ProjectFeishuGroupState | null => {
+  const current = getProjectFeishuGroupState(params.projectId);
+  const trimmed = params.content.trim();
+
+  if (!current || !trimmed) {
+    return current;
+  }
+
+  const now = formatNowTime();
+  const stamp = `${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+  const userMsg: FeishuGroupChatMessage = {
+    content: trimmed,
+    createdAt: now,
+    id: `msg_txt_${stamp}`,
+    senderName: params.senderName,
+    senderRole: params.senderRole,
+    type: 'customer_file',
+  };
+
+  const nextMessages: FeishuGroupChatMessage[] = [...current.messages, userMsg];
+  const latestCandidate = current.candidates[0];
+
+  if (
+    trimmed.includes('@CarbonAgent') ||
+    trimmed.includes('@carbonagent') ||
+    trimmed.includes('缺什么') ||
+    trimmed.includes('怎么填')
+  ) {
+    const botReplyContent =
+      latestCandidate &&
+      (trimmed.includes('缺') || trimmed.includes('missing'))
+        ? I18N.template(I18N.carbonAgent.feishuStandaloneBotQaReplyMissing, {
+            val1: latestCandidate.file.fileName,
+          })
+        : I18N.carbonAgent.feishuStandaloneBotQaReplyGeneral;
+
+    nextMessages.push({
+      content: botReplyContent,
+      createdAt: now,
+      id: `msg_bot_qa_${stamp}`,
+      senderName: I18N.carbonAgent.feishuCollectBotName,
+      senderRole: 'bot',
+      type: 'bot',
+    });
+  } else if (latestCandidate && params.senderRole === 'customer') {
+    const updatedCandidates = current.candidates.map((cand, idx) =>
+      idx === 0
+        ? {
+            ...cand,
+            note: cand.note ? `${cand.note}；${trimmed}` : trimmed,
+          }
+        : cand,
+    );
+    const botAckNote: FeishuGroupChatMessage = {
+      content: I18N.template(I18N.carbonAgent.feishuCollectChatBotAckFile, {
+        val1: latestCandidate.file.fileName,
+        val2: `（已更新补充说明：${trimmed}）`,
+      }),
+      createdAt: now,
+      id: `msg_bot_note_${stamp}`,
+      senderName: I18N.carbonAgent.feishuCollectBotName,
+      senderRole: 'bot',
+      type: 'bot',
+    };
+
+    return saveProjectFeishuGroupState(params.projectId, {
+      ...current,
+      candidates: updatedCandidates,
+      messages: [...nextMessages, botAckNote],
+    });
+  }
+
+  return saveProjectFeishuGroupState(params.projectId, {
+    ...current,
+    messages: nextMessages,
+  });
+};
+
 export const getProjectFeishuSyncedFiles = (
   projectId: number | string,
 ): AgentProjectFile[] => {
