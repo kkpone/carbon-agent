@@ -4385,9 +4385,12 @@ export const fetchAgentProjectSuggestions = (
   request<AgentProjectSuggestionResponse>({
     method: 'GET',
     params: { lang },
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/suggestions`,
-  }).then(response => normalizeProjectSuggestions(response.data.data));
+  })
+    .then(response => normalizeProjectSuggestions(response.data.data))
+    .catch(() => []);
 
 export const fetchAgentHomeSkills = (params: FetchAgentHomeSkillsParams) =>
   request<AgentHomeSkillResponse>({
@@ -4485,18 +4488,47 @@ export const fetchAgentProjectSessions = (
       ...DEFAULT_AGENT_PROJECT_SESSION_LIST_PARAMS,
       ...params,
     },
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/sessions`,
-  }).then(response => ({
-    rows: normalizeAgentSessions(response.data.data?.rows).conversations.map(
-      conversation => ({
+  })
+    .then(response => {
+      const remoteRows = normalizeAgentSessions(
+        response.data.data?.rows,
+      ).conversations.map(conversation => ({
         ...conversation,
         projectId: String(projectId),
         projectSession: true,
-      }),
-    ),
-    total: Number(response.data.data?.total) || 0,
-  }));
+      }));
+      const localRows = getLocalTeamProjectSessions(projectId);
+      const seenIds = new Set(
+        remoteRows.map(item => item.sessionId || item.id),
+      );
+      const mergedRows = [
+        ...remoteRows,
+        ...localRows.filter(item => !seenIds.has(item.sessionId || item.id)),
+      ];
+      return {
+        rows: mergedRows,
+        total: Math.max(
+          Number(response.data.data?.total) || 0,
+          mergedRows.length,
+        ),
+      };
+    })
+    .catch(error => {
+      if (
+        isTeamProjectBackendDenial(error) ||
+        isLocalTeamProjectId(projectId)
+      ) {
+        const localRows = getLocalTeamProjectSessions(projectId);
+        return {
+          rows: localRows,
+          total: localRows.length,
+        };
+      }
+      throw error;
+    });
 
 const AGENT_PROJECT_SESSION_LOOKUP_PAGE_SIZE = 20;
 
@@ -4553,18 +4585,40 @@ export const fetchAgentProjectSessionById = async (
 export const fetchAgentProjects = (signal?: AbortSignal) =>
   request<AgentProjectListResponse>({
     method: 'GET',
+    silentResponseError: true,
     signal,
     url: '/ai/agent/projects/list',
-  }).then(response => normalizeAgentProjects(response.data.data));
+  })
+    .then(response => normalizeAgentProjects(response.data.data))
+    .catch(error => {
+      if (isTeamProjectBackendDenial(error)) {
+        return getLocalTeamProjects();
+      }
+      throw error;
+    });
 
 export const fetchAgentProjectDetail = async (
   projectId: number | string,
   signal?: AbortSignal,
 ): Promise<AgentProject> => {
+  const localMatch = findLocalTeamProjectById(projectId);
+  if (localMatch && isLocalTeamProjectId(projectId)) {
+    return localMatch;
+  }
+
   const response = await request<AgentProjectDetailResponse>({
     method: 'GET',
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error) || localMatch) {
+      const fallback = localMatch || getLocalTeamProjects()[0];
+      if (fallback) {
+        return { data: { code: 200, data: fallback, msg: '' } };
+      }
+    }
+    throw error;
   });
   const responseData = response.data;
   const project = responseData?.data
@@ -4586,16 +4640,27 @@ export const fetchAgentProjectFiles = (
 ) =>
   request<AgentProjectFilesResponse>({
     method: 'GET',
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/files`,
   })
     .then(response =>
-      mergeProjectFilesWithFeishuFiles(projectId, response.data.data || []),
+      mergeProjectFilesWithFeishuFiles(projectId, [
+        ...(response.data.data || []),
+        ...getLocalTeamProjectFiles(projectId),
+      ]),
     )
     .catch(error => {
-      const localFiles = mergeProjectFilesWithFeishuFiles(projectId, []);
+      const localFiles = mergeProjectFilesWithFeishuFiles(
+        projectId,
+        getLocalTeamProjectFiles(projectId),
+      );
 
-      if (localFiles.length) {
+      if (
+        localFiles.length ||
+        isTeamProjectBackendDenial(error) ||
+        isLocalTeamProjectId(projectId)
+      ) {
         return localFiles;
       }
 
@@ -4603,6 +4668,547 @@ export const fetchAgentProjectFiles = (
     });
 
 const TEAM_PROJECT_MEMBERS_STORAGE_KEY = 'carbon_agent_team_project_members_v1';
+const TEAM_PROJECTS_STORAGE_KEY = 'carbon_agent_team_projects_v1';
+const TEAM_PROJECT_TASKS_STORAGE_KEY = 'carbon_agent_team_project_tasks_v1';
+const TEAM_PROJECT_FILES_STORAGE_KEY = 'carbon_agent_team_project_files_v1';
+const TEAM_PROJECT_SESSIONS_STORAGE_KEY =
+  'carbon_agent_team_project_sessions_v1';
+
+export const isLocalTeamProjectId = (projectId: number | string) =>
+  String(projectId).startsWith('team_proj_');
+
+export const isTeamProjectBackendDenial = (error: unknown) => {
+  if (!error || typeof error !== 'object') {
+    return false;
+  }
+  const errObj = error as {
+    data?: { msg?: unknown; reasonCode?: unknown };
+    message?: unknown;
+    response?: { data?: { msg?: unknown; reasonCode?: unknown } };
+  };
+  const data = errObj.response?.data || errObj.data;
+  const text = [data?.reasonCode, data?.msg, errObj.message]
+    .filter(item => typeof item === 'string')
+    .join(' ');
+  return text.includes('AGENT_FEATURE_NOT_IN_TEAM');
+};
+
+const getCurrentWorkspaceContext = () => {
+  let companyId = 'team_default';
+  let companyName = '';
+  let userId = 'current_user';
+  let userName = 'Team Member';
+
+  if (typeof window !== 'undefined') {
+    const readRaw = (storage?: Storage) => {
+      try {
+        return storage?.getItem('SET_COMPANY_USER_INFO') || '';
+      } catch {
+        return '';
+      }
+    };
+    const raw =
+      readRaw(window.sessionStorage) || readRaw(window.localStorage) || '';
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        const userInfo = parsed?.userInfo || parsed || {};
+        if (userInfo.companyId || parsed?.companyId) {
+          companyId = String(userInfo.companyId || parsed.companyId);
+        }
+        if (userInfo.companyName || parsed?.companyName) {
+          companyName = String(userInfo.companyName || parsed.companyName);
+        }
+        if (userInfo.userId) {
+          userId = String(userInfo.userId);
+        }
+        const candidateName =
+          userInfo.nickName || userInfo.employName || userInfo.username;
+        if (candidateName) {
+          userName = String(candidateName);
+        }
+      } catch {
+        // ignore parse failure
+      }
+    }
+  }
+
+  return { companyId, companyName, userId, userName };
+};
+
+const getDefaultTeamProjectConfig = (lang = 'zh'): AgentProjectConfig => {
+  const isEn = lang === 'en';
+  return {
+    businessTypes: [
+      {
+        code: 'product_carbon',
+        description: isEn
+          ? 'Product lifecycle carbon accounting, task collaboration, and report delivery'
+          : '围绕单个产品开展生命周期核算、任务协作和报告交付',
+        enabled: true,
+        name: isEn ? 'Product Carbon Project' : '产品碳足迹项目',
+      },
+      {
+        code: 'enterprise_carbon',
+        description: isEn
+          ? 'Organization boundary annual carbon inventory and multi-department collaboration'
+          : '围绕组织边界开展年度排放盘查与多部门数据协同',
+        enabled: true,
+        name: isEn ? 'Enterprise Carbon Project' : '企业碳盘查项目',
+      },
+    ],
+    compareDimensions: [
+      {
+        code: 'lifecycle_stage',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Lifecycle stage' : '生命周期阶段',
+      },
+      {
+        code: 'emission_type',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Emission type' : '排放类型',
+      },
+    ],
+    enabled: true,
+    enterpriseGwpVersions: [
+      { code: '2', description: null, enabled: true, name: 'IPCC AR6' },
+      { code: '1', description: null, enabled: true, name: 'IPCC AR5' },
+      { code: '0', description: null, enabled: true, name: 'IPCC AR4' },
+    ],
+    enterpriseTimeTypes: [
+      {
+        code: '0',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Annual' : '年度',
+      },
+      {
+        code: '1',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Quarterly' : '季度',
+      },
+      {
+        code: '2',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Monthly' : '月度',
+      },
+    ],
+    factorSources: [
+      { code: '1', description: null, enabled: true, name: 'Ecoinvent' },
+      {
+        code: '2',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Domestic factors' : '国内因子',
+      },
+      {
+        code: '3',
+        description: null,
+        enabled: true,
+        name: isEn ? 'All sources' : '不限来源',
+      },
+    ],
+    lifecycleScopes: [
+      {
+        code: '0',
+        description: isEn ? 'Cradle to gate' : '从原材料获取到产品出厂',
+        enabled: true,
+        name: isEn ? 'Cradle-to-Gate' : '半生命周期',
+      },
+      {
+        code: '1',
+        description: isEn ? 'Cradle to grave' : '覆盖产品完整生命周期',
+        enabled: true,
+        name: isEn ? 'Cradle-to-Grave' : '全生命周期',
+      },
+      {
+        code: '2',
+        description: isEn
+          ? 'Custom lifecycle stages'
+          : '由项目负责人选择具体生命周期阶段',
+        enabled: true,
+        name: isEn ? 'Custom Lifecycle' : '自定义生命周期',
+      },
+    ],
+    lifecycleStages: [
+      {
+        code: '0',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Raw Materials' : '原材料获取',
+      },
+      {
+        code: '1',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Manufacturing' : '生产制造',
+      },
+      {
+        code: '2',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Distribution & Storage' : '分销和储存',
+      },
+      {
+        code: '3',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Product Use' : '产品使用',
+      },
+      {
+        code: '4',
+        description: null,
+        enabled: true,
+        name: isEn ? 'End of Life' : '废弃处置',
+      },
+    ],
+    maxCompareCalculations: 4,
+    maxFiles: 200,
+    maxMembers: 50,
+    maxProjectsPerUser: 50,
+    taskObjectTypes: [
+      {
+        code: 'project_collaboration',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Project collaboration' : '项目协作事项',
+      },
+      {
+        code: 'project_file_organize',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Project file collection' : '项目资料整理',
+      },
+      {
+        code: 'project_session_follow',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Session follow-up' : '项目会话跟进',
+      },
+    ],
+    taskSources: [
+      {
+        code: 'manual',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Manual' : '手工创建',
+      },
+      {
+        code: 'session',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Project chat' : '项目会话',
+      },
+      {
+        code: 'hotspot',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Emission hotspot' : '排放热点',
+      },
+      {
+        code: 'emission_source',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Emission source' : '排放源',
+      },
+      {
+        code: 'compare_difference',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Comparison diff' : '核算对比差异',
+      },
+    ],
+    taskStatuses: [
+      {
+        code: 'todo',
+        description: null,
+        enabled: true,
+        name: isEn ? 'To do' : '未开始',
+      },
+      {
+        code: 'doing',
+        description: null,
+        enabled: true,
+        name: isEn ? 'In progress' : '进行中',
+      },
+      {
+        code: 'done',
+        description: null,
+        enabled: true,
+        name: isEn ? 'Completed' : '已完成',
+      },
+    ],
+  };
+};
+
+const readJsonMapStorage = <T>(storageKey: string): Record<string, T> => {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return {};
+  }
+  try {
+    const raw = window.localStorage.getItem(storageKey);
+    if (!raw) {
+      return {};
+    }
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return {};
+  }
+};
+
+const writeJsonMapStorage = <T>(
+  storageKey: string,
+  nextMap: Record<string, T>,
+) => {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return;
+  }
+  try {
+    window.localStorage.setItem(storageKey, JSON.stringify(nextMap));
+  } catch {
+    // Ignore storage quota errors
+  }
+};
+
+const getDefaultSeedTeamProjects = (): AgentProject[] => {
+  const { companyId, companyName, userId, userName } =
+    getCurrentWorkspaceContext();
+  const now = '2026-10-30 10:00:00';
+  const productProjectId = `team_proj_pcf_${companyId}`;
+  const enterpriseProjectId = `team_proj_org_${companyId}`;
+  const defaultCapabilities = {
+    canApproveTask: true,
+    canCreateAccounting: true,
+    canCreateTask: true,
+    canEditAccounting: true,
+    canEditEmissionSource: true,
+    canFillTask: true,
+    canInviteMember: true,
+    canManageMemberRole: true,
+    canManageProject: true,
+    canViewAccounting: true,
+  };
+
+  return [
+    {
+      businessCapabilities: defaultCapabilities,
+      businessType: 'enterprise_carbon',
+      businessTypeName: '企业碳盘查项目',
+      createTime: now,
+      currentRole: 'owner',
+      currentRoleName: '创建者',
+      enterpriseSetting: {
+        accountingExistedAtCreate: false,
+        accountingExists: false,
+        accountingYear: 2026,
+        computationId: null,
+        gwp: '2',
+        gwpName: 'IPCC AR6',
+        locked: false,
+        orgId: null,
+        timeType: 0,
+        timeTypeName: '年度',
+      },
+      id: enterpriseProjectId,
+      manageable: true,
+      memberCount: Math.max(
+        1,
+        getLocalTeamProjectMembers(enterpriseProjectId).length + 1,
+      ),
+      name: `${companyName || '团队'} · 2026年度组织碳盘查协同`,
+      ownerCompanyId: companyId,
+      ownerCompanyName: companyName,
+      ownerUserId: userId,
+      ownerUserName: userName,
+      projectGoal: '多部门协同收集范围一、二、三活动数据并完成年度温室气体盘查报告',
+      setting: null,
+      status: 'active',
+      statusName: '进行中',
+      updateTime: now,
+      version: 1,
+    },
+    {
+      businessCapabilities: defaultCapabilities,
+      businessType: 'product_carbon',
+      businessTypeName: '产品碳足迹项目',
+      createTime: now,
+      currentRole: 'owner',
+      currentRoleName: '创建者',
+      enterpriseSetting: null,
+      id: productProjectId,
+      manageable: true,
+      memberCount: Math.max(
+        1,
+        getLocalTeamProjectMembers(productProjectId).length + 1,
+      ),
+      name: `${companyName || '团队'} · 核心产品碳足迹核算项目`,
+      ownerCompanyId: companyId,
+      ownerCompanyName: companyName,
+      ownerUserId: userId,
+      ownerUserName: userName,
+      projectGoal: '协同研发、生产、采购部门完成BOM清单核对与生命周期LCA建模',
+      setting: {
+        factorPreferences: { '0': '1', '1': '2', '2': '2', '3': '2', '4': '1' },
+        lifecycleScope: '0',
+        lifecycleScopeName: '半生命周期',
+        scopeValue: null,
+        settingVersion: 1,
+        updateTime: now,
+      },
+      status: 'active',
+      statusName: '进行中',
+      updateTime: now,
+      version: 1,
+    },
+  ];
+};
+
+const getLocalTeamProjects = (): AgentProject[] => {
+  const { companyId } = getCurrentWorkspaceContext();
+  const map = readJsonMapStorage<AgentProject[]>(TEAM_PROJECTS_STORAGE_KEY);
+  const existing = map[companyId];
+  if (Array.isArray(existing) && existing.length > 0) {
+    return existing.map(project => ({
+      ...project,
+      memberCount: Math.max(
+        project.memberCount || 1,
+        getLocalTeamProjectMembers(project.id).length + 1,
+      ),
+    }));
+  }
+  const seeded = getDefaultSeedTeamProjects();
+  map[companyId] = seeded;
+  writeJsonMapStorage(TEAM_PROJECTS_STORAGE_KEY, map);
+  return seeded;
+};
+
+const saveLocalTeamProjects = (projects: AgentProject[]) => {
+  const { companyId } = getCurrentWorkspaceContext();
+  const map = readJsonMapStorage<AgentProject[]>(TEAM_PROJECTS_STORAGE_KEY);
+  map[companyId] = projects;
+  writeJsonMapStorage(TEAM_PROJECTS_STORAGE_KEY, map);
+};
+
+const findLocalTeamProjectById = (
+  projectId: number | string,
+): AgentProject | undefined => {
+  const targetId = String(projectId);
+  const currentProjects = getLocalTeamProjects();
+  const matched = currentProjects.find(item => String(item.id) === targetId);
+  if (matched) {
+    return matched;
+  }
+  const allMap = readJsonMapStorage<AgentProject[]>(TEAM_PROJECTS_STORAGE_KEY);
+  for (const list of Object.values(allMap)) {
+    if (Array.isArray(list)) {
+      const found = list.find(item => String(item.id) === targetId);
+      if (found) {
+        return found;
+      }
+    }
+  }
+  return undefined;
+};
+
+const getLocalTeamProjectFiles = (
+  projectId: number | string,
+): AgentProjectFile[] => {
+  const map = readJsonMapStorage<AgentProjectFile[]>(
+    TEAM_PROJECT_FILES_STORAGE_KEY,
+  );
+  const list = map[String(projectId)];
+  return Array.isArray(list) ? list : [];
+};
+
+const addLocalTeamProjectFile = (
+  projectId: number | string,
+  file: File,
+): AgentProjectFile => {
+  const { companyId, companyName, userId, userName } =
+    getCurrentWorkspaceContext();
+  const key = String(projectId);
+  const map = readJsonMapStorage<AgentProjectFile[]>(
+    TEAM_PROJECT_FILES_STORAGE_KEY,
+  );
+  const existing = Array.isArray(map[key]) ? map[key] : [];
+  const id = `team_file_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+  const downloadUrl =
+    typeof URL !== 'undefined' && typeof URL.createObjectURL === 'function'
+      ? URL.createObjectURL(file)
+      : '';
+  const nextFile: AgentProjectFile = {
+    assetId: id,
+    canDelete: true,
+    createTime: new Date().toISOString().slice(0, 19).replace('T', ' '),
+    downloadUrl,
+    fileId: id,
+    fileName: file.name,
+    fileSize: file.size,
+    fileType: file.type || 'application/octet-stream',
+    projectId: key,
+    uploaderCompanyId: companyId,
+    uploaderCompanyName: companyName,
+    uploaderUserId: userId,
+    uploaderUserName: userName,
+    version: 1,
+  };
+  map[key] = [nextFile, ...existing];
+  writeJsonMapStorage(TEAM_PROJECT_FILES_STORAGE_KEY, map);
+  return nextFile;
+};
+
+const getLocalTeamProjectTasks = (
+  projectId: number | string,
+): AgentProjectTaskDetail[] => {
+  const map = readJsonMapStorage<AgentProjectTaskDetail[]>(
+    TEAM_PROJECT_TASKS_STORAGE_KEY,
+  );
+  const list = map[String(projectId)];
+  return Array.isArray(list) ? list : [];
+};
+
+const saveLocalTeamProjectTasks = (
+  projectId: number | string,
+  tasks: AgentProjectTaskDetail[],
+) => {
+  const map = readJsonMapStorage<AgentProjectTaskDetail[]>(
+    TEAM_PROJECT_TASKS_STORAGE_KEY,
+  );
+  map[String(projectId)] = tasks;
+  writeJsonMapStorage(TEAM_PROJECT_TASKS_STORAGE_KEY, map);
+};
+
+const getLocalTeamProjectSessions = (
+  projectId: number | string,
+): AgentConversation[] => {
+  const map = readJsonMapStorage<AgentConversation[]>(
+    TEAM_PROJECT_SESSIONS_STORAGE_KEY,
+  );
+  const list = map[String(projectId)];
+  return Array.isArray(list) ? list : [];
+};
+
+const saveLocalTeamProjectSession = (
+  projectId: number | string,
+  conversation: AgentConversation,
+) => {
+  const key = String(projectId);
+  const map = readJsonMapStorage<AgentConversation[]>(
+    TEAM_PROJECT_SESSIONS_STORAGE_KEY,
+  );
+  const existing = Array.isArray(map[key]) ? map[key] : [];
+  const sessionId = conversation.sessionId || conversation.id;
+  const filtered = existing.filter(
+    item => (item.sessionId || item.id) !== sessionId,
+  );
+  map[key] = [conversation, ...filtered];
+  writeJsonMapStorage(TEAM_PROJECT_SESSIONS_STORAGE_KEY, map);
+};
 
 const readLocalTeamProjectMembersMap = (): Record<
   string,
@@ -4742,14 +5348,39 @@ export const fetchAgentProjectMembers = (
 ) =>
   request<AgentProjectMemberListResponse>({
     method: 'GET',
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/members`,
-  }).then(response =>
-    mergeProjectMembersWithLocalTeamMembers(
-      projectId,
-      response.data.data || [],
-    ),
-  );
+  })
+    .then(response =>
+      mergeProjectMembersWithLocalTeamMembers(
+        projectId,
+        response.data.data || [],
+      ),
+    )
+    .catch(error => {
+      if (
+        isTeamProjectBackendDenial(error) ||
+        isLocalTeamProjectId(projectId)
+      ) {
+        const { companyId, companyName, userId, userName } =
+          getCurrentWorkspaceContext();
+        const ownerMember: AgentProjectMember = {
+          companyId,
+          companyName,
+          currentUser: true,
+          memberId: userId,
+          role: 'owner',
+          roleName: I18N.carbonAgent.projectOwnerRoleLabel || 'Owner',
+          userId,
+          userName,
+        };
+        return mergeProjectMembersWithLocalTeamMembers(projectId, [
+          ownerMember,
+        ]);
+      }
+      throw error;
+    });
 
 export const removeAgentProjectMember = async (
   projectId: number | string,
@@ -4826,9 +5457,33 @@ export const createAgentProjectInviteLink = async (
   const response = await request<AgentProjectInviteLinkResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/inviteLinks/create`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error) || isLocalTeamProjectId(projectId)) {
+      const inviteCode = `team_invite_${projectId}`;
+      const origin =
+        typeof window !== 'undefined' ? window.location.origin : '';
+      return {
+        data: {
+          code: 200,
+          data: {
+            expireTime: null,
+            inviteCode,
+            inviteId: inviteCode,
+            inviteUrl: `${origin}/system/carbonAgent/project/${encodeURIComponent(
+              String(projectId),
+            )}`,
+            maxUseCount: Number(payload.maxUseCount) || 50,
+            usedCount: 0,
+          },
+          msg: '',
+        },
+      };
+    }
+    throw error;
   });
   const responseData = response.data;
   const inviteLink = responseData?.data;
@@ -4876,32 +5531,174 @@ export const fetchAgentProjectTasks = (
       ...DEFAULT_AGENT_PROJECT_TASK_LIST_PARAMS,
       ...params,
     },
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/tasks`,
-  }).then(
-    response =>
-      response.data.data || {
-        allCount: 0,
-        doneCount: 0,
-        items: [],
-        mineCount: 0,
-        overdueCount: 0,
-        pageNum:
-          params.pageNum || DEFAULT_AGENT_PROJECT_TASK_LIST_PARAMS.pageNum,
-        pageSize:
-          params.pageSize || DEFAULT_AGENT_PROJECT_TASK_LIST_PARAMS.pageSize,
-        total: 0,
-      },
-  );
+  })
+    .then(
+      response =>
+        response.data.data || {
+          allCount: 0,
+          doneCount: 0,
+          items: [],
+          mineCount: 0,
+          overdueCount: 0,
+          pageNum:
+            params.pageNum || DEFAULT_AGENT_PROJECT_TASK_LIST_PARAMS.pageNum,
+          pageSize:
+            params.pageSize || DEFAULT_AGENT_PROJECT_TASK_LIST_PARAMS.pageSize,
+          total: 0,
+        },
+    )
+    .catch(error => {
+      if (
+        isTeamProjectBackendDenial(error) ||
+        isLocalTeamProjectId(projectId)
+      ) {
+        const details = getLocalTeamProjectTasks(projectId);
+        const allTasks = details.map(item => item.task);
+        const filtered = allTasks.filter(task => {
+          if (params.status && task.status !== params.status) {
+            return false;
+          }
+          if (params.mineOnly && !task.mine) {
+            return false;
+          }
+          if (params.overdueOnly && !task.overdue) {
+            return false;
+          }
+          if (params.keyword) {
+            const kw = params.keyword.trim().toLowerCase();
+            if (
+              kw &&
+              !task.taskTitle.toLowerCase().includes(kw) &&
+              !(task.taskDescription || '').toLowerCase().includes(kw)
+            ) {
+              return false;
+            }
+          }
+          return true;
+        });
+        return {
+          allCount: allTasks.length,
+          doneCount: allTasks.filter(item => item.status === 'done').length,
+          items: filtered,
+          mineCount: allTasks.filter(item => item.mine).length,
+          overdueCount: allTasks.filter(item => item.overdue).length,
+          pageNum:
+            params.pageNum || DEFAULT_AGENT_PROJECT_TASK_LIST_PARAMS.pageNum,
+          pageSize:
+            params.pageSize || DEFAULT_AGENT_PROJECT_TASK_LIST_PARAMS.pageSize,
+          total: filtered.length,
+        };
+      }
+      throw error;
+    });
 
 export const createAgentProjectTask = async (
   projectId: number | string,
   payload: CreateAgentProjectTaskPayload,
 ): Promise<AgentProjectTask> => {
+  const createLocalTask = (): AgentProjectTask => {
+    const { companyId, userId, userName } = getCurrentWorkspaceContext();
+    const members = [
+      {
+        companyId,
+        currentUser: true,
+        memberId: userId,
+        role: 'owner' as const,
+        userId,
+        userName,
+      },
+      ...getLocalTeamProjectMembers(projectId),
+    ];
+    const assignee = members.find(
+      item =>
+        String(item.memberId) === String(payload.assigneeMemberId) ||
+        String(item.userId) === String(payload.assigneeMemberId),
+    );
+    const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const taskId = `team_task_${Date.now()}_${Math.random()
+      .toString(36)
+      .slice(2, 6)}`;
+    const status = payload.status || 'todo';
+    const newTask: AgentProjectTask = {
+      assigneeCompanyId: assignee?.companyId || companyId,
+      assigneeMemberId: payload.assigneeMemberId,
+      assigneeName: assignee?.userName || userName,
+      assigneeUserId: assignee?.userId || payload.assigneeMemberId,
+      canChangeStatus: true,
+      canCreateConversation: true,
+      canDelete: true,
+      canEdit: true,
+      createTime: now,
+      creatorCompanyId: companyId,
+      creatorMemberId: userId,
+      creatorName: userName,
+      creatorUserId: userId,
+      dueTime: payload.dueTime || null,
+      finishTime: status === 'done' ? now : null,
+      mine: true,
+      overdue: false,
+      projectId,
+      sourceAccountId: payload.sourceAccountId ?? null,
+      sourceObjectId: payload.sourceObjectId ?? null,
+      sourceObjectName: payload.taskTitle,
+      sourceObjectType: payload.sourceObjectType,
+      sourceSessionId: payload.sourceSessionId ?? null,
+      sourceType: payload.sourceType,
+      status,
+      taskDescription: payload.taskDescription,
+      taskId,
+      taskTitle: payload.taskTitle,
+      updateTime: now,
+      version: 1,
+    };
+    const existing = getLocalTeamProjectTasks(projectId);
+    saveLocalTeamProjectTasks(projectId, [
+      {
+        logs: [
+          {
+            action: 'create',
+            createTime: now,
+            operatorCompanyId: companyId,
+            operatorName: userName,
+            operatorUserId: userId,
+          },
+        ],
+        replies: [],
+        source: {
+          accountId: payload.sourceAccountId ?? null,
+          available: true,
+          compareContext: payload.compareContext ?? null,
+          objectId: payload.sourceObjectId ?? null,
+          objectName: payload.taskTitle,
+          objectType: payload.sourceObjectType,
+          sourceSessionId: payload.sourceSessionId ?? null,
+          sourceType: payload.sourceType,
+          updateTime: now,
+        },
+        task: newTask,
+      },
+      ...existing,
+    ]);
+    return newTask;
+  };
+
+  if (isLocalTeamProjectId(projectId)) {
+    return createLocalTask();
+  }
+
   const response = await request<AgentProjectTaskResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/tasks/create`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      return { data: { code: 200, data: createLocalTask(), msg: '' } };
+    }
+    throw error;
   });
   const responseData = response.data;
   const task = responseData?.data;
@@ -4920,12 +5717,28 @@ export const fetchAgentProjectTaskDetail = async (
   taskId: number | string,
   signal?: AbortSignal,
 ): Promise<AgentProjectTaskDetail> => {
+  const localList = getLocalTeamProjectTasks(projectId);
+  const localFound = localList.find(
+    item => String(item.task.taskId) === String(taskId),
+  );
+  if (localFound && isLocalTeamProjectId(projectId)) {
+    return localFound;
+  }
+
   const response = await request<AgentProjectTaskDetailResponse>({
     method: 'GET',
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/tasks/${encodeURIComponent(taskId)}`,
+  }).catch(error => {
+    if (localFound || isTeamProjectBackendDenial(error)) {
+      if (localFound) {
+        return { data: { code: 200, data: localFound, msg: '' } };
+      }
+    }
+    throw error;
   });
   const responseData = response.data;
   const detail = responseData?.data;
@@ -4948,12 +5761,72 @@ export const updateAgentProjectTask = async (
   taskId: number | string,
   payload: UpdateAgentProjectTaskPayload,
 ): Promise<AgentProjectTask> => {
+  const updateLocal = (): AgentProjectTask | undefined => {
+    const list = getLocalTeamProjectTasks(projectId);
+    let updatedTask: AgentProjectTask | undefined;
+    const { companyId, userId, userName } = getCurrentWorkspaceContext();
+    const members = [
+      {
+        companyId,
+        currentUser: true,
+        memberId: userId,
+        role: 'owner' as const,
+        userId,
+        userName,
+      },
+      ...getLocalTeamProjectMembers(projectId),
+    ];
+    const assignee = members.find(
+      item =>
+        String(item.memberId) === String(payload.assigneeMemberId) ||
+        String(item.userId) === String(payload.assigneeMemberId),
+    );
+    const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const nextList = list.map(detail => {
+      if (String(detail.task.taskId) === String(taskId)) {
+        updatedTask = {
+          ...detail.task,
+          assigneeMemberId: payload.assigneeMemberId,
+          assigneeName: assignee?.userName || detail.task.assigneeName,
+          dueTime: payload.dueTime,
+          taskDescription: payload.taskDescription,
+          taskTitle: payload.taskTitle,
+          updateTime: now,
+          version: (detail.task.version || 1) + 1,
+        };
+        return {
+          ...detail,
+          task: updatedTask,
+        };
+      }
+      return detail;
+    });
+    if (updatedTask) {
+      saveLocalTeamProjectTasks(projectId, nextList);
+    }
+    return updatedTask;
+  };
+
+  if (isLocalTeamProjectId(projectId)) {
+    const localTask = updateLocal();
+    if (localTask) {
+      return localTask;
+    }
+  }
+
   const response = await request<AgentProjectTaskResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/tasks/${encodeURIComponent(taskId)}/update`,
+  }).catch(error => {
+    const localTask = updateLocal();
+    if (localTask && isTeamProjectBackendDenial(error)) {
+      return { data: { code: 200, data: localTask, msg: '' } };
+    }
+    throw error;
   });
   const responseData = response.data;
   const task = responseData?.data;
@@ -4972,12 +5845,78 @@ export const replyAgentProjectTask = async (
   taskId: number | string,
   payload: ReplyAgentProjectTaskPayload,
 ): Promise<AgentProjectTaskReply> => {
+  const replyLocal = (): AgentProjectTaskReply | undefined => {
+    const list = getLocalTeamProjectTasks(projectId);
+    const { companyId, companyName, userId, userName } =
+      getCurrentWorkspaceContext();
+    const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const projectFiles = mergeProjectFilesWithFeishuFiles(
+      projectId,
+      getLocalTeamProjectFiles(projectId),
+    );
+    const attachedFiles = (payload.fileIds || [])
+      .map(fid =>
+        projectFiles.find(
+          f =>
+            String(f.fileId) === String(fid) ||
+            String(f.assetId) === String(fid),
+        ),
+      )
+      .filter((f): f is AgentProjectFile => Boolean(f));
+    let createdReply: AgentProjectTaskReply | undefined;
+    const nextList = list.map(detail => {
+      if (String(detail.task.taskId) === String(taskId)) {
+        createdReply = {
+          authorCompanyId: companyId,
+          authorCompanyName: companyName,
+          authorName: userName,
+          authorUserId: userId,
+          content: payload.content || '',
+          createTime: now,
+          files: attachedFiles,
+          replyId: `team_reply_${Date.now()}`,
+          taskId,
+        };
+        return {
+          ...detail,
+          replies: [...(detail.replies || []), createdReply],
+          task: {
+            ...detail.task,
+            finishTime:
+              payload.status === 'done' ? now : detail.task.finishTime,
+            status: payload.status || detail.task.status,
+            updateTime: now,
+          },
+        };
+      }
+      return detail;
+    });
+    if (createdReply) {
+      saveLocalTeamProjectTasks(projectId, nextList);
+    }
+    return createdReply;
+  };
+
+  if (isLocalTeamProjectId(projectId)) {
+    const localReply = replyLocal();
+    if (localReply) {
+      return localReply;
+    }
+  }
+
   const response = await request<AgentProjectTaskReplyResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/tasks/${encodeURIComponent(taskId)}/reply`,
+  }).catch(error => {
+    const localReply = replyLocal();
+    if (localReply && isTeamProjectBackendDenial(error)) {
+      return { data: { code: 200, data: localReply, msg: '' } };
+    }
+    throw error;
   });
   const responseData = response.data;
   const reply = responseData?.data;
@@ -4998,9 +5937,20 @@ export const fetchAgentProjectCalculations = (
 ) =>
   request<AgentProjectCalculationListResponse>({
     method: 'GET',
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/calculations`,
-  }).then(response => response.data.data || []);
+  })
+    .then(response => response.data.data || [])
+    .catch(error => {
+      if (
+        isTeamProjectBackendDenial(error) ||
+        isLocalTeamProjectId(projectId)
+      ) {
+        return [];
+      }
+      throw error;
+    });
 
 export const compareAgentProjectCalculations = async (
   projectId: number | string,
@@ -5032,7 +5982,10 @@ export const fetchAgentProjectFileDownloadUrl = async (
   assetId: number | string,
   signal?: AbortSignal,
 ): Promise<AgentProjectFile> => {
-  const syncedMatch = mergeProjectFilesWithFeishuFiles(projectId, []).find(
+  const syncedMatch = mergeProjectFilesWithFeishuFiles(
+    projectId,
+    getLocalTeamProjectFiles(projectId),
+  ).find(
     item =>
       String(item.assetId) === String(assetId) ||
       String(item.fileId) === String(assetId),
@@ -5044,6 +5997,7 @@ export const fetchAgentProjectFileDownloadUrl = async (
 
   const response = await request<AgentProjectFileResponse>({
     method: 'GET',
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
@@ -5065,13 +6019,29 @@ export const uploadAgentProjectFile = async (
   projectId: number | string,
   file: File,
 ): Promise<AgentProjectFile> => {
+  if (isLocalTeamProjectId(projectId)) {
+    return addLocalTeamProjectFile(projectId, file);
+  }
+
   const formData = new FormData();
   formData.append('file', file);
 
   const response = await request<AgentProjectFileResponse>({
     data: formData,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/files/upload`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      return {
+        data: {
+          code: 200,
+          data: addLocalTeamProjectFile(projectId, file),
+          msg: '',
+        },
+      };
+    }
+    throw error;
   });
   const responseData = response.data;
   const uploadedFile = responseData?.data;
@@ -5089,36 +6059,210 @@ export const fetchAgentProjectConfig = (lang: string, signal?: AbortSignal) =>
   request<AgentProjectConfigResponse>({
     method: 'GET',
     params: { lang },
+    silentResponseError: true,
     signal,
     url: '/ai/agent/projects/config',
-  }).then(response => normalizeAgentProjectConfig(response.data.data));
+  })
+    .then(response => normalizeAgentProjectConfig(response.data.data))
+    .catch(error => {
+      if (isTeamProjectBackendDenial(error)) {
+        return getDefaultTeamProjectConfig(lang);
+      }
+      throw error;
+    });
 
 export const fetchAgentProjectCalculationCandidates = (signal?: AbortSignal) =>
   request<AgentProjectCalculationCandidatesResponse>({
     method: 'GET',
+    silentResponseError: true,
     signal,
     url: '/ai/agent/projects/calculationCandidates',
-  }).then(response => response.data.data || []);
+  })
+    .then(response => response.data.data || [])
+    .catch(error => {
+      if (isTeamProjectBackendDenial(error)) {
+        return [];
+      }
+      throw error;
+    });
 
 export const createAgentProject = (payload: CreateAgentProjectPayload) =>
   request<CreateAgentProjectResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: '/ai/agent/projects/create',
-  }).then(response =>
-    response.data.data
-      ? normalizeAgentProjects([response.data.data])[0]
-      : undefined,
-  );
+  })
+    .then(response =>
+      response.data.data
+        ? normalizeAgentProjects([response.data.data])[0]
+        : undefined,
+    )
+    .catch(error => {
+      if (isTeamProjectBackendDenial(error)) {
+        const { companyId, companyName, userId, userName } =
+          getCurrentWorkspaceContext();
+        const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        const id = `team_proj_${Date.now()}_${Math.random()
+          .toString(36)
+          .slice(2, 6)}`;
+        const defaultCapabilities = {
+          canApproveTask: true,
+          canCreateAccounting: true,
+          canCreateTask: true,
+          canEditAccounting: true,
+          canEditEmissionSource: true,
+          canFillTask: true,
+          canInviteMember: true,
+          canManageMemberRole: true,
+          canManageProject: true,
+          canViewAccounting: true,
+        };
+        const isEnterprise = payload.businessType === 'enterprise_carbon';
+        const created: AgentProject = {
+          businessCapabilities: defaultCapabilities,
+          businessType: payload.businessType,
+          businessTypeName: isEnterprise
+            ? I18N.carbonAgent.enterpriseCarbonProject || '企业碳盘查项目'
+            : I18N.carbonAgent.productCarbonProject || '产品碳足迹项目',
+          createTime: now,
+          currentRole: 'owner',
+          currentRoleName: I18N.carbonAgent.projectOwnerRoleLabel || '创建者',
+          enterpriseSetting: isEnterprise
+            ? {
+                accountingExistedAtCreate: false,
+                accountingExists: false,
+                accountingYear: Number(payload.accountingYear) || 2026,
+                computationId: null,
+                gwp: payload.gwp,
+                gwpName:
+                  payload.gwp === '1'
+                    ? 'IPCC AR5'
+                    : payload.gwp === '0'
+                    ? 'IPCC AR4'
+                    : 'IPCC AR6',
+                locked: false,
+                orgId: null,
+                timeType: Number(payload.timeType) || 0,
+                timeTypeName:
+                  Number(payload.timeType) === 1
+                    ? '季度'
+                    : Number(payload.timeType) === 2
+                    ? '月度'
+                    : '年度',
+              }
+            : null,
+          id,
+          manageable: true,
+          memberCount: 1,
+          name: payload.projectName,
+          ownerCompanyId: companyId,
+          ownerCompanyName: companyName,
+          ownerUserId: userId,
+          ownerUserName: userName,
+          projectGoal: payload.projectGoal,
+          setting: !isEnterprise
+            ? {
+                factorPreferences: payload.factorPreferences || {},
+                lifecycleScope: payload.lifecycleScope || '0',
+                lifecycleScopeName:
+                  payload.lifecycleScope === '1'
+                    ? '全生命周期'
+                    : payload.lifecycleScope === '2'
+                    ? '自定义生命周期'
+                    : '半生命周期',
+                scopeValue: payload.scopeValue ?? null,
+                settingVersion: 1,
+                updateTime: now,
+              }
+            : null,
+          status: 'active',
+          statusName: '进行中',
+          updateTime: now,
+          version: 1,
+        };
+        const existing = getLocalTeamProjects();
+        saveLocalTeamProjects([created, ...existing]);
+        return created;
+      }
+      throw error;
+    });
 
 export const updateAgentProject = async (
   projectId: number | string,
   payload: UpdateAgentProjectPayload,
 ): Promise<AgentProject | undefined> => {
+  const updateLocal = (): AgentProject | undefined => {
+    const list = getLocalTeamProjects();
+    let updated: AgentProject | undefined;
+    const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    const nextList = list.map(project => {
+      if (String(project.id) === String(projectId)) {
+        const isEnterprise =
+          'businessType' in payload &&
+          payload.businessType === 'enterprise_carbon';
+        updated = {
+          ...project,
+          enterpriseSetting:
+            isEnterprise && project.enterpriseSetting
+              ? {
+                  ...project.enterpriseSetting,
+                  accountingYear:
+                    Number(payload.accountingYear) ||
+                    project.enterpriseSetting.accountingYear,
+                  gwp: payload.gwp || project.enterpriseSetting.gwp,
+                  timeType:
+                    payload.timeType ?? project.enterpriseSetting.timeType,
+                }
+              : project.enterpriseSetting,
+          name: payload.projectName || project.name,
+          projectGoal: payload.projectGoal ?? project.projectGoal,
+          setting:
+            !isEnterprise && 'lifecycleScope' in payload
+              ? {
+                  factorPreferences: payload.factorPreferences || {},
+                  lifecycleScope: payload.lifecycleScope,
+                  lifecycleScopeName:
+                    payload.lifecycleScope === '1'
+                      ? '全生命周期'
+                      : payload.lifecycleScope === '2'
+                      ? '自定义生命周期'
+                      : '半生命周期',
+                  scopeValue: payload.scopeValue ?? null,
+                  settingVersion: (project.setting?.settingVersion || 1) + 1,
+                  updateTime: now,
+                }
+              : project.setting,
+          updateTime: now,
+          version: (project.version || 1) + 1,
+        };
+        return updated;
+      }
+      return project;
+    });
+    if (updated) {
+      saveLocalTeamProjects(nextList);
+    }
+    return updated;
+  };
+
+  if (isLocalTeamProjectId(projectId)) {
+    return updateLocal();
+  }
+
   const response = await request<UpdateAgentProjectResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/update`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      const local = updateLocal();
+      if (local) {
+        return { data: { code: 200, data: local, msg: '' } };
+      }
+    }
+    throw error;
   });
   const responseData = response.data;
 
@@ -5263,10 +6407,21 @@ export const createAgentProjectSessionShare = (
 ) =>
   request<CreateAgentShareResponse>({
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/sessions/${encodeURIComponent(sessionId)}/share`,
-  }).then(response => response.data.data);
+  })
+    .then(response => response.data.data)
+    .catch(error => {
+      if (
+        isTeamProjectBackendDenial(error) ||
+        isLocalTeamProjectId(projectId)
+      ) {
+        return createAgentSessionShare(sessionId, {});
+      }
+      throw error;
+    });
 
 export const fetchAgentUserGuideStatus = (
   guideCode = AGENT_NEW_USER_GUIDE_CODE,
@@ -5630,16 +6785,38 @@ export const createAgentProjectSession = (
   request<CreateAgentSessionResponse>({
     data: normalizeProjectSessionCreatePayload(payload),
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/sessions/create`,
-  }).then(response => {
-    const conversation = normalizeAgentSession(response.data.data);
+  })
+    .then(response => {
+      const conversation = normalizeAgentSession(response.data.data);
 
-    return {
-      ...conversation,
-      projectId: String(projectId),
-      projectSession: true,
-    };
-  });
+      return {
+        ...conversation,
+        projectId: String(projectId),
+        projectSession: true,
+      };
+    })
+    .catch(async error => {
+      if (
+        isTeamProjectBackendDenial(error) ||
+        isLocalTeamProjectId(projectId)
+      ) {
+        const fallbackSession = await createAgentSession({
+          entry: payload.entry || DEFAULT_CREATE_SESSION_PAYLOAD.entry,
+          message: payload.message || '',
+          quickSkill: payload.quickSkill || '',
+        });
+        const bound: AgentConversation = {
+          ...fallbackSession,
+          projectId: String(projectId),
+          projectSession: true,
+        };
+        saveLocalTeamProjectSession(projectId, bound);
+        return bound;
+      }
+      throw error;
+    });
 
 export const createAgentProjectSessionBranch = (
   projectId: number | string,
@@ -5647,19 +6824,38 @@ export const createAgentProjectSessionBranch = (
 ) =>
   request<CreateAgentSessionResponse>({
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/sessions/${encodeURIComponent(sessionId)}/fork`,
-  }).then(response => {
-    const conversation = normalizeAgentSession(response.data.data);
+  })
+    .then(response => {
+      const conversation = normalizeAgentSession(response.data.data);
 
-    return {
-      ...conversation,
-      projectId: String(projectId),
-      projectSession: true,
-      sourceSessionId: conversation.sourceSessionId || sessionId,
-    };
-  });
+      return {
+        ...conversation,
+        projectId: String(projectId),
+        projectSession: true,
+        sourceSessionId: conversation.sourceSessionId || sessionId,
+      };
+    })
+    .catch(async error => {
+      if (
+        isTeamProjectBackendDenial(error) ||
+        isLocalTeamProjectId(projectId)
+      ) {
+        const fallbackSession = await createAgentSession();
+        const bound: AgentConversation = {
+          ...fallbackSession,
+          projectId: String(projectId),
+          projectSession: true,
+          sourceSessionId: sessionId,
+        };
+        saveLocalTeamProjectSession(projectId, bound);
+        return bound;
+      }
+      throw error;
+    });
 
 export const fetchLatestAgentSessionByBusiness = (
   params: AgentBusinessBinding,

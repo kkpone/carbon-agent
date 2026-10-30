@@ -27,6 +27,19 @@ export const fetchEnterpriseAccountingPreset = (
   request<EnterpriseAccountingPresetResponse>({
     method: 'GET',
     params: { year },
+    silentResponseError: true,
     signal,
     url: '/ai/agent/projects/enterprise/accountingPreset',
-  }).then(response => response.data.data);
+  })
+    .then(response => response.data.data)
+    .catch(() => ({
+      accountingExists: false,
+      accountingYear: year,
+      computationId: 0,
+      existingProjectId: null,
+      gwp: '2',
+      gwpName: 'IPCC AR6',
+      locked: false,
+      timeType: 0,
+      timeTypeName: '',
+    }));

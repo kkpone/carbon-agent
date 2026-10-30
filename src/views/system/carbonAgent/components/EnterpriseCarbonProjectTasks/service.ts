@@ -3,6 +3,8 @@ import { request } from '@/api/request';
 import {
   fetchAgentProjectMembers,
   fetchAgentProjectFileDownloadUrl,
+  isLocalTeamProjectId,
+  isTeamProjectBackendDenial,
   uploadAgentProjectFile,
 } from '../../service';
 import { ENTERPRISE_CARBON_TASK_TYPE } from './type';
@@ -83,20 +85,125 @@ const assertSuccess = (code: number, message: string) => {
   }
 };
 
+const TEAM_ENTERPRISE_TASKS_STORAGE_KEY =
+  'carbon_agent_team_enterprise_tasks_v1';
+
+const DEFAULT_TEAM_ENTERPRISE_SOURCES: EnterpriseCarbonSource[] = [
+  {
+    activityData: '12000',
+    activityUnitName: 'kWh',
+    categoryCode: '2.1',
+    categoryDisplayName: '外购电力',
+    orgId: 1,
+    orgName: '总部及生产基地',
+    scopeCode: '2',
+    scopeName: '范围二',
+    sourceId: 'team_src_elec',
+    sourceName: '外购市政电网电力',
+    taskAvailabilities: {
+      accounting_factor_collection: { available: true },
+      activity_data_collection: { available: true },
+    },
+  },
+  {
+    activityData: '3500',
+    activityUnitName: 'm³',
+    categoryCode: '1.1',
+    categoryDisplayName: '固定燃烧排放',
+    orgId: 1,
+    orgName: '总部及生产基地',
+    scopeCode: '1',
+    scopeName: '范围一',
+    sourceId: 'team_src_gas',
+    sourceName: '园区锅炉天然气消耗',
+    taskAvailabilities: {
+      accounting_factor_collection: { available: true },
+      activity_data_collection: { available: true },
+    },
+  },
+  {
+    activityData: '85',
+    activityUnitName: 't',
+    categoryCode: '3.1',
+    categoryDisplayName: '外购商品与服务',
+    orgId: 1,
+    orgName: '供应链与采购中心',
+    scopeCode: '3',
+    scopeName: '范围三',
+    sourceId: 'team_src_steel',
+    sourceName: '核心结构件外购钢材',
+    taskAvailabilities: {
+      accounting_factor_collection: { available: true },
+      activity_data_collection: { available: true },
+    },
+  },
+];
+
+const readLocalEnterpriseTasks = (
+  projectId: string,
+): EnterpriseCarbonTaskListItem[] => {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return [];
+  }
+  try {
+    const raw = window.localStorage.getItem(TEAM_ENTERPRISE_TASKS_STORAGE_KEY);
+    const map = raw ? JSON.parse(raw) : {};
+    const list = map?.[String(projectId)];
+    return Array.isArray(list) ? list : [];
+  } catch {
+    return [];
+  }
+};
+
+const writeLocalEnterpriseTasks = (
+  projectId: string,
+  items: EnterpriseCarbonTaskListItem[],
+) => {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return;
+  }
+  try {
+    const raw = window.localStorage.getItem(TEAM_ENTERPRISE_TASKS_STORAGE_KEY);
+    const map = raw ? JSON.parse(raw) : {};
+    map[String(projectId)] = items;
+    window.localStorage.setItem(
+      TEAM_ENTERPRISE_TASKS_STORAGE_KEY,
+      JSON.stringify(map),
+    );
+  } catch {
+    // ignore quota error
+  }
+};
+
 const fetchEmissionSources = async (
   projectId: string,
   signal?: AbortSignal,
 ): Promise<EnterpriseCarbonSource[]> => {
+  if (isLocalTeamProjectId(projectId)) {
+    return DEFAULT_TEAM_ENTERPRISE_SOURCES;
+  }
   const response = await request<EnterpriseCarbonSourcePageResponse>({
     method: 'GET',
     params: {
       page: 1,
       pageSize: 1000000,
     },
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/enterprise/sources`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      return {
+        data: {
+          code: 200,
+          data: { items: DEFAULT_TEAM_ENTERPRISE_SOURCES },
+          msg: '',
+        },
+      };
+    }
+    throw error;
   });
   const responseData = response.data;
 
@@ -119,12 +226,61 @@ const createTasks = async (
   projectId: string,
   payload: EnterpriseCarbonTaskCreateRequest,
 ) => {
+  const createLocal = async () => {
+    const members = await fetchAgentProjectMembers(projectId);
+    const existing = readLocalEnterpriseTasks(projectId);
+    const createdItems: EnterpriseCarbonTaskListItem[] = payload.items.map(
+      (item, index) => {
+        const source =
+          DEFAULT_TEAM_ENTERPRISE_SOURCES.find(
+            s => String(s.sourceId) === String(item.sourceId),
+          ) || DEFAULT_TEAM_ENTERPRISE_SOURCES[0];
+        const assignee = members.find(
+          m =>
+            String(m.memberId) === String(item.assigneeMemberId) ||
+            String(m.userId) === String(item.assigneeMemberId),
+        );
+        return {
+          activityData: source.activityData ?? null,
+          assigneeName: assignee?.userName || members[0]?.userName || '',
+          canApprove: true,
+          canDelete: true,
+          canReject: true,
+          canSubmit: true,
+          dueTime: item.dueTime,
+          files: [],
+          overdue: false,
+          rejectReason: null,
+          reviewerName: members[0]?.userName || '',
+          source,
+          status: 'pending_fill',
+          taskId: `team_ent_task_${Date.now()}_${index}`,
+          taskTitle: source.sourceName,
+          taskType: item.taskType,
+        };
+      },
+    );
+    writeLocalEnterpriseTasks(projectId, [...createdItems, ...existing]);
+  };
+
+  if (isLocalTeamProjectId(projectId)) {
+    await createLocal();
+    return;
+  }
+
   const response = await request<EnterpriseCarbonTaskCreateResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/enterprise/tasks/create`,
+  }).catch(async error => {
+    if (isTeamProjectBackendDenial(error)) {
+      await createLocal();
+      return { data: { code: 200, msg: '' } };
+    }
+    throw error;
   });
 
   assertSuccess(response.data.code, response.data.msg);
@@ -200,6 +356,31 @@ const fetchTaskPage = async (
   }: EnterpriseCarbonTaskPageParams,
   signal?: AbortSignal,
 ) => {
+  const buildLocalPage = () => {
+    const all = readLocalEnterpriseTasks(projectId);
+    const apiStatus = statusMap[status];
+    const filtered = all.filter(item => item.status === apiStatus);
+    return {
+      items: filtered.map(item => mapTask(item)),
+      statusCounts: {
+        completed: all.filter(i => i.status === 'completed').length,
+        pendingApproval: all.filter(i => i.status === 'pending_approval')
+          .length,
+        pendingReport: all.filter(i => i.status === 'pending_fill').length,
+        rejected: all.filter(i => i.status === 'rejected').length,
+      },
+      total: filtered.length,
+      viewCounts: {
+        initiated: all.length,
+        reported: all.length,
+      },
+    };
+  };
+
+  if (isLocalTeamProjectId(projectId)) {
+    return buildLocalPage();
+  }
+
   const response = await request<EnterpriseCarbonTaskListResponse>({
     method: 'GET',
     params: {
@@ -208,8 +389,35 @@ const fetchTaskPage = async (
       status: statusMap[status],
       view: viewMap[view],
     },
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/enterprise/tasks`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      const all = readLocalEnterpriseTasks(projectId);
+      const apiStatus = statusMap[status];
+      const filtered = all.filter(item => item.status === apiStatus);
+      return {
+        data: {
+          code: 200,
+          data: {
+            approvalCount: all.length,
+            completedCount: all.filter(i => i.status === 'completed').length,
+            fillCount: all.length,
+            items: filtered,
+            pendingApprovalCount: all.filter(
+              i => i.status === 'pending_approval',
+            ).length,
+            pendingFillCount: all.filter(i => i.status === 'pending_fill')
+              .length,
+            rejectedCount: all.filter(i => i.status === 'rejected').length,
+            total: filtered.length,
+          },
+          msg: '',
+        },
+      };
+    }
+    throw error;
   });
   const responseData = response.data;
 
@@ -244,6 +452,16 @@ export const fetchEnterpriseCarbonProjectTodos = async (
   projectId: string,
   signal?: AbortSignal,
 ): Promise<EnterpriseCarbonProjectTodo[]> => {
+  if (isLocalTeamProjectId(projectId)) {
+    return readLocalEnterpriseTasks(projectId)
+      .slice(0, 3)
+      .map(item => ({
+        dueTime: item.dueTime,
+        enterpriseStatus: apiStatusMap[item.status],
+        sourceName: item.source.sourceName,
+        taskId: item.taskId,
+      }));
+  }
   const response = await request<EnterpriseCarbonTaskListResponse>({
     method: 'GET',
     params: {
@@ -251,8 +469,30 @@ export const fetchEnterpriseCarbonProjectTodos = async (
       pageSize: 3,
       view: 'approve',
     },
+    silentResponseError: true,
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/enterprise/tasks`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      const items = readLocalEnterpriseTasks(projectId).slice(0, 3);
+      return {
+        data: {
+          code: 200,
+          data: {
+            approvalCount: items.length,
+            completedCount: 0,
+            fillCount: items.length,
+            items,
+            pendingApprovalCount: 0,
+            pendingFillCount: items.length,
+            rejectedCount: 0,
+            total: items.length,
+          },
+          msg: '',
+        },
+      };
+    }
+    throw error;
   });
   const responseData = response.data;
 
@@ -271,12 +511,36 @@ const submitTask = async (
   taskId: string | number,
   payload: EnterpriseCarbonTaskSubmitPayload,
 ) => {
+  const updateLocal = () => {
+    const list = readLocalEnterpriseTasks(projectId);
+    const next = list.map(item =>
+      String(item.taskId) === String(taskId)
+        ? {
+            ...item,
+            activityData: payload.activityData ?? item.activityData,
+            status: 'pending_approval' as const,
+          }
+        : item,
+    );
+    writeLocalEnterpriseTasks(projectId, next);
+  };
+  if (isLocalTeamProjectId(projectId)) {
+    updateLocal();
+    return;
+  }
   const response = await request<EnterpriseCarbonTaskSubmitResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/enterprise/tasks/${encodeURIComponent(taskId)}/submit`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      updateLocal();
+      return { data: { code: 200, msg: '' } };
+    }
+    throw error;
   });
 
   assertSuccess(response.data.code, response.data.msg);
@@ -322,22 +586,62 @@ const uploadTaskFile = async (
 };
 
 const deleteTask = async (projectId: string, taskId: string | number) => {
+  const removeLocal = () => {
+    const list = readLocalEnterpriseTasks(projectId);
+    writeLocalEnterpriseTasks(
+      projectId,
+      list.filter(item => String(item.taskId) !== String(taskId)),
+    );
+  };
+  if (isLocalTeamProjectId(projectId)) {
+    removeLocal();
+    return;
+  }
   const response = await request<EnterpriseCarbonTaskOperationResponse>({
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/enterprise/tasks/${encodeURIComponent(taskId)}/delete`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      removeLocal();
+      return { data: { code: 200, msg: '' } };
+    }
+    throw error;
   });
 
   assertSuccess(response.data.code, response.data.msg);
 };
 
 const approveTask = async (projectId: string, taskId: string | number) => {
+  const approveLocal = () => {
+    const list = readLocalEnterpriseTasks(projectId);
+    writeLocalEnterpriseTasks(
+      projectId,
+      list.map(item =>
+        String(item.taskId) === String(taskId)
+          ? { ...item, status: 'completed' as const }
+          : item,
+      ),
+    );
+  };
+  if (isLocalTeamProjectId(projectId)) {
+    approveLocal();
+    return;
+  }
   const response = await request<EnterpriseCarbonTaskOperationResponse>({
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/enterprise/tasks/${encodeURIComponent(taskId)}/approve`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      approveLocal();
+      return { data: { code: 200, msg: '' } };
+    }
+    throw error;
   });
 
   assertSuccess(response.data.code, response.data.msg);
@@ -348,12 +652,38 @@ const rejectTask = async (
   taskId: string | number,
   payload: EnterpriseCarbonTaskRejectPayload,
 ) => {
+  const rejectLocal = () => {
+    const list = readLocalEnterpriseTasks(projectId);
+    writeLocalEnterpriseTasks(
+      projectId,
+      list.map(item =>
+        String(item.taskId) === String(taskId)
+          ? {
+              ...item,
+              rejectReason: payload.reason,
+              status: 'rejected' as const,
+            }
+          : item,
+      ),
+    );
+  };
+  if (isLocalTeamProjectId(projectId)) {
+    rejectLocal();
+    return;
+  }
   const response = await request<EnterpriseCarbonTaskOperationResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/enterprise/tasks/${encodeURIComponent(taskId)}/reject`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      rejectLocal();
+      return { data: { code: 200, msg: '' } };
+    }
+    throw error;
   });
 
   assertSuccess(response.data.code, response.data.msg);
@@ -364,12 +694,37 @@ const saveTask = async (
   taskId: string | number,
   payload: EnterpriseCarbonTaskSavePayload,
 ) => {
+  const saveLocal = () => {
+    const list = readLocalEnterpriseTasks(projectId);
+    writeLocalEnterpriseTasks(
+      projectId,
+      list.map(item =>
+        String(item.taskId) === String(taskId)
+          ? {
+              ...item,
+              activityData: payload.activityData ?? item.activityData,
+            }
+          : item,
+      ),
+    );
+  };
+  if (isLocalTeamProjectId(projectId)) {
+    saveLocal();
+    return;
+  }
   const response = await request<EnterpriseCarbonTaskOperationResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: true,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/enterprise/tasks/${encodeURIComponent(taskId)}/save`,
+  }).catch(error => {
+    if (isTeamProjectBackendDenial(error)) {
+      saveLocal();
+      return { data: { code: 200, msg: '' } };
+    }
+    throw error;
   });
 
   assertSuccess(response.data.code, response.data.msg);
