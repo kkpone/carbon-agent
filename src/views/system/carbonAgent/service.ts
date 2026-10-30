@@ -291,6 +291,7 @@ export type AgentProjectMember = {
   avatar?: string | null;
   companyId: number | string;
   companyName?: string;
+  departmentNames?: string[];
   currentUser: boolean;
   joinTime?: string | null;
   memberId: number | string;
@@ -4601,6 +4602,140 @@ export const fetchAgentProjectFiles = (
       throw error;
     });
 
+const TEAM_PROJECT_MEMBERS_STORAGE_KEY = 'carbon_agent_team_project_members_v1';
+
+const readLocalTeamProjectMembersMap = (): Record<
+  string,
+  AgentProjectMember[]
+> => {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return {};
+  }
+
+  try {
+    const raw = window.localStorage.getItem(TEAM_PROJECT_MEMBERS_STORAGE_KEY);
+    if (!raw) {
+      return {};
+    }
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return {};
+  }
+};
+
+const writeLocalTeamProjectMembersMap = (
+  nextMap: Record<string, AgentProjectMember[]>,
+) => {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return;
+  }
+
+  try {
+    window.localStorage.setItem(
+      TEAM_PROJECT_MEMBERS_STORAGE_KEY,
+      JSON.stringify(nextMap),
+    );
+  } catch {
+    // Ignore storage quota errors
+  }
+};
+
+export const getLocalTeamProjectMembers = (
+  projectId: number | string,
+): AgentProjectMember[] => {
+  const map = readLocalTeamProjectMembersMap();
+  const list = map[String(projectId)];
+  return Array.isArray(list) ? list : [];
+};
+
+export const addLocalTeamProjectMembers = (
+  projectId: number | string,
+  membersToAdd: AgentProjectMember[],
+): AgentProjectMember[] => {
+  const key = String(projectId);
+  const map = readLocalTeamProjectMembersMap();
+  const existing = Array.isArray(map[key]) ? map[key] : [];
+  const byId = new Map<string, AgentProjectMember>();
+
+  existing.forEach(member => {
+    byId.set(String(member.userId || member.memberId), member);
+  });
+  membersToAdd.forEach(member => {
+    byId.set(String(member.userId || member.memberId), member);
+  });
+
+  const merged = Array.from(byId.values());
+  map[key] = merged;
+  writeLocalTeamProjectMembersMap(map);
+  return merged;
+};
+
+const removeLocalTeamProjectMember = (
+  projectId: number | string,
+  memberId: number | string,
+) => {
+  const key = String(projectId);
+  const map = readLocalTeamProjectMembersMap();
+  const existing = Array.isArray(map[key]) ? map[key] : [];
+  const next = existing.filter(
+    item =>
+      String(item.memberId) !== String(memberId) &&
+      String(item.userId) !== String(memberId),
+  );
+  map[key] = next;
+  writeLocalTeamProjectMembersMap(map);
+};
+
+const updateLocalTeamProjectMemberRole = (
+  projectId: number | string,
+  memberId: number | string,
+  role: AgentEnterpriseProjectEditableMemberRole,
+): AgentProjectMember | undefined => {
+  const key = String(projectId);
+  const map = readLocalTeamProjectMembersMap();
+  const existing = Array.isArray(map[key]) ? map[key] : [];
+  let updated: AgentProjectMember | undefined;
+  const next = existing.map(item => {
+    if (
+      String(item.memberId) === String(memberId) ||
+      String(item.userId) === String(memberId)
+    ) {
+      updated = { ...item, role };
+      return updated;
+    }
+    return item;
+  });
+  if (updated) {
+    map[key] = next;
+    writeLocalTeamProjectMembersMap(map);
+  }
+  return updated;
+};
+
+const mergeProjectMembersWithLocalTeamMembers = (
+  projectId: number | string,
+  remoteMembers: AgentProjectMember[],
+): AgentProjectMember[] => {
+  const localMembers = getLocalTeamProjectMembers(projectId);
+  if (!localMembers.length) {
+    return remoteMembers;
+  }
+
+  const existingKeys = new Set(
+    remoteMembers.flatMap(member => [
+      String(member.memberId),
+      String(member.userId),
+    ]),
+  );
+  const extras = localMembers.filter(
+    member =>
+      !existingKeys.has(String(member.memberId)) &&
+      !existingKeys.has(String(member.userId)),
+  );
+  return [...remoteMembers, ...extras];
+};
+
 export const fetchAgentProjectMembers = (
   projectId: number | string,
   signal?: AbortSignal,
@@ -4609,20 +4744,39 @@ export const fetchAgentProjectMembers = (
     method: 'GET',
     signal,
     url: `/ai/agent/projects/${encodeURIComponent(projectId)}/members`,
-  }).then(response => response.data.data || []);
+  }).then(response =>
+    mergeProjectMembersWithLocalTeamMembers(
+      projectId,
+      response.data.data || [],
+    ),
+  );
 
 export const removeAgentProjectMember = async (
   projectId: number | string,
   memberId: number | string,
 ) => {
+  const localMembers = getLocalTeamProjectMembers(projectId);
+  const isLocalOnly = localMembers.some(
+    item =>
+      String(item.memberId) === String(memberId) ||
+      String(item.userId) === String(memberId),
+  );
+  removeLocalTeamProjectMember(projectId, memberId);
+
   const response = await request<AgentProjectMemberRemoveResponse>({
     method: 'POST',
+    silentResponseError: isLocalOnly,
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/members/${encodeURIComponent(memberId)}/remove`,
+  }).catch(error => {
+    if (isLocalOnly) {
+      return { data: { code: 200, msg: '' } };
+    }
+    throw error;
   });
 
-  if (response.data?.code !== 200) {
+  if (!isLocalOnly && response.data?.code !== 200) {
     throw new Error(
       response.data?.msg || I18N.carbonAgent.projectMemberRemoveFailed,
     );
@@ -4634,15 +4788,27 @@ export const updateAgentProjectMemberRole = async (
   memberId: number | string,
   payload: UpdateAgentProjectMemberRolePayload,
 ): Promise<AgentProjectMember> => {
+  const localUpdated = updateLocalTeamProjectMemberRole(
+    projectId,
+    memberId,
+    payload.role,
+  );
+
   const response = await request<AgentProjectMemberRoleUpdateResponse>({
     data: payload,
     method: 'POST',
+    silentResponseError: Boolean(localUpdated),
     url: `/ai/agent/projects/${encodeURIComponent(
       projectId,
     )}/members/${encodeURIComponent(memberId)}/role/save`,
+  }).catch(error => {
+    if (localUpdated) {
+      return { data: { code: 200, data: localUpdated, msg: '' } };
+    }
+    throw error;
   });
   const responseData = response.data;
-  const member = responseData?.data;
+  const member = responseData?.data || localUpdated;
 
   if (responseData?.code === 200 && member) {
     return member;

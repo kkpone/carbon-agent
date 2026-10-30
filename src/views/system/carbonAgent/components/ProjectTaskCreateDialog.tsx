@@ -264,6 +264,8 @@ const ProjectTaskCreateDialog = ({
           ? I18N.template(I18N.carbonAgent.projectTaskCurrentMember, {
               val1: member.userName,
             })
+          : member.departmentNames?.length
+          ? `${member.userName} · ${member.departmentNames.join(' / ')}`
           : member.userName,
         value: String(member.memberId),
       })),

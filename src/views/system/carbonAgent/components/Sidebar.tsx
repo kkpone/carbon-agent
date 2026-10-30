@@ -681,8 +681,10 @@ const Sidebar = ({
   const productCarbonFootprintNavLabel =
     I18N.carbonAgent.productCarbonFootprintShort ||
     I18N.carbonAgent.productCarbonFootprint;
+  const workspaceProjectAllowed =
+    personal || Boolean(access && access.canEnter !== false);
   const projectFeatureEnabled =
-    personal && authenticated && projectConfig?.enabled === true;
+    workspaceProjectAllowed && authenticated && projectConfig?.enabled === true;
   const projectCreationEnabled =
     projectFeatureEnabled && projectConfig?.maxProjectsPerUser !== 0;
 
@@ -709,7 +711,7 @@ const Sidebar = ({
   }, [authenticated, inviteOpenRequestKey, onInviteOpenRequestHandled]);
 
   useEffect(() => {
-    if (!authenticated || !personal) {
+    if (!authenticated || !workspaceProjectAllowed) {
       setProjectConfig(undefined);
       return undefined;
     }
@@ -737,7 +739,13 @@ const Sidebar = ({
       cancelled = true;
       requestAbortController.abort();
     };
-  }, [authenticated, locale, projectListRefreshKey]);
+  }, [
+    access?.companyId,
+    authenticated,
+    locale,
+    projectListRefreshKey,
+    workspaceProjectAllowed,
+  ]);
 
   useEffect(() => {
     let cancelled = false;

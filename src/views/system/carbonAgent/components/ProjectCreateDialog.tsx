@@ -4,7 +4,7 @@ import projectPreferenceChevronIcon from '@src/assets/images/carbonAgent/icons/p
 import projectSelectChevronIcon from '@src/assets/images/carbonAgent/icons/project-select-chevron.svg';
 import projectTextareaResizerIcon from '@src/assets/images/carbonAgent/icons/project-textarea-resizer.svg';
 import I18N, { LocaleType, serviceLangMap } from '@src/lang/I18N';
-import { Select } from 'antd';
+import { Select, message as antdMessage } from 'antd';
 import classNames from 'classnames';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
@@ -13,14 +13,20 @@ import Icon from './Icon';
 import type { AgentProject } from '../constants';
 import style from '../index.module.less';
 import {
+  addLocalTeamProjectMembers,
   createAgentProject,
   fetchAgentProjectCalculationCandidates,
   fetchAgentProjectConfig,
   fetchAgentProjectDetail,
+  fetchAgentProjects,
   type AgentProjectCalculationCandidate,
   type AgentProjectConfig,
+  type AgentProjectMember,
   updateAgentProject,
 } from '../service';
+import { teamApi } from '../team/api';
+import type { MemberRow } from '../team/types';
+import { useWorkspace } from '../team/workspace';
 
 const PRODUCT_CARBON_BUSINESS_TYPE = 'product_carbon';
 const ENTERPRISE_CARBON_BUSINESS_TYPE = 'enterprise_carbon';
@@ -71,6 +77,8 @@ const ProjectCreateDialog = ({
   onUpdated,
   projectId,
 }: ProjectCreateDialogProps) => {
+  const { access: workspaceAccess, personal: personalWorkspace } =
+    useWorkspace();
   const editMode = Boolean(projectId);
   const [config, setConfig] = useState<AgentProjectConfig>();
   const [candidates, setCandidates] = useState<
@@ -99,6 +107,10 @@ const ProjectCreateDialog = ({
     Record<string, string>
   >({});
   const [accountIds, setAccountIds] = useState<number[]>([]);
+  const [teamProjects, setTeamProjects] = useState<AgentProject[]>([]);
+  const [templateProjectId, setTemplateProjectId] = useState<string>();
+  const [teamRoster, setTeamRoster] = useState<MemberRow[]>([]);
+  const [presetMemberUserIds, setPresetMemberUserIds] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const projectNameRef = useRef<HTMLInputElement>(null);
@@ -123,6 +135,8 @@ const ProjectCreateDialog = ({
     setCustomLifecycleStages([]);
     setFactorPreferences({});
     setAccountIds([]);
+    setTemplateProjectId(undefined);
+    setPresetMemberUserIds([]);
     setSubmitting(false);
     setSubmitError('');
 
@@ -219,11 +233,54 @@ const ProjectCreateDialog = ({
       });
     });
 
+    if (!personalWorkspace && !editMode) {
+      fetchAgentProjects(requestAbortController.signal)
+        .then(projects => {
+          if (!cancelled) {
+            setTeamProjects(
+              projects.filter(
+                item => item.businessType === PRODUCT_CARBON_BUSINESS_TYPE,
+              ),
+            );
+          }
+        })
+        .catch(() => {
+          if (!cancelled) {
+            setTeamProjects([]);
+          }
+        });
+
+      teamApi
+        .members({
+          memberState: 'ACTIVE',
+          pageNum: 1,
+          pageSize: 100,
+          seatState: 'ASSIGNED',
+        })
+        .then(page => {
+          if (!cancelled) {
+            setTeamRoster(
+              (page.rows || []).filter(
+                row =>
+                  Boolean(row.assignment) &&
+                  row.member.memberStatus === 0 &&
+                  row.member.userStatus !== 1,
+              ),
+            );
+          }
+        })
+        .catch(() => {
+          if (!cancelled) {
+            setTeamRoster([]);
+          }
+        });
+    }
+
     return () => {
       cancelled = true;
       requestAbortController.abort();
     };
-  }, [editMode, locale, open, projectId, retryKey]);
+  }, [editMode, locale, open, personalWorkspace, projectId, retryKey]);
 
   useEffect(() => {
     if (!open) {
@@ -302,6 +359,93 @@ const ProjectCreateDialog = ({
     label: getCandidateLabel(candidate),
     value: candidate.accountId,
   }));
+  const teamTemplateOptions = useMemo(
+    () =>
+      teamProjects.map(project => ({
+        label: project.name,
+        value: project.id,
+      })),
+    [teamProjects],
+  );
+  const teamMemberOptions = useMemo(
+    () =>
+      teamRoster.map(row => {
+        const deptLabel = (row.member.departments || [])
+          .map(dept => dept.name)
+          .filter(Boolean)
+          .join(' / ');
+        return {
+          label: deptLabel
+            ? `${row.member.employName} · ${deptLabel}`
+            : row.member.employName,
+          row,
+          value: String(row.member.userId),
+        };
+      }),
+    [teamRoster],
+  );
+
+  const handleApplyTeamTemplate = async (sourceProjectId?: string) => {
+    setTemplateProjectId(sourceProjectId);
+    if (!sourceProjectId) {
+      return;
+    }
+
+    try {
+      const detail = await fetchAgentProjectDetail(sourceProjectId);
+      if (detail.setting?.lifecycleScope) {
+        setLifecycleScope(detail.setting.lifecycleScope);
+      }
+      setCustomLifecycleStages(
+        (detail.setting?.scopeValue || '')
+          .split(',')
+          .map(stage => stage.trim())
+          .filter(Boolean),
+      );
+      setFactorPreferences({
+        ...(detail.setting?.factorPreferences || {}),
+      });
+      antdMessage.success(
+        I18N.template(I18N.carbonAgent.teamProjectImportConfigApplied, {
+          val1: detail.name,
+        }),
+      );
+    } catch {
+      // Ignore template load failure
+    }
+  };
+
+  const persistPresetTeamMembers = (createdProject?: AgentProject) => {
+    if (
+      personalWorkspace ||
+      !createdProject?.id ||
+      !presetMemberUserIds.length
+    ) {
+      return;
+    }
+    const selectedRows = teamMemberOptions
+      .filter(item => presetMemberUserIds.includes(item.value))
+      .map(item => item.row);
+    if (!selectedRows.length) {
+      return;
+    }
+    const membersToAdd: AgentProjectMember[] = selectedRows.map(row => ({
+      companyId: workspaceAccess?.companyId || '',
+      companyName: workspaceAccess?.companyName || '',
+      currentUser: false,
+      departmentNames: (row.member.departments || [])
+        .map(dept => dept.name)
+        .filter(Boolean),
+      joinTime: new Date().toISOString(),
+      memberId: row.member.membershipId || row.member.userId,
+      role: 'member',
+      roleName: I18N.carbonAgent.projectMemberRoleMember,
+      userId: row.member.userId,
+      userName: row.member.employName,
+    }));
+    addLocalTeamProjectMembers(createdProject.id, membersToAdd);
+  };
+
   const trimmedProjectName = projectName.trim();
   const customScopeInvalid =
     lifecycleScope === CUSTOM_LIFECYCLE_SCOPE &&
@@ -334,6 +478,7 @@ const ProjectCreateDialog = ({
       return;
     }
 
+    persistPresetTeamMembers(project);
     onCreated?.(project);
   };
 
@@ -390,6 +535,7 @@ const ProjectCreateDialog = ({
           scopeValue,
         });
 
+        persistPresetTeamMembers(project);
         onCreated?.(project);
       }
     } catch (error) {
@@ -700,6 +846,34 @@ const ProjectCreateDialog = ({
 
                 {preferenceExpanded ? (
                   <div className={style.projectPreferenceContent}>
+                    {!personalWorkspace &&
+                    !editMode &&
+                    teamTemplateOptions.length > 0 ? (
+                      <div className={style.projectCreateField}>
+                        <label htmlFor='carbon-agent-project-template'>
+                          {I18N.carbonAgent.teamProjectImportConfigLabel}
+                        </label>
+                        <Select<string>
+                          allowClear
+                          className={style.projectCreateSelect}
+                          id='carbon-agent-project-template'
+                          value={templateProjectId}
+                          options={teamTemplateOptions}
+                          placeholder={
+                            I18N.carbonAgent.teamProjectImportConfigPlaceholder
+                          }
+                          disabled={submitting}
+                          notFoundContent={I18N.carbonAgent.noData}
+                          suffixIcon={
+                            <Icon
+                              className={style.projectSelectChevron}
+                              src={projectSelectChevronIcon}
+                            />
+                          }
+                          onChange={handleApplyTeamTemplate}
+                        />
+                      </div>
+                    ) : null}
                     <div className={style.projectCreateField}>
                       <label htmlFor='carbon-agent-project-lifecycle'>
                         {I18N.carbonAgent.lifecycleScope}
@@ -857,21 +1031,40 @@ const ProjectCreateDialog = ({
                       </span>
                     ) : null}
                   </div>
-                  {/* <div className={style.projectCreateField}>
-                <span className={style.projectCreateFieldLabel}>
-                  {I18N.carbonAgent.projectMembers}
-                </span>
-                <div
-                  className={style.projectCreateReadonlySelect}
-                  aria-disabled='true'
-                >
-                  <span>{I18N.carbonAgent.pleaseSelect}</span>
-                  <Icon
-                    className={style.projectSelectChevron}
-                    src={projectSelectChevronIcon}
-                  />
-                </div>
-              </div> */}
+                  {!personalWorkspace && teamMemberOptions.length > 0 ? (
+                    <div className={style.projectCreateField}>
+                      <label htmlFor='carbon-agent-project-preset-members'>
+                        {I18N.carbonAgent.teamProjectPresetMembersLabel}
+                      </label>
+                      <Select<string[]>
+                        allowClear
+                        className={style.projectCreateSelect}
+                        disabled={submitting}
+                        id='carbon-agent-project-preset-members'
+                        maxTagCount='responsive'
+                        mode='multiple'
+                        notFoundContent={
+                          I18N.carbonAgent.teamProjectMemberNoAvailable
+                        }
+                        optionFilterProp='label'
+                        options={teamMemberOptions.map(item => ({
+                          label: item.label,
+                          value: item.value,
+                        }))}
+                        placeholder={
+                          I18N.carbonAgent.teamProjectPresetMembersPlaceholder
+                        }
+                        suffixIcon={
+                          <Icon
+                            className={style.projectSelectChevron}
+                            src={projectSelectChevronIcon}
+                          />
+                        }
+                        value={presetMemberUserIds}
+                        onChange={setPresetMemberUserIds}
+                      />
+                    </div>
+                  ) : null}
                 </div>
               ) : null}
 

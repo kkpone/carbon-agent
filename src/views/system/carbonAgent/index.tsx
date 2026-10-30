@@ -1,4 +1,5 @@
 import { mergeToolEvent, isTerminalTool } from './toolEvents';
+import { teamApi } from './team/api';
 import {
   WorkspaceProvider,
   WorkspaceNotice,
@@ -4233,8 +4234,11 @@ const getMobileVisualViewportHeightValue = (isAndroid = false) => {
 };
 
 const CarbonAgent = () => {
-  const { access: workspaceAccess, personal: personalWorkspace } =
-    useWorkspace();
+  const {
+    access: workspaceAccess,
+    personal: personalWorkspace,
+    switchSpace,
+  } = useWorkspace();
   const { factorId = '', shareId = '' } = useParams<{
     factorId?: string;
     shareId?: string;
@@ -6662,9 +6666,80 @@ const CarbonAgent = () => {
     acceptingProjectInviteCodeRef.current = projectInviteCode;
 
     acceptAgentProjectInvite(projectInviteCode, abortController.signal)
-      .then(project => {
+      .then(async project => {
         if (cancelled || abortController.signal.aborted) {
           return;
+        }
+
+        const ownerCompanyId =
+          project.ownerCompanyId === undefined ||
+          project.ownerCompanyId === null
+            ? ''
+            : String(project.ownerCompanyId).trim();
+        const currentCompanyId =
+          workspaceAccess?.companyId === undefined ||
+          workspaceAccess?.companyId === null
+            ? ''
+            : String(workspaceAccess.companyId).trim();
+
+        if (
+          ownerCompanyId &&
+          currentCompanyId &&
+          ownerCompanyId !== currentCompanyId
+        ) {
+          try {
+            const workspaces = await teamApi.workspaces(abortController.signal);
+            const targetWorkspace = workspaces.find(
+              item => String(item.companyId) === ownerCompanyId,
+            );
+
+            if (!targetWorkspace) {
+              antdMessage.warning(
+                I18N.carbonAgent.teamProjectExternalForbiddenForInvite,
+              );
+              replaceUrlSearch({
+                history,
+                location,
+                nextSearch: getSearchWithoutProjectInviteCode(location.search),
+              });
+              return;
+            }
+
+            if (!targetWorkspace.canEnter) {
+              antdMessage.warning(
+                I18N.template(
+                  I18N.carbonAgent.teamProjectSeatRequiredForInvite,
+                  {
+                    val1:
+                      targetWorkspace.companyName ||
+                      project.ownerCompanyName ||
+                      ownerCompanyId,
+                  },
+                ),
+              );
+              replaceUrlSearch({
+                history,
+                location,
+                nextSearch: getSearchWithoutProjectInviteCode(location.search),
+              });
+              return;
+            }
+
+            antdMessage.success(
+              I18N.template(I18N.carbonAgent.projectInviteAcceptSuccess, {
+                val1: project.name,
+              }),
+            );
+            await switchSpace(
+              ownerCompanyId,
+              `${location.pathname}?section=${encodeURIComponent(
+                getProjectSectionKey(project.id),
+              )}`,
+            );
+            return;
+          } catch {
+            // Fall through to current workspace navigation if workspace lookup fails
+          }
         }
 
         setAgentGuideOpen(false);
@@ -6702,7 +6777,15 @@ const CarbonAgent = () => {
       cancelled = true;
       abortController.abort();
     };
-  }, [authenticated, history, isShareMode, location, projectInviteCode]);
+  }, [
+    authenticated,
+    history,
+    isShareMode,
+    location,
+    projectInviteCode,
+    switchSpace,
+    workspaceAccess?.companyId,
+  ]);
 
   useEffect(() => {
     if (!isShareMode || !shareId) {
@@ -10382,7 +10465,6 @@ const CarbonAgent = () => {
       );
       return;
     }
-    if (!personalWorkspace && options.projectId) return;
     if (ccdbFactorDraft && !ccdbFactorDraft.detail) {
       antdMessage.info(I18N.ccdb.waitForFactor);
       setCcdbFactorTarget(ccdbFactorDraft);
@@ -10899,7 +10981,7 @@ const CarbonAgent = () => {
   };
 
   const handleShareConversation = () => {
-    if (!personalWorkspace) return;
+    if (!personalWorkspace && !activeConversationProjectId) return;
     if (!requireLogin() || projectConversationReadonly) {
       return;
     }
@@ -10945,6 +11027,12 @@ const CarbonAgent = () => {
   };
 
   const handleCreateProjectConversationBranch = async () => {
+    if (workspaceAccess && !workspaceAccess.canUseAi) {
+      antdMessage.warning(
+        reasonText(workspaceAccess.aiReasonCode || workspaceAccess.reasonCode),
+      );
+      return;
+    }
     if (
       !requireLogin() ||
       !projectConversationReadonly ||
@@ -11060,7 +11148,9 @@ const CarbonAgent = () => {
           sessionTitle: activeConversationTitle,
           shareDisabled: shareConversationDisabled,
           shareLoading: shareCreating,
-          onCreateBranch: projectConversationReadonly
+          onCreateBranch:
+            projectConversationReadonly &&
+            (!workspaceAccess || workspaceAccess.canUseAi)
             ? handleCreateProjectConversationBranch
             : undefined,
           onProjectOpen: () =>
@@ -11335,7 +11425,9 @@ const CarbonAgent = () => {
                 }
                 onRetryMessage={handleRetryMessage}
                 onShare={
-                  !conversationReadonly && personalWorkspace && isMobile
+                  !conversationReadonly &&
+                  (personalWorkspace || Boolean(activeConversationProjectId)) &&
+                  isMobile
                     ? handleShareConversation
                     : undefined
                 }
@@ -11347,7 +11439,9 @@ const CarbonAgent = () => {
               />
               {showPreviewClosedActions ? (
                 <div className={style.previewClosedActions}>
-                  {personalWorkspace && showDesktopClosedShareButton ? (
+                  {(personalWorkspace ||
+                    Boolean(activeConversationProjectId)) &&
+                  showDesktopClosedShareButton ? (
                     <Tooltip title={I18N.carbonAgent.share} placement='bottom'>
                       <button
                         className={classNames(
@@ -11515,7 +11609,8 @@ const CarbonAgent = () => {
                     onResizeBy={handlePreviewResizeBy}
                     onResizeStart={handlePreviewResizeStart}
                     onShare={
-                      personalWorkspace &&
+                      (personalWorkspace ||
+                        Boolean(activeConversationProjectId)) &&
                       !conversationReadonly &&
                       desktopPreviewVisible
                         ? handleShareConversation
@@ -11964,21 +12059,7 @@ const CarbonAgent = () => {
   );
 };
 
-const AgentWorkspaceContent = () => {
-  const { personal } = useWorkspace();
-  const location = useLocation();
-  const history = useHistory();
-  const restrictedProject =
-    !personal &&
-    (getProjectSessionProjectIdFromSearch(location.search) ||
-      getProjectInviteCodeFromSearch(location.search) ||
-      getSectionFromSearch(location.search)?.startsWith('project'));
-  useEffect(() => {
-    if (restrictedProject)
-      history.replace({ pathname: location.pathname, search: '' });
-  }, [restrictedProject, history, location.pathname]);
-  return restrictedProject ? null : <CarbonAgent />;
-};
+const AgentWorkspaceContent = () => <CarbonAgent />;
 const CarbonAgentEntry = () => {
   const { shareId } = useParams<{ shareId?: string }>();
   return shareId ? (

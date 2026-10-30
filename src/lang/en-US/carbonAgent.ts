@@ -2040,4 +2040,25 @@ export default {
   ssoFailedHint:
     'This sign-in link has expired. Return to Carbon Cloud and try again.',
   returnToCarbonCloud: 'Return to Carbon Cloud',
+  teamProjectAddMemberPlaceholder: 'Select team members with assigned seats',
+  teamProjectAddMemberAction: 'Add to project',
+  teamProjectMemberAdded: 'Added {val1} to the project',
+  teamProjectMemberAddBatchSuccess: 'Added {val1} team members to the project',
+  teamProjectMemberSeatAssigned: 'Seat assigned',
+  teamProjectMemberNoAvailable:
+    'No additional team members with assigned seats',
+  teamProjectInternalInviteLink: 'Copy internal team project link',
+  teamProjectInternalInviteHint:
+    'Accessible only to team members with assigned seats; external users cannot join',
+  teamProjectImportConfigLabel: 'Reuse preferences from a team project',
+  teamProjectImportConfigPlaceholder:
+    'Select an existing team project to sync lifecycle and factor preferences',
+  teamProjectImportConfigApplied: 'Synced preferences from project “{val1}”',
+  teamProjectPresetMembersLabel: 'Initial project team members',
+  teamProjectPresetMembersPlaceholder:
+    'Select team members for this project (members with assigned seats only)',
+  teamProjectSeatRequiredForInvite:
+    'This project belongs to team “{val1}”. Contact a team administrator to assign a seat before joining.',
+  teamProjectExternalForbiddenForInvite:
+    'This is an internal team project and is only open to team members with assigned seats.',
 };

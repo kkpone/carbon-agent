@@ -40,6 +40,8 @@ import {
   fetchAgentProjectMembers,
   uploadAgentProjectFile,
 } from '../service';
+import { reasonText } from '../team/errors';
+import { useWorkspace } from '../team/workspace';
 
 type ProjectFileSourceFilter = 'all' | 'feishu' | 'uploaded';
 
@@ -97,6 +99,8 @@ const ProjectFilesPage = ({
   projectId,
 }: ProjectFilesPageProps) => {
   const { locale } = useContext(LocaleContext);
+  const { access: workspaceAccess } = useWorkspace();
+  const canUseAi = !workspaceAccess || workspaceAccess.canUseAi !== false;
   const fallbackProjectName = I18N.template(I18N.carbonAgent.projectWithId, {
     val1: projectId,
   });
@@ -378,6 +382,12 @@ const ProjectFilesPage = ({
     if (!onUseFileAsContext) {
       return;
     }
+    if (!canUseAi && workspaceAccess) {
+      antdMessage.warning(
+        reasonText(workspaceAccess.aiReasonCode || workspaceAccess.reasonCode),
+      );
+      return;
+    }
 
     const candidate = allCandidates.find(
       item =>
@@ -657,7 +667,7 @@ const ProjectFilesPage = ({
                     <td>{formatFileDate(file.createTime, fileDateFormatter)}</td>
                     <td>
                       <div className={style.actionCell}>
-                        {onUseFileAsContext ? (
+                        {onUseFileAsContext && canUseAi ? (
                           <button
                             className={style.contextActionBtn}
                             type='button'

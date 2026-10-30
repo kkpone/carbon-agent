@@ -60,6 +60,7 @@ import {
   type AgentProjectMember,
   type AgentProjectSuggestion,
   type AgentProjectTask,
+  addLocalTeamProjectMembers,
   createAgentProjectInviteLink,
   fetchAgentProjectConfig,
   fetchAgentProjectDetail,
@@ -72,6 +73,10 @@ import {
   updateAgentProjectMemberRole,
   uploadAgentProjectFile,
 } from '../service';
+import { teamApi } from '../team/api';
+import { reasonText } from '../team/errors';
+import type { MemberRow } from '../team/types';
+import { useWorkspace } from '../team/workspace';
 import ProjectTaskDetailDrawer from './ProjectTaskDetailDrawer';
 
 const PROJECT_MEMBER_ROLE_THEME = {
@@ -263,6 +268,9 @@ const ProjectHome = ({
   refreshKey = 0,
 }: ProjectHomeProps) => {
   const { locale } = useContext(LocaleContext);
+  const { access: workspaceAccess, personal: personalWorkspace } =
+    useWorkspace();
+  const canUseAi = !workspaceAccess || workspaceAccess.canUseAi !== false;
   const fallbackProjectName = I18N.template(I18N.carbonAgent.projectWithId, {
     val1: projectId,
   });
@@ -282,6 +290,10 @@ const ProjectHome = ({
   const [removingMemberKey, setRemovingMemberKey] = useState<string>();
   const [updatingMemberRoleKey, setUpdatingMemberRoleKey] = useState<string>();
   const [inviteLinkCreating, setInviteLinkCreating] = useState(false);
+  const [teamRoster, setTeamRoster] = useState<MemberRow[]>([]);
+  const [teamRosterLoading, setTeamRosterLoading] = useState(false);
+  const [selectedTeamMemberUserId, setSelectedTeamMemberUserId] =
+    useState<string>();
   const [tasks, setTasks] = useState<ProjectHomeTask[]>([]);
   const [suggestions, setSuggestions] = useState<AgentProjectSuggestion[]>([]);
   const [suggestionSubmittingId, setSuggestionSubmittingId] = useState('');
@@ -316,6 +328,7 @@ const ProjectHome = ({
   const isEnterpriseCarbonProject = isEnterpriseCarbonAgentProject({
     businessType: projectBusinessType,
   });
+  const showMemberRoleSelect = isEnterpriseCarbonProject || !personalWorkspace;
   const canManageProject = isEnterpriseCarbonProject
     ? hasEnterpriseBusinessCapability(
         projectBusinessCapabilities,
@@ -545,6 +558,37 @@ const ProjectHome = ({
     setMembersLoading(true);
     setMembersError(false);
 
+    if (!personalWorkspace) {
+      setTeamRosterLoading(true);
+      teamApi
+        .members({
+          memberState: 'ACTIVE',
+          pageNum: 1,
+          pageSize: 100,
+          seatState: 'ASSIGNED',
+        })
+        .then(page => {
+          if (projectIdRef.current === memberProjectId) {
+            setTeamRoster(
+              (page.rows || []).filter(
+                row =>
+                  Boolean(row.assignment) &&
+                  row.member.memberStatus === 0 &&
+                  row.member.userStatus !== 1,
+              ),
+            );
+          }
+        })
+        .catch(() => {
+          // Optional roster enhancement for team workspace
+        })
+        .finally(() => {
+          if (projectIdRef.current === memberProjectId) {
+            setTeamRosterLoading(false);
+          }
+        });
+    }
+
     fetchAgentProjectMembers(memberProjectId)
       .then(projectMembers => {
         if (
@@ -671,7 +715,7 @@ const ProjectHome = ({
     nextRole: AgentEnterpriseProjectMemberRole,
   ) => {
     if (
-      !isEnterpriseCarbonProject ||
+      !showMemberRoleSelect ||
       !canManageMemberRole ||
       member.currentUser ||
       member.role === 'owner' ||
@@ -879,6 +923,12 @@ const ProjectHome = ({
     }
 
     const allCandidates = getProjectFeishuCandidates(projectId);
+    if (!canUseAi && workspaceAccess) {
+      antdMessage.warning(
+        reasonText(workspaceAccess.aiReasonCode || workspaceAccess.reasonCode),
+      );
+      return;
+    }
     const matchedCandidate = allCandidates.find(
       item =>
         String(item.file.assetId || item.file.fileId) ===
@@ -1024,6 +1074,13 @@ const ProjectHome = ({
   };
 
   const handleSuggestionSelect = async (suggestion: AgentProjectSuggestion) => {
+    if (!canUseAi && workspaceAccess) {
+      antdMessage.warning(
+        reasonText(workspaceAccess.aiReasonCode || workspaceAccess.reasonCode),
+      );
+      return;
+    }
+
     const suggestionId = String(suggestion.suggestionId);
 
     if (suggestionSubmittingIdRef.current) {
@@ -1055,11 +1112,100 @@ const ProjectHome = ({
       maxProjectMembers >= 0 &&
       projectMemberCount >= maxProjectMembers,
   );
+  const teamDepartmentByUserId = useMemo(() => {
+    const map = new Map<string, string[]>();
+    teamRoster.forEach(row => {
+      const depts = (row.member.departments || [])
+        .map(dept => dept.name)
+        .filter(Boolean);
+      if (depts.length) {
+        map.set(String(row.member.userId), depts);
+      }
+    });
+    return map;
+  }, [teamRoster]);
+  const availableTeamMemberOptions = useMemo(() => {
+    if (personalWorkspace) {
+      return [];
+    }
+    const existingIds = new Set(
+      members.flatMap(member => [
+        String(member.userId),
+        String(member.memberId),
+      ]),
+    );
+    return teamRoster
+      .filter(
+        row =>
+          !existingIds.has(String(row.member.userId)) &&
+          !existingIds.has(String(row.member.membershipId)),
+      )
+      .map(row => {
+        const deptLabel = (row.member.departments || [])
+          .map(dept => dept.name)
+          .filter(Boolean)
+          .join(' / ');
+        return {
+          label: deptLabel
+            ? `${row.member.employName} · ${deptLabel}`
+            : row.member.employName,
+          row,
+          value: String(row.member.userId),
+        };
+      });
+  }, [members, personalWorkspace, teamRoster]);
+
+  const handleAddTeamMemberToProject = (userId: string) => {
+    if (!canInviteMember || inviteLimitReached) {
+      return;
+    }
+    const target = availableTeamMemberOptions.find(
+      item => item.value === userId,
+    )?.row;
+    if (!target) {
+      return;
+    }
+    const departments = (target.member.departments || [])
+      .map(dept => dept.name)
+      .filter(Boolean);
+    const newProjectMember: AgentProjectMember = {
+      companyId: workspaceAccess?.companyId || '',
+      companyName: workspaceAccess?.companyName || '',
+      currentUser: false,
+      departmentNames: departments,
+      joinTime: new Date().toISOString(),
+      memberId: target.member.membershipId || target.member.userId,
+      role: 'member',
+      roleName: I18N.carbonAgent.projectMemberRoleMember,
+      userId: target.member.userId,
+      userName: target.member.employName,
+    };
+    addLocalTeamProjectMembers(projectId, [newProjectMember]);
+    setMembers(currentMembers => {
+      const exists = currentMembers.some(
+        item =>
+          String(item.userId) === String(newProjectMember.userId) ||
+          String(item.memberId) === String(newProjectMember.memberId),
+      );
+      const next = exists
+        ? currentMembers
+        : [...currentMembers, newProjectMember];
+      setProjectMemberCount(next.length);
+      return next;
+    });
+    setSelectedTeamMemberUserId(undefined);
+    antdMessage.success(
+      I18N.template(I18N.carbonAgent.teamProjectMemberAdded, {
+        val1: target.member.employName,
+      }),
+    );
+  };
+
   const memberPopoverContent = (
     <div
       ref={projectMemberPanelRef}
       className={classNames(style.projectMemberPanel, {
-        [style.projectMemberPanelEnterprise]: isEnterpriseCarbonProject,
+        [style.projectMemberPanelEnterprise]: showMemberRoleSelect,
       })}
       role='dialog'
       aria-label={I18N.carbonAgent.projectTeamMembers}
@@ -1085,6 +1231,32 @@ const ProjectHome = ({
         </button>
       </div>
 
+      {!personalWorkspace && canInviteMember && teamRoster.length > 0 ? (
+        <div className={style.projectMemberTeamPicker}>
+          <ConfigProvider theme={PROJECT_MEMBER_ROLE_THEME}>
+            <Select<string>
+              showSearch
+              allowClear
+              className={style.projectMemberTeamSelect}
+              disabled={inviteLimitReached}
+              loading={teamRosterLoading}
+              optionFilterProp='label'
+              options={availableTeamMemberOptions.map(item => ({
+                label: item.label,
+                value: item.value,
+              }))}
+              notFoundContent={I18N.carbonAgent.teamProjectMemberNoAvailable}
+              placeholder={I18N.carbonAgent.teamProjectAddMemberPlaceholder}
+              getPopupContainer={() =>
+                projectMemberPanelRef.current || document.body
+              }
+              value={selectedTeamMemberUserId}
+              onChange={handleAddTeamMemberToProject}
+            />
+          </ConfigProvider>
+        </div>
+      ) : null}
+
       <div
         className={style.projectMemberPanelBody}
         aria-busy={membersLoading}
@@ -1108,7 +1280,7 @@ const ProjectHome = ({
               const memberRemoving = removingMemberKey === memberKey;
               const memberRoleUpdating = updatingMemberRoleKey === memberKey;
               const canUpdateRole =
-                isEnterpriseCarbonProject &&
+                showMemberRoleSelect &&
                 canManageMemberRole &&
                 !member.currentUser &&
                 member.role !== 'owner';
@@ -1116,6 +1288,14 @@ const ProjectHome = ({
                 canManageMemberRole &&
                 !member.currentUser &&
                 member.role !== 'owner';
+              const memberDepartments =
+                member.departmentNames?.length
+                  ? member.departmentNames
+                  : teamDepartmentByUserId.get(String(member.userId));
+              const deptSuffix =
+                !personalWorkspace && memberDepartments?.length
+                  ? ` · ${memberDepartments.join(' / ')}`
+                  : '';
 
               return (
                 <li key={memberKey}>
@@ -1127,9 +1307,12 @@ const ProjectHome = ({
                       width={24}
                       height={24}
                     />
-                    <span>{member.userName}</span>
+                    <span title={`${member.userName}${deptSuffix}`}>
+                      {member.userName}
+                      {deptSuffix}
+                    </span>
                   </div>
-                  {isEnterpriseCarbonProject ? (
+                  {showMemberRoleSelect ? (
                     <ConfigProvider theme={PROJECT_MEMBER_ROLE_THEME}>
                       <Select<AgentEnterpriseProjectMemberRole>
                         aria-label={I18N.template(
@@ -1213,6 +1396,8 @@ const ProjectHome = ({
             title={
               inviteLimitReached
                 ? I18N.carbonAgent.projectMemberLimitReached
+                : !personalWorkspace
+                ? I18N.carbonAgent.teamProjectInternalInviteHint
                 : undefined
             }
             onClick={handleCopyProjectInviteLink}
@@ -1227,6 +1412,8 @@ const ProjectHome = ({
             <span>
               {inviteLinkCreating
                 ? I18N.carbonAgent.projectInviteLinkCreating
+                : !personalWorkspace
+                ? I18N.carbonAgent.teamProjectInternalInviteLink
                 : I18N.carbonAgent.copyProjectInviteLink}
             </span>
           </button>
@@ -1380,7 +1567,7 @@ const ProjectHome = ({
                       key={suggestionId}
                       type='button'
                       aria-busy={suggestionSubmittingId === suggestionId}
-                      disabled={Boolean(suggestionSubmittingId)}
+                      disabled={Boolean(suggestionSubmittingId) || !canUseAi}
                       title={displayTitle}
                       onClick={() => handleSuggestionSelect(suggestion)}
                     >
@@ -1628,7 +1815,7 @@ const ProjectHome = ({
                             </span>
                           </div>
                           <div className={style.projectHomeFileItemActions}>
-                            {onProjectFileContextSelect ? (
+                            {onProjectFileContextSelect && canUseAi ? (
                               <button
                                 className={style.projectHomeFileContextBtn}
                                 type='button'

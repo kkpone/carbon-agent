@@ -30,6 +30,8 @@ import {
   updateAgentProjectTask,
   uploadAgentProjectFile,
 } from '../service';
+import { reasonText } from '../team/errors';
+import { useWorkspace } from '../team/workspace';
 
 type ProjectTaskDetailDrawerProps = {
   onCancel: () => void;
@@ -113,6 +115,8 @@ const ProjectTaskDetailDrawer = ({
   projectId,
   taskId,
 }: ProjectTaskDetailDrawerProps) => {
+  const { access: workspaceAccess } = useWorkspace();
+  const canUseAi = !workspaceAccess || workspaceAccess.canUseAi !== false;
   const [detail, setDetail] = useState<AgentProjectTaskDetail>();
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState('');
@@ -312,6 +316,8 @@ const ProjectTaskDetailDrawer = ({
         ? I18N.template(I18N.carbonAgent.projectTaskCurrentMember, {
             val1: member.userName,
           })
+        : member.departmentNames?.length
+        ? `${member.userName} · ${member.departmentNames.join(' / ')}`
         : member.userName,
       value: String(member.memberId),
     }));
@@ -1101,8 +1107,19 @@ const ProjectTaskDetailDrawer = ({
             <button
               className={style.projectTaskDrawerCancel}
               type='button'
-              disabled={submitting || uploading}
-              onClick={() => onConversationStart(String(task.taskId))}
+              disabled={submitting || uploading || !canUseAi}
+              onClick={() => {
+                if (!canUseAi && workspaceAccess) {
+                  antdMessage.warning(
+                    reasonText(
+                      workspaceAccess.aiReasonCode ||
+                        workspaceAccess.reasonCode,
+                    ),
+                  );
+                  return;
+                }
+                onConversationStart(String(task.taskId));
+              }}
             >
               {I18N.carbonAgent.projectTaskStartConversation}
             </button>

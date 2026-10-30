@@ -1879,4 +1879,24 @@ export default {
   ssoFailedTitle: '自動登入未完成',
   ssoFailedHint: '登入連結已失效，請返回碳雲工作台重新進入。',
   returnToCarbonCloud: '返回碳雲工作台',
+  teamProjectAddMemberPlaceholder: '從團隊選擇有席位成員加入專案',
+  teamProjectAddMemberAction: '新增至專案',
+  teamProjectMemberAdded: '已將 {val1} 新增至專案',
+  teamProjectMemberAddBatchSuccess: '已將 {val1} 位團隊成員新增至專案',
+  teamProjectMemberSeatAssigned: '已分配席位',
+  teamProjectMemberNoAvailable: '暫無可新增的已分配席位團隊成員',
+  teamProjectInternalInviteLink: '複製團隊內部專案連結',
+  teamProjectInternalInviteHint:
+    '僅限本團隊已分配席位成員存取，外部人員不可加入',
+  teamProjectImportConfigLabel: '複用團隊已有專案偏好',
+  teamProjectImportConfigPlaceholder:
+    '選擇本團隊專案，一鍵同步生命週期與因子源偏好',
+  teamProjectImportConfigApplied: '已同步專案「{val1}」的核算偏好設定',
+  teamProjectPresetMembersLabel: '預設專案團隊成員',
+  teamProjectPresetMembersPlaceholder:
+    '選擇參與該專案的團隊成員（僅展示已分配席位成員）',
+  teamProjectSeatRequiredForInvite:
+    '該專案屬於團隊「{val1}」，您尚未分配團隊席位，請聯絡團隊管理員分配席位後再存取',
+  teamProjectExternalForbiddenForInvite:
+    '該專案為團隊內部專案，僅限本團隊已分配席位成員加入',
 };
