@@ -89,6 +89,59 @@
     }
   }
 
+  .teamProjectBar {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #f0faf8;
+    border: 1px solid #bce8df;
+
+    .teamProjectBarTop {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: space-between;
+    }
+
+    .teamProjectLabel {
+      font-size: 12px;
+      font-weight: 500;
+      color: #04252b;
+      white-space: nowrap;
+    }
+
+    .teamProjectSelect {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .teamProjectJumpBtn {
+      border: 1px solid #026961;
+      background: #026961;
+      color: #fff;
+      font-size: 12px;
+      line-height: 20px;
+      padding: 2px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+
+    .teamProjectBadge {
+      font-size: 11px;
+      line-height: 16px;
+      color: #026961;
+    }
+  }
+
   .content {
     flex-grow: 1;
     overflow-y: auto;

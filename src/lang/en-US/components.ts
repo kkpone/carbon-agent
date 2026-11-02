@@ -681,4 +681,12 @@ export default {
   accou2: '{val1}- Detailed Data. xlsx',
   drawe: 'Drawer.open/parameter input',
   carbonCloud: 'Carbon Cloud',
+  saasAgentTeamWorkspaceEntry: 'Agent Team Workspace',
+  saasAgentBoundProjectLabel: 'Linked Team Project:',
+  saasAgentOrgProjectOption: '2026 Org Carbon Inventory Collaboration',
+  saasAgentPcfProjectOption: 'Core Product Carbon Footprint Project',
+  saasAgentOpenWorkspaceBtn: 'Open Project Workspace',
+  saasAgentSyncTaskTip: 'Bi-directionally synced with Agent Team Project Tasks',
+  saasAgentTaskCenterEntry: 'Agent Project Tasks',
+  saasAgentSharedMemoryBadge: 'Team Seat · Shared Project Files & Memory',
 };

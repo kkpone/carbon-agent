@@ -21,7 +21,10 @@ import { FC, useEffect, useRef, useState } from 'react';
 
 import FileUploadDrawer from '@/components/FileUploadDrawer';
 import { IconAlibabaNew } from '@/components/iconfont';
+import { RootState } from '@/store';
 import { Toast } from '@/utils/Toast';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import AiImport from './AiImport';
 import ImportTask from './ImportTask';
@@ -48,6 +51,13 @@ const TaskList: FC<{ className?: string; ticket?: string }> = ({
   className,
   ticket,
 }) => {
+  const history = useHistory();
+  const companyId = useSelector(
+    (state: RootState) =>
+      state.companyUserInfo?.userInfo?.companyId ||
+      state.companyUserInfo?.companyId ||
+      '1000001880532150',
+  );
   const [taskOption, setTaskOption] = useState<TaskOption>({
     orgList: [],
     ghgCategoryList: [],
@@ -243,7 +253,25 @@ const TaskList: FC<{ className?: string; ticket?: string }> = ({
       >
         <ImportTask ticket={ticket} />
       </Modal>
-      <div className={styles.title}>{I18N.carbonFootprint3.fillingInData}</div>
+      <div className={styles.titleRow}>
+        <div className={styles.title}>{I18N.carbonFootprint3.fillingInData}</div>
+        <div className={styles.agentSyncBar}>
+          <span className={styles.agentSyncText}>
+            ✦ {I18N.components.saasAgentSyncTaskTip}
+          </span>
+          <Button
+            size='small'
+            type='primary'
+            onClick={() =>
+              history.push(
+                `/system/carbonAgent/project/team_proj_org_${companyId}/tasks`,
+              )
+            }
+          >
+            {I18N.components.saasAgentTaskCenterEntry}
+          </Button>
+        </div>
+      </div>
       <div className={styles.filterBar}>
         <div className={styles.filterLeft}>
           <Radio.Group

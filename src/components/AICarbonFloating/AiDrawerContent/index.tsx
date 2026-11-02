@@ -9,10 +9,12 @@ import aiStarSvg from '@src/assets/svg/aiStar.svg';
 import circleCloseSvg from '@src/assets/svg/circle_close.svg';
 import I18N from '@src/lang/I18N';
 import { useLatest, useMount } from 'ahooks';
-import { Drawer, Dropdown, MenuProps, Tooltip, UploadFile } from 'antd';
+import { Drawer, Dropdown, MenuProps, Select, Tooltip, UploadFile } from 'antd';
 import classNames from 'classnames';
 import { isNil, omit } from 'lodash-es';
 import { FC, memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { streamFetch } from '@/api/streamFetch';
 // import { AppendixFile } from '@/components/Appendix/File';
@@ -21,6 +23,7 @@ import { AppendixItem } from '@/components/Appendix/ShowList';
 // import { AppendixText } from '@/components/Appendix/Text';
 import FileUploadModal, { fileIconMap } from '@/components/FileUploadModal';
 import { IconAlibaba, IconAlibabaNew } from '@/components/iconfont';
+import { RootState } from '@/store';
 import { uuid } from '@/utils';
 
 import styles from './index.module.less';
@@ -98,6 +101,17 @@ type MessageType = {
 export const AiDrawerContent: FC<IAiDrawerContentProps> = memo(props => {
   const { selectText, setSelectNone, ReferencesText, setReferencesText } =
     props;
+
+  const history = useHistory();
+  const companyId = useSelector(
+    (state: RootState) =>
+      state.companyUserInfo?.userInfo?.companyId ||
+      state.companyUserInfo?.companyId ||
+      '1000001880532150',
+  );
+  const [selectedTeamProjectId, setSelectedTeamProjectId] = useState(
+    () => `team_proj_org_${companyId}`,
+  );
 
   const {
     extra,
@@ -849,6 +863,42 @@ export const AiDrawerContent: FC<IAiDrawerContentProps> = memo(props => {
           >
             <CloseOutlined />
           </div>
+        </div>
+      </div>
+      <div className={styles.teamProjectBar}>
+        <div className={styles.teamProjectBarTop}>
+          <span className={styles.teamProjectLabel}>
+            {I18N.components.saasAgentBoundProjectLabel}
+          </span>
+          <Select
+            size='small'
+            className={styles.teamProjectSelect}
+            value={selectedTeamProjectId}
+            onChange={value => setSelectedTeamProjectId(value)}
+            options={[
+              {
+                value: `team_proj_org_${companyId}`,
+                label: I18N.components.saasAgentOrgProjectOption,
+              },
+              {
+                value: `team_proj_pcf_${companyId}`,
+                label: I18N.components.saasAgentPcfProjectOption,
+              },
+            ]}
+          />
+          <button
+            type='button'
+            className={styles.teamProjectJumpBtn}
+            onClick={() => {
+              setExpanded(false);
+              history.push(`/system/carbonAgent/project/${selectedTeamProjectId}`);
+            }}
+          >
+            {I18N.components.saasAgentOpenWorkspaceBtn}
+          </button>
+        </div>
+        <div className={styles.teamProjectBadge}>
+          {I18N.components.saasAgentSharedMemoryBadge}
         </div>
       </div>
       <div className={styles.content}>

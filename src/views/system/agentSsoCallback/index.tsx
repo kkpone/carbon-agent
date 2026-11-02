@@ -99,15 +99,15 @@ const AgentSsoCallback = () => {
 
         store.dispatch<CompanyUserInfoAction>({
           payload: result.data,
-          type: teamManagement
+          type: targetCompanyId
             ? 'agent/replaceWorkspaceLogin'
             : SET_COMPANY_USER_INFO,
         });
-        if (teamManagement) {
+        if (targetCompanyId) {
           const switched = await switchoverCompany({
             companyId: targetCompanyId,
             userId: result.data.userInfo.userId,
-            purpose: 'TEAM_MANAGEMENT',
+            ...(teamManagement ? { purpose: 'TEAM_MANAGEMENT' } : {}),
           });
           if (switched.data.code !== 200 || !switched.data.data?.access_token) {
             throw new Error('AGENT_SSO_SWITCH_FAILED');

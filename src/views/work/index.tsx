@@ -321,15 +321,23 @@ export const Workbench: FC<IWorkbenchProps> = () => {
     <div>
       <div className={styles.header}>
         <span>{I18N.workbench.workbench}</span>
-        {companyName && (
-          <div className={styles.organizationName} title={companyName}>
-            <IconFont
-              className={styles.organizationIcon}
-              type='icon-icon-zuzhijiagou'
-            />
-            <span className={styles.organizationText}>{companyName}</span>
-          </div>
-        )}
+        <div className={styles.headerRightGroup}>
+          <Link
+            to={RouteMaps.carbonAgent}
+            className={styles.agentWorkspaceBtn}
+          >
+            <span>✦ {I18N.components.saasAgentTeamWorkspaceEntry}</span>
+          </Link>
+          {companyName && (
+            <div className={styles.organizationName} title={companyName}>
+              <IconFont
+                className={styles.organizationIcon}
+                type='icon-icon-zuzhijiagou'
+              />
+              <span className={styles.organizationText}>{companyName}</span>
+            </div>
+          )}
+        </div>
       </div>
       <div className={styles.main}>
         {IdentityInfo?.userDemo === 0 && (

@@ -621,4 +621,12 @@ export default {
   accou2: '{val1}-明细数据.xlsx',
   drawe: 'drawer.open / 入参',
   carbonCloud: '碳雲',
+  saasAgentTeamWorkspaceEntry: 'Agent 团队协作空间',
+  saasAgentBoundProjectLabel: '关联团队项目：',
+  saasAgentOrgProjectOption: '2026年度组织碳盘查协同',
+  saasAgentPcfProjectOption: '核心产品碳足迹核算项目',
+  saasAgentOpenWorkspaceBtn: '进入项目工作台',
+  saasAgentSyncTaskTip: '与 Agent 团队项目任务中心实时双向同步',
+  saasAgentTaskCenterEntry: 'Agent 项目任务中心',
+  saasAgentSharedMemoryBadge: '团队席位 · 共享项目资料与记忆库',
 };

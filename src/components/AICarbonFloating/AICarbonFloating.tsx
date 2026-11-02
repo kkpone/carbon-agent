@@ -167,7 +167,19 @@ const AICarbonFloating: React.FC = () => {
           justifyContent: 'flex-end',
         }}
       >
-        <div className={styles.floatingHeader} onMouseDown={handleMouseDown}>
+        <div
+          className={styles.floatingHeader}
+          onMouseDown={handleMouseDown}
+          onClick={() => {
+            setFromId(undefined);
+            setExtraFunc(undefined);
+            setInputMenuItems(undefined);
+            setChatSource(EChatSource.NORMAL);
+            setTopicId(undefined);
+            setExpanded(true);
+            setAccountId(undefined);
+          }}
+        >
           <img
             src={defaultIcon}
             alt='default'

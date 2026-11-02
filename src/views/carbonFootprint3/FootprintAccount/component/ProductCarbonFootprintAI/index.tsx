@@ -925,6 +925,15 @@ export default function ProductCarbonFootprintAI() {
                     triggerClassName={style.pillTriggerFactor}
                   />
                 ) : null}
+                <button
+                  type='button'
+                  className={style.dropdownContent}
+                  onClick={() => {
+                    window.location.href = '/system/carbonAgent';
+                  }}
+                >
+                  <span>✦ {I18N.components.saasAgentBoundProjectLabel}{I18N.components.saasAgentPcfProjectOption}</span>
+                </button>
               </div>
               <div className={style.actionRowRight}>
                 <Tooltip

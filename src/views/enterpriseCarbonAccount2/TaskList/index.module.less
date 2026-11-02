@@ -11,7 +11,32 @@
 
 .title {
   .title-s-b();
+  margin-bottom: 0;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 12px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.agentSyncBar {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #f0faf8;
+  border: 1px solid #bce8df;
+}
+
+.agentSyncText {
+  font-size: 13px;
+  color: #026961;
+  font-weight: 500;
 }
 
 .filterBar {

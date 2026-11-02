@@ -580,4 +580,12 @@ export default {
   thisSubscriptionWill: '本次訂閱將提供共',
   numberOfAdditionalProducts: '額外產品數量',
   additionalAccountingMaster: '額外核算主體數量',
+  saasAgentTeamWorkspaceEntry: 'Agent 團隊協作空間',
+  saasAgentBoundProjectLabel: '關聯團隊項目：',
+  saasAgentOrgProjectOption: '2026年度組織碳盤查協同',
+  saasAgentPcfProjectOption: '核心產品碳足跡核算項目',
+  saasAgentOpenWorkspaceBtn: '進入項目工作台',
+  saasAgentSyncTaskTip: '與 Agent 團隊項目任務中心實時雙向同步',
+  saasAgentTaskCenterEntry: 'Agent 項目任務中心',
+  saasAgentSharedMemoryBadge: '團隊席位 · 共享項目資料與記憶庫',
 };
