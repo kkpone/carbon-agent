@@ -499,7 +499,8 @@ const UpgradePlanDialog = ({
       ? displayPlans.filter(plan => plan.tone === 'team')
       : personalPlans;
   const [selectedTab, setActiveTab] = useState<UpgradeDialogTab>(initialTab);
-  const activeTab = personalWorkspace ? selectedTab : 'settings';
+  const activeTab =
+    personalWorkspace || selectedTab === 'points' ? selectedTab : 'settings';
   const [selectedPlanKey, setSelectedPlanKey] = useState('');
   const [agreementChecked, setAgreementChecked] = useState(false);
   const [creatingPlanKey, setCreatingPlanKey] = useState('');
@@ -1262,6 +1263,26 @@ const UpgradePlanDialog = ({
               </>
             )}
             <div className={style.upgradeNavGroup}>
+              {!personalWorkspace && (
+                <button
+                  className={classNames(style.upgradeNavItem, {
+                    [style.upgradeNavItemActive]: pointsActive,
+                  })}
+                  type='button'
+                  onClick={() => setActiveTab('points')}
+                >
+                  <span className={style.upgradeNavIcon}>
+                    <Icon
+                      className={classNames(
+                        style.upgradeNavImageIcon,
+                        style.navPointsImageIcon,
+                      )}
+                      src={icons.navPointsIcon}
+                    />
+                  </span>
+                  <span>{I18N.carbonAgent.profilePoints}</span>
+                </button>
+              )}
               <div className={style.upgradeNavTitle}>
                 {I18N.carbonAgent.settings}
               </div>

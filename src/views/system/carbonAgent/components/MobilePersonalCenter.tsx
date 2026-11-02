@@ -177,8 +177,7 @@ const MobilePersonalCenter = ({
           </span>
         </section>
 
-        {personalWorkspace &&
-        pointsWarningMessage &&
+        {pointsWarningMessage &&
         pointsWarningActionLabel ? (
           <aside className={style.mobilePointsWarning} role='status'>
             <ExclamationCircleFilled aria-hidden='true' />
@@ -283,6 +282,24 @@ const MobilePersonalCenter = ({
                 </span>
                 <span>{I18N.carbonAgent.issueFeedbackCenter}</span>
               </button>
+              {!personalWorkspace && (
+                <button
+                  className={style.mobilePersonalAction}
+                  type='button'
+                  onClick={onPointsRecords}
+                >
+                  <span className={style.mobilePersonalActionIcon}>
+                    <Icon
+                      className={classNames(
+                        style.mobilePersonalActionImageIcon,
+                        style.navPointsImageIcon,
+                      )}
+                      src={icons.navPointsIcon}
+                    />
+                  </span>
+                  <span>{I18N.carbonAgent.profilePoints}</span>
+                </button>
+              )}
               {personalWorkspace && (
                 <>
                   <button

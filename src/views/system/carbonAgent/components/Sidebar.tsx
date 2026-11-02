@@ -966,7 +966,7 @@ const Sidebar = ({
     let requestInFlight = false;
     let pollTimer = 0;
 
-    if (!authenticated || !personal) {
+    if (!authenticated) {
       setUserPoints(null);
 
       return () => {
@@ -1009,7 +1009,7 @@ const Sidebar = ({
         window.clearInterval(pollTimer);
       }
     };
-  }, [authenticated]);
+  }, [authenticated, access?.companyId, personal]);
 
   useEffect(() => {
     if (!authenticated || !mobileProfileEnabled) {
@@ -1244,7 +1244,7 @@ const Sidebar = ({
     : I18N.carbonAgent.availableAfterLogin;
   const planTone = getPlanTone(userPoints?.planCode, planName);
   const availablePoints =
-    personal && authenticated && typeof userPoints?.availablePoints === 'number'
+    authenticated && typeof userPoints?.availablePoints === 'number'
       ? String(userPoints.availablePoints)
       : '--';
   const pointsWarning = (() => {
@@ -1328,7 +1328,6 @@ const Sidebar = ({
         ![
           'orders',
           'invoices',
-          'points',
           'invite',
           'apiKeys',
           'authorizations',
@@ -1681,7 +1680,12 @@ const Sidebar = ({
 
   const handleUpgradeClick = () => {
     if (!personal) {
-      settingsHistory.push(`${TEAM_PATH}/overview`);
+      if (access?.canManage) {
+        settingsHistory.push(`${TEAM_PATH}/points`);
+      } else {
+        setUpgradeDialogInitialTab('points');
+        setUpgradeDialogOpen(true);
+      }
       return;
     }
     if (!onRequireLogin()) {
@@ -1698,6 +1702,15 @@ const Sidebar = ({
 
   const handlePointsWarningAction = () => {
     if (!pointsWarning || !onRequireLogin()) {
+      return;
+    }
+    if (!personal) {
+      if (access?.canManage) {
+        settingsHistory.push(`${TEAM_PATH}/points`);
+      } else {
+        setUpgradeDialogInitialTab('points');
+        setUpgradeDialogOpen(true);
+      }
       return;
     }
 
@@ -2285,7 +2298,7 @@ const Sidebar = ({
       </div>
 
       <footer className={style.profileShell}>
-        {!collapsed && authenticated && personal ? (
+        {!collapsed && authenticated ? (
           <div className={style.pointsArea}>
             {pointsWarning && pointsWarningVisible ? (
               <div
