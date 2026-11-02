@@ -2344,13 +2344,15 @@ const Sidebar = ({
                 <span className={style.pointsIcon} aria-hidden='true' />
                 <span className={style.pointsValue}>{availablePoints}</span>
               </div>
-              <button
-                className={style.upgradeButton}
-                type='button'
-                onClick={handleUpgradeClick}
-              >
-                {I18N.carbonAgent.upgrade}
-              </button>
+              {personal ? (
+                <button
+                  className={style.upgradeButton}
+                  type='button'
+                  onClick={handleUpgradeClick}
+                >
+                  {I18N.carbonAgent.upgrade}
+                </button>
+              ) : null}
             </div>
           </div>
         ) : null}
