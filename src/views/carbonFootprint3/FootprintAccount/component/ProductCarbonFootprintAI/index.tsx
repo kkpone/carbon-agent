@@ -7,6 +7,7 @@ import { RouteMapsCorbonFootprint3 } from '@src/router/route-paths/corbonFootpri
 import { Cascader, message, Tooltip } from 'antd';
 import type { ChangeEvent } from 'react';
 import { useContext, useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { LocaleContext } from '@/components/LocaleProvider';
 import { IconAlibabaNew } from '@/components/iconfont';
@@ -125,6 +126,7 @@ function buildAccountDetailUrl(
 }
 
 export default function ProductCarbonFootprintAI() {
+  const history = useHistory();
   const { locale } = useContext(LocaleContext);
   const lang = serviceLangMap[locale] ?? 'zh';
   const [loading, setLoading] = useState(false);
@@ -929,7 +931,7 @@ export default function ProductCarbonFootprintAI() {
                   type='button'
                   className={style.dropdownContent}
                   onClick={() => {
-                    window.location.href = '/system/carbonAgent';
+                    history.push('/system/carbonAgent');
                   }}
                 >
                   <span>✦ {I18N.components.saasAgentBoundProjectLabel}{I18N.components.saasAgentPcfProjectOption}</span>

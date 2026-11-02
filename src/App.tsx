@@ -39,7 +39,6 @@ const AGENT_HOSTS = [
   'agenttest.carbonstop.com',
   'agent.carbonstop.com',
   'agent-pre.carbonstop.com',
-  'kkpone.github.io',
 ];
 const AGENT_SHARE_ALLOWED_HOSTS = [
   'agenttest.carbonstop.com',
