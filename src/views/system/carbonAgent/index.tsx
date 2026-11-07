@@ -4301,8 +4301,9 @@ const CarbonAgent = () => {
     DEFAULT_ACCOUNT_BIND_STATUS,
   );
   const [homeSkills, setHomeSkills] = useState<AgentHomeSkill[]>([]);
-  const [activeSection, setActiveSection] =
-    useState<AgentSectionKey>('newChat');
+  const [activeSection, setActiveSection] = useState<AgentSectionKey>(() =>
+    getAgentSectionFromSearch(location.search),
+  );
   const activeProjectId = activeSection.startsWith('project:')
     ? activeSection.slice('project:'.length)
     : '';
@@ -7000,6 +7001,9 @@ const CarbonAgent = () => {
 
     if (!authenticated) {
       historyAbortControllerRef.current?.abort();
+      if (!sessionIdFromParams && !isFactorLandingMode) {
+        resetHomeState(getAgentSectionFromSearch(location.search));
+      }
       return;
     }
 
