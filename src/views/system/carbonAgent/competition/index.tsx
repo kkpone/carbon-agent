@@ -1,4 +1,4 @@
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, QrcodeOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -51,9 +51,7 @@ const CompetitionPage = ({
     useState<CompetitionStagePhase>('PROD_CARBON');
   const [roleView, setRoleView] = useState<ParticipantRoleView>('ENT_LEADER');
 
-  const [companyName, setCompanyName] = useState(
-    '绿源智造新能源科技有限公司',
-  );
+  const [companyName, setCompanyName] = useState('绿源智造新能源科技有限公司');
   const [taxNo, setTaxNo] = useState('91310000MA1FL8892X');
   const [licenseUploaded, setLicenseUploaded] = useState(
     'business_license_verified.pdf',
@@ -93,7 +91,7 @@ const CompetitionPage = ({
     nextSearch.set('compTab', nextTab);
     history.replace({
       pathname: location.pathname,
-      search: `?${  nextSearch.toString()}`,
+      search: `?${nextSearch.toString()}`,
     });
   };
 
@@ -127,12 +125,11 @@ const CompetitionPage = ({
     );
   };
 
-  const shareInviteUrl =
-    `${window.location.origin +
-    location.pathname 
-    }?section=competition&inviter=${ 
-    encodeURIComponent(individualName || '林立') 
-    }&teamId=TEAM-2026-08`;
+  const shareInviteUrl = `${
+    window.location.origin + location.pathname
+  }?section=competition&inviter=${encodeURIComponent(
+    individualName || '林立',
+  )}&teamId=TEAM-2026-08`;
 
   const extraTeamMemberBonus = Math.max(0, teamMembers.length - 5) * 2;
   const totalBonusPercent = Math.min(
@@ -238,70 +235,70 @@ const CompetitionPage = ({
       {/* 演示控制台：支持一键收起以预览 100% 纯净上线界面 */}
       {demoBarExpanded ? (
         <div className={style.demoControlBar}>
-        <div className={style.demoControlGroup}>
-          <span className={style.demoLabel}>{compText('demoBarLabel')}</span>
-          {(
-            [
-              { key: 'PROD_CARBON', label: compText('demoStageOngoing') },
-              { key: 'CORP_CARBON', label: compText('demoStageCorp') },
-              { key: 'REG_CLOSED', label: compText('demoStageRegClosed') },
-              { key: 'PRELIM_DONE', label: compText('demoStagePrelimDone') },
-              { key: 'FINAL_DONE', label: compText('demoStageFinalDone') },
-            ] as Array<{ key: CompetitionStagePhase; label: string }>
-          ).map(item => (
-            <button
-              key={item.key}
-              type='button'
-              className={classNames(style.demoPill, {
-                [style.demoPillActive]: stagePhase === item.key,
-              })}
-              onClick={() => setStagePhase(item.key)}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
+          <div className={style.demoControlGroup}>
+            <span className={style.demoLabel}>{compText('demoBarLabel')}</span>
+            {(
+              [
+                { key: 'PROD_CARBON', label: compText('demoStageOngoing') },
+                { key: 'CORP_CARBON', label: compText('demoStageCorp') },
+                { key: 'REG_CLOSED', label: compText('demoStageRegClosed') },
+                { key: 'PRELIM_DONE', label: compText('demoStagePrelimDone') },
+                { key: 'FINAL_DONE', label: compText('demoStageFinalDone') },
+              ] as Array<{ key: CompetitionStagePhase; label: string }>
+            ).map(item => (
+              <button
+                key={item.key}
+                type='button'
+                className={classNames(style.demoPill, {
+                  [style.demoPillActive]: stagePhase === item.key,
+                })}
+                onClick={() => setStagePhase(item.key)}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
 
-        <div className={style.demoControlGroup}>
-          {(
-            [
-              {
-                key: 'UNREGISTERED',
-                label: compText('demoRoleUnregistered'),
-              },
-              { key: 'ENT_AUDITING', label: compText('demoRoleAuditing') },
-              { key: 'ENT_LEADER', label: compText('demoRoleLeader') },
-              { key: 'ENT_MEMBER', label: compText('demoRoleMember') },
-              { key: 'INDIVIDUAL', label: compText('demoRoleIndividual') },
-            ] as Array<{ key: ParticipantRoleView; label: string }>
-          ).map(role => (
+          <div className={style.demoControlGroup}>
+            {(
+              [
+                {
+                  key: 'UNREGISTERED',
+                  label: compText('demoRoleUnregistered'),
+                },
+                { key: 'ENT_AUDITING', label: compText('demoRoleAuditing') },
+                { key: 'ENT_LEADER', label: compText('demoRoleLeader') },
+                { key: 'ENT_MEMBER', label: compText('demoRoleMember') },
+                { key: 'INDIVIDUAL', label: compText('demoRoleIndividual') },
+              ] as Array<{ key: ParticipantRoleView; label: string }>
+            ).map(role => (
+              <button
+                key={role.key}
+                type='button'
+                className={classNames(style.demoPill, {
+                  [style.demoPillActive]: roleView === role.key,
+                })}
+                onClick={() => setRoleView(role.key)}
+              >
+                {role.label}
+              </button>
+            ))}
             <button
-              key={role.key}
               type='button'
-              className={classNames(style.demoPill, {
-                [style.demoPillActive]: roleView === role.key,
-              })}
-              onClick={() => setRoleView(role.key)}
+              className={style.demoPill}
+              onClick={() => setInviteLandingOpen(true)}
             >
-              {role.label}
+              {compText('demoOpenInvitePopup')}
             </button>
-          ))}
-          <button
-            type='button'
-            className={style.demoPill}
-            onClick={() => setInviteLandingOpen(true)}
-          >
-            {compText('demoOpenInvitePopup')}
-          </button>
-          <button
-            type='button'
-            className={style.demoPill}
-            onClick={() => setDemoBarExpanded(false)}
-          >
-            {compText('demoToggleHide')}
-          </button>
+            <button
+              type='button'
+              className={style.demoPill}
+              onClick={() => setDemoBarExpanded(false)}
+            >
+              {compText('demoToggleHide')}
+            </button>
+          </div>
         </div>
-      </div>
       ) : (
         <button
           type='button'
@@ -343,7 +340,6 @@ const CompetitionPage = ({
             if (fields.name !== undefined) setIndividualName(fields.name);
             if (fields.phone !== undefined) setIndividualPhone(fields.phone);
           }}
-
           onOpenFullMechanism={() => setMechanismOpen(true)}
         />
       ) : null}
@@ -372,7 +368,38 @@ const CompetitionPage = ({
         />
       ) : null}
 
+      {/* 所有页面通用底部：大赛交流群二维码 + 小助手二维码 */}
+      <footer className={style.footerQrBar}>
+        <div className={style.footerQrInner}>
+          <div className={style.qrCard}>
+            <div className={style.qrPlaceholder}>
+              <QrcodeOutlined style={{ fontSize: 34, color: '#026961' }} />
+              <span>{compText('footerQrGroupBadge')}</span>
+            </div>
+            <div>
+              <h4 className={style.cardTitle} style={{ marginBottom: 4 }}>
+                {compText('footerQrGroupTitle')}
+              </h4>
+              <p className={style.cardDesc}>{compText('footerQrGroupDesc')}</p>
+            </div>
+          </div>
 
+          <div className={style.qrCard}>
+            <div className={style.qrPlaceholder}>
+              <QrcodeOutlined style={{ fontSize: 34, color: '#026961' }} />
+              <span>{compText('footerQrAssistantBadge')}</span>
+            </div>
+            <div>
+              <h4 className={style.cardTitle} style={{ marginBottom: 4 }}>
+                {compText('footerQrAssistantTitle')}
+              </h4>
+              <p className={style.cardDesc}>
+                {compText('footerQrAssistantDesc')}
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* 完整版大赛机制与免责声明弹窗 */}
       <FullMechanismModal
@@ -411,17 +438,13 @@ const CompetitionPage = ({
           posterState.type === 'ENTERPRISE' ? companyName : individualName
         }
         rankText='NO.2 银奖入围'
-        scoreText={
-          posterState.type === 'ENTERPRISE' ? '94.87 分' : '102.06 分'
-        }
+        scoreText={posterState.type === 'ENTERPRISE' ? '94.87 分' : '102.06 分'}
         checkinPointsText={
           posterState.type === 'ENTERPRISE'
             ? '企业打卡总积分 18,900 分'
             : '个人打卡总积分 4,200 分'
         }
-        bonusText={
-          compText('inviteCurrentBonus', { bonus: totalBonusPercent })
-        }
+        bonusText={compText('inviteCurrentBonus', { bonus: totalBonusPercent })}
         shareUrl={shareInviteUrl}
         onClose={() => setPosterState(prev => ({ ...prev, open: false }))}
       />

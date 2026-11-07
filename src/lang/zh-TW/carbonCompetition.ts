@@ -259,13 +259,16 @@ export default {
   subDeadlineReadonlyBanner:
     '⏰ 提示：若已过对应比赛阶段截止节点，所有已提交内容仅可查看，不可修改。',
 
-  subCAllMembersTitle: '全队成员量化碳排放（C阶段）提交状态（所有组员可见，系统取全队均分）',
+  subCAllMembersTitle:
+    '全队成员量化碳排放（C阶段）提交状态（所有组员可见，系统取全队均分）',
   subCProdTitle: '任务一：产品碳足迹核算',
-  subCProdTime: '比赛提交时间：11月22日 - 11月29日 23:59（11月20日 16:00 起可下载考题）',
+  subCProdTime:
+    '比赛提交时间：11月22日 - 11月29日 23:59（11月20日 16:00 起可下载考题）',
   subCProdTrackNote:
     '企业组可使用主办方统一命题，也可以使用企业真实数据；个人组使用统一脱敏考题。',
   subCCorpTitle: '任务二：企业碳盘查核算（与产品碳考题一一对应）',
-  subCCorpTime: '比赛提交时间：11月30日 00:00 - 12月06日 23:59（11月30日 00:00 起可下载考题）',
+  subCCorpTime:
+    '比赛提交时间：11月30日 00:00 - 12月06日 23:59（11月30日 00:00 起可下载考题）',
   subDownloadQuestionBtn: '下载考题包',
   subQuestionPairTag: '已绑定一一对应题号：#PAIR-2026-08',
   subPasteGuideText:
@@ -310,8 +313,10 @@ export default {
   checkinPageSub:
     '公示碳账户小程序产生的【企业打卡总积分】与【个人打卡总积分】，数据作为 CREOS 五阶段中 E（价值链带动）模块的核心赋分依据',
   checkinMyCardTitle: '我的打卡积分与排名速览',
-  checkinMyEnterprisePoints: '本企业打卡总积分：{points} 分（企业榜第 {rank} 名）',
-  checkinMyPersonalPoints: '我个人打卡总积分：{points} 分（个人榜第 {rank} 名）',
+  checkinMyEnterprisePoints:
+    '本企业打卡总积分：{points} 分（企业榜第 {rank} 名）',
+  checkinMyPersonalPoints:
+    '我个人打卡总积分：{points} 分（个人榜第 {rank} 名）',
   checkinTabEnterprise: '企业打卡积分公示榜',
   checkinTabIndividual: '个人打卡积分公示榜',
   checkinSearchPlaceholder: '搜索企业名称、选手姓名或手机号后四位...',
@@ -329,7 +334,8 @@ export default {
   checkinVerifiedTag: '已核验公示',
 
   posterModalTitle: '赛事荣誉与成绩分享海报',
-  posterScanTip: '长按或扫描二维码进入 Carbon Agent 大赛（已报名选手直达材料提交页）',
+  posterScanTip:
+    '长按或扫描二维码进入 Carbon Agent 大赛（已报名选手直达材料提交页）',
   posterCopyShareLinkBtn: '复制海报专属分享链接',
 
   headerGoSubmitCta: '去提交参赛材料',
@@ -348,7 +354,8 @@ export default {
   regIndividualLockedBtn: '个人报名已确认（不可修改）',
   regIndividualBenefitBanner:
     '✅ 您已完成个人赛报名！系统已自动为您开通 Carbon Agent 月度会员（原会员已发放 1000 积分），请前往【材料提交】下载考题参与初赛。',
-  regTeamProgressTitle: '团队人数与影响力加成进度：当前 {count} 人，已享 +{bonus}% 总分加成',
+  regTeamProgressTitle:
+    '团队人数与影响力加成进度：当前 {count} 人，已享 +{bonus}% 总分加成',
   regTeamProgressStep3: '3人（成团达标）',
   regTeamProgressStep5: '5人（解锁加成门槛）',
   regTeamProgressStep6: '6人（+2%）',
@@ -395,4 +402,6 @@ export default {
   subDataSourceSelf: '自有产品',
   subViewProdLinkBtn: '查看产品碳链接',
   subViewCorpLinkBtn: '查看企业碳链接',
+  footerQrGroupBadge: '交流群',
+  footerQrAssistantBadge: '小助手',
 };
