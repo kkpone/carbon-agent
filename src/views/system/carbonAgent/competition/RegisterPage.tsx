@@ -649,53 +649,6 @@ export const RegisterPage = ({
             ) : null}
           </div>
 
-          <div className={style.teamBonusTrackWrap}>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: 12,
-                flexWrap: 'wrap',
-              }}
-            >
-              <strong style={{ color: '#004541', fontSize: 13 }}>
-                {compText('regTeamProgressTitle', {
-                  count: teamMembers.length,
-                  bonus: extraTeamMemberBonus,
-                })}
-              </strong>
-              <Button
-                type='link'
-                style={{ color: '#026961', fontWeight: 700, padding: 0 }}
-                onClick={onOpenFullMechanism}
-              >
-                {compText('regTeamViewRuleLink')}
-              </Button>
-            </div>
-            <div className={style.teamBonusSteps}>
-              {[
-                { min: 3, label: compText('regTeamProgressStep3') },
-                { min: 5, label: compText('regTeamProgressStep5') },
-                { min: 6, label: compText('regTeamProgressStep6') },
-                { min: 7, label: compText('regTeamProgressStep7') },
-                { min: 8, label: compText('regTeamProgressStep8') },
-                { min: 9, label: compText('regTeamProgressStep9') },
-                { min: 10, label: compText('regTeamProgressStep10') },
-              ].map(node => (
-                <div
-                  key={node.min}
-                  className={classNames(style.teamBonusStepItem, {
-                    [style.teamBonusStepReached]:
-                      teamMembers.length >= node.min,
-                  })}
-                >
-                  {node.label}
-                </div>
-              ))}
-            </div>
-          </div>
-
           {teamMembers.length >= 5 ? (
             <div className={style.bonusAlertBanner}>
               <span>{compText('regTeamFiveMemberBonusBanner')}</span>
