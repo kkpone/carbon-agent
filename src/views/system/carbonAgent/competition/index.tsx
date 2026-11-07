@@ -1,4 +1,4 @@
-import { ArrowLeftOutlined, QrcodeOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -372,38 +372,7 @@ const CompetitionPage = ({
         />
       ) : null}
 
-      {/* 所有页面通用底部：大赛交流群二维码 + 小助手二维码 */}
-      <footer className={style.footerQrBar}>
-        <div className={style.footerQrInner}>
-          <div className={style.qrCard}>
-            <div className={style.qrPlaceholder}>
-              <QrcodeOutlined style={{ fontSize: 34, color: '#026961' }} />
-              <span>交流群</span>
-            </div>
-            <div>
-              <h4 className={style.cardTitle} style={{ marginBottom: 4 }}>
-                {compText('footerQrGroupTitle')}
-              </h4>
-              <p className={style.cardDesc}>{compText('footerQrGroupDesc')}</p>
-            </div>
-          </div>
 
-          <div className={style.qrCard}>
-            <div className={style.qrPlaceholder}>
-              <QrcodeOutlined style={{ fontSize: 34, color: '#026961' }} />
-              <span>小助手</span>
-            </div>
-            <div>
-              <h4 className={style.cardTitle} style={{ marginBottom: 4 }}>
-                {compText('footerQrAssistantTitle')}
-              </h4>
-              <p className={style.cardDesc}>
-                {compText('footerQrAssistantDesc')}
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
 
       {/* 完整版大赛机制与免责声明弹窗 */}
       <FullMechanismModal

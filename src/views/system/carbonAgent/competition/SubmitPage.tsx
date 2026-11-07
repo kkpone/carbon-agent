@@ -8,7 +8,7 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 import { copyToClipboard } from '@src/utils/clipboard';
-import { Button, Input, Modal, Segmented, Table, Tag, message } from 'antd';
+import { Button, Input, Modal, Radio, Segmented, Table, Tag, message } from 'antd';
 import classNames from 'classnames';
 import { useState } from 'react';
 
@@ -64,6 +64,8 @@ export const SubmitPage = ({
   const [cCorpDraft, setCCorpDraft] = useState(
     'https://agent.carbonstop.com/share/agent/eca-model-2026-pair08',
   );
+  const [cProdSourceType, setCProdSourceType] = useState<'OFFICIAL' | 'SELF'>('OFFICIAL');
+  const [cCorpSourceType, setCCorpSourceType] = useState<'OFFICIAL' | 'SELF'>('OFFICIAL');
   const [cProdConfirmed, setCProdConfirmed] = useState(false);
   const [cCorpConfirmed, setCCorpConfirmed] = useState(false);
 
@@ -439,9 +441,41 @@ export const SubmitPage = ({
                   {compText('subDownloadQuestionBtn')}
                 </Button>
               </div>
-              <p style={{ fontSize: 12, color: '#6c757d', marginBottom: 12 }}>
+              <p style={{ fontSize: 12, color: '#6c757d', marginBottom: 10 }}>
                 {compText('subCProdTrackNote')}
               </p>
+              <div
+                style={{
+                  marginBottom: 12,
+                  padding: '8px 12px',
+                  background: '#f7f8f9',
+                  borderRadius: 8,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  flexWrap: 'wrap',
+                }}
+              >
+                <span style={{ fontSize: 13, fontWeight: 600 }}>
+                  * {compText('subDataSourceLabel')}
+                </span>
+                <Radio.Group
+                  disabled={
+                    isIndividual ||
+                    cProdConfirmed ||
+                    stagePhase === 'CORP_CARBON' ||
+                    stagePhase === 'PRELIM_DONE' ||
+                    isAllDeadlinePassed
+                  }
+                  value={isIndividual ? 'OFFICIAL' : cProdSourceType}
+                  onChange={e => setCProdSourceType(e.target.value)}
+                >
+                  <Radio value='OFFICIAL'>
+                    {compText('subDataSourceOfficial')}
+                  </Radio>
+                  <Radio value='SELF'>{compText('subDataSourceSelf')}</Radio>
+                </Radio.Group>
+              </div>
               <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
                 {compText('subPasteGuideText')}
               </div>
@@ -518,9 +552,41 @@ export const SubmitPage = ({
                   {compText('subDownloadQuestionBtn')}
                 </Button>
               </div>
-              <p style={{ fontSize: 12, color: '#6c757d', marginBottom: 12 }}>
+              <p style={{ fontSize: 12, color: '#6c757d', marginBottom: 10 }}>
                 {compText('subQuestionPairTag')}
               </p>
+              <div
+                style={{
+                  marginBottom: 12,
+                  padding: '8px 12px',
+                  background: '#f7f8f9',
+                  borderRadius: 8,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  flexWrap: 'wrap',
+                }}
+              >
+                <span style={{ fontSize: 13, fontWeight: 600 }}>
+                  * {compText('subDataSourceLabel')}
+                </span>
+                <Radio.Group
+                  disabled={
+                    isIndividual ||
+                    cCorpConfirmed ||
+                    stagePhase === 'PROD_CARBON' ||
+                    stagePhase === 'PRELIM_DONE' ||
+                    isAllDeadlinePassed
+                  }
+                  value={isIndividual ? 'OFFICIAL' : cCorpSourceType}
+                  onChange={e => setCCorpSourceType(e.target.value)}
+                >
+                  <Radio value='OFFICIAL'>
+                    {compText('subDataSourceOfficial')}
+                  </Radio>
+                  <Radio value='SELF'>{compText('subDataSourceSelf')}</Radio>
+                </Radio.Group>
+              </div>
               <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
                 {compText('subPasteGuideText')}
               </div>

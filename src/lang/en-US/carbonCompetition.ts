@@ -89,7 +89,7 @@ export default {
   introTrackIndFit: '适合对象：高校学生、碳咨询从业者与社会个人用户',
   introTrackIndDeliver: '主要交付：标准化核算结果(C) + 碳账户低碳行动打卡(E)',
 
-  introMechanismTitle: '04 大赛机制 · CREOS 五阶段（共 100 分）',
+  introMechanismTitle: '04 大赛机制 · CREOS 五阶段',
   introMechanismSub:
     '每个阶段都有明确交付物，评分从数据质量延伸到行动与可信传播；企业与个人邀请均可享最高 +10% 影响力系数加成',
   introMechanismDetailBtn: '查看完整版大赛机制（含细则与免责声明）',
@@ -208,7 +208,7 @@ export default {
   regDuplicateCompanyError:
     '该企业已经组队成功，每个企业仅限一支队伍参赛。请自行内部沟通，或联系大赛小助手进行协调！',
   regAuditApprovedBanner:
-    '✅ 您的企业资质已审核通过！碳账户专属“密钥”已生成（可在材料提交页查看），请尽快在 11月27日 前完成组员添加。',
+    '✅ 您的企业资质已审核通过！请尽快在 11月27日 前完成组员添加。',
 
   regTeamSectionTitle: '参赛小组成员管理（3 ~ 10 人）',
   regTeamCompanyRuleTip:
@@ -390,6 +390,9 @@ export default {
   regIndColInviteeTrack: '报名参赛组别',
   regIndColInviteeStatus: '报名状态',
   regIndColBonusEffect: '加成生效',
+  subDataSourceLabel: '核算对象来源：',
+  subDataSourceOfficial: '主办方产品',
+  subDataSourceSelf: '自有产品',
   subViewProdLinkBtn: '查看产品碳链接',
   subViewCorpLinkBtn: '查看企业碳链接',
 };

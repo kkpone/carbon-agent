@@ -93,13 +93,7 @@ export const IntroPage = ({
                 ? compText('heroRegClosedCta')
                 : compText('heroPrimaryCta')}
             </button>
-            <button
-              type='button'
-              className={style.heroSecondaryBtn}
-              onClick={onOpenFullMechanism}
-            >
-              {compText('heroSecondaryCta')}
-            </button>
+
           </div>
         </div>
       </section>
@@ -237,21 +231,7 @@ export const IntroPage = ({
               <p className={style.trackLine} style={{ fontWeight: 600 }}>
                 {compText('introTrackEntDeliver')}
               </p>
-              <Button
-                type='primary'
-                disabled={isRegistrationClosed}
-                style={{
-                  marginTop: 14,
-                  background: '#026961',
-                  borderColor: '#026961',
-                  borderRadius: 999,
-                }}
-                onClick={onGoRegister}
-              >
-                {isRegistrationClosed
-                  ? compText('heroRegClosedCta')
-                  : compText('regEnterEnterpriseBtn')}
-              </Button>
+
             </div>
 
             <div className={style.trackCard}>
@@ -268,21 +248,7 @@ export const IntroPage = ({
               <p className={style.trackLine} style={{ fontWeight: 600 }}>
                 {compText('introTrackIndDeliver')}
               </p>
-              <Button
-                type='primary'
-                disabled={isRegistrationClosed}
-                style={{
-                  marginTop: 14,
-                  background: '#026961',
-                  borderColor: '#026961',
-                  borderRadius: 999,
-                }}
-                onClick={onGoRegister}
-              >
-                {isRegistrationClosed
-                  ? compText('heroRegClosedCta')
-                  : compText('regEnterIndividualBtn')}
-              </Button>
+
             </div>
           </div>
         </section>

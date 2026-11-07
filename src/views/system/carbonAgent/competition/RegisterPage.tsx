@@ -462,7 +462,7 @@ export const RegisterPage = ({
 
   return (
     <div className={style.mainContainer}>
-      {!isAuditing && !isMemberOnly ? (
+      {roleView === 'ENT_LEADER' ? (
         <div className={style.stepBar}>
           <button
             type='button'
@@ -529,7 +529,7 @@ export const RegisterPage = ({
             ) : null}
           </div>
 
-          <div className={style.grid2}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <div>
               <div style={{ fontWeight: 600, marginBottom: 6 }}>
                 * {compText('regCompanyNameLabel')}
