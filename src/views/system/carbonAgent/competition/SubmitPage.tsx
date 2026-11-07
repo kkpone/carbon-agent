@@ -24,6 +24,7 @@ import {
   ENTERPRISE_CHECKIN_PUBLIC_LIST,
   INDIVIDUAL_CHECKIN_PUBLIC_LIST,
   compText,
+  maskPhoneNumber,
 } from './data';
 
 type CreosModuleKey = 'C' | 'R' | 'E' | 'O' | 'S';
@@ -316,18 +317,91 @@ export const SubmitPage = ({
                     title: compText('checkinColPhone'),
                     dataIndex: 'phone',
                     key: 'phone',
+                    render: (val: string) => maskPhoneNumber(val),
                   },
                   {
                     title: compText('subCProdTitle'),
                     dataIndex: 'cProdStatus',
                     key: 'cProdStatus',
-                    render: (val: SubmissionItemStatus) => renderStatusTag(val),
+                    render: (
+                      val: SubmissionItemStatus,
+                      row: TeamMemberRecord,
+                    ) => (
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 10,
+                          flexWrap: 'wrap',
+                        }}
+                      >
+                        {renderStatusTag(val)}
+                        {val === 'SUBMITTED' ? (
+                          <Button
+                            type='link'
+                            size='small'
+                            style={{
+                              padding: 0,
+                              color: '#026961',
+                              fontWeight: 600,
+                            }}
+                            onClick={() => {
+                              const url =
+                                row.cProdUrl ||
+                                'https://agent.carbonstop.com/share/agent/pcf-model-2026-pair08';
+                              Modal.info({
+                                title: compText('subViewProdLinkBtn'),
+                                content: url,
+                              });
+                            }}
+                          >
+                            {compText('subViewProdLinkBtn')}
+                          </Button>
+                        ) : null}
+                      </div>
+                    ),
                   },
                   {
                     title: compText('subCCorpTitle'),
                     dataIndex: 'cCorpStatus',
                     key: 'cCorpStatus',
-                    render: (val: SubmissionItemStatus) => renderStatusTag(val),
+                    render: (
+                      val: SubmissionItemStatus,
+                      row: TeamMemberRecord,
+                    ) => (
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 10,
+                          flexWrap: 'wrap',
+                        }}
+                      >
+                        {renderStatusTag(val)}
+                        {val === 'SUBMITTED' ? (
+                          <Button
+                            type='link'
+                            size='small'
+                            style={{
+                              padding: 0,
+                              color: '#026961',
+                              fontWeight: 600,
+                            }}
+                            onClick={() => {
+                              const url =
+                                row.cCorpUrl ||
+                                'https://agent.carbonstop.com/share/agent/eca-model-2026-pair08';
+                              Modal.info({
+                                title: compText('subViewCorpLinkBtn'),
+                                content: url,
+                              });
+                            }}
+                          >
+                            {compText('subViewCorpLinkBtn')}
+                          </Button>
+                        ) : null}
+                      </div>
+                    ),
                   },
                 ]}
               />

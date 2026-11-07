@@ -8,7 +8,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { copyToClipboard } from '@src/utils/clipboard';
-import { Button, Input, Modal, Tag, Tooltip, message } from 'antd';
+import { Button, Input, Modal, Table, Tag, Tooltip, message } from 'antd';
 import classNames from 'classnames';
 import { useState } from 'react';
 
@@ -18,7 +18,12 @@ import type {
   ParticipantRoleView,
   TeamMemberRecord,
 } from './data';
-import { EXISTING_REGISTERED_ENTERPRISES, compText } from './data';
+import {
+  EXISTING_REGISTERED_ENTERPRISES,
+  INDIVIDUAL_INVITED_RECORDS,
+  compText,
+  maskPhoneNumber,
+} from './data';
 
 type RegisterPageProps = {
   stagePhase: CompetitionStagePhase;
@@ -83,7 +88,7 @@ export const RegisterPage = ({
 
   // 计算影响力加成系数：企业组可按第6-10人（每多1人+2%）或邀请累加，个人组按邀请人数（每1人+2%），封顶10%
   const extraTeamMemberBonus = Math.max(0, teamMembers.length - 5) * 2;
-  const inviteBonus = inviteSuccessCount * 2;
+  const inviteBonus = Math.max(inviteSuccessCount, INDIVIDUAL_INVITED_RECORDS.length) * 2;
   const totalBonusPercent = Math.min(10, extraTeamMemberBonus + inviteBonus);
 
   const handleCopyInviteLink = () => {
@@ -381,11 +386,57 @@ export const RegisterPage = ({
                   {compText('inviteCopyBtn')}
                 </Button>
                 <Tag color='green' style={{ fontSize: 13, padding: '4px 12px' }}>
-                  {compText('inviteCurrentBonus', { bonus: totalBonusPercent })}
+                  {compText('inviteCurrentBonus', {
+                    bonus: totalBonusPercent,
+                  })}
                 </Tag>
               </>
             ) : null}
           </div>
+
+          {isLockedIndividual ? (
+            <div style={{ marginTop: 24 }}>
+              <h3 className={style.cardTitle} style={{ marginBottom: 12 }}>
+                {compText('regIndInvitedListTitle')}
+              </h3>
+              <Table
+                size='small'
+                pagination={false}
+                rowKey='id'
+                dataSource={INDIVIDUAL_INVITED_RECORDS}
+                columns={[
+                  {
+                    title: compText('regIndColInviteeName'),
+                    dataIndex: 'name',
+                    key: 'name',
+                    render: (val: string) => <strong>{val}</strong>,
+                  },
+                  {
+                    title: compText('regIndColInviteePhone'),
+                    dataIndex: 'maskedPhone',
+                    key: 'maskedPhone',
+                  },
+                  {
+                    title: compText('regIndColInviteeTrack'),
+                    dataIndex: 'trackLabel',
+                    key: 'trackLabel',
+                  },
+                  {
+                    title: compText('regIndColInviteeStatus'),
+                    dataIndex: 'statusLabel',
+                    key: 'statusLabel',
+                    render: (val: string) => <Tag color='success'>{val}</Tag>,
+                  },
+                  {
+                    title: compText('regIndColBonusEffect'),
+                    dataIndex: 'bonusText',
+                    key: 'bonusText',
+                    render: (val: string) => <Tag color='green'>{val}</Tag>,
+                  },
+                ]}
+              />
+            </div>
+          ) : null}
         </div>
 
         
@@ -722,7 +773,11 @@ export const RegisterPage = ({
                   >
                     <Input
                       disabled={isLeaderRow || readonlyRow}
-                      value={member.phone}
+                      value={
+                        isMemberOnly
+                          ? maskPhoneNumber(member.phone)
+                          : member.phone
+                      }
                       placeholder={compText('regPhonePlaceholder')}
                       onChange={e =>
                         handleMemberFieldChange(
@@ -745,15 +800,9 @@ export const RegisterPage = ({
                     <Tag
                       color={member.registeredInAgent ? 'success' : 'warning'}
                     >
-                      {(() => {
-                        if (!member.registeredInAgent) {
-                          return compText('regMemberStatusUnreg');
-                        }
-                        if (isLeaderRow) {
-                          return compText('regMemberStatusPoints');
-                        }
-                        return compText('regMemberStatusVip');
-                      })()}
+                      {member.registeredInAgent
+                        ? compText('regMemberRegisteredSimple')
+                        : compText('regMemberUnregisteredSimple')}
                     </Tag>
                     {!member.registeredInAgent ? (
                       <Button

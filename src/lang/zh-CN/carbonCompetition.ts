@@ -381,4 +381,15 @@ export default {
   resColPersonWinner: '获奖选手姓名（脱敏手机号）',
   resColSpecialSubject: '获奖主体（企业 / 个人）',
   resColSpecialReason: '获奖理由与标杆实践亮点',
+
+  regMemberRegisteredSimple: '已注册',
+  regMemberUnregisteredSimple: '未注册',
+  regIndInvitedListTitle: '已邀请人员列表（每成功邀请 1 人报名 +2%，上限 10%）',
+  regIndColInviteeName: '受邀人姓名',
+  regIndColInviteePhone: '手机号（脱敏）',
+  regIndColInviteeTrack: '报名参赛组别',
+  regIndColInviteeStatus: '报名状态',
+  regIndColBonusEffect: '加成生效',
+  subViewProdLinkBtn: '查看产品碳链接',
+  subViewCorpLinkBtn: '查看企业碳链接',
 };

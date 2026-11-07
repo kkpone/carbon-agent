@@ -36,6 +36,14 @@ export type ParticipantRoleView =
   | 'ENT_MEMBER'
   | 'INDIVIDUAL';
 
+export const maskPhoneNumber = (phone: string): string => {
+  const trimmed = phone.trim();
+  if (trimmed.length === 11) {
+    return `${trimmed.slice(0, 3)}****${trimmed.slice(7)}`;
+  }
+  return trimmed;
+};
+
 export type SubmissionItemStatus = 'SUBMITTED' | 'PENDING' | 'UNREGISTERED';
 
 export type TeamMemberRecord = {
@@ -46,8 +54,19 @@ export type TeamMemberRecord = {
   registeredInAgent: boolean;
   cProdStatus: SubmissionItemStatus;
   cCorpStatus: SubmissionItemStatus;
+  cProdUrl?: string;
+  cCorpUrl?: string;
   cProdScore?: number;
   cCorpScore?: number;
+};
+
+export type InvitedPersonRecord = {
+  id: string;
+  name: string;
+  maskedPhone: string;
+  trackLabel: string;
+  statusLabel: string;
+  bonusText: string;
 };
 
 export type EnterpriseCheckinRow = {
@@ -102,6 +121,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMemberRecord[] = [
     registeredInAgent: true,
     cProdStatus: 'SUBMITTED',
     cCorpStatus: 'PENDING',
+    cProdUrl: 'https://agent.carbonstop.com/share/agent/pcf-model-2026-m1',
     cProdScore: 44.5,
     cCorpScore: 43.0,
   },
@@ -112,6 +132,8 @@ export const INITIAL_TEAM_MEMBERS: TeamMemberRecord[] = [
     registeredInAgent: true,
     cProdStatus: 'SUBMITTED',
     cCorpStatus: 'SUBMITTED',
+    cProdUrl: 'https://agent.carbonstop.com/share/agent/pcf-model-2026-m2',
+    cCorpUrl: 'https://agent.carbonstop.com/share/agent/eca-model-2026-m2',
     cProdScore: 43.0,
     cCorpScore: 42.5,
   },
@@ -140,8 +162,36 @@ export const INITIAL_TEAM_MEMBERS: TeamMemberRecord[] = [
     registeredInAgent: true,
     cProdStatus: 'SUBMITTED',
     cCorpStatus: 'PENDING',
+    cProdUrl: 'https://agent.carbonstop.com/share/agent/pcf-model-2026-m5',
     cProdScore: 42.0,
     cCorpScore: 41.5,
+  },
+];
+
+export const INDIVIDUAL_INVITED_RECORDS: InvitedPersonRecord[] = [
+  {
+    id: 'inv-1',
+    name: '张宇轩',
+    maskedPhone: '138****5678',
+    trackLabel: '个人组',
+    statusLabel: '已注册并完成报名',
+    bonusText: '+2%',
+  },
+  {
+    id: 'inv-2',
+    name: '李沐阳',
+    maskedPhone: '139****2048',
+    trackLabel: '个人组',
+    statusLabel: '已注册并完成报名',
+    bonusText: '+2%',
+  },
+  {
+    id: 'inv-3',
+    name: '陈佳怡',
+    maskedPhone: '137****8821',
+    trackLabel: '企业组（绿源智造）',
+    statusLabel: '已注册并完成报名',
+    bonusText: '+2%',
   },
 ];
 
