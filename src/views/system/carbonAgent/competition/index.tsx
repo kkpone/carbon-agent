@@ -65,7 +65,7 @@ const CompetitionPage = ({
 
   const [individualName, setIndividualName] = useState('林立');
   const [individualPhone, setIndividualPhone] = useState('18602353734');
-  const [inviteSuccessCount, setInviteSuccessCount] = useState(1);
+  const [inviteSuccessCount] = useState(1);
 
   const [mechanismOpen, setMechanismOpen] = useState(false);
   const [inviteLandingOpen, setInviteLandingOpen] = useState(
@@ -173,14 +173,15 @@ const CompetitionPage = ({
               { key: 'register', label: compText('navRegister') },
               { key: 'submit', label: compText('navSubmit') },
               { key: 'result', label: compText('navResult') },
-              { key: 'checkin', label: compText('navCheckinPublic') },
             ] as Array<{ key: CompetitionTabKey; label: string }>
           ).map(tab => (
             <button
               key={tab.key}
               type='button'
               className={classNames(style.navTabBtn, {
-                [style.navTabBtnActive]: activeTab === tab.key,
+                [style.navTabBtnActive]:
+                  activeTab === tab.key ||
+                  (tab.key === 'result' && activeTab === 'checkin'),
               })}
               onClick={() => syncTabToUrl(tab.key)}
             >
@@ -294,9 +295,7 @@ const CompetitionPage = ({
             if (fields.name !== undefined) setIndividualName(fields.name);
             if (fields.phone !== undefined) setIndividualPhone(fields.phone);
           }}
-          onSimulateInviteAdd={() =>
-            setInviteSuccessCount(prev => Math.min(5, prev + 1))
-          }
+
           onOpenFullMechanism={() => setMechanismOpen(true)}
         />
       ) : null}

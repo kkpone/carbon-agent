@@ -43,7 +43,7 @@ type RegisterPageProps = {
   onUpdateTeamMembers: (nextMembers: TeamMemberRecord[]) => void;
   onLockTeam: () => void;
   onUpdateIndividual: (fields: { name?: string; phone?: string }) => void;
-  onSimulateInviteAdd: () => void;
+
   onOpenFullMechanism: () => void;
 };
 
@@ -65,7 +65,7 @@ export const RegisterPage = ({
   onUpdateTeamMembers,
   onLockTeam,
   onUpdateIndividual,
-  onSimulateInviteAdd,
+
   onOpenFullMechanism,
 }: RegisterPageProps) => {
   const [selectedUnregTrack, setSelectedUnregTrack] = useState<
@@ -191,69 +191,6 @@ export const RegisterPage = ({
       },
     });
   };
-
-  const renderInviteSection = () => (
-    <div className={style.inviteBox}>
-      <div style={{ maxWidth: 680 }}>
-        <h3 style={{ color: '#fff', fontSize: 20, fontWeight: 700, margin: 0 }}>
-          {compText('invitePanelTitle')}
-        </h3>
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.84)',
-            fontSize: 13,
-            margin: '8px 0 14px',
-          }}
-        >
-          {compText('invitePanelSub')}
-        </p>
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-          <Tag color='cyan' style={{ fontSize: 13, padding: '4px 12px' }}>
-            {compText('inviteCurrentCount', { count: inviteSuccessCount })}
-          </Tag>
-          <Tag color='green' style={{ fontSize: 13, padding: '4px 12px' }}>
-            {compText('inviteCurrentBonus', { bonus: totalBonusPercent })}
-          </Tag>
-        </div>
-      </div>
-
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 10,
-          alignItems: 'flex-end',
-        }}
-      >
-        <Button
-          type='primary'
-          size='large'
-          icon={<CopyOutlined />}
-          disabled={isRegistrationClosed}
-          style={{
-            background: '#86efb5',
-            borderColor: '#86efb5',
-            color: '#04252b',
-            fontWeight: 700,
-            borderRadius: 999,
-          }}
-          onClick={handleCopyInviteLink}
-        >
-          {isRegistrationClosed
-            ? compText('heroRegClosedCta')
-            : compText('inviteCopyBtn')}
-        </Button>
-        <Button
-          size='small'
-          ghost
-          disabled={isRegistrationClosed || totalBonusPercent >= 10}
-          onClick={onSimulateInviteAdd}
-        >
-          {compText('inviteSimulateAddBtn')}
-        </Button>
-      </div>
-    </div>
-  );
 
   // 1. 未报名状态：选择企业组或个人组
   if (roleView === 'UNREGISTERED' && selectedUnregTrack === 'NONE') {
@@ -396,7 +333,15 @@ export const RegisterPage = ({
             </div>
           </div>
 
-          <div style={{ marginTop: 24 }}>
+          <div
+            style={{
+              marginTop: 24,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              flexWrap: 'wrap',
+            }}
+          >
             <Button
               type='primary'
               size='large'
@@ -415,10 +360,30 @@ export const RegisterPage = ({
                 return compText('regSubmitIndividualBtn');
               })()}
             </Button>
+            {isLockedIndividual ? (
+              <>
+                <Button
+                  icon={<CopyOutlined />}
+                  disabled={isRegistrationClosed}
+                  style={{
+                    borderColor: '#026961',
+                    color: '#026961',
+                    borderRadius: 999,
+                    fontWeight: 600,
+                  }}
+                  onClick={handleCopyInviteLink}
+                >
+                  {compText('inviteCopyBtn')}
+                </Button>
+                <Tag color='green' style={{ fontSize: 13, padding: '4px 12px' }}>
+                  {compText('inviteCurrentBonus', { bonus: totalBonusPercent })}
+                </Tag>
+              </>
+            ) : null}
           </div>
         </div>
 
-        {renderInviteSection()}
+        
       </div>
     );
   }
@@ -441,41 +406,41 @@ export const RegisterPage = ({
 
   return (
     <div className={style.mainContainer}>
-      <div className={style.stepBar}>
-        <button
-          type='button'
-          className={classNames(style.stepPill, {
-            [style.stepPillActive]: isBasicFormStage,
-          })}
-          disabled={isMemberOnly}
-          onClick={() => {
-            if (roleView === 'ENT_LEADER') {
-              setEnterpriseSubTab('BASIC');
+      {!isAuditing && !isMemberOnly ? (
+        <div className={style.stepBar}>
+          <button
+            type='button'
+            className={classNames(style.stepPill, {
+              [style.stepPillActive]: isBasicFormStage,
+            })}
+            onClick={() => {
+              if (roleView === 'ENT_LEADER') {
+                setEnterpriseSubTab('BASIC');
+              }
+            }}
+          >
+            <span>{compText('regStep1Label')}</span>
+          </button>
+          <div className={style.stepConnector} />
+          <button
+            type='button'
+            className={classNames(style.stepPill, {
+              [style.stepPillActive]: !isBasicFormStage,
+            })}
+            disabled={
+              roleView === 'UNREGISTERED' &&
+              selectedUnregTrack === 'ENTERPRISE'
             }
-          }}
-        >
-          <span>{compText('regStep1Label')}</span>
-        </button>
-        <div className={style.stepConnector} />
-        <button
-          type='button'
-          className={classNames(style.stepPill, {
-            [style.stepPillActive]: !isBasicFormStage,
-          })}
-          disabled={
-            (roleView === 'UNREGISTERED' &&
-              selectedUnregTrack === 'ENTERPRISE') ||
-            isAuditing
-          }
-          onClick={() => {
-            if (roleView === 'ENT_LEADER' || roleView === 'ENT_MEMBER') {
-              setEnterpriseSubTab('TEAM');
-            }
-          }}
-        >
-          <span>{compText('regStep2Label')}</span>
-        </button>
-      </div>
+            onClick={() => {
+              if (roleView === 'ENT_LEADER') {
+                setEnterpriseSubTab('TEAM');
+              }
+            }}
+          >
+            <span>{compText('regStep2Label')}</span>
+          </button>
+        </div>
+      ) : null}
 
       {isBasicFormStage ? (
         <div className={style.cardBox}>
@@ -612,24 +577,41 @@ export const RegisterPage = ({
               >
                 {compText('regStep2Label')}
               </Button>
-            ) : (
+            ) : null}
+            {roleView !== 'ENT_LEADER' && isAuditing ? (
+              <button
+                type='button'
+                disabled
+                style={{
+                  background: '#fff8e6',
+                  border: '1px solid #faad14',
+                  color: '#ad6800',
+                  fontWeight: 700,
+                  fontSize: 15,
+                  borderRadius: 999,
+                  padding: '9px 32px',
+                  cursor: 'not-allowed',
+                }}
+              >
+                {compText('regAuditingBtn')}
+              </button>
+            ) : null}
+            {roleView !== 'ENT_LEADER' && !isAuditing ? (
               <Button
                 type='primary'
                 size='large'
                 disabled={!canSubmitBasicForm}
                 style={{
-                  background: isAuditing ? '#999ea4' : '#026961',
-                  borderColor: isAuditing ? '#999ea4' : '#026961',
+                  background: '#026961',
+                  borderColor: '#026961',
                   borderRadius: 999,
                   paddingInline: 32,
                 }}
                 onClick={handleEnterpriseAuditSubmit}
               >
-                {isAuditing
-                  ? compText('regAuditingBtn')
-                  : compText('regSubmitAuditBtn')}
+                {compText('regSubmitAuditBtn')}
               </Button>
-            )}
+            ) : null}
           </div>
         </div>
       ) : (
@@ -665,13 +647,37 @@ export const RegisterPage = ({
           {teamMembers.length >= 5 ? (
             <div className={style.bonusAlertBanner}>
               <span>{compText('regTeamFiveMemberBonusBanner')}</span>
-              <Button
-                type='link'
-                style={{ color: '#026961', fontWeight: 700, padding: 0 }}
-                onClick={onOpenFullMechanism}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  flexShrink: 0,
+                }}
               >
-                {compText('regTeamViewRuleLink')}
-              </Button>
+                <Button
+                  type='primary'
+                  size='small'
+                  icon={<CopyOutlined />}
+                  disabled={isRegistrationClosed}
+                  style={{
+                    background: '#026961',
+                    borderColor: '#026961',
+                    borderRadius: 999,
+                    fontWeight: 600,
+                  }}
+                  onClick={handleCopyInviteLink}
+                >
+                  {compText('inviteCopyBtn')}
+                </Button>
+                <Button
+                  type='link'
+                  style={{ color: '#026961', fontWeight: 700, padding: 0 }}
+                  onClick={onOpenFullMechanism}
+                >
+                  {compText('regTeamViewRuleLink')}
+                </Button>
+              </div>
             </div>
           ) : null}
 
@@ -775,7 +781,7 @@ export const RegisterPage = ({
         </div>
       )}
 
-      {renderInviteSection()}
+      
     </div>
   );
 };
