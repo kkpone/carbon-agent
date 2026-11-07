@@ -92,6 +92,7 @@ export type AgentSectionKey =
   | 'enterpriseFollows'
   | 'enterpriseDetail'
   | 'enterpriseCompare'
+  | 'competition'
   | 'esg'
   | `project:${string}`
   | `projectComparison:${string}`

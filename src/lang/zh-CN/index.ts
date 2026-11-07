@@ -10,6 +10,7 @@ import base from './base';
 import becomeSupplierOrPurchasing from './becomeSupplierOrPurchasing';
 import carbonAccount from './carbonAccount';
 import carbonAgent from './carbonAgent';
+import carbonCompetition from './carbonCompetition';
 import carbonData from './carbonData';
 import carbonDataManagemen from './carbonDataManagemen';
 import carbonFootPrintLCA from './carbonFootPrintLCA';
@@ -57,6 +58,7 @@ export default {
   customFactorReuse,
   accountInfoAiChat,
   carbonAgent,
+  carbonCompetition,
   carbonFootprint,
   carbonFootprint3,
   ilcd,

@@ -67,6 +67,8 @@ import {
   normalizeFinalCards,
 } from './agentFinalResponseState';
 import { mergeAgentAnswerCards } from './answerCardState';
+import CompetitionPage from './competition';
+import { CompetitionWelcomePromoModal } from './competition/CompetitionModals';
 import EnterpriseDataPage from './enterpriseData';
 import {
   clearEnterpriseNavigationParams,
@@ -3811,6 +3813,7 @@ const getAgentSectionFromSearch = (search: string): AgentSectionKey => {
     section === ISSUE_FEEDBACK_SECTION_QUERY_VALUE ||
     section === CBAM_FILES_SECTION_QUERY_VALUE ||
     section === 'factorLibrary' ||
+    section === 'competition' ||
     isEnterpriseSection(section)
   ) {
     return section as AgentSectionKey;
@@ -4266,6 +4269,13 @@ const CarbonAgent = () => {
   const [loginTriggerEntry, setLoginTriggerEntry] =
     useState<AgentLoginTriggerEntry>('other');
   const [agentGuideOpen, setAgentGuideOpen] = useState(false);
+  const [competitionWelcomeOpen, setCompetitionWelcomeOpen] = useState(() => {
+    try {
+      return sessionStorage.getItem('carbon_comp_welcome_dismissed') !== '1';
+    } catch {
+      return true;
+    }
+  });
   const [agentGuideStepIndex, setAgentGuideStepIndex] = useState(0);
   const [message, setMessage] = useState('');
   const [composerQuotes, setComposerQuotes] = useState<AgentMessageReference[]>(
@@ -7959,6 +7969,13 @@ const CarbonAgent = () => {
       normalizedSection.startsWith('projectOverview:') ||
       normalizedSection.startsWith('projectTasks:');
 
+    if (normalizedSection === 'competition') {
+      setMobileSidebarOpen(false);
+      syncSectionToUrl({ history, location, section: 'competition' });
+      resetHomeState('competition');
+      return;
+    }
+
     if (!requireLogin(projectEntry ? 'project_entry' : 'menu', true)) {
       return;
     }
@@ -11626,6 +11643,12 @@ const CarbonAgent = () => {
                 )
               ) : null}
             </div>
+          ) : activeSection === 'competition' ? (
+            <CompetitionPage
+              authenticated={authenticated}
+              onBackToWorkspace={handleNewChat}
+              onRequireLogin={() => requestLogin('menu')}
+            />
           ) : authenticated && isEnterpriseSection(activeSection) ? (
             <EnterpriseDataPage />
           ) : activeSection === 'factorLibrary' ? (
@@ -11992,6 +12015,29 @@ const CarbonAgent = () => {
           onPurposeChange={enterpriseCarbonExpertReview.setPurpose}
           onSubmit={enterpriseCarbonExpertReview.submit}
         />
+
+        {!isShareMode && activeSection !== 'competition' ? (
+          <CompetitionWelcomePromoModal
+            open={competitionWelcomeOpen}
+            onClose={() => {
+              setCompetitionWelcomeOpen(false);
+              try {
+                sessionStorage.setItem('carbon_comp_welcome_dismissed', '1');
+              } catch {
+                // ignore storage write failure
+              }
+            }}
+            onJoinCompetition={() => {
+              setCompetitionWelcomeOpen(false);
+              try {
+                sessionStorage.setItem('carbon_comp_welcome_dismissed', '1');
+              } catch {
+                // ignore storage write failure
+              }
+              handleSectionSelect('competition');
+            }}
+          />
+        ) : null}
 
         {!isShareMode ? (
           <AgentGuideModal

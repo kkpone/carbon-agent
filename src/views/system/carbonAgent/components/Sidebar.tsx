@@ -1,4 +1,4 @@
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined, TrophyFilled } from '@ant-design/icons';
 import {
   DndContext,
   DragEndEvent,
@@ -2190,6 +2190,34 @@ const Sidebar = ({
             >
               <Icon src={icons.cbamIcon} />
               <span className={style.navText}>{I18N.enterpriseData.title}</span>
+            </button>
+
+            <button
+              className={classNames(style.navItem, {
+                [style.activeNavItem]: activeSection === 'competition',
+              })}
+              type='button'
+              aria-current={
+                activeSection === 'competition' ? 'page' : undefined
+              }
+              aria-label={I18N.carbonCompetition.menuTitle}
+              title={collapsed ? I18N.carbonCompetition.menuTitle : undefined}
+              onClick={() => onSelectSection('competition')}
+            >
+              <span
+                className={sidebarStyles.competitionTrophyIcon}
+                aria-hidden='true'
+              >
+                <TrophyFilled />
+              </span>
+              <span className={style.navText}>
+                {I18N.carbonCompetition.menuTitle}
+              </span>
+              {!collapsed ? (
+                <span className={sidebarStyles.competitionHotBadge}>
+                  {I18N.carbonCompetition.menuHotBadge}
+                </span>
+              ) : null}
             </button>
 
             {collapsed ? (
