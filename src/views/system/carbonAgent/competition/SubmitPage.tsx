@@ -3,14 +3,16 @@ import {
   CopyOutlined,
   DownloadOutlined,
   FireFilled,
+  LockOutlined,
   QrcodeOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
 import { copyToClipboard } from '@src/utils/clipboard';
-import { Button, Input, Modal, Table, Tag, message } from 'antd';
+import { Button, Input, Modal, Segmented, Table, Tag, message } from 'antd';
 import classNames from 'classnames';
 import { useState } from 'react';
 
+import { CheckinCoreRuleModal } from './CompetitionModals';
 import style from './competition.module.less';
 import type {
   CompetitionStagePhase,
@@ -38,7 +40,6 @@ type SubmitPageProps = {
     field: 'cProdStatus' | 'cCorpStatus',
     status: SubmissionItemStatus,
   ) => void;
-  onOpenFullMechanism: () => void;
 };
 
 export const SubmitPage = ({
@@ -49,9 +50,13 @@ export const SubmitPage = ({
   onGoRegister,
   onGoCheckinPublic,
   onUpdateMemberSubmission,
-  onOpenFullMechanism,
 }: SubmitPageProps) => {
   const [activeModule, setActiveModule] = useState<CreosModuleKey>('C');
+  const [ePreviewTab, setEPreviewTab] = useState<'ENTERPRISE' | 'INDIVIDUAL'>(
+    roleView === 'INDIVIDUAL' ? 'INDIVIDUAL' : 'ENTERPRISE',
+  );
+  const [checkinRuleOpen, setCheckinRuleOpen] = useState(false);
+
   const [cProdDraft, setCProdDraft] = useState(
     'https://agent.carbonstop.com/share/agent/pcf-model-2026-pair08',
   );
@@ -79,7 +84,6 @@ export const SubmitPage = ({
     S: '',
   });
 
-  // 未报名或企业还在审核中：引导先报名
   if (roleView === 'UNREGISTERED' || roleView === 'ENT_AUDITING') {
     return (
       <div className={style.mainContainer}>
@@ -129,12 +133,12 @@ export const SubmitPage = ({
     return <Tag color='warning'>{compText('subStatusPending')}</Tag>;
   };
 
-  // 顶部 CREOS 五模块看板（已按需求移除“查看分数”列）
   const creosColumns: Array<{
     key: CreosModuleKey;
     title: string;
     desc: string;
     ongoing: boolean;
+    disabledForTrack: boolean;
     statusNode: JSX.Element;
   }> = [
     {
@@ -142,17 +146,19 @@ export const SubmitPage = ({
       title: compText('creosCTitle'),
       desc: compText('creosCDesc'),
       ongoing: isPrelimPhase,
-      statusNode: renderStatusTag(
-        cProdConfirmed ? 'SUBMITTED' : 'PENDING',
-      ),
+      disabledForTrack: false,
+      statusNode: renderStatusTag(cProdConfirmed ? 'SUBMITTED' : 'PENDING'),
     },
     {
       key: 'R',
       title: compText('creosRTitle'),
       desc: compText('creosRDesc'),
-      ongoing: isRosPhase,
+      ongoing: isRosPhase && !isIndividual,
+      disabledForTrack: isIndividual,
       statusNode: isIndividual ? (
-        <Tag>{compText('subEnterpriseOnlyTip')}</Tag>
+        <Tag icon={<LockOutlined />}>
+          {compText('subCardLockedIndividual')}
+        </Tag>
       ) : (
         renderStatusTag(rosStatus.R)
       ),
@@ -162,15 +168,19 @@ export const SubmitPage = ({
       title: compText('creosETitle'),
       desc: compText('creosEDesc'),
       ongoing: isPrelimPhase,
+      disabledForTrack: false,
       statusNode: <Tag color='cyan'>{compText('subStageOngoingTag')}</Tag>,
     },
     {
       key: 'O',
       title: compText('creosOTitle'),
       desc: compText('creosODesc'),
-      ongoing: isRosPhase,
+      ongoing: isRosPhase && !isIndividual,
+      disabledForTrack: isIndividual,
       statusNode: isIndividual ? (
-        <Tag>{compText('subEnterpriseOnlyTip')}</Tag>
+        <Tag icon={<LockOutlined />}>
+          {compText('subCardLockedIndividual')}
+        </Tag>
       ) : (
         renderStatusTag(rosStatus.O)
       ),
@@ -179,9 +189,12 @@ export const SubmitPage = ({
       key: 'S',
       title: compText('creosSTitle'),
       desc: compText('creosSDesc'),
-      ongoing: isRosPhase,
+      ongoing: isRosPhase && !isIndividual,
+      disabledForTrack: isIndividual,
       statusNode: isIndividual ? (
-        <Tag>{compText('subEnterpriseOnlyTip')}</Tag>
+        <Tag icon={<LockOutlined />}>
+          {compText('subCardLockedIndividual')}
+        </Tag>
       ) : (
         renderStatusTag(rosStatus.S)
       ),
@@ -235,37 +248,49 @@ export const SubmitPage = ({
 
       {/* 顶部 CREOS 五模块切换看板 */}
       <div className={style.creosBoardGrid}>
-        {creosColumns.map(col => (
-          <div
-            key={col.key}
-            className={classNames(style.creosColCard, {
-              [style.creosColCardActive]: activeModule === col.key,
-            })}
-            onClick={() => setActiveModule(col.key)}
-          >
-            <div>
-              <div className={style.creosColHeader}>
-                <span className={style.creosLetter}>{col.key}</span>
-                {col.ongoing ? (
-                  <span className={style.ongoingPulseTag}>
-                    <FireFilled />
-                    {compText('subStageOngoingTag')}
-                  </span>
+        {creosColumns.map(col => {
+          const isSelected = activeModule === col.key;
+          return (
+            <div
+              key={col.key}
+              className={classNames(style.creosColCard, {
+                [style.creosColCardActive]: isSelected,
+                [style.creosColCardDisabled]: col.disabledForTrack,
+              })}
+              onClick={() => setActiveModule(col.key)}
+            >
+              <div>
+                <div className={style.creosColHeader}>
+                  <span className={style.creosLetter}>{col.key}</span>
+                  {col.ongoing ? (
+                    <span className={style.ongoingPulseTag}>
+                      <FireFilled />
+                      {compText('subStageOngoingTag')}
+                    </span>
+                  ) : null}
+                </div>
+                <h3 className={style.cardTitle} style={{ fontSize: 15 }}>
+                  {col.title}
+                </h3>
+                <p
+                  className={style.cardDesc}
+                  style={{ fontSize: 12, marginBottom: 12 }}
+                >
+                  {col.desc}
+                </p>
+              </div>
+              <div>
+                {col.statusNode}
+                {isSelected ? (
+                  <div className={style.creosActiveArrow}>
+                    <span>当前查看模块</span>
+                    <span>▼</span>
+                  </div>
                 ) : null}
               </div>
-              <h3 className={style.cardTitle} style={{ fontSize: 15 }}>
-                {col.title}
-              </h3>
-              <p
-                className={style.cardDesc}
-                style={{ fontSize: 12, marginBottom: 12 }}
-              >
-                {col.desc}
-              </p>
             </div>
-            <div>{col.statusNode}</div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* 模块 1：C 量化碳排放 */}
@@ -310,7 +335,6 @@ export const SubmitPage = ({
           ) : null}
 
           <div className={style.grid2}>
-            {/* 产品碳足迹 */}
             <div className={style.cardBox}>
               <div
                 style={{
@@ -389,7 +413,6 @@ export const SubmitPage = ({
               </div>
             </div>
 
-            {/* 企业碳盘查（与产品碳一一对应） */}
             <div className={style.cardBox}>
               <div
                 style={{
@@ -472,7 +495,7 @@ export const SubmitPage = ({
         </div>
       ) : null}
 
-      {/* 模块 3：E 价值链带动（碳账户二维码、企业专属密钥、打卡规则与排行榜速览） */}
+      {/* 模块 3：E 价值链带动 */}
       {activeModule === 'E' ? (
         <div className={style.grid2}>
           <div className={style.cardBox}>
@@ -519,7 +542,11 @@ export const SubmitPage = ({
               </div>
             </div>
 
-            <Button type='link' onClick={onOpenFullMechanism}>
+            <Button
+              type='link'
+              style={{ color: '#026961', fontWeight: 700, padding: 0 }}
+              onClick={() => setCheckinRuleOpen(true)}
+            >
               {compText('subERuleBtn')} &gt;
             </Button>
           </div>
@@ -530,19 +557,34 @@ export const SubmitPage = ({
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+                gap: 12,
+                flexWrap: 'wrap',
                 marginBottom: 12,
               }}
             >
-              <h3 className={style.cardTitle} style={{ margin: 0 }}>
+              <h3
+                className={style.cardTitle}
+                style={{ margin: 0, whiteSpace: 'nowrap' }}
+              >
                 {compText('subELeaderboardPreviewTitle')}
               </h3>
-              <Button
-                type='link'
-                style={{ color: '#026961', fontWeight: 700, padding: 0 }}
-                onClick={onGoCheckinPublic}
-              >
-                {compText('subEViewFullPublicBtn')}
-              </Button>
+              <Segmented
+                size='small'
+                value={ePreviewTab}
+                options={[
+                  {
+                    label: compText('subELeaderboardSwitchEnt'),
+                    value: 'ENTERPRISE',
+                  },
+                  {
+                    label: compText('subELeaderboardSwitchInd'),
+                    value: 'INDIVIDUAL',
+                  },
+                ]}
+                onChange={val =>
+                  setEPreviewTab(val as 'ENTERPRISE' | 'INDIVIDUAL')
+                }
+              />
             </div>
 
             <Table
@@ -550,17 +592,18 @@ export const SubmitPage = ({
               pagination={false}
               rowKey='key'
               dataSource={
-                isIndividual
-                  ? INDIVIDUAL_CHECKIN_PUBLIC_LIST.slice(0, 4)
-                  : ENTERPRISE_CHECKIN_PUBLIC_LIST.slice(0, 4)
+                ePreviewTab === 'INDIVIDUAL'
+                  ? INDIVIDUAL_CHECKIN_PUBLIC_LIST.slice(0, 5)
+                  : ENTERPRISE_CHECKIN_PUBLIC_LIST.slice(0, 5)
               }
               columns={
-                isIndividual
+                ePreviewTab === 'INDIVIDUAL'
                   ? [
                       {
                         title: compText('checkinColRank'),
                         dataIndex: 'rank',
                         key: 'rank',
+                        render: (val: number) => `NO.${  String(val)}`,
                       },
                       {
                         title: compText('checkinColPersonName'),
@@ -571,6 +614,7 @@ export const SubmitPage = ({
                         title: compText('checkinColTotalPoints'),
                         dataIndex: 'totalPoints',
                         key: 'totalPoints',
+                        render: (val: number) => `${val.toLocaleString()  } 分`,
                       },
                     ]
                   : [
@@ -578,6 +622,7 @@ export const SubmitPage = ({
                         title: compText('checkinColRank'),
                         dataIndex: 'rank',
                         key: 'rank',
+                        render: (val: number) => `NO.${  String(val)}`,
                       },
                       {
                         title: compText('checkinColEnterprise'),
@@ -588,20 +633,34 @@ export const SubmitPage = ({
                         title: compText('checkinColTotalPoints'),
                         dataIndex: 'totalPoints',
                         key: 'totalPoints',
+                        render: (val: number) => `${val.toLocaleString()  } 分`,
                       },
                     ]
               }
             />
+
+            <div style={{ marginTop: 12, textAlign: 'right' }}>
+              <Button
+                type='link'
+                style={{ color: '#026961', fontWeight: 700, padding: 0 }}
+                onClick={onGoCheckinPublic}
+              >
+                {compText('subEViewFullPublicBtn')}
+              </Button>
+            </div>
           </div>
         </div>
       ) : null}
 
-      {/* 模块 2/4/5：R / O / S（个人组灰显不开放；企业组仅组长可操作，组员只读） */}
+      {/* 模块 2/4/5：R / O / S */}
       {activeModule === 'R' || activeModule === 'O' || activeModule === 'S' ? (
         <div className={style.cardBox}>
           {isIndividual ? (
             <div style={{ textAlign: 'center', padding: '40px 16px' }}>
-              <h3 style={{ fontSize: 18, color: '#6c757d' }}>
+              <LockOutlined
+                style={{ fontSize: 32, color: '#999ea4', marginBottom: 10 }}
+              />
+              <h3 style={{ fontSize: 18, color: '#6c757d', margin: 0 }}>
                 {compText('subEnterpriseOnlyTip')}
               </h3>
             </div>
@@ -720,6 +779,11 @@ export const SubmitPage = ({
           )}
         </div>
       ) : null}
+
+      <CheckinCoreRuleModal
+        open={checkinRuleOpen}
+        onClose={() => setCheckinRuleOpen(false)}
+      />
     </div>
   );
 };

@@ -62,7 +62,9 @@ export const ResultAndCheckinPage = ({
       row.trackTeamLabel.toLowerCase().includes(searchKeyword.toLowerCase()),
   );
 
-  const awardColumns = [
+  const buildAwardColumns = (
+    groupType: 'ENTERPRISE' | 'INDIVIDUAL' | 'SPECIAL',
+  ) => [
     {
       title: compText('checkinColRank'),
       dataIndex: 'awardLevel',
@@ -79,21 +81,32 @@ export const ResultAndCheckinPage = ({
       },
     },
     {
-      title: compText('checkinColEnterprise'),
+      title: (() => {
+        if (groupType === 'INDIVIDUAL') return compText('resColPersonWinner');
+        if (groupType === 'SPECIAL') return compText('resColSpecialSubject');
+        return compText('checkinColEnterprise');
+      })(),
       dataIndex: 'name',
       key: 'name',
       render: (val: string) => <strong>{val}</strong>,
     },
     {
-      title: compText('checkinColTrackTeam'),
+      title:
+        groupType === 'SPECIAL'
+          ? compText('resColSpecialReason')
+          : compText('checkinColTrackTeam'),
       dataIndex: 'trackOrCompany',
       key: 'trackOrCompany',
     },
-    {
-      title: 'C阶段核算得分',
-      dataIndex: 'cAvgOrScore',
-      key: 'cAvgOrScore',
-    },
+    ...(groupType === 'SPECIAL'
+      ? []
+      : [
+          {
+            title: 'C阶段核算得分',
+            dataIndex: 'cAvgOrScore',
+            key: 'cAvgOrScore',
+          },
+        ]),
     {
       title: 'E阶段打卡积分与得分',
       dataIndex: 'ePointsAndScore',
@@ -106,7 +119,7 @@ export const ResultAndCheckinPage = ({
       render: (val: string) => <Tag color='green'>{val}</Tag>,
     },
     {
-      title: '综合成绩',
+      title: '综合成绩 / 荣誉',
       dataIndex: 'finalScoreText',
       key: 'finalScoreText',
       render: (val: string) => (
@@ -551,7 +564,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={ENTERPRISE_AWARD_WINNERS}
-                  columns={awardColumns}
+                  columns={buildAwardColumns('ENTERPRISE')}
                 />
               </div>
 
@@ -563,7 +576,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={INDIVIDUAL_AWARD_WINNERS}
-                  columns={awardColumns}
+                  columns={buildAwardColumns('INDIVIDUAL')}
                 />
               </div>
             </div>
@@ -586,7 +599,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={ENTERPRISE_AWARD_WINNERS}
-                  columns={awardColumns}
+                  columns={buildAwardColumns('ENTERPRISE')}
                 />
               </div>
 
@@ -598,7 +611,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={INDIVIDUAL_AWARD_WINNERS}
-                  columns={awardColumns}
+                  columns={buildAwardColumns('INDIVIDUAL')}
                 />
               </div>
 
@@ -610,7 +623,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={SPECIAL_AWARD_WINNERS}
-                  columns={awardColumns}
+                  columns={buildAwardColumns('SPECIAL')}
                 />
               </div>
             </div>

@@ -331,4 +331,54 @@ export default {
   posterModalTitle: '赛事荣誉与成绩分享海报',
   posterScanTip: '长按或扫描二维码进入 Carbon Agent 大赛（已报名选手直达材料提交页）',
   posterCopyShareLinkBtn: '复制海报专属分享链接',
+
+  headerGoSubmitCta: '去提交参赛材料',
+  headerViewAuditCta: '查看资质审核进度',
+  demoToggleHide: '收起演示台',
+  demoToggleShow: '展开演示控制台',
+
+  anchorBg: '01 大赛背景',
+  anchorGoals: '02 大赛目标',
+  anchorTracks: '03 两大赛道',
+  anchorMechanism: '04 CREOS机制',
+  anchorRewards: '05 赛事奖励',
+  anchorTimeline: '06 大赛时间线',
+  anchorOrganizers: '07 举办机构',
+
+  regIndividualLockedBtn: '个人报名已确认（不可修改）',
+  regIndividualBenefitBanner:
+    '✅ 您已完成个人赛报名！系统已自动为您开通 Carbon Agent 月度会员（原会员已发放 1000 积分），请前往【材料提交】下载考题参与初赛。',
+  regTeamProgressTitle: '团队人数与影响力加成进度：当前 {count} 人，已享 +{bonus}% 总分加成',
+  regTeamProgressStep3: '3人（成团达标）',
+  regTeamProgressStep5: '5人（解锁加成门槛）',
+  regTeamProgressStep6: '6人（+2%）',
+  regTeamProgressStep7: '7人（+4%）',
+  regTeamProgressStep8: '8人（+6%）',
+  regTeamProgressStep9: '9人（+8%）',
+  regTeamProgressStep10: '10人（满额+10%）',
+  regMemberStatusVip: '已注册 · 已开月度会员',
+  regMemberStatusPoints: '已注册 · 已赠1000积分',
+  regMemberStatusUnreg: '未注册 Carbon Agent',
+  regCopyUrgeBtn: '复制催注册提醒',
+  regUrgeCopyTemplate:
+    '【中国企业碳管理大赛】您好 {name}，我们已为您报名企业组战队，请尽快使用手机号 {phone} 登录 https://agent.carbonstop.com/ 完成注册，系统将自动为您开通 Carbon Agent 月度会员（已是会员赠1000积分）以保障参赛！',
+  regUrgeCopySuccess: '已复制催促注册提醒文案，快去发给组员吧！',
+
+  subCardLockedIndividual: '仅企业赛开放',
+  subELeaderboardSwitchEnt: '企业排名 Top 5',
+  subELeaderboardSwitchInd: '个人组排名 Top 5',
+  checkinRuleModalTitle: 'E阶段（价值链带动）· 碳账户打卡核心规则说明',
+  checkinRuleSec1Title: '一、 个人日常低碳打卡积分获取规则',
+  checkinRuleSec1Body:
+    '参赛选手通过微信扫描碳账户小程序码并使用参赛手机号登录，每日完成绿色出行（公交/地铁/步行/骑行）、光盘行动、自带水杯、无纸化办公等低碳行为打卡，每次有效打卡可获 20~100 打卡积分，每日上限 300 积分。连续满勤打卡额外享阶梯奖励积分。',
+  checkinRuleSec2Title: '二、 企业专属“密钥”带动与企业总积分归集',
+  checkinRuleSec2Body:
+    '企业组通过资质审核后获得唯一碳账户“密钥”。本队参赛组员、企业内部全体员工以及上下游供应链合作伙伴在碳账户小程序中输入该“密钥”绑定企业后，其日常打卡所产生的积分将实时汇总计入该企业的【企业打卡总积分】。',
+  checkinRuleSec3Title: '三、 打卡积分如何折算为大赛 E 阶段得分',
+  checkinRuleSec3Body:
+    '在 CREOS 五阶段（总分 100 分）中，E（Engaging 价值链带动）模块满分 20 分。系统根据初赛截止时【企业打卡积分公示榜】与【个人打卡积分公示榜】的核验总积分及排名分位，自动折算为对应战队的 E 阶段竞赛得分（最高 20 分）。',
+
+  resColPersonWinner: '获奖选手姓名（脱敏手机号）',
+  resColSpecialSubject: '获奖主体（企业 / 个人）',
+  resColSpecialReason: '获奖理由与标杆实践亮点',
 };

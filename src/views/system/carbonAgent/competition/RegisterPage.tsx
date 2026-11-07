@@ -283,6 +283,11 @@ export const RegisterPage = ({
     return (
       <div className={style.mainContainer}>
         <div className={style.cardBox}>
+          {isLockedIndividual ? (
+            <div className={style.bonusAlertBanner} style={{ marginBottom: 18 }}>
+              <span>{compText('regIndividualBenefitBanner')}</span>
+            </div>
+          ) : null}
           <div
             style={{
               display: 'flex',
@@ -355,7 +360,7 @@ export const RegisterPage = ({
               onClick={handleConfirmIndividualSubmit}
             >
               {(() => {
-                if (isLockedIndividual) return compText('regTeamLockedBtn');
+                if (isLockedIndividual) return compText('regIndividualLockedBtn');
                 if (isRegistrationClosed) return compText('heroRegClosedCta');
                 return compText('regSubmitIndividualBtn');
               })()}
@@ -644,6 +649,53 @@ export const RegisterPage = ({
             ) : null}
           </div>
 
+          <div className={style.teamBonusTrackWrap}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                gap: 12,
+                flexWrap: 'wrap',
+              }}
+            >
+              <strong style={{ color: '#004541', fontSize: 13 }}>
+                {compText('regTeamProgressTitle', {
+                  count: teamMembers.length,
+                  bonus: extraTeamMemberBonus,
+                })}
+              </strong>
+              <Button
+                type='link'
+                style={{ color: '#026961', fontWeight: 700, padding: 0 }}
+                onClick={onOpenFullMechanism}
+              >
+                {compText('regTeamViewRuleLink')}
+              </Button>
+            </div>
+            <div className={style.teamBonusSteps}>
+              {[
+                { min: 3, label: compText('regTeamProgressStep3') },
+                { min: 5, label: compText('regTeamProgressStep5') },
+                { min: 6, label: compText('regTeamProgressStep6') },
+                { min: 7, label: compText('regTeamProgressStep7') },
+                { min: 8, label: compText('regTeamProgressStep8') },
+                { min: 9, label: compText('regTeamProgressStep9') },
+                { min: 10, label: compText('regTeamProgressStep10') },
+              ].map(node => (
+                <div
+                  key={node.min}
+                  className={classNames(style.teamBonusStepItem, {
+                    [style.teamBonusStepReached]:
+                      teamMembers.length >= node.min,
+                  })}
+                >
+                  {node.label}
+                </div>
+              ))}
+            </div>
+          </div>
+
           {teamMembers.length >= 5 ? (
             <div className={style.bonusAlertBanner}>
               <span>{compText('regTeamFiveMemberBonusBanner')}</span>
@@ -729,25 +781,60 @@ export const RegisterPage = ({
                     />
                   </Tooltip>
 
-                  <div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <Tag
+                      color={member.registeredInAgent ? 'success' : 'warning'}
+                    >
+                      {(() => {
+                        if (!member.registeredInAgent) {
+                          return compText('regMemberStatusUnreg');
+                        }
+                        if (isLeaderRow) {
+                          return compText('regMemberStatusPoints');
+                        }
+                        return compText('regMemberStatusVip');
+                      })()}
+                    </Tag>
+                    {!member.registeredInAgent ? (
+                      <Button
+                        size='small'
+                        type='link'
+                        style={{ padding: 0, color: '#026961', fontWeight: 600 }}
+                        onClick={() => {
+                          const urgeText = compText('regUrgeCopyTemplate', {
+                            name: member.name,
+                            phone: member.phone,
+                          });
+                          copyToClipboard(urgeText)
+                            .then(() => {
+                              message.success(compText('regUrgeCopySuccess'));
+                            })
+                            .catch(() => {
+                              message.info(urgeText);
+                            });
+                        }}
+                      >
+                        {compText('regCopyUrgeBtn')}
+                      </Button>
+                    ) : null}
                     {!isLeaderRow && !readonlyRow && teamMembers.length > 3 ? (
                       <Button
                         danger
+                        size='small'
                         type='text'
                         icon={<DeleteOutlined />}
                         onClick={() => handleRemoveMemberRow(member.id)}
                       >
                         {compText('regRemoveMemberBtn')}
                       </Button>
-                    ) : (
-                      <Tag
-                        color={member.registeredInAgent ? 'success' : 'warning'}
-                      >
-                        {member.registeredInAgent
-                          ? compText('subStatusSubmitted')
-                          : compText('subStatusUnregistered')}
-                      </Tag>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               );

@@ -104,9 +104,34 @@ export const IntroPage = ({
         </div>
       </section>
 
+      <nav className={style.anchorNavBar} aria-label={compText('navIntro')}>
+        {[
+          { id: 'comp-sec-bg', label: compText('anchorBg') },
+          { id: 'comp-sec-goals', label: compText('anchorGoals') },
+          { id: 'comp-sec-tracks', label: compText('anchorTracks') },
+          { id: 'comp-sec-creos', label: compText('anchorMechanism') },
+          { id: 'comp-sec-rewards', label: compText('anchorRewards') },
+          { id: 'comp-sec-timeline', label: compText('anchorTimeline') },
+          { id: 'comp-sec-org', label: compText('anchorOrganizers') },
+        ].map(anchor => (
+          <button
+            key={anchor.id}
+            type='button'
+            className={style.anchorPill}
+            onClick={() => {
+              document
+                .getElementById(anchor.id)
+                ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+          >
+            {anchor.label}
+          </button>
+        ))}
+      </nav>
+
       <div className={style.mainContainer}>
         {/* 01 大赛背景 */}
-        <section className={style.sectionBlock}>
+        <section id='comp-sec-bg' className={style.sectionBlock}>
           <div className={style.sectionHeader}>
             <div>
               <h2 className={style.sectionTitle}>
@@ -140,7 +165,7 @@ export const IntroPage = ({
         </section>
 
         {/* 02 大赛目标 */}
-        <section className={style.sectionBlock}>
+        <section id='comp-sec-goals' className={style.sectionBlock}>
           <div className={style.sectionHeader}>
             <h2 className={style.sectionTitle}>
               {compText('introGoalsTitle')}
@@ -191,7 +216,7 @@ export const IntroPage = ({
         </section>
 
         {/* 03 两大赛道 */}
-        <section className={style.sectionBlock}>
+        <section id='comp-sec-tracks' className={style.sectionBlock}>
           <div className={style.sectionHeader}>
             <h2 className={style.sectionTitle}>
               {compText('introTracksTitle')}
@@ -263,7 +288,7 @@ export const IntroPage = ({
         </section>
 
         {/* 04 大赛机制 CREOS */}
-        <section className={style.sectionBlock}>
+        <section id='comp-sec-creos' className={style.sectionBlock}>
           <div className={style.sectionHeader}>
             <div>
               <h2 className={style.sectionTitle}>
@@ -330,7 +355,7 @@ export const IntroPage = ({
         </section>
 
         {/* 05 大赛奖励与参赛收益 */}
-        <section className={style.sectionBlock}>
+        <section id='comp-sec-rewards' className={style.sectionBlock}>
           <div className={style.sectionHeader}>
             <h2 className={style.sectionTitle}>
               {compText('introRewardsTitle')}
@@ -369,7 +394,7 @@ export const IntroPage = ({
         </section>
 
         {/* 06 大赛时间线 */}
-        <section className={style.sectionBlock}>
+        <section id='comp-sec-timeline' className={style.sectionBlock}>
           <div className={style.sectionHeader}>
             <h2 className={style.sectionTitle}>
               {compText('introTimelineTitle')}
@@ -392,7 +417,7 @@ export const IntroPage = ({
         </section>
 
         {/* 07 大赛举办方 */}
-        <section className={style.sectionBlock}>
+        <section id='comp-sec-org' className={style.sectionBlock}>
           <div className={style.sectionHeader}>
             <h2 className={style.sectionTitle}>
               {compText('introOrganizersTitle')}

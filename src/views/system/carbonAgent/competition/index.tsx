@@ -68,6 +68,7 @@ const CompetitionPage = ({
   const [inviteSuccessCount] = useState(1);
 
   const [mechanismOpen, setMechanismOpen] = useState(false);
+  const [demoBarExpanded, setDemoBarExpanded] = useState(true);
   const [inviteLandingOpen, setInviteLandingOpen] = useState(
     Boolean(inviterParam),
   );
@@ -191,21 +192,52 @@ const CompetitionPage = ({
         </nav>
 
         <div className={style.headerRight}>
-          <button
-            type='button'
-            className={style.headerActionBtn}
-            disabled={isRegistrationClosed}
-            onClick={handleGoRegister}
-          >
-            {isRegistrationClosed
-              ? compText('heroRegClosedCta')
-              : compText('heroPrimaryCta')}
-          </button>
+          {(() => {
+            if (
+              roleView === 'ENT_LEADER' ||
+              roleView === 'ENT_MEMBER' ||
+              roleView === 'INDIVIDUAL'
+            ) {
+              return (
+                <button
+                  type='button'
+                  className={style.headerActionBtn}
+                  onClick={() => syncTabToUrl('submit')}
+                >
+                  {compText('headerGoSubmitCta')}
+                </button>
+              );
+            }
+            if (roleView === 'ENT_AUDITING') {
+              return (
+                <button
+                  type='button'
+                  className={style.headerActionBtn}
+                  onClick={() => syncTabToUrl('register')}
+                >
+                  {compText('headerViewAuditCta')}
+                </button>
+              );
+            }
+            return (
+              <button
+                type='button'
+                className={style.headerActionBtn}
+                disabled={isRegistrationClosed}
+                onClick={handleGoRegister}
+              >
+                {isRegistrationClosed
+                  ? compText('heroRegClosedCta')
+                  : compText('heroPrimaryCta')}
+              </button>
+            );
+          })()}
         </div>
       </header>
 
-      {/* 演示控制台：方便快速预览不同赛程阶段与参赛身份 */}
-      <div className={style.demoControlBar}>
+      {/* 演示控制台：支持一键收起以预览 100% 纯净上线界面 */}
+      {demoBarExpanded ? (
+        <div className={style.demoControlBar}>
         <div className={style.demoControlGroup}>
           <span className={style.demoLabel}>{compText('demoBarLabel')}</span>
           {(
@@ -261,8 +293,24 @@ const CompetitionPage = ({
           >
             {compText('demoOpenInvitePopup')}
           </button>
+          <button
+            type='button'
+            className={style.demoPill}
+            onClick={() => setDemoBarExpanded(false)}
+          >
+            {compText('demoToggleHide')}
+          </button>
         </div>
       </div>
+      ) : (
+        <button
+          type='button'
+          className={style.demoCollapsedFab}
+          onClick={() => setDemoBarExpanded(true)}
+        >
+          {compText('demoToggleShow')}
+        </button>
+      )}
 
       {/* 主体内容区 */}
       {activeTab === 'intro' ? (
@@ -309,7 +357,6 @@ const CompetitionPage = ({
           onGoRegister={() => syncTabToUrl('register')}
           onGoCheckinPublic={() => syncTabToUrl('checkin')}
           onUpdateMemberSubmission={handleUpdateMemberSubmission}
-          onOpenFullMechanism={() => setMechanismOpen(true)}
         />
       ) : null}
 

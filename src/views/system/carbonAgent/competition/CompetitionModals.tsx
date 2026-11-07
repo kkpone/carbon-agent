@@ -465,3 +465,70 @@ export const SharePosterModal = ({
     </Modal>
   );
 };
+
+type CheckinCoreRuleModalProps = {
+  open: boolean;
+  onClose: () => void;
+};
+
+export const CheckinCoreRuleModal = ({
+  open,
+  onClose,
+}: CheckinCoreRuleModalProps) => (
+  <Modal
+    title={compText('checkinRuleModalTitle')}
+    open={open}
+    width={640}
+    onCancel={onClose}
+    footer={[
+      <Button
+        key='ok'
+        type='primary'
+        style={{ background: '#026961', borderColor: '#026961' }}
+        onClick={onClose}
+      >
+        {compText('inviteConfirmJoinTeam')}
+      </Button>,
+    ]}
+  >
+    <div style={{ padding: '4px 0' }}>
+      {[
+        {
+          title: compText('checkinRuleSec1Title'),
+          body: compText('checkinRuleSec1Body'),
+        },
+        {
+          title: compText('checkinRuleSec2Title'),
+          body: compText('checkinRuleSec2Body'),
+        },
+        {
+          title: compText('checkinRuleSec3Title'),
+          body: compText('checkinRuleSec3Body'),
+        },
+      ].map(sec => (
+        <div key={sec.title} style={{ marginBottom: 16 }}>
+          <h4
+            style={{
+              fontSize: 15,
+              fontWeight: 700,
+              color: '#004541',
+              marginBottom: 6,
+            }}
+          >
+            {sec.title}
+          </h4>
+          <p
+            style={{
+              fontSize: 13,
+              lineHeight: 1.75,
+              color: '#343a40',
+              margin: 0,
+            }}
+          >
+            {sec.body}
+          </p>
+        </div>
+      ))}
+    </div>
+  </Modal>
+);
