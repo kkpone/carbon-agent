@@ -404,4 +404,7 @@ export default {
   subViewCorpLinkBtn: '查看企业碳链接',
   footerQrGroupBadge: '交流群',
   footerQrAssistantBadge: '小助手',
+  regMemberInviterTag: '邀请人：{inviter}',
+  regSubmitTeamBtnWithBonus: '立即提交组队（影响力 +{bonus}%）',
+  regTeamLockedBtnWithBonus: '组队已确认提交（影响力 +{bonus}%）',
 };

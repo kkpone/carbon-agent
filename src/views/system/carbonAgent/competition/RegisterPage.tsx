@@ -88,6 +88,11 @@ export const RegisterPage = ({
 
   // 计算影响力加成系数：企业组可按第6-10人（每多1人+2%）或邀请累加，个人组按邀请人数（每1人+2%），封顶10%
   const extraTeamMemberBonus = Math.max(0, teamMembers.length - 5) * 2;
+  const teamInvitedCount = teamMembers.filter(m => Boolean(m.inviterName)).length;
+  const enterpriseTeamBonusPercent = Math.min(
+    10,
+    Math.max(extraTeamMemberBonus, teamInvitedCount * 2),
+  );
   const inviteBonus = Math.max(inviteSuccessCount, INDIVIDUAL_INVITED_RECORDS.length) * 2;
   const totalBonusPercent = Math.min(10, extraTeamMemberBonus + inviteBonus);
 
@@ -137,6 +142,7 @@ export const RegisterPage = ({
         name: `新组员${  String(nextIdx)}`,
         phone: `1360000100${  String(nextIdx)}`,
         registeredInAgent: true,
+        inviterName: '林立',
         cProdStatus: 'PENDING',
         cCorpStatus: 'PENDING',
       },
@@ -800,6 +806,13 @@ export const RegisterPage = ({
                       flexWrap: 'wrap',
                     }}
                   >
+                    {member.inviterName ? (
+                      <Tag color='purple'>
+                        {compText('regMemberInviterTag', {
+                          inviter: member.inviterName,
+                        })}
+                      </Tag>
+                    ) : null}
                     <Tag
                       color={member.registeredInAgent ? 'success' : 'warning'}
                     >
@@ -825,7 +838,15 @@ export const RegisterPage = ({
           </div>
 
           {!isMemberOnly ? (
-            <div style={{ marginTop: 22 }}>
+            <div
+              style={{
+                marginTop: 22,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+                flexWrap: 'wrap',
+              }}
+            >
               <Button
                 type='primary'
                 size='large'
@@ -841,11 +862,22 @@ export const RegisterPage = ({
                 onClick={handleConfirmTeamSubmit}
               >
                 {(() => {
-                  if (teamLocked) return compText('regTeamLockedBtn');
+                  if (teamLocked) {
+                    return compText('regTeamLockedBtnWithBonus', {
+                      bonus: enterpriseTeamBonusPercent,
+                    });
+                  }
                   if (isRegistrationClosed) return compText('heroRegClosedCta');
-                  return compText('regSubmitTeamBtn');
+                  return compText('regSubmitTeamBtnWithBonus', {
+                    bonus: enterpriseTeamBonusPercent,
+                  });
                 })()}
               </Button>
+              <Tag color='green' style={{ fontSize: 13, padding: '4px 12px' }}>
+                {compText('inviteCurrentBonus', {
+                  bonus: enterpriseTeamBonusPercent,
+                })}
+              </Tag>
             </div>
           ) : null}
         </div>

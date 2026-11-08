@@ -52,6 +52,7 @@ export type TeamMemberRecord = {
   name: string;
   phone: string;
   registeredInAgent: boolean;
+  inviterName?: string;
   cProdStatus: SubmissionItemStatus;
   cCorpStatus: SubmissionItemStatus;
   cProdUrl?: string;
@@ -142,6 +143,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMemberRecord[] = [
     name: '周晓雯',
     phone: '13928374651',
     registeredInAgent: true,
+    inviterName: '林立',
     cProdStatus: 'PENDING',
     cCorpStatus: 'PENDING',
     cProdScore: 41.5,
@@ -160,11 +162,24 @@ export const INITIAL_TEAM_MEMBERS: TeamMemberRecord[] = [
     name: '赵敏',
     phone: '13598761234',
     registeredInAgent: true,
+    inviterName: '陈思远',
     cProdStatus: 'SUBMITTED',
     cCorpStatus: 'PENDING',
     cProdUrl: 'https://agent.carbonstop.com/share/agent/pcf-model-2026-m5',
     cProdScore: 42.0,
     cCorpScore: 41.5,
+  },
+  {
+    id: 'm-6',
+    name: '孙明哲',
+    phone: '13681920345',
+    registeredInAgent: true,
+    inviterName: '林立',
+    cProdStatus: 'SUBMITTED',
+    cCorpStatus: 'PENDING',
+    cProdUrl: 'https://agent.carbonstop.com/share/agent/pcf-model-2026-m6',
+    cProdScore: 43.5,
+    cCorpScore: 42.0,
   },
 ];
 
