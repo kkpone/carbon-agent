@@ -802,24 +802,44 @@ export const RegisterPage = ({
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: 8,
-                      flexWrap: 'wrap',
+                      justifyContent: 'center',
                     }}
                   >
                     {member.inviterName ? (
-                      <Tag color='purple'>
+                      <Tag color='purple' style={{ margin: 0 }}>
                         {compText('regMemberInviterTag', {
                           inviter: member.inviterName,
                         })}
                       </Tag>
-                    ) : null}
+                    ) : (
+                      <span style={{ color: '#9ca3af' }}>-</span>
+                    )}
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
                     <Tag
                       color={member.registeredInAgent ? 'success' : 'warning'}
+                      style={{ margin: 0 }}
                     >
                       {member.registeredInAgent
                         ? compText('regMemberRegisteredSimple')
                         : compText('regMemberUnregisteredSimple')}
                     </Tag>
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
                     {!isLeaderRow && !readonlyRow && teamMembers.length > 3 ? (
                       <Button
                         danger
@@ -830,7 +850,9 @@ export const RegisterPage = ({
                       >
                         {compText('regRemoveMemberBtn')}
                       </Button>
-                    ) : null}
+                    ) : (
+                      <span style={{ color: '#9ca3af' }}>-</span>
+                    )}
                   </div>
                 </div>
               );
