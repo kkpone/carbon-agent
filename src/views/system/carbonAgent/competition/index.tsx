@@ -146,10 +146,11 @@ const CompetitionPage = ({
             <button
               type='button'
               className={style.backAgentBtn}
+              title={compText('backToAgent')}
+              aria-label={compText('backToAgent')}
               onClick={onBackToWorkspace}
             >
               <ArrowLeftOutlined />
-              <span>{compText('backToAgent')}</span>
             </button>
           ) : null}
           <div className={style.brandTitleWrap}>

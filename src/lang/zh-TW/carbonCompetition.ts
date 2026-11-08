@@ -216,7 +216,7 @@ export default {
   regTeamFiveMemberBonusBanner:
     '🎉 恭喜您的团队即将突破 5 人，快去邀请更多人参与吧！每邀请成功 1 位，影响力系数将增加 2%，最高 10%！',
   regTeamViewRuleLink: '点击查看详细赛制 >',
-  regRoleLeader: '组长（默认提交人，不可移交）',
+  regRoleLeader: '组长',
   regRoleMember: '组员',
   regNamePlaceholder: '请输入真实姓名',
   regPhonePlaceholder: '请输入 11 位手机号（作为唯一参赛 ID）',

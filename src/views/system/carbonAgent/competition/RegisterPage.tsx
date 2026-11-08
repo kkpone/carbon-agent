@@ -309,14 +309,16 @@ export const RegisterPage = ({
                 {compText('regIndividualSub')}
               </p>
             </div>
-            {!isLockedIndividual ? (
-              <Button onClick={() => setSelectedUnregTrack('NONE')}>
-                {compText('inviteModalThinkAgain')}
-              </Button>
-            ) : null}
           </div>
 
-          <div className={style.grid2} style={{ marginTop: 20 }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 18,
+              marginTop: 20,
+            }}
+          >
             <div>
               <div style={{ fontWeight: 600, marginBottom: 6 }}>
                 {compText('checkinColPersonName')}
@@ -352,24 +354,24 @@ export const RegisterPage = ({
               flexWrap: 'wrap',
             }}
           >
-            <Button
-              type='primary'
-              size='large'
-              disabled={isLockedIndividual || isRegistrationClosed}
-              style={{
-                background: '#026961',
-                borderColor: '#026961',
-                borderRadius: 999,
-                paddingInline: 36,
-              }}
-              onClick={handleConfirmIndividualSubmit}
-            >
-              {(() => {
-                if (isLockedIndividual) return compText('regIndividualLockedBtn');
-                if (isRegistrationClosed) return compText('heroRegClosedCta');
-                return compText('regSubmitIndividualBtn');
-              })()}
-            </Button>
+            {!isLockedIndividual ? (
+              <Button
+                type='primary'
+                size='large'
+                disabled={isRegistrationClosed}
+                style={{
+                  background: '#026961',
+                  borderColor: '#026961',
+                  borderRadius: 999,
+                  paddingInline: 36,
+                }}
+                onClick={handleConfirmIndividualSubmit}
+              >
+                {isRegistrationClosed
+                  ? compText('heroRegClosedCta')
+                  : compText('regSubmitIndividualBtn')}
+              </Button>
+            ) : null}
             {isLockedIndividual ? (
               <>
                 <Button
@@ -521,12 +523,6 @@ export const RegisterPage = ({
                 （{compText('regBasicInfoTooltip')}）
               </span>
             </div>
-
-            {roleView === 'UNREGISTERED' ? (
-              <Button onClick={() => setSelectedUnregTrack('NONE')}>
-                {compText('inviteModalThinkAgain')}
-              </Button>
-            ) : null}
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
@@ -701,7 +697,14 @@ export const RegisterPage = ({
           </div>
 
           {teamMembers.length >= 5 ? (
-            <div className={style.bonusAlertBanner}>
+            <div
+              className={style.bonusAlertBanner}
+              style={{
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: 10,
+              }}
+            >
               <span>{compText('regTeamFiveMemberBonusBanner')}</span>
               <div
                 style={{
@@ -749,7 +752,7 @@ export const RegisterPage = ({
                     <Tag color={isLeaderRow ? 'geekblue' : 'cyan'}>
                       {isLeaderRow
                         ? compText('regRoleLeader')
-                        : `${compText('regRoleMember')  } ${  String(index)}`}
+                        : compText('regRoleMember')}
                     </Tag>
                   </div>
 
@@ -804,28 +807,6 @@ export const RegisterPage = ({
                         ? compText('regMemberRegisteredSimple')
                         : compText('regMemberUnregisteredSimple')}
                     </Tag>
-                    {!member.registeredInAgent ? (
-                      <Button
-                        size='small'
-                        type='link'
-                        style={{ padding: 0, color: '#026961', fontWeight: 600 }}
-                        onClick={() => {
-                          const urgeText = compText('regUrgeCopyTemplate', {
-                            name: member.name,
-                            phone: member.phone,
-                          });
-                          copyToClipboard(urgeText)
-                            .then(() => {
-                              message.success(compText('regUrgeCopySuccess'));
-                            })
-                            .catch(() => {
-                              message.info(urgeText);
-                            });
-                        }}
-                      >
-                        {compText('regCopyUrgeBtn')}
-                      </Button>
-                    ) : null}
                     {!isLeaderRow && !readonlyRow && teamMembers.length > 3 ? (
                       <Button
                         danger
