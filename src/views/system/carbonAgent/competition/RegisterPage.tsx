@@ -720,21 +720,23 @@ export const RegisterPage = ({
                   flexShrink: 0,
                 }}
               >
-                <Button
-                  type='primary'
-                  size='small'
-                  icon={<CopyOutlined />}
-                  disabled={isRegistrationClosed}
-                  style={{
-                    background: '#026961',
-                    borderColor: '#026961',
-                    borderRadius: 999,
-                    fontWeight: 600,
-                  }}
-                  onClick={handleCopyInviteLink}
-                >
-                  {compText('inviteCopyBtn')}
-                </Button>
+                {!teamLocked ? (
+                  <Button
+                    type='primary'
+                    size='small'
+                    icon={<CopyOutlined />}
+                    disabled={isRegistrationClosed}
+                    style={{
+                      background: '#026961',
+                      borderColor: '#026961',
+                      borderRadius: 999,
+                      fontWeight: 600,
+                    }}
+                    onClick={handleCopyInviteLink}
+                  >
+                    {compText('inviteCopyBtn')}
+                  </Button>
+                ) : null}
                 <Button
                   type='link'
                   style={{ color: '#026961', fontWeight: 700, padding: 0 }}
