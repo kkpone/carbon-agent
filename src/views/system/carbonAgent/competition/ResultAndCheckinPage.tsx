@@ -1,4 +1,5 @@
 import {
+  ArrowLeftOutlined,
   FireFilled,
   SearchOutlined,
   ShareAltOutlined,
@@ -12,7 +13,6 @@ import type {
   AwardWinnerRow,
   CompetitionStagePhase,
   EnterpriseCheckinRow,
-  IndividualCheckinRow,
   ParticipantRoleView,
 } from './data';
 import {
@@ -28,7 +28,7 @@ type ResultAndCheckinPageProps = {
   subView: 'AWARDS' | 'CHECKIN';
   stagePhase: CompetitionStagePhase;
   roleView: ParticipantRoleView;
-  onSwitchSubView: (view: 'AWARDS' | 'CHECKIN') => void;
+  onBackToEStage: () => void;
   onOpenPoster: (type: 'ENTERPRISE' | 'INDIVIDUAL') => void;
 };
 
@@ -36,7 +36,7 @@ export const ResultAndCheckinPage = ({
   subView,
   stagePhase,
   roleView,
-  onSwitchSubView,
+  onBackToEStage,
   onOpenPoster,
 }: ResultAndCheckinPageProps) => {
   const [checkinBoardType, setCheckinBoardType] = useState<
@@ -64,91 +64,106 @@ export const ResultAndCheckinPage = ({
 
   const buildAwardColumns = (
     groupType: 'ENTERPRISE' | 'INDIVIDUAL' | 'SPECIAL',
-  ) => [
-    {
-      title: compText('checkinColRank'),
-      dataIndex: 'awardLevel',
-      key: 'awardLevel',
-      render: (val: string, row: AwardWinnerRow) => {
-        const colorMap: Record<AwardWinnerRow['badgeColor'], string> = {
-          gold: 'gold',
-          silver: 'cyan',
-          bronze: 'green',
-          finalist: 'geekblue',
-          special: 'purple',
-        };
-        return <Tag color={colorMap[row.badgeColor]}>{val}</Tag>;
+    stageMode: 'PRELIM' | 'FINAL',
+  ) => {
+    const showRankCol =
+      stageMode === 'PRELIM' || groupType === 'SPECIAL';
+    return [
+      ...(showRankCol
+        ? [
+            {
+              title: compText('checkinColRank'),
+              dataIndex: 'awardLevel',
+              key: 'awardLevel',
+              render: (val: string, row: AwardWinnerRow, index: number) => {
+                if (stageMode === 'PRELIM') {
+                  return <strong>{index + 1}</strong>;
+                }
+                const colorMap: Record<AwardWinnerRow['badgeColor'], string> = {
+                  gold: 'gold',
+                  silver: 'cyan',
+                  bronze: 'green',
+                  finalist: 'geekblue',
+                  special: 'purple',
+                };
+                return <Tag color={colorMap[row.badgeColor]}>{val}</Tag>;
+              },
+            },
+          ]
+        : []),
+      {
+        title: (() => {
+          if (groupType === 'INDIVIDUAL') return compText('resColPersonWinner');
+          if (groupType === 'SPECIAL') return compText('resColSpecialSubject');
+          return compText('checkinColEnterprise');
+        })(),
+        dataIndex: 'name',
+        key: 'name',
+        render: (val: string) => <strong>{val}</strong>,
       },
-    },
-    {
-      title: (() => {
-        if (groupType === 'INDIVIDUAL') return compText('resColPersonWinner');
-        if (groupType === 'SPECIAL') return compText('resColSpecialSubject');
-        return compText('checkinColEnterprise');
-      })(),
-      dataIndex: 'name',
-      key: 'name',
-      render: (val: string) => <strong>{val}</strong>,
-    },
-    {
-      title:
-        groupType === 'SPECIAL'
-          ? compText('resColSpecialReason')
-          : compText('checkinColTrackTeam'),
-      dataIndex: 'trackOrCompany',
-      key: 'trackOrCompany',
-    },
-    ...(groupType === 'SPECIAL'
-      ? []
-      : [
-          {
-            title: 'C阶段核算得分',
-            dataIndex: 'cAvgOrScore',
-            key: 'cAvgOrScore',
-          },
-        ]),
-    {
-      title: 'E阶段打卡积分与得分',
-      dataIndex: 'ePointsAndScore',
-      key: 'ePointsAndScore',
-    },
-    {
-      title: '邀请/人数加成 (+2%~10%)',
-      dataIndex: 'bonusRateText',
-      key: 'bonusRateText',
-      render: (val: string) => <Tag color='green'>{val}</Tag>,
-    },
-    {
-      title: '综合成绩 / 荣誉',
-      dataIndex: 'finalScoreText',
-      key: 'finalScoreText',
-      render: (val: string) => (
-        <strong style={{ color: '#026961', fontSize: 15 }}>{val}</strong>
-      ),
-    },
-  ];
+      ...(groupType === 'SPECIAL'
+        ? [
+            {
+              title: compText('resColSpecialReason'),
+              dataIndex: 'trackOrCompany',
+              key: 'trackOrCompany',
+            },
+          ]
+        : [
+            {
+              title: 'C阶段核算得分',
+              dataIndex: 'cAvgOrScore',
+              key: 'cAvgOrScore',
+            },
+          ]),
+      {
+        title: 'E阶段打卡积分与得分',
+        dataIndex: 'ePointsAndScore',
+        key: 'ePointsAndScore',
+      },
+      {
+        title: '邀请/人数加成 (+2%~10%)',
+        dataIndex: 'bonusRateText',
+        key: 'bonusRateText',
+        render: (val: string) => <Tag color='green'>{val}</Tag>,
+      },
+      {
+        title: '综合成绩 / 荣誉',
+        dataIndex: 'finalScoreText',
+        key: 'finalScoreText',
+        render: (val: string) => (
+          <strong style={{ color: '#026961', fontSize: 15 }}>{val}</strong>
+        ),
+      },
+    ];
+  };
 
   return (
     <div className={style.mainContainer}>
       <div
         style={{
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: subView === 'CHECKIN' ? 'space-between' : 'flex-end',
           alignItems: 'center',
           gap: 16,
           marginBottom: 24,
           flexWrap: 'wrap',
         }}
       >
-        <Segmented
-          size='large'
-          value={subView}
-          options={[
-            { label: compText('resTabAwards'), value: 'AWARDS' },
-            { label: compText('resTabCheckin'), value: 'CHECKIN' },
-          ]}
-          onChange={val => onSwitchSubView(val as 'AWARDS' | 'CHECKIN')}
-        />
+        {subView === 'CHECKIN' ? (
+          <Button
+            icon={<ArrowLeftOutlined />}
+            style={{
+              borderRadius: 999,
+              borderColor: '#026961',
+              color: '#026961',
+              fontWeight: 600,
+            }}
+            onClick={onBackToEStage}
+          >
+            {compText('checkinBackToEBtn')}
+          </Button>
+        ) : null}
 
         <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
           {roleView === 'ENT_LEADER' ? (
@@ -211,9 +226,10 @@ export const ResultAndCheckinPage = ({
             <div
               style={{
                 display: 'flex',
-                flexDirection: 'column',
-                gap: 8,
-                alignItems: 'flex-end',
+                flexDirection: 'row',
+                gap: 12,
+                alignItems: 'center',
+                flexWrap: 'wrap',
               }}
             >
               {roleView !== 'INDIVIDUAL' ? (
@@ -384,15 +400,6 @@ export const ResultAndCheckinPage = ({
                       key: 'eStageScore',
                       render: (val: number) => `${val.toFixed(1)  } 分`,
                     },
-                    {
-                      title: compText('checkinColStatus'),
-                      key: 'status',
-                      render: () => (
-                        <Tag color='success'>
-                          {compText('checkinVerifiedTag')}
-                        </Tag>
-                      ),
-                    },
                   ]}
                 />
               </div>
@@ -460,15 +467,6 @@ export const ResultAndCheckinPage = ({
                       key: 'trackTeamLabel',
                     },
                     {
-                      title: compText('checkinColDaysTimes'),
-                      key: 'daysTimes',
-                      render: (_: unknown, row: IndividualCheckinRow) =>
-                        `${String(row.checkinDays) 
-                        } 天 / ${ 
-                        String(row.checkinTimes) 
-                        } 次`,
-                    },
-                    {
                       title: compText('checkinColTotalPoints'),
                       dataIndex: 'totalPoints',
                       key: 'totalPoints',
@@ -483,15 +481,6 @@ export const ResultAndCheckinPage = ({
                       dataIndex: 'eStageScore',
                       key: 'eStageScore',
                       render: (val: number) => `${val.toFixed(1)  } 分`,
-                    },
-                    {
-                      title: compText('checkinColStatus'),
-                      key: 'status',
-                      render: () => (
-                        <Tag color='success'>
-                          {compText('checkinVerifiedTag')}
-                        </Tag>
-                      ),
                     },
                   ]}
                 />
@@ -534,18 +523,6 @@ export const ResultAndCheckinPage = ({
                   {compText('resFinalPublishDate')}
                 </Tag>
               </div>
-              <Button
-                type='primary'
-                size='large'
-                style={{
-                  background: '#026961',
-                  borderColor: '#026961',
-                  borderRadius: 999,
-                }}
-                onClick={() => onSwitchSubView('CHECKIN')}
-              >
-                {compText('subEViewFullPublicBtn')}
-              </Button>
             </div>
           ) : null}
 
@@ -564,7 +541,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={ENTERPRISE_AWARD_WINNERS}
-                  columns={buildAwardColumns('ENTERPRISE')}
+                  columns={buildAwardColumns('ENTERPRISE', 'PRELIM')}
                 />
               </div>
 
@@ -576,7 +553,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={INDIVIDUAL_AWARD_WINNERS}
-                  columns={buildAwardColumns('INDIVIDUAL')}
+                  columns={buildAwardColumns('INDIVIDUAL', 'PRELIM')}
                 />
               </div>
             </div>
@@ -599,7 +576,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={ENTERPRISE_AWARD_WINNERS}
-                  columns={buildAwardColumns('ENTERPRISE')}
+                  columns={buildAwardColumns('ENTERPRISE', 'FINAL')}
                 />
               </div>
 
@@ -611,7 +588,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={INDIVIDUAL_AWARD_WINNERS}
-                  columns={buildAwardColumns('INDIVIDUAL')}
+                  columns={buildAwardColumns('INDIVIDUAL', 'FINAL')}
                 />
               </div>
 
@@ -623,7 +600,7 @@ export const ResultAndCheckinPage = ({
                   rowKey='key'
                   pagination={false}
                   dataSource={SPECIAL_AWARD_WINNERS}
-                  columns={buildAwardColumns('SPECIAL')}
+                  columns={buildAwardColumns('SPECIAL', 'FINAL')}
                 />
               </div>
             </div>

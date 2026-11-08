@@ -1,16 +1,14 @@
 import {
   CheckCircleFilled,
-  CopyOutlined,
   DownloadOutlined,
   FireFilled,
   LockOutlined,
   QrcodeOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import { copyToClipboard } from '@src/utils/clipboard';
 import { Button, Input, Modal, Radio, Segmented, Table, Tag, message } from 'antd';
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { CheckinCoreRuleModal } from './CompetitionModals';
 import style from './competition.module.less';
@@ -33,7 +31,7 @@ type SubmitPageProps = {
   stagePhase: CompetitionStagePhase;
   roleView: ParticipantRoleView;
   teamMembers: TeamMemberRecord[];
-  carbonAccountSecret: string;
+  initialModule?: CreosModuleKey;
   onGoRegister: () => void;
   onGoCheckinPublic: () => void;
   onUpdateMemberSubmission: (
@@ -47,17 +45,25 @@ export const SubmitPage = ({
   stagePhase,
   roleView,
   teamMembers,
-  carbonAccountSecret,
+  initialModule,
   onGoRegister,
   onGoCheckinPublic,
   onUpdateMemberSubmission,
 }: SubmitPageProps) => {
-  const [activeModule, setActiveModule] = useState<CreosModuleKey>('C');
+  const [activeModule, setActiveModule] = useState<CreosModuleKey>(
+    initialModule || 'C',
+  );
   const [cSubViewTab, setCSubViewTab] = useState<'SUBMIT' | 'STATUS'>('SUBMIT');
   const [ePreviewTab, setEPreviewTab] = useState<'ENTERPRISE' | 'INDIVIDUAL'>(
     roleView === 'INDIVIDUAL' ? 'INDIVIDUAL' : 'ENTERPRISE',
   );
   const [checkinRuleOpen, setCheckinRuleOpen] = useState(false);
+
+  useEffect(() => {
+    if (initialModule) {
+      setActiveModule(initialModule);
+    }
+  }, [initialModule]);
 
   const [cProdDraft, setCProdDraft] = useState(
     'https://agent.carbonstop.com/share/agent/pcf-model-2026-pair08',
@@ -204,16 +210,6 @@ export const SubmitPage = ({
       ),
     },
   ];
-
-  const handleCopySecret = () => {
-    copyToClipboard(carbonAccountSecret)
-      .then(() => {
-        message.success(carbonAccountSecret);
-      })
-      .catch(() => {
-        message.info(carbonAccountSecret);
-      });
-  };
 
   const handleConfirmCSubmit = (target: 'PROD' | 'CORP') => {
     Modal.confirm({
@@ -437,7 +433,7 @@ export const SubmitPage = ({
           ) : null}
 
           {isIndividual || cSubViewTab === 'SUBMIT' ? (
-            <div className={style.grid2}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div className={style.cardBox}>
                 <div
                   style={{
@@ -660,34 +656,13 @@ export const SubmitPage = ({
         <div className={style.grid2}>
           <div className={style.cardBox}>
             <h3 className={style.cardTitle}>{compText('subECheckinTitle')}</h3>
-            {!isIndividual ? (
-              <div
-                className={style.bonusAlertBanner}
-                style={{ marginTop: 12, marginBottom: 16 }}
-              >
-                <div>
-                  <div style={{ fontSize: 12 }}>
-                    {compText('subESecretLabel')}
-                  </div>
-                  <strong style={{ fontSize: 18, letterSpacing: 1 }}>
-                    {carbonAccountSecret}
-                  </strong>
-                </div>
-                <Button
-                  size='small'
-                  icon={<CopyOutlined />}
-                  onClick={handleCopySecret}
-                >
-                  {compText('subECopySecretBtn')}
-                </Button>
-              </div>
-            ) : null}
 
             <div
               style={{
                 display: 'flex',
                 gap: 18,
                 alignItems: 'center',
+                marginTop: 14,
                 marginBottom: 16,
               }}
             >
@@ -697,7 +672,6 @@ export const SubmitPage = ({
               </div>
               <div style={{ fontSize: 13, lineHeight: 1.8, color: '#343a40' }}>
                 <div>{compText('subEStep1')}</div>
-                <div>{compText('subEStep2')}</div>
                 <div>{compText('subEStep3')}</div>
               </div>
             </div>

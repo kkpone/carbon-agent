@@ -50,6 +50,9 @@ const CompetitionPage = ({
   const [stagePhase, setStagePhase] =
     useState<CompetitionStagePhase>('PROD_CARBON');
   const [roleView, setRoleView] = useState<ParticipantRoleView>('ENT_LEADER');
+  const [submitInitialModule, setSubmitInitialModule] = useState<
+    'C' | 'R' | 'E' | 'O' | 'S'
+  >('C');
 
   const [companyName, setCompanyName] = useState('绿源智造新能源科技有限公司');
   const [taxNo, setTaxNo] = useState('91310000MA1FL8892X');
@@ -174,7 +177,7 @@ const CompetitionPage = ({
               className={classNames(style.navTabBtn, {
                 [style.navTabBtnActive]:
                   activeTab === tab.key ||
-                  (tab.key === 'result' && activeTab === 'checkin'),
+                  (tab.key === 'submit' && activeTab === 'checkin'),
               })}
               onClick={() => syncTabToUrl(tab.key)}
             >
@@ -301,7 +304,7 @@ const CompetitionPage = ({
           stagePhase={stagePhase}
           roleView={roleView}
           teamMembers={teamMembers}
-          carbonAccountSecret='CA-KEY-2026-LYZZ88'
+          initialModule={submitInitialModule}
           onGoRegister={() => syncTabToUrl('register')}
           onGoCheckinPublic={() => syncTabToUrl('checkin')}
           onUpdateMemberSubmission={handleUpdateMemberSubmission}
@@ -313,9 +316,10 @@ const CompetitionPage = ({
           subView={activeTab === 'checkin' ? 'CHECKIN' : 'AWARDS'}
           stagePhase={stagePhase}
           roleView={roleView}
-          onSwitchSubView={view =>
-            syncTabToUrl(view === 'CHECKIN' ? 'checkin' : 'result')
-          }
+          onBackToEStage={() => {
+            setSubmitInitialModule('E');
+            syncTabToUrl('submit');
+          }}
           onOpenPoster={type => setPosterState({ open: true, type })}
         />
       ) : null}
