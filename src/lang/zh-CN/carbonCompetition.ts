@@ -221,7 +221,7 @@ export default {
   regNamePlaceholder: '请输入真实姓名',
   regPhonePlaceholder: '请输入 11 位手机号（作为唯一参赛 ID）',
   regLeaderPhoneFixedTip: '组长手机号已自动绑定当前注册账号，不可修改',
-  regAddMemberBtn: '+ 添加组员（最多 10 人）',
+  regAddMemberBtn: '添加组员（最多 10 人）',
   regRemoveMemberBtn: '删减',
   regSubmitTeamBtn: '立即提交组队',
   regTeamLockedBtn: '组队已确认提交',
