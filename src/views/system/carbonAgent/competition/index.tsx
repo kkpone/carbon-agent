@@ -137,12 +137,6 @@ const CompetitionPage = ({
     extraTeamMemberBonus + inviteSuccessCount * 2,
   );
 
-  const isRegistrationClosed =
-    stagePhase === 'REG_CLOSED' ||
-    stagePhase === 'CORP_CARBON' ||
-    stagePhase === 'PRELIM_DONE' ||
-    stagePhase === 'FINAL_DONE';
-
   return (
     <div className={style.competitionShell}>
       {/* 顶部吸顶导航栏 */}
@@ -187,49 +181,6 @@ const CompetitionPage = ({
             </button>
           ))}
         </nav>
-
-        <div className={style.headerRight}>
-          {(() => {
-            if (
-              roleView === 'ENT_LEADER' ||
-              roleView === 'ENT_MEMBER' ||
-              roleView === 'INDIVIDUAL'
-            ) {
-              return (
-                <button
-                  type='button'
-                  className={style.headerActionBtn}
-                  onClick={() => syncTabToUrl('submit')}
-                >
-                  {compText('headerGoSubmitCta')}
-                </button>
-              );
-            }
-            if (roleView === 'ENT_AUDITING') {
-              return (
-                <button
-                  type='button'
-                  className={style.headerActionBtn}
-                  onClick={() => syncTabToUrl('register')}
-                >
-                  {compText('headerViewAuditCta')}
-                </button>
-              );
-            }
-            return (
-              <button
-                type='button'
-                className={style.headerActionBtn}
-                disabled={isRegistrationClosed}
-                onClick={handleGoRegister}
-              >
-                {isRegistrationClosed
-                  ? compText('heroRegClosedCta')
-                  : compText('heroPrimaryCta')}
-              </button>
-            );
-          })()}
-        </div>
       </header>
 
       {/* 演示控制台：支持一键收起以预览 100% 纯净上线界面 */}
