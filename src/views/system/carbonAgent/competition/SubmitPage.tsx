@@ -53,6 +53,7 @@ export const SubmitPage = ({
   onUpdateMemberSubmission,
 }: SubmitPageProps) => {
   const [activeModule, setActiveModule] = useState<CreosModuleKey>('C');
+  const [cSubViewTab, setCSubViewTab] = useState<'SUBMIT' | 'STATUS'>('SUBMIT');
   const [ePreviewTab, setEPreviewTab] = useState<'ENTERPRISE' | 'INDIVIDUAL'>(
     roleView === 'INDIVIDUAL' ? 'INDIVIDUAL' : 'ENTERPRISE',
   );
@@ -246,7 +247,6 @@ export const SubmitPage = ({
     <div className={style.mainContainer}>
       <div className={style.bonusAlertBanner} style={{ marginBottom: 18 }}>
         <span>{compText('subDeadlineReadonlyBanner')}</span>
-        <Tag color='geekblue'>{compText('subQuestionPairTag')}</Tag>
       </div>
 
       {/* 顶部 CREOS 五模块切换看板 */}
@@ -300,7 +300,33 @@ export const SubmitPage = ({
       {activeModule === 'C' ? (
         <div>
           {!isIndividual ? (
-            <div className={style.cardBox} style={{ marginBottom: 20 }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                marginBottom: 18,
+              }}
+            >
+              <Segmented
+                size='large'
+                value={cSubViewTab}
+                options={[
+                  {
+                    label: compText('subCTabTaskSubmit'),
+                    value: 'SUBMIT',
+                  },
+                  {
+                    label: compText('subCTabStatusView'),
+                    value: 'STATUS',
+                  },
+                ]}
+                onChange={val => setCSubViewTab(val as 'SUBMIT' | 'STATUS')}
+              />
+            </div>
+          ) : null}
+
+          {!isIndividual && cSubViewTab === 'STATUS' ? (
+            <div className={style.cardBox}>
               <h3 className={style.cardTitle}>
                 {compText('subCAllMembersTitle')}
               </h3>
@@ -410,228 +436,222 @@ export const SubmitPage = ({
             </div>
           ) : null}
 
-          <div className={style.grid2}>
-            <div className={style.cardBox}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  gap: 12,
-                  marginBottom: 10,
-                }}
-              >
-                <div>
-                  <h3 className={style.cardTitle}>
-                    {compText('subCProdTitle')}
-                  </h3>
-                  <div style={{ fontSize: 12, color: '#026961' }}>
-                    {compText('subCProdTime')}
+          {isIndividual || cSubViewTab === 'SUBMIT' ? (
+            <div className={style.grid2}>
+              <div className={style.cardBox}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: 12,
+                    marginBottom: 14,
+                  }}
+                >
+                  <div>
+                    <h3 className={style.cardTitle}>
+                      {compText('subCProdTitle')}
+                    </h3>
+                    <div style={{ fontSize: 12, color: '#026961' }}>
+                      {compText('subCProdTime')}
+                    </div>
                   </div>
+                  <Button
+                    icon={<DownloadOutlined />}
+                    onClick={() =>
+                      message.success(
+                        `${compText('subDownloadQuestionBtn')}: PCF_Question_Pair08.zip`,
+                      )
+                    }
+                  >
+                    {compText('subDownloadQuestionBtn')}
+                  </Button>
                 </div>
-                <Button
-                  icon={<DownloadOutlined />}
-                  onClick={() =>
-                    message.success(
-                      `${compText('subDownloadQuestionBtn') 
-                        }: PCF_Question_Pair08.zip`,
-                    )
-                  }
+                <div
+                  style={{
+                    marginBottom: 12,
+                    padding: '8px 12px',
+                    background: '#f7f8f9',
+                    borderRadius: 8,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 12,
+                    flexWrap: 'wrap',
+                  }}
                 >
-                  {compText('subDownloadQuestionBtn')}
-                </Button>
-              </div>
-              <p style={{ fontSize: 12, color: '#6c757d', marginBottom: 10 }}>
-                {compText('subCProdTrackNote')}
-              </p>
-              <div
-                style={{
-                  marginBottom: 12,
-                  padding: '8px 12px',
-                  background: '#f7f8f9',
-                  borderRadius: 8,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 12,
-                  flexWrap: 'wrap',
-                }}
-              >
-                <span style={{ fontSize: 13, fontWeight: 600 }}>
-                  * {compText('subDataSourceLabel')}
-                </span>
-                <Radio.Group
-                  disabled={
-                    isIndividual ||
-                    cProdConfirmed ||
-                    stagePhase === 'CORP_CARBON' ||
-                    stagePhase === 'PRELIM_DONE' ||
-                    isAllDeadlinePassed
-                  }
-                  value={isIndividual ? 'OFFICIAL' : cProdSourceType}
-                  onChange={e => setCProdSourceType(e.target.value)}
-                >
-                  <Radio value='OFFICIAL'>
-                    {compText('subDataSourceOfficial')}
-                  </Radio>
-                  <Radio value='SELF'>{compText('subDataSourceSelf')}</Radio>
-                </Radio.Group>
-              </div>
-              <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
-                {compText('subPasteGuideText')}
-              </div>
-              <Input.TextArea
-                rows={4}
-                disabled={
-                  cProdConfirmed ||
-                  stagePhase === 'CORP_CARBON' ||
-                  stagePhase === 'PRELIM_DONE' ||
-                  isAllDeadlinePassed
-                }
-                value={cProdDraft}
-                placeholder={compText('subPastePlaceholder')}
-                onChange={e => setCProdDraft(e.target.value)}
-              />
-              <div style={{ marginTop: 14, display: 'flex', gap: 10 }}>
-                <Button
+                  <span style={{ fontSize: 13, fontWeight: 600 }}>
+                    * {compText('subDataSourceLabel')}
+                  </span>
+                  <Radio.Group
+                    disabled={
+                      isIndividual ||
+                      cProdConfirmed ||
+                      stagePhase === 'CORP_CARBON' ||
+                      stagePhase === 'PRELIM_DONE' ||
+                      isAllDeadlinePassed
+                    }
+                    value={isIndividual ? 'OFFICIAL' : cProdSourceType}
+                    onChange={e => setCProdSourceType(e.target.value)}
+                  >
+                    <Radio value='OFFICIAL'>
+                      {compText('subDataSourceOfficial')}
+                    </Radio>
+                    <Radio value='SELF'>{compText('subDataSourceSelf')}</Radio>
+                  </Radio.Group>
+                </div>
+                <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
+                  {compText('subPasteGuideText')}
+                </div>
+                <Input.TextArea
+                  rows={4}
                   disabled={
                     cProdConfirmed ||
                     stagePhase === 'CORP_CARBON' ||
                     stagePhase === 'PRELIM_DONE' ||
                     isAllDeadlinePassed
                   }
-                  onClick={() => message.success(compText('subSaveDraftBtn'))}
-                >
-                  {compText('subSaveDraftBtn')}
-                </Button>
-                <Button
-                  type='primary'
-                  disabled={
-                    cProdConfirmed ||
-                    stagePhase === 'CORP_CARBON' ||
-                    stagePhase === 'PRELIM_DONE' ||
-                    isAllDeadlinePassed
-                  }
-                  style={{ background: '#026961', borderColor: '#026961' }}
-                  onClick={() => handleConfirmCSubmit('PROD')}
-                >
-                  {cProdConfirmed
-                    ? compText('subLockedBtn')
-                    : compText('subConfirmSubmitBtn')}
-                </Button>
+                  value={cProdDraft}
+                  placeholder={compText('subPastePlaceholder')}
+                  onChange={e => setCProdDraft(e.target.value)}
+                />
+                <div style={{ marginTop: 14, display: 'flex', gap: 10 }}>
+                  <Button
+                    disabled={
+                      cProdConfirmed ||
+                      stagePhase === 'CORP_CARBON' ||
+                      stagePhase === 'PRELIM_DONE' ||
+                      isAllDeadlinePassed
+                    }
+                    onClick={() => message.success(compText('subSaveDraftBtn'))}
+                  >
+                    {compText('subSaveDraftBtn')}
+                  </Button>
+                  <Button
+                    type='primary'
+                    disabled={
+                      cProdConfirmed ||
+                      stagePhase === 'CORP_CARBON' ||
+                      stagePhase === 'PRELIM_DONE' ||
+                      isAllDeadlinePassed
+                    }
+                    style={{ background: '#026961', borderColor: '#026961' }}
+                    onClick={() => handleConfirmCSubmit('PROD')}
+                  >
+                    {cProdConfirmed
+                      ? compText('subLockedBtn')
+                      : compText('subConfirmSubmitBtn')}
+                  </Button>
+                </div>
               </div>
-            </div>
 
-            <div className={style.cardBox}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  gap: 12,
-                  marginBottom: 10,
-                }}
-              >
-                <div>
-                  <h3 className={style.cardTitle}>
-                    {compText('subCCorpTitle')}
-                  </h3>
-                  <div style={{ fontSize: 12, color: '#026961' }}>
-                    {compText('subCCorpTime')}
+              <div className={style.cardBox}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: 12,
+                    marginBottom: 14,
+                  }}
+                >
+                  <div>
+                    <h3 className={style.cardTitle}>
+                      {compText('subCCorpTitle')}
+                    </h3>
+                    <div style={{ fontSize: 12, color: '#026961' }}>
+                      {compText('subCCorpTime')}
+                    </div>
                   </div>
+                  <Button
+                    icon={<DownloadOutlined />}
+                    disabled={stagePhase === 'PROD_CARBON'}
+                    onClick={() =>
+                      message.success(
+                        `${compText('subDownloadQuestionBtn')}: ECA_Question_Pair08.zip`,
+                      )
+                    }
+                  >
+                    {compText('subDownloadQuestionBtn')}
+                  </Button>
                 </div>
-                <Button
-                  icon={<DownloadOutlined />}
-                  disabled={stagePhase === 'PROD_CARBON'}
-                  onClick={() =>
-                    message.success(
-                      `${compText('subDownloadQuestionBtn') 
-                        }: ECA_Question_Pair08.zip`,
-                    )
-                  }
+                <div
+                  style={{
+                    marginBottom: 12,
+                    padding: '8px 12px',
+                    background: '#f7f8f9',
+                    borderRadius: 8,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 12,
+                    flexWrap: 'wrap',
+                  }}
                 >
-                  {compText('subDownloadQuestionBtn')}
-                </Button>
-              </div>
-              <p style={{ fontSize: 12, color: '#6c757d', marginBottom: 10 }}>
-                {compText('subQuestionPairTag')}
-              </p>
-              <div
-                style={{
-                  marginBottom: 12,
-                  padding: '8px 12px',
-                  background: '#f7f8f9',
-                  borderRadius: 8,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 12,
-                  flexWrap: 'wrap',
-                }}
-              >
-                <span style={{ fontSize: 13, fontWeight: 600 }}>
-                  * {compText('subDataSourceLabel')}
-                </span>
-                <Radio.Group
-                  disabled={
-                    isIndividual ||
-                    cCorpConfirmed ||
-                    stagePhase === 'PROD_CARBON' ||
-                    stagePhase === 'PRELIM_DONE' ||
-                    isAllDeadlinePassed
-                  }
-                  value={isIndividual ? 'OFFICIAL' : cCorpSourceType}
-                  onChange={e => setCCorpSourceType(e.target.value)}
-                >
-                  <Radio value='OFFICIAL'>
-                    {compText('subDataSourceOfficial')}
-                  </Radio>
-                  <Radio value='SELF'>{compText('subDataSourceSelf')}</Radio>
-                </Radio.Group>
-              </div>
-              <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
-                {compText('subPasteGuideText')}
-              </div>
-              <Input.TextArea
-                rows={4}
-                disabled={
-                  cCorpConfirmed ||
-                  stagePhase === 'PROD_CARBON' ||
-                  stagePhase === 'PRELIM_DONE' ||
-                  isAllDeadlinePassed
-                }
-                value={cCorpDraft}
-                placeholder={compText('subPastePlaceholder')}
-                onChange={e => setCCorpDraft(e.target.value)}
-              />
-              <div style={{ marginTop: 14, display: 'flex', gap: 10 }}>
-                <Button
+                  <span style={{ fontSize: 13, fontWeight: 600 }}>
+                    * {compText('subDataSourceLabel')}
+                  </span>
+                  <Radio.Group
+                    disabled={
+                      isIndividual ||
+                      cCorpConfirmed ||
+                      stagePhase === 'PROD_CARBON' ||
+                      stagePhase === 'PRELIM_DONE' ||
+                      isAllDeadlinePassed
+                    }
+                    value={isIndividual ? 'OFFICIAL' : cCorpSourceType}
+                    onChange={e => setCCorpSourceType(e.target.value)}
+                  >
+                    <Radio value='OFFICIAL'>
+                      {compText('subDataSourceOfficial')}
+                    </Radio>
+                    <Radio value='SELF'>{compText('subDataSourceSelf')}</Radio>
+                  </Radio.Group>
+                </div>
+                <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
+                  {compText('subPasteGuideText')}
+                </div>
+                <Input.TextArea
+                  rows={4}
                   disabled={
                     cCorpConfirmed ||
                     stagePhase === 'PROD_CARBON' ||
                     stagePhase === 'PRELIM_DONE' ||
                     isAllDeadlinePassed
                   }
-                  onClick={() => message.success(compText('subSaveDraftBtn'))}
-                >
-                  {compText('subSaveDraftBtn')}
-                </Button>
-                <Button
-                  type='primary'
-                  disabled={
-                    cCorpConfirmed ||
-                    stagePhase === 'PROD_CARBON' ||
-                    stagePhase === 'PRELIM_DONE' ||
-                    isAllDeadlinePassed
-                  }
-                  style={{ background: '#026961', borderColor: '#026961' }}
-                  onClick={() => handleConfirmCSubmit('CORP')}
-                >
-                  {cCorpConfirmed
-                    ? compText('subLockedBtn')
-                    : compText('subConfirmSubmitBtn')}
-                </Button>
+                  value={cCorpDraft}
+                  placeholder={compText('subPastePlaceholder')}
+                  onChange={e => setCCorpDraft(e.target.value)}
+                />
+                <div style={{ marginTop: 14, display: 'flex', gap: 10 }}>
+                  <Button
+                    disabled={
+                      cCorpConfirmed ||
+                      stagePhase === 'PROD_CARBON' ||
+                      stagePhase === 'PRELIM_DONE' ||
+                      isAllDeadlinePassed
+                    }
+                    onClick={() => message.success(compText('subSaveDraftBtn'))}
+                  >
+                    {compText('subSaveDraftBtn')}
+                  </Button>
+                  <Button
+                    type='primary'
+                    disabled={
+                      cCorpConfirmed ||
+                      stagePhase === 'PROD_CARBON' ||
+                      stagePhase === 'PRELIM_DONE' ||
+                      isAllDeadlinePassed
+                    }
+                    style={{ background: '#026961', borderColor: '#026961' }}
+                    onClick={() => handleConfirmCSubmit('CORP')}
+                  >
+                    {cCorpConfirmed
+                      ? compText('subLockedBtn')
+                      : compText('subConfirmSubmitBtn')}
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
+          ) : null}
         </div>
       ) : null}
 

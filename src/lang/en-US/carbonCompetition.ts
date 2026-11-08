@@ -269,14 +269,14 @@ export default {
   subCCorpTitle: '任务二：企业碳盘查核算（与产品碳考题一一对应）',
   subCCorpTime:
     '比赛提交时间：11月30日 00:00 - 12月06日 23:59（11月30日 00:00 起可下载考题）',
-  subDownloadQuestionBtn: '下载考题包',
+  subDownloadQuestionBtn: '下载考题',
   subQuestionPairTag: '已绑定一一对应题号：#PAIR-2026-08',
   subPasteGuideText:
-    '请在 Carbon Agent 工作台完成建模后，点击模型右上角“复制模型链接/JSON摘要”粘贴至下方输入框（一经确认提交不可修改）：',
+    '请在 Carbon Agent 工作台完成建模后，点击模型右上角“分享”粘贴链接至下方输入框',
   subPastePlaceholder:
     '请在此粘贴您的 Carbon Agent 核算模型链接、模型快照 ID 或核算结果说明...',
   subSaveDraftBtn: '保存草稿',
-  subConfirmSubmitBtn: '确认提交（提交后锁定）',
+  subConfirmSubmitBtn: '确认提交',
   subLockedBtn: '已确认提交（不可编辑）',
 
   subECheckinTitle: '价值链带动（E阶段）· 碳账户打卡与密钥绑定',
@@ -407,4 +407,6 @@ export default {
   regMemberInviterTag: '邀请人：{inviter}',
   regSubmitTeamBtnWithBonus: '立即提交组队（影响力 +{bonus}%）',
   regTeamLockedBtnWithBonus: '组队已确认提交（影响力 +{bonus}%）',
+  subCTabTaskSubmit: '任务提交',
+  subCTabStatusView: '状态查看',
 };
