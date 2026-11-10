@@ -6,7 +6,17 @@ import {
   QrcodeOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import { Button, Input, Modal, Radio, Segmented, Table, Tag, message } from 'antd';
+import {
+  Button,
+  Input,
+  Modal,
+  Radio,
+  Segmented,
+  Select,
+  Table,
+  Tag,
+  message,
+} from 'antd';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 
@@ -19,8 +29,10 @@ import type {
   TeamMemberRecord,
 } from './data';
 import {
+  CORP_CARBON_MODEL_OPTIONS_DESC,
   ENTERPRISE_CHECKIN_PUBLIC_LIST,
   INDIVIDUAL_CHECKIN_PUBLIC_LIST,
+  PROD_CARBON_MODEL_OPTIONS_DESC,
   compText,
   maskPhoneNumber,
 } from './data';
@@ -66,13 +78,17 @@ export const SubmitPage = ({
   }, [initialModule]);
 
   const [cProdDraft, setCProdDraft] = useState(
-    'https://agent.carbonstop.com/share/agent/pcf-model-2026-pair08',
+    PROD_CARBON_MODEL_OPTIONS_DESC[0].value,
   );
   const [cCorpDraft, setCCorpDraft] = useState(
-    'https://agent.carbonstop.com/share/agent/eca-model-2026-pair08',
+    CORP_CARBON_MODEL_OPTIONS_DESC[0].value,
   );
-  const [cProdSourceType, setCProdSourceType] = useState<'OFFICIAL' | 'SELF'>('OFFICIAL');
-  const [cCorpSourceType, setCCorpSourceType] = useState<'OFFICIAL' | 'SELF'>('OFFICIAL');
+  const [cProdSourceType, setCProdSourceType] = useState<'OFFICIAL' | 'SELF'>(
+    'OFFICIAL',
+  );
+  const [cCorpSourceType, setCCorpSourceType] = useState<'OFFICIAL' | 'SELF'>(
+    'OFFICIAL',
+  );
   const [cProdConfirmed, setCProdConfirmed] = useState(false);
   const [cCorpConfirmed, setCCorpConfirmed] = useState(false);
 
@@ -166,9 +182,7 @@ export const SubmitPage = ({
       ongoing: isRosPhase && !isIndividual,
       disabledForTrack: isIndividual,
       statusNode: isIndividual ? (
-        <Tag icon={<LockOutlined />}>
-          {compText('subCardLockedIndividual')}
-        </Tag>
+        <Tag icon={<LockOutlined />}>{compText('subCardLockedIndividual')}</Tag>
       ) : (
         renderStatusTag(rosStatus.R)
       ),
@@ -188,9 +202,7 @@ export const SubmitPage = ({
       ongoing: isRosPhase && !isIndividual,
       disabledForTrack: isIndividual,
       statusNode: isIndividual ? (
-        <Tag icon={<LockOutlined />}>
-          {compText('subCardLockedIndividual')}
-        </Tag>
+        <Tag icon={<LockOutlined />}>{compText('subCardLockedIndividual')}</Tag>
       ) : (
         renderStatusTag(rosStatus.O)
       ),
@@ -202,9 +214,7 @@ export const SubmitPage = ({
       ongoing: isRosPhase && !isIndividual,
       disabledForTrack: isIndividual,
       statusNode: isIndividual ? (
-        <Tag icon={<LockOutlined />}>
-          {compText('subCardLockedIndividual')}
-        </Tag>
+        <Tag icon={<LockOutlined />}>{compText('subCardLockedIndividual')}</Tag>
       ) : (
         renderStatusTag(rosStatus.S)
       ),
@@ -212,9 +222,15 @@ export const SubmitPage = ({
   ];
 
   const handleConfirmCSubmit = (target: 'PROD' | 'CORP') => {
+    const selectedModelLabel =
+      target === 'PROD'
+        ? PROD_CARBON_MODEL_OPTIONS_DESC.find(o => o.value === cProdDraft)
+            ?.label || cProdDraft
+        : CORP_CARBON_MODEL_OPTIONS_DESC.find(o => o.value === cCorpDraft)
+            ?.label || cCorpDraft;
     Modal.confirm({
       title: compText('subConfirmSubmitBtn'),
-      content: compText('subPasteGuideText'),
+      content: `${compText('subModelSelectLabel')}：${selectedModelLabel}`,
       onOk: () => {
         if (target === 'PROD') {
           setCProdConfirmed(true);
@@ -456,7 +472,9 @@ export const SubmitPage = ({
                     icon={<DownloadOutlined />}
                     onClick={() =>
                       message.success(
-                        `${compText('subDownloadQuestionBtn')}: PCF_Question_Pair08.zip`,
+                        `${compText(
+                          'subDownloadQuestionBtn',
+                        )}: PCF_Question_Pair08.zip`,
                       )
                     }
                   >
@@ -496,10 +514,11 @@ export const SubmitPage = ({
                   </Radio.Group>
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
-                  {compText('subPasteGuideText')}
+                  * {compText('subModelSelectLabel')}
                 </div>
-                <Input.TextArea
-                  rows={4}
+                <Select
+                  size='large'
+                  style={{ width: '100%' }}
                   disabled={
                     cProdConfirmed ||
                     stagePhase === 'CORP_CARBON' ||
@@ -507,8 +526,9 @@ export const SubmitPage = ({
                     isAllDeadlinePassed
                   }
                   value={cProdDraft}
-                  placeholder={compText('subPastePlaceholder')}
-                  onChange={e => setCProdDraft(e.target.value)}
+                  placeholder={compText('subModelSelectPlaceholder')}
+                  options={PROD_CARBON_MODEL_OPTIONS_DESC}
+                  onChange={val => setCProdDraft(val)}
                 />
                 <div style={{ marginTop: 14, display: 'flex', gap: 10 }}>
                   <Button
@@ -563,7 +583,9 @@ export const SubmitPage = ({
                     disabled={stagePhase === 'PROD_CARBON'}
                     onClick={() =>
                       message.success(
-                        `${compText('subDownloadQuestionBtn')}: ECA_Question_Pair08.zip`,
+                        `${compText(
+                          'subDownloadQuestionBtn',
+                        )}: ECA_Question_Pair08.zip`,
                       )
                     }
                   >
@@ -603,10 +625,11 @@ export const SubmitPage = ({
                   </Radio.Group>
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 6 }}>
-                  {compText('subPasteGuideText')}
+                  * {compText('subModelSelectLabel')}
                 </div>
-                <Input.TextArea
-                  rows={4}
+                <Select
+                  size='large'
+                  style={{ width: '100%' }}
                   disabled={
                     cCorpConfirmed ||
                     stagePhase === 'PROD_CARBON' ||
@@ -614,8 +637,9 @@ export const SubmitPage = ({
                     isAllDeadlinePassed
                   }
                   value={cCorpDraft}
-                  placeholder={compText('subPastePlaceholder')}
-                  onChange={e => setCCorpDraft(e.target.value)}
+                  placeholder={compText('subModelSelectPlaceholder')}
+                  options={CORP_CARBON_MODEL_OPTIONS_DESC}
+                  onChange={val => setCCorpDraft(val)}
                 />
                 <div style={{ marginTop: 14, display: 'flex', gap: 10 }}>
                   <Button
@@ -737,7 +761,7 @@ export const SubmitPage = ({
                         title: compText('checkinColRank'),
                         dataIndex: 'rank',
                         key: 'rank',
-                        render: (val: number) => `NO.${  String(val)}`,
+                        render: (val: number) => `NO.${String(val)}`,
                       },
                       {
                         title: compText('checkinColPersonName'),
@@ -748,7 +772,7 @@ export const SubmitPage = ({
                         title: compText('checkinColTotalPoints'),
                         dataIndex: 'totalPoints',
                         key: 'totalPoints',
-                        render: (val: number) => `${val.toLocaleString()  } 分`,
+                        render: (val: number) => `${val.toLocaleString()} 分`,
                       },
                     ]
                   : [
@@ -756,7 +780,7 @@ export const SubmitPage = ({
                         title: compText('checkinColRank'),
                         dataIndex: 'rank',
                         key: 'rank',
-                        render: (val: number) => `NO.${  String(val)}`,
+                        render: (val: number) => `NO.${String(val)}`,
                       },
                       {
                         title: compText('checkinColEnterprise'),
@@ -767,7 +791,7 @@ export const SubmitPage = ({
                         title: compText('checkinColTotalPoints'),
                         dataIndex: 'totalPoints',
                         key: 'totalPoints',
-                        render: (val: number) => `${val.toLocaleString()  } 分`,
+                        render: (val: number) => `${val.toLocaleString()} 分`,
                       },
                     ]
               }
@@ -869,8 +893,7 @@ export const SubmitPage = ({
                   onClick={() =>
                     setRosFiles(prev => ({
                       ...prev,
-                      [activeModule]:
-                        `${activeModule  }_Enterprise_Proposal_2026.pdf`,
+                      [activeModule]: `${activeModule}_Enterprise_Proposal_2026.pdf`,
                     }))
                   }
                 >

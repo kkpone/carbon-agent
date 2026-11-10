@@ -20,7 +20,8 @@ export type CompetitionTabKey =
   | 'register'
   | 'submit'
   | 'result'
-  | 'checkin';
+  | 'checkin'
+  | 'admin';
 
 export type CompetitionStagePhase =
   | 'PROD_CARBON'
@@ -551,5 +552,256 @@ export const SPECIAL_AWARD_WINNERS: AwardWinnerRow[] = [
     ePointsAndScore: '个人打卡总积分 4,500 分',
     bonusRateText: '+10%',
     finalScoreText: '单项最高荣誉',
+  },
+];
+
+export type AccountingModelOption = {
+  value: string;
+  label: string;
+  createdAt: string;
+};
+
+// 按创建时间倒序排列（最新创建的核算模型在最上方）
+export const PROD_CARBON_MODEL_OPTIONS_DESC: AccountingModelOption[] = [
+  {
+    value: 'https://agent.carbonstop.com/share/agent/pcf-model-2026-pair08-v3',
+    label:
+      '【最新】高能量密度锂离子动力电池包 1kWh 产品碳足迹核算模型 V3.0（2026-11-26 16:40）',
+    createdAt: '2026-11-26 16:40',
+  },
+  {
+    value: 'https://agent.carbonstop.com/share/agent/pcf-model-2026-pair08-v2',
+    label:
+      '高能量密度锂离子动力电池包 1kWh 产品碳足迹核算模型 V2.0（2026-11-24 11:15）',
+    createdAt: '2026-11-24 11:15',
+  },
+  {
+    value: 'https://agent.carbonstop.com/share/agent/pcf-model-2026-pair08-v1',
+    label:
+      '高能量密度锂离子动力电池包 1kWh 产品碳足迹核算模型 V1.0（2026-11-22 09:30）',
+    createdAt: '2026-11-22 09:30',
+  },
+];
+
+export const CORP_CARBON_MODEL_OPTIONS_DESC: AccountingModelOption[] = [
+  {
+    value: 'https://agent.carbonstop.com/share/agent/eca-model-2026-pair08-v3',
+    label:
+      '【最新】绿源智造 2025 年度企业温室气体盘查（范围一+二+三）核算模型 V3.0（2026-12-03 18:20）',
+    createdAt: '2026-12-03 18:20',
+  },
+  {
+    value: 'https://agent.carbonstop.com/share/agent/eca-model-2026-pair08-v2',
+    label:
+      '绿源智造 2025 年度企业温室气体盘查（范围一+二+三）核算模型 V2.0（2026-12-01 14:50）',
+    createdAt: '2026-12-01 14:50',
+  },
+  {
+    value: 'https://agent.carbonstop.com/share/agent/eca-model-2026-pair08-v1',
+    label:
+      '绿源智造 2025 年度企业温室气体盘查（范围一+二）初版核算模型 V1.0（2026-11-30 10:05）',
+    createdAt: '2026-11-30 10:05',
+  },
+];
+
+export type AdminEnterpriseAuditItem = {
+  id: string;
+  applyTime: string;
+  enterpriseName: string;
+  creditCode: string;
+  leaderName: string;
+  leaderPhone: string;
+  licenseFileName: string;
+  logoFileName: string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  rejectReason?: string;
+};
+
+export const ADMIN_AUDIT_INITIAL_LIST: AdminEnterpriseAuditItem[] = [
+  {
+    id: 'aud-1',
+    applyTime: '2026-11-18 14:25',
+    enterpriseName: '绿源智造新能源科技有限公司',
+    creditCode: '91310000MA1FL88X9B',
+    leaderName: '林立',
+    leaderPhone: '18602353734',
+    licenseFileName: '绿源智造_营业执照副本(加盖公章).pdf',
+    logoFileName: '绿源智造_品牌Logo高清版.png',
+    status: 'APPROVED',
+  },
+  {
+    id: 'aud-2',
+    applyTime: '2026-11-19 09:42',
+    enterpriseName: '远景动力电池系统（江苏）有限公司',
+    creditCode: '91320214MA1W902K31',
+    leaderName: '周远航',
+    leaderPhone: '13918273645',
+    licenseFileName: '远景动力_营业执照扫描件.jpg',
+    logoFileName: 'EnvisionAESC_Logo.png',
+    status: 'PENDING',
+  },
+  {
+    id: 'aud-3',
+    applyTime: '2026-11-19 11:10',
+    enterpriseName: '正泰新能科技股份有限公司',
+    creditCode: '91330481MA2JE81X76',
+    leaderName: '徐文博',
+    leaderPhone: '13709182736',
+    licenseFileName: '正泰新能_营业执照2026.pdf',
+    logoFileName: 'ASTRONERGY_Logo.png',
+    status: 'PENDING',
+  },
+  {
+    id: 'aud-4',
+    applyTime: '2026-11-17 16:08',
+    enterpriseName: '国轩高科股份有限公司',
+    creditCode: '9134010079009821X4',
+    leaderName: '宋佳琪',
+    leaderPhone: '13588214419',
+    licenseFileName: '国轩高科_营业执照.pdf',
+    logoFileName: 'Gotion_Logo.png',
+    status: 'APPROVED',
+  },
+  {
+    id: 'aud-5',
+    applyTime: '2026-11-16 10:30',
+    enterpriseName: '某未盖章测试商贸有限公司',
+    creditCode: '91110105MA01X9920Q',
+    leaderName: '赵测试',
+    leaderPhone: '15810029938',
+    licenseFileName: '未清晰扫描件.jpg',
+    logoFileName: 'test_logo.png',
+    status: 'REJECTED',
+    rejectReason:
+      '上传的营业执照复印件模糊且未体现最新年检信息，请重新上传清晰原件扫描件。',
+  },
+];
+
+export type AdminQuestionPairItem = {
+  id: string;
+  pairCode: string;
+  industry: string;
+  prodQuestionTitle: string;
+  prodFileName: string;
+  prodOpenTime: string;
+  corpQuestionTitle: string;
+  corpFileName: string;
+  corpOpenTime: string;
+  assignedCount: number;
+  statusText: string;
+};
+
+export const ADMIN_QUESTION_PAIR_LIST: AdminQuestionPairItem[] = [
+  {
+    id: 'qp-1',
+    pairCode: 'PAIR-2026-01',
+    industry: '新能源与动力电池制造',
+    prodQuestionTitle: '高能量密度锂离子动力电池包（1kWh）产品碳足迹核算',
+    prodFileName: 'PCF_Pair01_LithiumBattery.zip',
+    prodOpenTime: '2026-11-20 16:00',
+    corpQuestionTitle: '动力电池制造基地 2025 年度范围一+二+三温室气体盘查',
+    corpFileName: 'ECA_Pair01_BatteryPlant.zip',
+    corpOpenTime: '2026-11-30 00:00',
+    assignedCount: 42,
+    statusText: '已开放下载',
+  },
+  {
+    id: 'qp-2',
+    pairCode: 'PAIR-2026-02',
+    industry: '食品饮料与乳制品加工',
+    prodQuestionTitle: '有机纯牛奶（250mL利乐砖）全生命周期碳足迹核算',
+    prodFileName: 'PCF_Pair02_OrganicMilk.zip',
+    prodOpenTime: '2026-11-20 16:00',
+    corpQuestionTitle: '大型乳品加工企业全价值链温室气体盘查与热点识别',
+    corpFileName: 'ECA_Pair02_DairyCorp.zip',
+    corpOpenTime: '2026-11-30 00:00',
+    assignedCount: 36,
+    statusText: '已开放下载',
+  },
+  {
+    id: 'qp-3',
+    pairCode: 'PAIR-2026-03',
+    industry: '纺织服装与运动鞋服',
+    prodQuestionTitle: '再生聚酯纤维低碳竞速跑鞋（1双）产品碳足迹核算',
+    prodFileName: 'PCF_Pair03_RunningShoes.zip',
+    prodOpenTime: '2026-11-20 16:00',
+    corpQuestionTitle: '运动服饰品牌总部及供应链工厂年度组织碳盘查',
+    corpFileName: 'ECA_Pair03_ApparelCorp.zip',
+    corpOpenTime: '2026-11-30 00:00',
+    assignedCount: 29,
+    statusText: '已开放下载',
+  },
+  {
+    id: 'qp-4',
+    pairCode: 'PAIR-2026-04',
+    industry: '新能源汽车整车与零部件',
+    prodQuestionTitle: '智能纯电轿跑铝合金一体化压铸后底板产品碳足迹核算',
+    prodFileName: 'PCF_Pair04_AutoCasting.zip',
+    prodOpenTime: '2026-11-20 16:00',
+    corpQuestionTitle: '智能电动汽车制造工厂年度温室气体盘查',
+    corpFileName: 'ECA_Pair04_EVFactory.zip',
+    corpOpenTime: '2026-11-30 00:00',
+    assignedCount: 31,
+    statusText: '已开放下载',
+  },
+];
+
+export type AdminRosFinalReviewItem = {
+  id: string;
+  enterpriseName: string;
+  leaderName: string;
+  memberCount: number;
+  rDocName: string;
+  oDocName: string;
+  sDocName: string;
+  rScore: number;
+  oScore: number;
+  sScore: number;
+  defenseScore: number;
+  bonusRate: number;
+};
+
+export const ADMIN_ROS_FINAL_REVIEW_LIST: AdminRosFinalReviewItem[] = [
+  {
+    id: 'ros-1',
+    enterpriseName: '国轩高科股份有限公司',
+    leaderName: '宋佳琪',
+    memberCount: 10,
+    rDocName: '国轩高科_R阶段科学减排路线图与绿电替代方案.pdf',
+    oDocName: '国轩高科_O阶段高质量碳信用筛选与中和路径.pdf',
+    sDocName: '国轩高科_S阶段低碳产品传播与供应链赋能案例.pptx',
+    rScore: 32.5,
+    oScore: 18.5,
+    sScore: 19.0,
+    defenseScore: 21.0,
+    bonusRate: 10,
+  },
+  {
+    id: 'ros-2',
+    enterpriseName: '绿源智造新能源科技有限公司',
+    leaderName: '林立',
+    memberCount: 6,
+    rDocName: '绿源智造_R阶段极片涂布余热回收减排方案.pdf',
+    oDocName: '绿源智造_O阶段VCS林业碳汇抵消配置说明.pdf',
+    sDocName: '绿源智造_S阶段零碳电池护照披露实践.pptx',
+    rScore: 31.8,
+    oScore: 18.2,
+    sScore: 18.5,
+    defenseScore: 21.0,
+    bonusRate: 2,
+  },
+  {
+    id: 'ros-3',
+    enterpriseName: '安踏体育用品集团有限公司',
+    leaderName: '陈志强',
+    memberCount: 7,
+    rDocName: '安踏集团_R阶段生物基材料替代与染整节能方案.pdf',
+    oDocName: '安踏集团_O阶段碳中和门店抵消方案.pdf',
+    sDocName: '安踏集团_S阶段面向亿级消费者的低碳标签传播.pptx',
+    rScore: 31.0,
+    oScore: 18.0,
+    sScore: 19.2,
+    defenseScore: 19.8,
+    bonusRate: 4,
   },
 ];

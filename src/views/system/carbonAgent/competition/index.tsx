@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import { CompetitionAdminPage } from './CompetitionAdminPage';
 import {
   FullMechanismModal,
   InviteLandingModal,
@@ -41,7 +42,7 @@ const CompetitionPage = ({
 
   const [activeTab, setActiveTab] = useState<CompetitionTabKey>(
     initialTabParam &&
-      ['intro', 'register', 'submit', 'result', 'checkin'].includes(
+      ['intro', 'register', 'submit', 'result', 'checkin', 'admin'].includes(
         initialTabParam,
       )
       ? initialTabParam
@@ -139,6 +140,17 @@ const CompetitionPage = ({
     10,
     extraTeamMemberBonus + inviteSuccessCount * 2,
   );
+
+  if (activeTab === 'admin') {
+    return (
+      <CompetitionAdminPage
+        stagePhase={stagePhase}
+        teamMembers={teamMembers}
+        onStagePhaseChange={setStagePhase}
+        onBackToFront={() => syncTabToUrl('intro')}
+      />
+    );
+  }
 
   return (
     <div className={style.competitionShell}>
@@ -244,6 +256,18 @@ const CompetitionPage = ({
               onClick={() => setInviteLandingOpen(true)}
             >
               {compText('demoOpenInvitePopup')}
+            </button>
+            <button
+              type='button'
+              className={style.demoPill}
+              style={{
+                background: '#04252b',
+                color: '#5ce0b8',
+                borderColor: '#026961',
+              }}
+              onClick={() => syncTabToUrl('admin')}
+            >
+              {compText('adminOpenEntryBtn')}
             </button>
             <button
               type='button'
